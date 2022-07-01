@@ -138,9 +138,13 @@ function createClientConfig(env: Env): Configuration {
           exclude: /node_modules/,
           use: { loader: "babel-loader", options: babelConfig },
         },
-
         {
-          test: /\.(jpg|png|gif|svg)$/,
+          test: /\.(woff2|woff|eot|ttf|otf|svg)$/,
+          include: /fonts/,
+          use: ["file-loader"],
+        },
+        {
+          test: /\.(jpg|png|gif)$/,
           use: {
             loader: "file-loader",
             options: {
@@ -148,6 +152,10 @@ function createClientConfig(env: Env): Configuration {
               name: "[name].[contenthash].[ext]",
             },
           },
+        },
+        {
+          test: /\.svg$/,
+          use: ["@svgr/webpack"],
         },
       ],
     },
