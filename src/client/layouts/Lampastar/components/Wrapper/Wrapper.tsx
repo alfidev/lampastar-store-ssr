@@ -6,7 +6,7 @@ import { Header } from "../Header";
 import { ThemeProvider } from "styled-components";
 import { LIGHT_THEME } from "../../themes";
 import { Footer } from "../Footer";
-import { ContentWrapper } from "../../styledComponents";
+import { ContentWrapper } from "../ComponentWrapper";
 
 type Props = {
   children: ReactNode;
@@ -21,7 +21,9 @@ export const Wrapper = ({ children }: Props) => {
         textColor={LIGHT_THEME.color.text.primary}
       />
       <Header />
-      <ContentWrapper>{children}</ContentWrapper>
+      <main>
+        <ContentWrapper>{children}</ContentWrapper>
+      </main>
       <Footer />
     </ThemeProvider>
   );

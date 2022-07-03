@@ -1,38 +1,40 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import { Typography as TypographyType } from "@layouts/Lampastar";
+import {
+  Typography as TypographyType,
+  TypographyColorType,
+} from "@layouts/Lampastar";
 
 type Props = {
   tag?: string;
   variant?: keyof TypographyType;
+  color?: keyof TypographyColorType | "inherit";
   children: ReactNode;
 };
 
-const StyledTypography = (
-  type: keyof TypographyType,
-  Element: React.ReactElement
-) =>
-  styled(({ className }) => (
-    <Element.type {...Element.props} className={className} />
-  ))`
-    ${({ theme }) => theme.typography[type]}
-  `;
+type TypographyStyledType = {
+  color: keyof TypographyColorType;
+  type: keyof TypographyType;
+};
+
+const StyledTypographyComponent = styled.div<TypographyStyledType>`
+  color: ${({ theme, color }) => (color ? theme.color.text[color] : "inherit")};
+  ${({ theme, type }) => theme.typography[type]};
+`;
 
 export const Typography = ({
   tag = "span",
   variant = "body1",
+  color,
   children,
-  ...rest
+  ...props
 }: Props) => {
-  const element = React.createElement(
-    tag,
-    {
-      ...rest,
-    },
-    children
+  // @ts-ignore
+  const WithComponent = StyledTypographyComponent.withComponent(tag);
+
+  return (
+    <WithComponent type={variant} color={color} {...props}>
+      {children}
+    </WithComponent>
   );
-
-  const Component = StyledTypography(variant, element);
-
-  return <Component />;
 };

@@ -6,11 +6,15 @@ import { RouteComponent } from "../RouteComponent";
 export const Routes = () => {
   return (
     <RoutesSwitch>
-      {Object.values(ROUTES).map(({ path, title, component }) => (
+      {Object.values(ROUTES).map(({ path, title, component: Component }) => (
         <Route
           key={path}
           path={path}
-          element={<RouteComponent title={title}>{component}</RouteComponent>}
+          element={
+            <RouteComponent title={title}>
+              <Component />
+            </RouteComponent>
+          }
         />
       ))}
     </RoutesSwitch>

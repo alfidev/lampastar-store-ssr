@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ContentWrapper } from "../../styledComponents";
+import { ContentWrapper } from "../ComponentWrapper";
 import { Button, Input } from "@ui/components";
 import { Logo } from "@resources/images";
 
@@ -95,7 +95,7 @@ export const FooterMenuItem = styled.li`
 `;
 
 export const FooterLogo = styled(Logo)`
-  .logo_svg__logo-text {
+  .logo-text {
     fill: ${({ theme }) => theme.color.text.secondary};
   }
 `;

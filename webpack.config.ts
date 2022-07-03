@@ -155,7 +155,19 @@ function createClientConfig(env: Env): Configuration {
         },
         {
           test: /\.svg$/,
-          use: ["@svgr/webpack"],
+          use: {
+            loader: "@svgr/webpack",
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: "removeViewBox",
+                    active: false,
+                  },
+                ],
+              },
+            },
+          },
         },
       ],
     },

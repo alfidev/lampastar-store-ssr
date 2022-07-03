@@ -25,7 +25,7 @@ import { SearchInput } from "@ui/components";
 const { paymentAndDelivery, contacts, favourites, basket, home } = ROUTES;
 const { phoneNumber } = CONTACTS;
 
-export const Header = () => {
+export const Header = React.memo(() => {
   const theme = useTheme();
 
   return (
@@ -93,4 +93,4 @@ export const Header = () => {
       </BottomLine>
     </StyledHeader>
   );
-};
+});

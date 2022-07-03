@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ContentWrapper } from "../../styledComponents";
+import { ContentWrapper } from "../ComponentWrapper";
 import { Link } from "react-router-dom";
 import { Button } from "@ui/components";
 
@@ -20,7 +20,7 @@ const getLinkStyle = css`
 `;
 
 export const StyledHeader = styled.header`
-  margin-bottom: ${({ theme }) => theme.indents.xl};
+  margin-bottom: ${({ theme }) => theme.indents.xxl};
   box-shadow: 0 0 10px ${({ theme }) => theme.color.background.secondaryHover};
 `;
 
@@ -42,15 +42,18 @@ export const BottomLine = styled.div`
 `;
 
 export const TopContainer = styled(ContentWrapper)`
+  display: flex;
   justify-content: flex-end;
 `;
 
 export const MiddleContainer = styled(ContentWrapper)`
+  display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const BottomContainer = styled(ContentWrapper)`
+  display: flex;
   justify-content: flex-start;
 `;
 
