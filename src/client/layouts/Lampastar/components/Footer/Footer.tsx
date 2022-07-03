@@ -129,10 +129,10 @@ export const Footer = () => {
                 <MobileSubmitButton>Заказать звонок</MobileSubmitButton>
               </CallForm>
               <SocialBlock>
-                <SocialItem>
+                <SocialItem href="">
                   <ViberIcon size={theme.sizes.xl} />
                 </SocialItem>
-                <SocialItem>
+                <SocialItem href="">
                   <WhatsappIcon size={theme.sizes.xl} />
                 </SocialItem>
               </SocialBlock>

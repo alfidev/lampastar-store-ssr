@@ -128,7 +128,8 @@ export const SocialBlock = styled.div`
   margin-top: ${({ theme }) => theme.indents.xxxxl};
 `;
 
-export const SocialItem = styled.div`
+export const SocialItem = styled.a`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
