@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper } from "client/layouts/Lampastar";
+import { Wrapper } from "@layouts/Lampastar";
 import { Routes } from "../Routes";
 
 type Props = {};
