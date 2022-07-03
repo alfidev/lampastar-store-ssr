@@ -1,9 +1,7 @@
 import styled from "styled-components";
-
-const MAX_CONTENT_WIDTH = "1168px";
+import { MAX_CONTENT_WIDTH } from "../../constants";
 
 export const ContentWrapper = styled.div`
-  display: flex;
   max-width: ${MAX_CONTENT_WIDTH};
   margin: 0 auto;
   padding: 0 20px;

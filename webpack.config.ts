@@ -68,10 +68,9 @@ function createServerConfig(env: Env): Configuration {
     module: {
       rules: [
         { test: /\.tsx?$/, loader: "ts-loader", exclude: /node_modules/ },
-
         {
           // file-loader config must match client's (except 'emitFile' property)
-          test: /\.(jpg|png|gif|svg)$/,
+          test: /\.(jpg|png|gif)$/,
           use: {
             loader: "file-loader",
             options: {
@@ -80,6 +79,27 @@ function createServerConfig(env: Env): Configuration {
               emitFile: false,
             },
           },
+        },
+        {
+          test: /\.svg$/,
+          use: {
+            loader: "@svgr/webpack",
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: "removeViewBox",
+                    active: false,
+                  },
+                ],
+              },
+            },
+          },
+        },
+        {
+          test: /\.(woff2|woff|eot|ttf|otf|svg)$/,
+          include: /fonts/,
+          use: ["file-loader"],
         },
       ],
     },
@@ -155,7 +175,19 @@ function createClientConfig(env: Env): Configuration {
         },
         {
           test: /\.svg$/,
-          use: ["@svgr/webpack"],
+          use: {
+            loader: "@svgr/webpack",
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: "removeViewBox",
+                    active: false,
+                  },
+                ],
+              },
+            },
+          },
         },
       ],
     },

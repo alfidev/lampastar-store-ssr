@@ -129,4 +129,8 @@ export const GlobalStyle = createGlobalStyle<{
       color: inherit;
       text-decoration: none;
     }
+    
+    div {
+      cursor: default;
+    }
   }`;

@@ -36,7 +36,7 @@ export const LIGHT_THEME: Theme = {
     m: "16px",
     l: "20px",
     xl: "24px",
-    xxl: "30px",
+    xxl: "32px",
     xxxxl: "80px",
   },
   radius: {
@@ -46,6 +46,16 @@ export const LIGHT_THEME: Theme = {
     m: "16px",
   },
   typography: {
+    title1: css`
+      font-size: 28px;
+      line-height: 40px;
+      font-weight: 500;
+    `,
+    title2: css`
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: 500;
+    `,
     mini1: css`
       font-size: 12px;
       line-height: 18px;
