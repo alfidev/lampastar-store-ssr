@@ -1,16 +1,11 @@
 import { Express } from "express";
-import { ExampleModel } from "shared/models";
 import { renderReactAsync } from "server/ssr/renderReactAsync";
 
 /** Defines the server routings. */
 export function useRouting(app: Express) {
-  app.get("/about", async (req, res) => {
-    const model: ExampleModel = {
-      id: 123,
-      message: "This data came from the server",
-    };
-
+  app.get("/", async (req, res) => {
     try {
+      console.log("dsvsdvs", req.url);
       const html = await renderReactAsync(req.url);
       return res.status(200).contentType("text/html").send(html);
     } catch (e) {
