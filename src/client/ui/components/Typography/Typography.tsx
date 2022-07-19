@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, {ReactNode} from "react";
 import styled from "styled-components";
 import {
   Typography as TypographyType,
@@ -8,33 +8,19 @@ import {
 type Props = {
   tag?: string;
   variant?: keyof TypographyType;
-  color?: keyof TypographyColorType | "inherit";
   children: ReactNode;
+  color?: keyof TypographyColorType;
 };
 
-type TypographyStyledType = {
-  color: keyof TypographyColorType;
-  type: keyof TypographyType;
-};
+// @ts-ignore
+const TypographyComponent = ({ className, children, tag= "span", ...props }: Props) => (
+  React.createElement(tag, {...props, className}, children)
+);
 
-const StyledTypographyComponent = styled.div<TypographyStyledType>`
-  color: ${({ theme, color }) => (color ? theme.color.text[color] : "inherit")};
-  ${({ theme, type }) => theme.typography[type]};
-`;
 
-export const Typography = ({
-  tag = "span",
-  variant = "body1",
-  color,
-  children,
-  ...props
-}: Props) => {
-  // @ts-ignore
-  const WithComponent = StyledTypographyComponent.withComponent(tag);
 
-  return (
-    <WithComponent type={variant} color={color} {...props}>
-      {children}
-    </WithComponent>
-  );
-};
+export const Typography = styled(TypographyComponent)`
+  ${({ theme, color }) => (color ? `color: ${theme.color.text[color]}` : '')};
+  ${({ theme, variant }) => theme.typography[variant || "body1"]};`;
+
+
