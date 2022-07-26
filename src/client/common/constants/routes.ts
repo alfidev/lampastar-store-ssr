@@ -1,4 +1,4 @@
-import { About, Catalog } from "@pages";
+import {About, Catalog, Contacts} from "@pages";
 
 export const ROUTES: Record<string, any> = {
   home: {
@@ -29,7 +29,7 @@ export const ROUTES: Record<string, any> = {
     title: "Контакты",
     label: "Контакты",
     path: "/contacts",
-    component: Catalog,
+    component: Contacts,
   },
   favourites: {
     title: "Избранное",

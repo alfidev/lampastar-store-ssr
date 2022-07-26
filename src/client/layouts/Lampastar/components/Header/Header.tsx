@@ -94,3 +94,5 @@ export const Header = React.memo(() => {
     </StyledHeader>
   );
 });
+
+Header.displayName = "Header";

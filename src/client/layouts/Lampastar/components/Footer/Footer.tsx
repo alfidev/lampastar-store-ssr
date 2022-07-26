@@ -45,7 +45,7 @@ const { phoneNumber, address, workTime, mail } = CONTACTS;
 const MenuList = ({ menu }: { menu: string[] }) => (
   <FooterMenu>
     {menu.map((page) => (
-      <FooterMenuItem>
+      <FooterMenuItem key={ROUTES[page].path}>
         <Link to={ROUTES[page].path}>{ROUTES[page].label}</Link>
       </FooterMenuItem>
     ))}
@@ -69,7 +69,7 @@ export const Footer = () => {
             </BackgroundMail>
             <SubscribeContainer>
               <div>
-                <Typography tag="h3" variant="body4">
+                <Typography tag="h3" variant="body5">
                   Мы плохого не расскажем,
                   <br />
                   будет интересно!

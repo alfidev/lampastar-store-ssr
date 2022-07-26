@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { IndentsType, TypographyColorType } from "@layouts/Lampastar";
 
-const Icon = styled.i<{ size?: string }>`
+const Icon = styled.i<{
+  size?: string;
+  color?: keyof TypographyColorType;
+  mr?: keyof IndentsType;
+}>`
   :before {
     font-family: "Lampastar", sans-serif !important;
     font-size: ${({ size }) => (size ? size : "inherit")};
@@ -15,6 +20,8 @@ const Icon = styled.i<{ size?: string }>`
     -moz-osx-font-smoothing: grayscale;
     display: flex;
     align-content: center;
+    ${({ theme, color }) => (color ? `color: ${theme.color.text[color]}` : "")};
+    ${({ theme, mr }) => (mr ? `margin-right: ${theme.indents[mr]}` : "")};
   }
 `;
 

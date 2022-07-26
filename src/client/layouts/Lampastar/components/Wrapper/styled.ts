@@ -110,6 +110,14 @@ export const GlobalStyle = createGlobalStyle<{
   
   html {
     background: ${({ htmlColor }) => htmlColor};
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
   }
 
   body {
@@ -133,4 +141,13 @@ export const GlobalStyle = createGlobalStyle<{
     div {
       cursor: default;
     }
-  }`;
+  }
+  
+  input, textarea {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  input::placeholder, textarea::placeholder {
+    font-family: 'Roboto', sans-serif;
+  }
+`;

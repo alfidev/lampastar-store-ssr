@@ -78,7 +78,7 @@ export const StyledImageAbout = styled.img`
 `;
 
 export const CertificatesContainer = styled.div`
-  ${({ theme }) => theme.typography.body4}
+  ${({ theme }) => theme.typography.body5}
   display: flex;
   justify-content: space-evenly;
   align-items: center;

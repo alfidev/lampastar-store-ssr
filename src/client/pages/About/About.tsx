@@ -47,6 +47,8 @@ const TitleLineContainer = React.memo(({ title }: { title: string }) => (
   </TitleLine>
 ));
 
+TitleLineContainer.displayName = "TitleLineContainer";
+
 const ItemContainer = React.memo(
   ({
     icon: Icon,
@@ -64,6 +66,8 @@ const ItemContainer = React.memo(
   )
 );
 
+ItemContainer.displayName = "ItemContainer";
+
 export const About = () => {
   return (
     <>
@@ -80,7 +84,7 @@ export const About = () => {
       <TitleLineContainer title="КТО МЫ" />
       <AboutWrapper>
         {INFORMATION_ABOUT.map(({ icon, text }) => (
-          <ItemContainer icon={icon} text={text} />
+          <ItemContainer key={icon} icon={icon} text={text} />
         ))}
       </AboutWrapper>
       <Line />
@@ -91,7 +95,7 @@ export const About = () => {
       <TitleLineContainer title="ТОЛЬКО МЫ" />
       <AboutWrapper>
         {INFORMATION_ONLY_WE.map(({ icon, text }) => (
-          <ItemContainer icon={icon} text={text} />
+          <ItemContainer key={icon} icon={icon} text={text} />
         ))}
       </AboutWrapper>
       <Line />
@@ -110,7 +114,7 @@ export const About = () => {
       <TitleLineContainer title="ЧТО УМЕЕМ" />
       <AboutWrapper>
         {INFORMATION_WHAT_WE_DO.map(({ icon, text }) => (
-          <ItemContainer icon={icon} text={text} />
+          <ItemContainer key={icon} icon={icon} text={text} />
         ))}
       </AboutWrapper>
       <Line />

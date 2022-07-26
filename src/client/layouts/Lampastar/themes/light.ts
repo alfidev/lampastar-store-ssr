@@ -2,6 +2,13 @@ import { Theme } from "@layouts/Lampastar/types";
 import { css } from "styled-components";
 
 export const LIGHT_THEME: Theme = {
+  breakpoints: {
+    xs: 0,
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1200,
+  },
   color: {
     background: {
       main: "#F3F3F3",
@@ -19,6 +26,7 @@ export const LIGHT_THEME: Theme = {
       secondary: "#FFF",
       tertiary: "#999999",
       copyright: "#565656",
+      contrast: "#FFB811",
     },
   },
   sizes: {
@@ -82,9 +90,43 @@ export const LIGHT_THEME: Theme = {
       font-weight: 500;
     `,
     body4: css`
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+    `,
+    body5: css`
       font-size: 18px;
       line-height: 24px;
       font-weight: 500;
     `,
+  },
+};
+
+export const GRID_THEME = {
+  gridColumns: 12,
+  breakpoints: {
+    xxl: 1440,
+    xl: 1200,
+    lg: 992,
+    md: 768,
+    sm: 576,
+    xs: 575,
+  },
+  row: {
+    padding: 15,
+  },
+  col: {
+    padding: 15,
+  },
+  container: {
+    padding: 0,
+    maxWidth: {
+      xxl: 1141,
+      xl: 1140,
+      lg: 960,
+      md: 720,
+      sm: 540,
+      xs: 540,
+    },
   },
 };
