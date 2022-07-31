@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { ContentWrapper } from "../ComponentWrapper";
 import { Button, Input } from "@ui/components";
 import { Logo } from "@resources/images";
+import { media } from "styled-bootstrap-grid";
 
 const menuStyle = css`
   padding: 0;
@@ -49,28 +50,35 @@ export const SubscribeContainer = styled.div`
   position: relative;
   z-index: 1;
   flex-grow: 1;
-  justify-content: space-between;
-  display: flex;
 `;
 
 export const EmailContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
-  margin-left: 20px;
   margin-top: ${({ theme }) => theme.indents.m};
+
+  ${media.xs`
+    display: block;
+  `}
 `;
 
 export const EmailInput = styled(Input)`
-  max-width: 370px;
+  //max-width: 370px;
 `;
 
 export const MobileInput = styled(Input)`
-  max-width: 370px;
+  //max-width: 370px;
 `;
 
 export const EmailSubmitButton = styled(Button)`
   margin-left: ${({ theme }) => theme.indents.xs};
+
+  ${({ theme }) => media.xs`
+    margin-left: ${theme.indents.none};
+    margin-top: ${theme.indents.s};
+    width: 100%;
+  `}
 `;
 
 export const MobileSubmitButton = styled(Button)`
@@ -78,11 +86,15 @@ export const MobileSubmitButton = styled(Button)`
 `;
 
 export const BottomInfoContainer = styled.div`
-  display: flex;
+  display: block;
+
+  ${media.lg`
+    display: flex;
+  `};
 `;
 
 export const FooterColumn = styled.div`
-  margin-right: 70px;
+  //margin-right: 70px;
 `;
 
 export const FooterMenu = styled.ul`
@@ -115,7 +127,9 @@ export const LeftGroup = styled.div`
   flex-grow: 1;
 `;
 
-export const RightGroup = styled.div``;
+export const RightGroup = styled.div`
+  max-width: 370px;
+`;
 
 export const CallForm = styled.div`
   display: flex;

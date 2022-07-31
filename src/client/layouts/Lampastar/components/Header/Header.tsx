@@ -14,6 +14,8 @@ import {
   StyledLinkBottom,
   BottomContainer,
   CatalogButton,
+  NavGroupAdaptive,
+  StyledCatalogText,
 } from "./styled";
 import { CONTACTS, MAIN_MENU, ROUTES } from "@common/constants";
 import { PhoneIcon, LikeIcon, BasketIcon, MenuRightIcon } from "@ui/icons";
@@ -54,15 +56,12 @@ export const Header = React.memo(() => {
           </Link>
           <NavGroupSearch>
             <CatalogButton>
-              <MenuRightIcon
-                size={theme.sizes.xl}
-                style={{ marginRight: theme.indents.s }}
-              />
-              Каталог
+              <MenuRightIcon />
+              <StyledCatalogText>Каталог</StyledCatalogText>
             </CatalogButton>
             <SearchInput />
           </NavGroupSearch>
-          <NavGroup>
+          <NavGroupAdaptive>
             <StyledLinkMiddle to={favourites.path}>
               <LikeIcon
                 size={theme.sizes.xxl}
@@ -77,7 +76,7 @@ export const Header = React.memo(() => {
               />
               {basket.label}
             </StyledLinkMiddle>
-          </NavGroup>
+          </NavGroupAdaptive>
         </MiddleContainer>
       </MiddleLine>
       <BottomLine>

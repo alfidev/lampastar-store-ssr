@@ -34,6 +34,7 @@ export const LIGHT_THEME: Theme = {
     l: "16px",
     xl: "18px",
     xxl: "20px",
+    xxxl: "24px",
   },
   indents: {
     none: "0",

@@ -212,7 +212,8 @@ function createClientConfig(env: Env): Configuration {
 
     devServer: {
       hot: env.hot,
-      port: 9000,
+      host: "0.0.0.0",
+      port: 3000,
       historyApiFallback: true,
     },
   };

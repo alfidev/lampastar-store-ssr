@@ -62,6 +62,7 @@ export type Theme = {
     l: string;
     xl: string;
     xxl: string;
+    xxxl: string;
   };
   indents: IndentsType;
   radius: {

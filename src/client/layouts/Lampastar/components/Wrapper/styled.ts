@@ -121,6 +121,7 @@ export const GlobalStyle = createGlobalStyle<{
   }
 
   body {
+    min-width: 420px;
     margin: 0;
     background: ${({ backgroundColor }) => backgroundColor};
     color: ${({ textColor }) => textColor};
