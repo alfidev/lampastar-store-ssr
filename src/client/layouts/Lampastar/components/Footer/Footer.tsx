@@ -28,7 +28,7 @@ import {
 } from "./styled";
 import { Mail } from "@resources/images";
 import { Typography } from "@ui/components/Typography";
-import { CONTACTS, FOR_CLIENT_MENU, ROUTES } from "@common/constants";
+import { CONTACTS, FOR_CLIENT_MENU, PAGE_SD, ROUTES } from "@common/constants";
 import { Link } from "react-router-dom";
 import {
   ClockIcon,
@@ -40,16 +40,25 @@ import {
 } from "@ui/icons";
 import { useTheme } from "styled-components";
 import { Container, Row, Col } from "styled-bootstrap-grid";
+import { BACKEND_ENABLE, useFeature } from "@common/featureToggles";
 
 const { phoneNumber, address, workTime, mail } = CONTACTS;
 
-const MenuList = ({ menu }: { menu: string[] }) => (
+const MenuList = ({
+  menu,
+  isBackEnabled,
+}: {
+  menu: string[];
+  isBackEnabled: boolean;
+}) => (
   <FooterMenu>
-    {menu.map((page) => (
-      <FooterMenuItem key={ROUTES[page].path}>
-        <Link to={ROUTES[page].path}>{ROUTES[page].label}</Link>
-      </FooterMenuItem>
-    ))}
+    {menu
+      .filter((page) => !isBackEnabled && !PAGE_SD.includes(page))
+      .map((page) => (
+        <FooterMenuItem key={ROUTES[page].path}>
+          <Link to={ROUTES[page].path}>{ROUTES[page].label}</Link>
+        </FooterMenuItem>
+      ))}
   </FooterMenu>
 );
 
@@ -59,6 +68,8 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   const showSubscribe = false;
+
+  const isBackEnabled = useFeature(BACKEND_ENABLE);
 
   return (
     <StyledFooter>
@@ -112,7 +123,10 @@ export const Footer = () => {
                   <Col md={4} lg={3}>
                     <FooterColumn>
                       <Typography variant="body3">Покупателям</Typography>
-                      <MenuList menu={FOR_CLIENT_MENU} />
+                      <MenuList
+                        menu={FOR_CLIENT_MENU}
+                        isBackEnabled={isBackEnabled}
+                      />
                     </FooterColumn>
                   </Col>
                   <Col md={5} lg={6}>
@@ -143,10 +157,12 @@ export const Footer = () => {
             </LeftGroup>
             <RightGroup>
               <Typography variant="body3">Свяжитесь с нами</Typography>
-              <CallForm>
-                <MobileInput placeholder="+7(___)___-__-__" />
-                <MobileSubmitButton>Заказать звонок</MobileSubmitButton>
-              </CallForm>
+              {isBackEnabled && (
+                <CallForm>
+                  <MobileInput placeholder="+7(___)___-__-__" />
+                  <MobileSubmitButton>Заказать звонок</MobileSubmitButton>
+                </CallForm>
+              )}
               <SocialBlock>
                 <SocialItem href="">
                   <ViberIcon size={theme.sizes.xl} />

@@ -3,7 +3,7 @@ import { YMaps, Map, Placemark } from "react-yandex-maps";
 import { YaMapDataType } from "../../types";
 
 type Props = {
-  width?: number;
+  width?: number | string;
   height?: number;
   mapData: YaMapDataType;
 };

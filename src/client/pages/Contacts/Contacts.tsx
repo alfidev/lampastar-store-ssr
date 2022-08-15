@@ -19,6 +19,7 @@ import { ContactForm } from "@components/ContactForm";
 import { YaMap } from "@common/components";
 import { YANDEX_COORDINATES } from "@common/constants";
 import { Col, Container, Row } from "styled-bootstrap-grid";
+import { BACKEND_ENABLE, useFeature } from "@common/featureToggles";
 
 const SectionTitle = ({ children }: { children: ReactNode }) => (
   <Typography variant="title2" tag="h3">
@@ -46,6 +47,8 @@ const CaptionText = ({ children }: { children: ReactNode }) => (
 
 export const Contacts = () => {
   const theme = useTheme();
+
+  const isBackEnabled = useFeature(BACKEND_ENABLE);
 
   return (
     <>
@@ -141,15 +144,15 @@ export const Contacts = () => {
         <MapContainer>
           <SectionTitle>Мы находимся здесь</SectionTitle>
           <MapBlock>
-            {/* @ts-ignore */}
             <YaMap height={296} width="100%" mapData={YANDEX_COORDINATES} />
           </MapBlock>
         </MapContainer>
-
-        <ContactContainer>
-          <SectionTitle>Есть вопросы? Мы ответим</SectionTitle>
-          <ContactForm />
-        </ContactContainer>
+        {isBackEnabled && (
+          <ContactContainer>
+            <SectionTitle>Есть вопросы? Мы ответим</SectionTitle>
+            <ContactForm />
+          </ContactContainer>
+        )}
       </MapAndFormContainer>
     </>
   );

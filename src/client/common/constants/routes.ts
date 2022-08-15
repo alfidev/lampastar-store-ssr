@@ -1,11 +1,12 @@
-import {About, Catalog, Contacts} from "@pages";
+import { About, ApplicationSettings, Catalog, Contacts } from "@pages";
+import { RouteType } from "../types";
 
-export const ROUTES: Record<string, any> = {
+export const ROUTES: Record<string, RouteType> = {
   home: {
     title: "Главная страница",
     label: "Главная",
     path: "/",
-    component: Catalog,
+    component: About,
   },
   catalog: {
     title: "Каталог товаров",
@@ -23,7 +24,7 @@ export const ROUTES: Record<string, any> = {
     title: "Оплата и доставка",
     label: "Оплата и доставка",
     path: "/payment-and-delivery",
-    component: Catalog,
+    component: About,
   },
   contacts: {
     title: "Контакты",
@@ -66,5 +67,11 @@ export const ROUTES: Record<string, any> = {
     label: "Отзывы",
     path: "/reviews",
     component: Catalog,
+  },
+  settings: {
+    title: "Настройки приложения",
+    label: "Настройки приложения",
+    path: "/settings",
+    component: ApplicationSettings,
   },
 };
