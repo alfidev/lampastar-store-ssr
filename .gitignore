@@ -3,3 +3,4 @@ node_modules/
 dist/
 .idea/
 .DS_store
+ecosystem.config.js
