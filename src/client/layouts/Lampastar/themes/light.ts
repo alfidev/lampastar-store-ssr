@@ -17,6 +17,7 @@ export const LIGHT_THEME: Theme = {
       secondaryHover: "#45454512",
       tertiary: "#FFB811",
       social: "#565656",
+      line: "#D4D4D8",
     },
     border: {
       input: "#BABAC0",
