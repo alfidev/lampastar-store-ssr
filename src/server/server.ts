@@ -15,10 +15,10 @@ export function createServer() {
     })
   );
 
-  useRouting(server);
+  // useRouting(server);
 
   // renders the react app as fallback. The corresponding route will be handled by react router
-  server.use(/.*/, reactMiddleware());
+  server.use("*", reactMiddleware());
 
   server.use(errorMiddleware());
 
