@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import { ContentWrapper } from "../ComponentWrapper";
 import { Link } from "react-router-dom";
 import { Button } from "@ui/components";
+import { media } from "styled-bootstrap-grid";
+import { MenuRightIcon } from "@ui/icons";
 
 const getLinkStyle = css`
   display: flex;
@@ -25,6 +27,9 @@ export const StyledHeader = styled.header`
 `;
 
 export const TopLine = styled.div`
+  ${media.xs`
+    display: none;
+  `};
   background: ${({ theme }) => theme.color.background.secondary};
   height: 30px;
   color: ${({ theme }) => theme.color.text.secondary};
@@ -32,7 +37,11 @@ export const TopLine = styled.div`
 
 export const MiddleLine = styled.div`
   background: ${({ theme }) => theme.color.background.primary};
-  height: 80px;
+  padding: ${({ theme }) => theme.indents.xs} 0;
+  ${({ theme }) => media.md`
+    height: 80px;
+    padding: ${theme.indents.none}
+  `};
 `;
 
 export const BottomLine = styled.div`
@@ -47,6 +56,10 @@ export const TopContainer = styled(ContentWrapper)`
 `;
 
 export const MiddleContainer = styled(ContentWrapper)`
+  ${media.md`
+    flex-direction: row;
+  `};
+  flex-direction: column;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,10 +76,21 @@ export const NavGroup = styled.div`
   height: 100%;
 `;
 
+export const NavGroupAdaptive = styled(NavGroup)`
+  display: none;
+  ${media.md`
+    display: flex;
+  `};
+`;
+
 export const NavGroupSearch = styled(NavGroup)`
   flex-grow: 1;
-  max-width: 630px;
-  margin: 0 ${({ theme }) => theme.indents.xxl};
+  width: 100%;
+  ${({ theme }) => media.md`
+    height: 80px;
+    max-width: 630px;
+    margin: 0 ${theme.indents.xxl};
+  `};
 `;
 
 const StyledLink = styled(Link)`
@@ -97,10 +121,31 @@ export const StyledLinkMiddle = styled(Link)`
 `;
 
 export const StyledLinkBottom = styled(StyledLink)`
-  padding: 0 ${({ theme }) => theme.indents.xl};
+  white-space: nowrap;
+  padding: 0 ${({ theme }) => theme.indents.xs};
+  ${({ theme }) => media.sm`
+    padding: 0 ${theme.indents.xl}
+  `};
 `;
 
 export const CatalogButton = styled(Button)`
   margin-right: ${({ theme }) => theme.indents.xs};
   padding: 0 ${({ theme }) => theme.indents.xl};
+  ${({ theme }) => media.xs`
+    padding: ${theme.indents.s};
+  `};
+
+  ${MenuRightIcon} {
+    font-size: ${({ theme }) => theme.sizes.xxxl};
+    ${({ theme }) => media.sm`
+      margin-right: ${theme.indents.s};
+      font-size: ${theme.sizes.xl};
+    `}
+  }
+`;
+
+export const StyledCatalogText = styled.span`
+  ${media.xs`
+    display: none;
+  `};
 `;

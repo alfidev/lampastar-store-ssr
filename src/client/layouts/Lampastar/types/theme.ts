@@ -2,15 +2,23 @@ import { FlattenInterpolation, ThemeProps } from "styled-components";
 
 type Font = FlattenInterpolation<ThemeProps<Theme>>;
 
+type TypographyNames =
+  | "title1"
+  | "title2"
+  | "body1"
+  | "body2"
+  | "body3"
+  | "body4"
+  | "body5"
+  | "mini1"
+  | "mini2";
+
 export type Typography = {
-  title1: Font;
-  title2: Font;
-  body1: Font;
-  body2: Font;
-  body3: Font;
-  body4: Font;
-  mini1: Font;
-  mini2: Font;
+  [name in TypographyNames]: Font;
+};
+
+type BreakpointsType = {
+  [name in "xs" | "sm" | "md" | "lg" | "xl"]: number;
 };
 
 export type TypographyColorType = {
@@ -18,6 +26,20 @@ export type TypographyColorType = {
   secondary: string;
   tertiary: string;
   copyright: string;
+  contrast: string;
+};
+
+export type IndentsType = {
+  none: string;
+  xxxs: string;
+  xxs: string;
+  xs: string;
+  s: string;
+  m: string;
+  l: string;
+  xl: string;
+  xxl: string;
+  xxxxl: string;
 };
 
 export type Theme = {
@@ -40,19 +62,9 @@ export type Theme = {
     l: string;
     xl: string;
     xxl: string;
+    xxxl: string;
   };
-  indents: {
-    none: string;
-    xxxs: string;
-    xxs: string;
-    xs: string;
-    s: string;
-    m: string;
-    l: string;
-    xl: string;
-    xxl: string;
-    xxxxl: string;
-  };
+  indents: IndentsType;
   radius: {
     xxs: string;
     xs: string;
@@ -60,4 +72,5 @@ export type Theme = {
     m: string;
   };
   typography: Typography;
+  breakpoints: BreakpointsType;
 };

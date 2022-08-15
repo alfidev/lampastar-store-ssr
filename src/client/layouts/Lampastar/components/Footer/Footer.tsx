@@ -28,7 +28,7 @@ import {
 } from "./styled";
 import { Mail } from "@resources/images";
 import { Typography } from "@ui/components/Typography";
-import { CONTACTS, FOR_CLIENT_MENU, ROUTES } from "@common/constants";
+import { CONTACTS, FOR_CLIENT_MENU, PAGE_SD, ROUTES } from "@common/constants";
 import { Link } from "react-router-dom";
 import {
   ClockIcon,
@@ -39,16 +39,26 @@ import {
   WhatsappIcon,
 } from "@ui/icons";
 import { useTheme } from "styled-components";
+import { Container, Row, Col } from "styled-bootstrap-grid";
+import { BACKEND_ENABLE, useFeature } from "@common/featureToggles";
 
 const { phoneNumber, address, workTime, mail } = CONTACTS;
 
-const MenuList = ({ menu }: { menu: string[] }) => (
+const MenuList = ({
+  menu,
+  isBackEnabled,
+}: {
+  menu: string[];
+  isBackEnabled: boolean;
+}) => (
   <FooterMenu>
-    {menu.map((page) => (
-      <FooterMenuItem>
-        <Link to={ROUTES[page].path}>{ROUTES[page].label}</Link>
-      </FooterMenuItem>
-    ))}
+    {menu
+      .filter((page) => !isBackEnabled && !PAGE_SD.includes(page))
+      .map((page) => (
+        <FooterMenuItem key={ROUTES[page].path}>
+          <Link to={ROUTES[page].path}>{ROUTES[page].label}</Link>
+        </FooterMenuItem>
+      ))}
   </FooterMenu>
 );
 
@@ -59,6 +69,8 @@ export const Footer = () => {
 
   const showSubscribe = false;
 
+  const isBackEnabled = useFeature(BACKEND_ENABLE);
+
   return (
     <StyledFooter>
       <DynamicLine>
@@ -68,23 +80,31 @@ export const Footer = () => {
               <Mail />
             </BackgroundMail>
             <SubscribeContainer>
-              <div>
-                <Typography tag="h3" variant="body4">
-                  Мы плохого не расскажем,
-                  <br />
-                  будет интересно!
-                </Typography>
+              <Container fluid>
+                <Row>
+                  <Col sm={12} md={5} lg={6} xl={7}>
+                    <div>
+                      <Typography tag="h3" variant="body5">
+                        Мы плохого не расскажем,
+                        <br />
+                        будет интересно!
+                      </Typography>
 
-                <Typography tag="p" variant="body2">
-                  Поделитесь с нами, своей электронной почтой и мы сообщим
-                  <br />
-                  вам о скидках, выгодных предложениях и новых продуктах.
-                </Typography>
-              </div>
-              <EmailContainer>
-                <EmailInput placeholder="Введите электронную почту" />
-                <EmailSubmitButton>Подписаться</EmailSubmitButton>
-              </EmailContainer>
+                      <Typography tag="p" variant="body2">
+                        Поделитесь с нами, своей электронной почтой и мы сообщим
+                        <br />
+                        вам о скидках, выгодных предложениях и новых продуктах.
+                      </Typography>
+                    </div>
+                  </Col>
+                  <Col sm={12} md={7} lg={6} xl={5}>
+                    <EmailContainer>
+                      <EmailInput placeholder="Введите электронную почту" />
+                      <EmailSubmitButton>Подписаться</EmailSubmitButton>
+                    </EmailContainer>
+                  </Col>
+                </Row>
+              </Container>
             </SubscribeContainer>
           </DynamicLineContent>
         )}
@@ -93,41 +113,56 @@ export const Footer = () => {
         <InfoContentWrapper>
           <BottomInfoContainer>
             <LeftGroup>
-              <FooterColumn>
-                <FooterLogo />
-              </FooterColumn>
-              <FooterColumn>
-                <Typography variant="body3">Покупателям</Typography>
-                <MenuList menu={FOR_CLIENT_MENU} />
-              </FooterColumn>
-              <FooterColumn>
-                <Typography variant="body3">Контакты</Typography>
-                <FooterContactMenu>
-                  <StyledLinkOuter href={`tel:${phoneNumber.value}`}>
-                    <PhoneIcon />
-                    {phoneNumber.label}
-                  </StyledLinkOuter>
-                  <StyledLinkOuter href={`tel:${phoneNumber.value}`}>
-                    <ClockIcon />
-                    {workTime.label}
-                  </StyledLinkOuter>
-                  <StyledLinkOuter href={`tel:${phoneNumber.value}`}>
-                    <GeoIcon />
-                    {address.label}
-                  </StyledLinkOuter>
-                  <StyledLinkOuter href={`mailto:${mail.value}`}>
-                    <MailIcon />
-                    {mail.label}
-                  </StyledLinkOuter>
-                </FooterContactMenu>
-              </FooterColumn>
+              <Container fluid>
+                <Row>
+                  <Col md={3} lg={2}>
+                    <FooterColumn>
+                      <FooterLogo />
+                    </FooterColumn>
+                  </Col>
+                  <Col md={4} lg={3}>
+                    <FooterColumn>
+                      <Typography variant="body3">Покупателям</Typography>
+                      <MenuList
+                        menu={FOR_CLIENT_MENU}
+                        isBackEnabled={isBackEnabled}
+                      />
+                    </FooterColumn>
+                  </Col>
+                  <Col md={5} lg={6}>
+                    <FooterColumn>
+                      <Typography variant="body3">Контакты</Typography>
+                      <FooterContactMenu>
+                        <StyledLinkOuter href={`tel:${phoneNumber.value}`}>
+                          <PhoneIcon />
+                          {phoneNumber.label}
+                        </StyledLinkOuter>
+                        <StyledLinkOuter href={`tel:${phoneNumber.value}`}>
+                          <ClockIcon />
+                          {workTime.label}
+                        </StyledLinkOuter>
+                        <StyledLinkOuter href={`tel:${phoneNumber.value}`}>
+                          <GeoIcon />
+                          {address.label}
+                        </StyledLinkOuter>
+                        <StyledLinkOuter href={`mailto:${mail.value}`}>
+                          <MailIcon />
+                          {mail.label}
+                        </StyledLinkOuter>
+                      </FooterContactMenu>
+                    </FooterColumn>
+                  </Col>
+                </Row>
+              </Container>
             </LeftGroup>
             <RightGroup>
               <Typography variant="body3">Свяжитесь с нами</Typography>
-              <CallForm>
-                <MobileInput placeholder="+7(___)___-__-__" />
-                <MobileSubmitButton>Заказать звонок</MobileSubmitButton>
-              </CallForm>
+              {isBackEnabled && (
+                <CallForm>
+                  <MobileInput placeholder="+7(___)___-__-__" />
+                  <MobileSubmitButton>Заказать звонок</MobileSubmitButton>
+                </CallForm>
+              )}
               <SocialBlock>
                 <SocialItem href="">
                   <ViberIcon size={theme.sizes.xl} />
