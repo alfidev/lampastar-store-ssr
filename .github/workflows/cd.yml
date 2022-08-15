@@ -8,7 +8,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    name: Deploy using ssh
     steps:
       - name: Deploy using ssh
         uses: appleboy/ssh-action@master
