@@ -66,7 +66,7 @@ export const Contacts = () => {
                 <Details>
                   <ContactBlock>
                     <CaptionText>
-                      ул. Лермонтова, д. 192 В г. Омск, Омская область, 644009
+                      Омская область, г. Омск, ул. 20-я Линия, д. 103, 644009
                     </CaptionText>
                   </ContactBlock>
                   <ContactBlock>
