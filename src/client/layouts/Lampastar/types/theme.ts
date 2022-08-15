@@ -51,6 +51,7 @@ export type Theme = {
       secondaryHover: string;
       tertiary: string;
       social: string;
+      line: string;
     };
     border: {
       input: string;

@@ -1,4 +1,10 @@
-import { About, ApplicationSettings, Catalog, Contacts } from "@pages";
+import {
+  About,
+  ApplicationSettings,
+  Catalog,
+  Contacts,
+  PaymentAndDelivery,
+} from "@pages";
 import { RouteType } from "../types";
 
 export const ROUTES: Record<string, RouteType> = {
@@ -24,7 +30,7 @@ export const ROUTES: Record<string, RouteType> = {
     title: "Оплата и доставка",
     label: "Оплата и доставка",
     path: "/payment-and-delivery",
-    component: About,
+    component: PaymentAndDelivery,
   },
   contacts: {
     title: "Контакты",
