@@ -1,7 +1,7 @@
-import { Theme } from "@layouts/Lampastar/types";
+import { ThemeType } from "@layouts/Lampastar/types";
 import { css } from "styled-components";
 
-export const LIGHT_THEME: Theme = {
+export const LIGHT_THEME: ThemeType = {
   breakpoints: {
     xs: 0,
     sm: 576,
