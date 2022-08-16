@@ -1,6 +1,6 @@
 import { FlattenInterpolation, ThemeProps } from "styled-components";
 
-type Font = FlattenInterpolation<ThemeProps<Theme>>;
+type Font = FlattenInterpolation<ThemeProps<ThemeType>>;
 
 type TypographyNames =
   | "title1"
@@ -42,7 +42,7 @@ export type IndentsType = {
   xxxxl: string;
 };
 
-export type Theme = {
+export type ThemeType = {
   color: {
     background: {
       main: string;

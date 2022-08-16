@@ -1,7 +1,7 @@
 import React from "react";
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 
-import { GlobalStyle } from "./styled";
+import { GlobalStyle } from "../Theme/styled";
 import { Header } from "../Header";
 import { ThemeProvider } from "styled-components";
 import { LIGHT_THEME, GRID_THEME } from "../../themes";
@@ -9,11 +9,7 @@ import { Footer } from "../Footer";
 import { ContentWrapper } from "../ComponentWrapper";
 import { GridThemeProvider } from "styled-bootstrap-grid";
 
-type Props = {
-  children: ReactNode;
-};
-
-export const Wrapper = ({ children }: Props) => {
+export const Wrapper = () => {
   return (
     <ThemeProvider theme={LIGHT_THEME}>
       <GlobalStyle
@@ -25,7 +21,9 @@ export const Wrapper = ({ children }: Props) => {
         <>
           <Header />
           <main>
-            <ContentWrapper>{children}</ContentWrapper>
+            <ContentWrapper>
+              <Outlet />
+            </ContentWrapper>
           </main>
           <Footer />
         </>

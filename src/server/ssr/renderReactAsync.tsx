@@ -10,11 +10,18 @@ import { ServerStyleSheet } from "styled-components";
 /**
  * Renders the react App as a html string.
  * @param url The render url. It will be injected in the react router so it can render the corresponding route.
+ * @param context
  * @param prerenderedObject An object created in the server that can be accessed in the client side.
  * @returns A html string;
  */
 export async function renderReactAsync(
   url: string,
+  context?: {
+    error: {
+      code: number;
+      message: string;
+    };
+  },
   prerenderedObject?: unknown
 ) {
   // read the html template file
@@ -33,7 +40,7 @@ export async function renderReactAsync(
 
   const WrappedApp = (
     <StaticRouter location={url}>
-      <App serverData={prerenderedObject ?? null} />
+      <App serverData={prerenderedObject ?? null} context={context} />
     </StaticRouter>
   );
 
@@ -46,14 +53,7 @@ export async function renderReactAsync(
 
   // finally combine all parts together
 
-  const renderedHtml = buildHtml(
-    staticHtmlContent,
-    reactContent,
-    styleTags,
-    dataElement
-  );
-
-  return renderedHtml;
+  return buildHtml(staticHtmlContent, reactContent, styleTags, dataElement);
 }
 
 function buildHtml(
