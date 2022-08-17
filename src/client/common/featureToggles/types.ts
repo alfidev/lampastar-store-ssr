@@ -1,6 +1,8 @@
-type FeatureToggle = {
+type FeatureToggleType = {
   enabled: boolean;
   description: string;
 };
 
-export type FeatureToggleList = Record<string, FeatureToggle>;
+export type FeatureTogglesType = Record<string, FeatureToggleType>;
+
+export type FeatureTogglesLocalStorageType = Record<string, boolean>;

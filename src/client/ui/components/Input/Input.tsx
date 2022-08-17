@@ -95,7 +95,6 @@ export const CheckBox = styled(
 
 export const ToggleCheckBox = styled.label<{
   checked: boolean;
-  withText: boolean;
 }>`
   display: flex;
   margin: ${({ theme }) => theme.indents.none};
@@ -110,8 +109,6 @@ export const ToggleCheckBox = styled.label<{
     border-radius: ${({ theme }) => theme.radius.xxs};
     border: 1px solid ${({ theme }) => theme.color.border.input};
     background: ${({ theme }) => theme.color.background.primary};
-    margin-right: ${({ theme, withText }) =>
-      withText ? theme.indents.xs : theme.indents.none};
   }
 
   ::after {
