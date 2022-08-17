@@ -18,6 +18,7 @@ export const LIGHT_THEME: ThemeType = {
       tertiary: "#FFB811",
       social: "#565656",
       line: "#D4D4D8",
+      contrastLine: "#FF773D",
     },
     border: {
       input: "#BABAC0",

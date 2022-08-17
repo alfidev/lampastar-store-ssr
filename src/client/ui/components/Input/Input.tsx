@@ -97,28 +97,43 @@ export const ToggleCheckBox = styled.label<{
   checked: boolean;
 }>`
   display: flex;
+  align-items: center;
   margin: ${({ theme }) => theme.indents.none};
   cursor: pointer;
   position: relative;
+  height: 18px;
 
   ::before {
     content: "";
     display: inline-block;
-    min-width: 18px;
+    min-width: 36px;
+    width: 36px;
     height: 18px;
-    border-radius: ${({ theme }) => theme.radius.xxs};
+    border-radius: 9px;
     border: 1px solid ${({ theme }) => theme.color.border.input};
     background: ${({ theme }) => theme.color.background.primary};
   }
 
   ::after {
-    display: ${({ checked }) => (checked ? "block" : "none")};
     position: absolute;
+    transition: left ease 0.3s;
     content: "";
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAyMCAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuNSA3LjVMNy4wOTU5NCAxMy4wOTU5TDE4LjExMjIgMi4wNzk3MSIgc3Ryb2tlPSIjRkY3NzNEIiBzdHJva2Utd2lkdGg9IjIuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=");
-    min-width: 20px;
-    height: 16px;
-    left: 3px;
-    top: -1px;
+    border-radius: 50%;
+    background: ${({ theme, checked }) =>
+      checked
+        ? theme.color.background.contrastLine
+        : theme.color.background.main};
+    min-width: 10px;
+    width: 10px;
+    height: 10px;
+    ${({ checked }) =>
+      checked
+        ? css`
+            left: calc(100% - 14px);
+          `
+        : css`
+            left: 4px;
+          `};
+    top: 4px;
   }
 `;

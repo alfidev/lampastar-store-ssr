@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card } from "@ui/components/Card";
+import { Card } from "@ui/components";
 import { Col } from "styled-bootstrap-grid";
 import { Typography } from "@ui/components/Typography";
 
