@@ -52,6 +52,7 @@ export type ThemeType = {
       tertiary: string;
       social: string;
       line: string;
+      contrastLine: string;
     };
     border: {
       input: string;

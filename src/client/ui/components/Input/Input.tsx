@@ -92,3 +92,48 @@ export const CheckBox = styled(
     );
   }
 )``;
+
+export const ToggleCheckBox = styled.label<{
+  checked: boolean;
+}>`
+  display: flex;
+  align-items: center;
+  margin: ${({ theme }) => theme.indents.none};
+  cursor: pointer;
+  position: relative;
+  height: 18px;
+
+  ::before {
+    content: "";
+    display: inline-block;
+    min-width: 36px;
+    width: 36px;
+    height: 18px;
+    border-radius: 9px;
+    border: 1px solid ${({ theme }) => theme.color.border.input};
+    background: ${({ theme }) => theme.color.background.primary};
+  }
+
+  ::after {
+    position: absolute;
+    transition: left ease 0.3s;
+    content: "";
+    border-radius: 50%;
+    background: ${({ theme, checked }) =>
+      checked
+        ? theme.color.background.contrastLine
+        : theme.color.background.main};
+    min-width: 10px;
+    width: 10px;
+    height: 10px;
+    ${({ checked }) =>
+      checked
+        ? css`
+            left: calc(100% - 14px);
+          `
+        : css`
+            left: 4px;
+          `};
+    top: 4px;
+  }
+`;

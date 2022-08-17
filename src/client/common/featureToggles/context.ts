@@ -1,6 +1,8 @@
 import React from "react";
-import { FeatureToggleList } from "./types";
+import { FeatureTogglesType } from "./types";
 
-export const FeatureTogglesContext = React.createContext<FeatureToggleList>({});
+export const FeatureTogglesContext = React.createContext<FeatureTogglesType>(
+  {}
+);
 
 export const FeatureTogglesContextProvider = FeatureTogglesContext.Provider;

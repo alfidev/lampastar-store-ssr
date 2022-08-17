@@ -1,8 +1,12 @@
 import React from "react";
 import { Theme, Wrapper } from "@layouts/Lampastar";
 import { Routes } from "../Routes";
-import { ErrorContext } from "@common/types";
-import { ErrorRouterContext, defaultContext } from "@common/context";
+import { ErrorContext } from "../../types";
+import { ErrorRouterContext, defaultContext } from "../../context";
+import {
+  FeatureTogglesContextProvider,
+  getToggles,
+} from "../../featureToggles";
 
 type Props = {
   context?: ErrorContext;
@@ -12,6 +16,8 @@ type State = {
   isInitApp: boolean;
   context: ErrorContext;
 };
+
+const initialToggles = getToggles();
 
 export class InitialComponent extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -40,9 +46,11 @@ export class InitialComponent extends React.Component<Props, State> {
   render() {
     return (
       <ErrorRouterContext.Provider value={this.state.context}>
-        <Theme>
-          <Routes themeWrapper={<Wrapper />} />
-        </Theme>
+        <FeatureTogglesContextProvider value={initialToggles}>
+          <Theme>
+            <Routes themeWrapper={<Wrapper />} />
+          </Theme>
+        </FeatureTogglesContextProvider>
       </ErrorRouterContext.Provider>
     );
   }

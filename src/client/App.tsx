@@ -3,10 +3,6 @@ import React, { StrictMode } from "react";
 import { ServerDataProvider } from "./serverData";
 import { InitialComponent } from "@common/components";
 import { HelmetProvider } from "react-helmet-async";
-import {
-  FeatureTogglesContextProvider,
-  featureToggleState,
-} from "@common/featureToggles";
 import { ErrorContext } from "@common/types";
 
 interface Props {
@@ -21,9 +17,7 @@ export default function App(props: Props) {
     <HelmetProvider>
       <ServerDataProvider value={props ? props.serverData : null}>
         <StrictMode>
-          <FeatureTogglesContextProvider value={featureToggleState}>
-            <InitialComponent context={props.context} />
-          </FeatureTogglesContextProvider>
+          <InitialComponent context={props.context} />
         </StrictMode>
       </ServerDataProvider>
     </HelmetProvider>

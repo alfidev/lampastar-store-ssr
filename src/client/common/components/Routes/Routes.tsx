@@ -20,7 +20,6 @@ export const Routes = ({ themeWrapper }: Props) => {
     if (isError && setStatusCode) {
       setStatusCode(0);
     }
-    console.log("reset errors");
   }, [location]);
 
   if (isError) return <NotFound />;
