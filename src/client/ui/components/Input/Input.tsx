@@ -92,3 +92,36 @@ export const CheckBox = styled(
     );
   }
 )``;
+
+export const ToggleCheckBox = styled.label<{
+  checked: boolean;
+  withText: boolean;
+}>`
+  display: flex;
+  margin: ${({ theme }) => theme.indents.none};
+  cursor: pointer;
+  position: relative;
+
+  ::before {
+    content: "";
+    display: inline-block;
+    min-width: 18px;
+    height: 18px;
+    border-radius: ${({ theme }) => theme.radius.xxs};
+    border: 1px solid ${({ theme }) => theme.color.border.input};
+    background: ${({ theme }) => theme.color.background.primary};
+    margin-right: ${({ theme, withText }) =>
+      withText ? theme.indents.xs : theme.indents.none};
+  }
+
+  ::after {
+    display: ${({ checked }) => (checked ? "block" : "none")};
+    position: absolute;
+    content: "";
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAyMCAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuNSA3LjVMNy4wOTU5NCAxMy4wOTU5TDE4LjExMjIgMi4wNzk3MSIgc3Ryb2tlPSIjRkY3NzNEIiBzdHJva2Utd2lkdGg9IjIuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=");
+    min-width: 20px;
+    height: 16px;
+    left: 3px;
+    top: -1px;
+  }
+`;

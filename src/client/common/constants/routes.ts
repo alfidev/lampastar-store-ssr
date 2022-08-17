@@ -3,6 +3,7 @@ import {
   ApplicationSettings,
   Catalog,
   Contacts,
+  OurTeam,
   PaymentAndDelivery,
 } from "@pages";
 import { RouteType } from "../types";
@@ -67,6 +68,12 @@ export const ROUTES: Record<string, RouteType> = {
     label: "Кто мы",
     path: "/about",
     component: About,
+  },
+  ourTeam: {
+    title: "Наша команда",
+    label: "Наша команда",
+    path: "/our-team",
+    component: OurTeam,
   },
   reviews: {
     title: "Отзывы",
