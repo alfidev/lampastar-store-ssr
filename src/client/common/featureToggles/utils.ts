@@ -1,12 +1,13 @@
 import { FeatureTogglesLocalStorageType } from "./types";
 import { featureToggleState } from "./featureToggleState";
+import { isClient } from "../utils";
 
 const FEATURE_TOGGLES_KEY = "FEATURE_TOGGLES";
 
 export const getToggles = () => {
-  const toggles: FeatureTogglesLocalStorageType = JSON.parse(
-    localStorage.getItem(FEATURE_TOGGLES_KEY) || "{}"
-  );
+  const toggles: FeatureTogglesLocalStorageType = isClient()
+    ? JSON.parse(localStorage.getItem(FEATURE_TOGGLES_KEY) || "{}")
+    : {};
 
   return Object.keys(featureToggleState).reduce(
     (acc, currentName) => ({
@@ -34,6 +35,7 @@ export const setToggles = (toggles: FeatureTogglesLocalStorageType) => {
     }),
     {}
   );
-  console.log(localToggles);
-  localStorage.setItem(FEATURE_TOGGLES_KEY, JSON.stringify(localToggles));
+
+  if (isClient())
+    localStorage.setItem(FEATURE_TOGGLES_KEY, JSON.stringify(localToggles));
 };
