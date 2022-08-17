@@ -90,7 +90,7 @@ export const Header = React.memo(() => {
         <BottomContainer>
           <NavGroup>
             {MAIN_MENU.filter(
-              (page) => !isBackEnabled && !PAGE_SD.includes(page)
+              (page) => isBackEnabled || !PAGE_SD.includes(page)
             ).map((page) => (
               <StyledLinkBottom key={ROUTES[page].path} to={ROUTES[page].path}>
                 {ROUTES[page].label}
