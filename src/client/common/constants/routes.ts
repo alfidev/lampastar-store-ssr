@@ -10,7 +10,7 @@ import { RouteType } from "../types";
 
 export const ROUTES: Record<string, RouteType> = {
   home: {
-    title: "Главная страница",
+    title: "ВЕСЬ СВЕТ",
     label: "Главная",
     path: "/",
     component: About,
