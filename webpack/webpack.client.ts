@@ -24,6 +24,7 @@ function createClientConfig(env: Env): Configuration {
   };
 
   return {
+    name: "client",
     target: "web",
     context: path.resolve(__dirname, "../src/client"),
     optimization: {
@@ -35,7 +36,7 @@ function createClientConfig(env: Env): Configuration {
       index: "./Index.tsx",
     },
     output: {
-      path: path.resolve(__dirname, "dist", "public"),
+      path: path.resolve(__dirname, "../dist", "public"),
       filename: env.production ? "js/[name].[chunkhash].js" : "js/[name].js",
     },
     module: {

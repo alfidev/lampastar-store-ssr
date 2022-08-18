@@ -5,9 +5,11 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import { merge } from "webpack-merge";
 import createBaseConfig from "./webpack.base";
 import { Env } from "shared/envType";
+import { default as clientConfig } from "./webpack.client";
 
 function createServerConfig(): Configuration {
   return {
+    name: "server",
     target: "node",
     context: path.resolve(__dirname, "../src/server"),
     externalsPresets: {
@@ -95,5 +97,5 @@ export default function (e: any) {
   const baseConfig = createBaseConfig(env);
   const serverConfig = merge(baseConfig, createServerConfig());
 
-  return [serverConfig];
+  return [...clientConfig(e), serverConfig];
 }
