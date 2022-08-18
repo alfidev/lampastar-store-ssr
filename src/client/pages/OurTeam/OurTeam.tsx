@@ -5,7 +5,7 @@ import {
   StyledCard,
   StyledCol,
   StyledDescriptions,
-  // StyledImage,
+  StyledImage,
   StyledName,
 } from "./styled";
 import { SHOW_ADMIN, useFeature } from "@common/featureToggles";
@@ -20,10 +20,10 @@ export const OurTeam = () => {
   return (
     <Container fluid>
       <Row>
-        {filteredMembers.map(({ id, name, descriptions }) => (
+        {filteredMembers.map(({ id, image, name, descriptions }) => (
           <StyledCol key={id} xs={12} sm={6} md={4} lg={4}>
             <StyledCard>
-              {/*{image && <StyledImage src={image} />}*/}
+              {image && <StyledImage src={image} />}
               <StyledName>{name}</StyledName>
               <StyledDescriptions>{descriptions}</StyledDescriptions>
             </StyledCard>

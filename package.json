@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "React SSR lampastar store",
   "main": "./dist/app.js",
-  "author": "Your name here",
+  "author": "Alfi",
   "license": "MIT",
   "workspaces": [
     "server",
@@ -11,9 +11,9 @@
   ],
   "scripts": {
     "test": "npx jest",
-    "build:prod": "npx webpack --env PRODUCTION",
-    "start:client": "npx webpack serve --config-name client --env HOT",
-    "start:server": "npx concurrently \"npx webpack -w\" \"npx nodemon ./dist/app.js\""
+    "build:prod": "npx webpack --config ./webpack/webpack.server.ts --env PRODUCTION" ,
+    "start:client": "npx webpack serve --config ./webpack/webpack.client.ts --env HOT",
+    "start:server": "npx concurrently \"npx webpack -w --config ./webpack/webpack.server.ts\" \"npx nodemon ./dist/app.js\""
   },
   "dependencies": {
     "dotenv": "^16.0.1",

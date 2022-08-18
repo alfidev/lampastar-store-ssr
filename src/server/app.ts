@@ -11,8 +11,6 @@ import express from "express";
 
 const server = createServer();
 
-console.log(USE_REDIRECT_HTTPS);
-
 if (USE_REDIRECT_HTTPS) {
   const httpServer = express();
 
