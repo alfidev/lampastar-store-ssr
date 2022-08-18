@@ -242,7 +242,7 @@ export default function (e: any) {
     host: process.env.HOST || "0.0.0.0",
     https: Boolean(process.env.HTTPS) || false,
   };
-  console.log(env.host);
+
   const baseConfig = createBaseConfig(env);
   const clientConfig = merge(baseConfig, createClientConfig(env));
   const serverConfig = merge(baseConfig, createServerConfig(env));
