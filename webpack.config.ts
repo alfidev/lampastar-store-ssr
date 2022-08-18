@@ -7,10 +7,16 @@ import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { merge } from "webpack-merge";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import dotenv from "dotenv";
+import fs from "fs";
+
+dotenv.config({ override: true });
 
 interface Env {
   production: boolean;
   hot: boolean;
+  host: string;
+  https: boolean;
 }
 
 function createBaseConfig(env: Env): Configuration {
@@ -212,9 +218,19 @@ function createClientConfig(env: Env): Configuration {
 
     devServer: {
       hot: env.hot,
-      host: "0.0.0.0",
+      host: env.host,
+      open: true,
       port: 3000,
       historyApiFallback: true,
+      server: env.https
+        ? {
+            type: "https",
+            options: {
+              key: fs.readFileSync("certificates/cert.key"),
+              cert: fs.readFileSync("certificates/cert.crt"),
+            },
+          }
+        : {},
     },
   };
 } // end client configuration
@@ -223,8 +239,10 @@ export default function (e: any) {
   const env: Env = {
     hot: !!e["HOT"],
     production: !!e["PRODUCTION"],
+    host: process.env.HOST || "0.0.0.0",
+    https: Boolean(process.env.HTTPS) || false,
   };
-
+  console.log(env.host);
   const baseConfig = createBaseConfig(env);
   const clientConfig = merge(baseConfig, createClientConfig(env));
   const serverConfig = merge(baseConfig, createServerConfig(env));

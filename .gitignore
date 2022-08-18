@@ -4,3 +4,5 @@ dist/
 .idea/
 .DS_store
 ecosystem.config.js
+*.env
+/certificates/
