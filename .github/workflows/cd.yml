@@ -22,6 +22,6 @@ jobs:
             git pull origin master
             git status
             npm ci
-            export NODE_OPTIONS=--max_old_space_size=4096
+            export NODE_OPTIONS="--max_old_space_size=8192"
             npm run build:prod
             pm2 restart ${{ secrets.DEPLOY_SERVER_APP_ID }}
