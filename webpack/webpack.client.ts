@@ -97,22 +97,24 @@ function createClientConfig(env: Env): Configuration {
       }),
       new ReactRefreshPlugin(),
     ].filter(Boolean),
-    devServer: {
-      hot: true,
-      host: env.host,
-      open: true,
-      port: 3000,
-      historyApiFallback: true,
-      server: env.https
-        ? {
-            type: "https",
-            options: {
-              key: fs.readFileSync("certificates/cert.key"),
-              cert: fs.readFileSync("certificates/cert.crt"),
-            },
-          }
-        : {},
-    },
+    ...(!env.production && {
+      devServer: {
+        hot: true,
+        host: env.host,
+        open: true,
+        port: 3000,
+        historyApiFallback: true,
+        server: env.https
+          ? {
+              type: "https",
+              options: {
+                key: fs.readFileSync("certificates/cert.key"),
+                cert: fs.readFileSync("certificates/cert.crt"),
+              },
+            }
+          : {},
+      },
+    }),
   };
 }
 
