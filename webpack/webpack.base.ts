@@ -9,7 +9,7 @@ export default function createBaseConfig(env: Env): Configuration {
   return {
     mode: env.production ? "production" : "development",
 
-    devtool: env.production ? false : "source-map",
+    devtool: env.production ? "eval-source-map" : "source-map",
 
     resolve: {
       extensions: [".ts", ".tsx", ".js"],
