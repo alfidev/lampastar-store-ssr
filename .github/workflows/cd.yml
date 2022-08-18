@@ -21,6 +21,6 @@ jobs:
             cd ~/lampastar/lampastar-store-ssr
             git pull origin master
             git status
-            npm ci --only=prod
+            npm ci
             npm run build:prod
             pm2 restart ${{ secrets.DEPLOY_SERVER_APP_ID }}
