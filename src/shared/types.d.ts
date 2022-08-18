@@ -17,6 +17,7 @@ declare namespace NodeJS {
     env: {
       HOST?: string;
       HTTPS?: boolean;
+      USE_REDIRECT_HTTPS?: boolean;
       /** The port the server will be listening to. */
       PORT?: number | string;
       /** Absolute path to the public directory where static the files will be served */
