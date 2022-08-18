@@ -43,16 +43,20 @@ function createClientConfig(env: Env): Configuration {
       rules: [
         {
           test: /\.tsx?$/,
-          exclude: /node_modules/,
+          exclude: [
+            path.resolve(__dirname, "../node_modules"),
+            path.resolve(__dirname, "../src/client/resources"),
+          ],
           use: { loader: "babel-loader", options: babelConfig },
         },
         {
           test: /\.(woff2|woff|eot|ttf|otf|svg)$/,
-          include: /fonts/,
+          include: [path.resolve(__dirname, "../src/client/resources/fonts")],
           use: ["file-loader"],
         },
         {
           test: /\.(jpg|png|gif)$/,
+          include: [path.resolve(__dirname, "../src/client/resources/images")],
           use: {
             loader: "file-loader",
             options: {
@@ -63,6 +67,7 @@ function createClientConfig(env: Env): Configuration {
         },
         {
           test: /\.svg$/,
+          include: [path.resolve(__dirname, "../src/client/resources/images")],
           use: {
             loader: "@svgr/webpack",
             options: {
