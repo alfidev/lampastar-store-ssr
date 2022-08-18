@@ -6,6 +6,8 @@ import { merge } from "webpack-merge";
 import createBaseConfig from "./webpack.base";
 import { Env } from "shared/envType";
 import { default as clientConfig } from "./webpack.client";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 
 function createServerConfig(): Configuration {
   return {
@@ -88,6 +90,8 @@ function createServerConfig(): Configuration {
 }
 
 export default function (e: any) {
+  const MEASURE = !!e["MEASURE"];
+
   const env: Env = {
     production: !!e["PRODUCTION"],
     host: process.env.HOST || "0.0.0.0",
@@ -97,5 +101,10 @@ export default function (e: any) {
   const baseConfig = createBaseConfig(env);
   const serverConfig = merge(baseConfig, createServerConfig());
 
-  return [...clientConfig(e), serverConfig];
+  if (MEASURE) {
+    const smp = new SpeedMeasurePlugin();
+    return smp.wrap([...clientConfig(e), serverConfig]);
+  } else {
+    return [...clientConfig(e), serverConfig];
+  }
 }

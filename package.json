@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "test": "npx jest",
-    "build:prod": "npx webpack --config ./webpack/webpack.server.ts --env PRODUCTION" ,
+    "build:prod": "npx webpack --config ./webpack/webpack.server.ts --env PRODUCTION",
+    "build:measure": "npx webpack --config ./webpack/webpack.server.ts --env PRODUCTION --env MEASURE",
     "start:client": "npx webpack serve --config ./webpack/webpack.client.ts --env HOT",
     "start:server": "npx concurrently \"npx webpack -w --config ./webpack/webpack.server.ts\" \"npx nodemon ./dist/app.js\""
   },
@@ -60,6 +61,7 @@
     "jsdom": "^19.0.0",
     "nodemon": "^2.0.15",
     "react-refresh": "^0.11.0",
+    "speed-measure-webpack-plugin": "^1.5.0",
     "supertest": "^6.2.1",
     "ts-jest": "^27.1.2",
     "ts-loader": "^9.2.6",
