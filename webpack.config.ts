@@ -8,7 +8,7 @@ import { merge } from "webpack-merge";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import dotenv from "dotenv";
-// import fs from "fs";
+import fs from "fs";
 
 dotenv.config({ override: true });
 
@@ -222,15 +222,15 @@ function createClientConfig(env: Env): Configuration {
       open: true,
       port: 3000,
       historyApiFallback: true,
-      // server: env.https
-      //   ? {
-      //       type: "https",
-      //       options: {
-      //         key: fs.readFileSync("certificates/cert.key"),
-      //         cert: fs.readFileSync("certificates/cert.crt"),
-      //       },
-      //     }
-      //   : {},
+      server: env.https
+        ? {
+            type: "https",
+            options: {
+              key: fs.readFileSync("certificates/cert.key"),
+              cert: fs.readFileSync("certificates/cert.crt"),
+            },
+          }
+        : {},
     },
   };
 } // end client configuration
@@ -247,5 +247,5 @@ export default function (e: any) {
   const clientConfig = merge(baseConfig, createClientConfig(env));
   const serverConfig = merge(baseConfig, createServerConfig(env));
 
-  return [serverConfig, clientConfig];
+  return [clientConfig, serverConfig];
 }
