@@ -16,8 +16,8 @@ declare namespace NodeJS {
   interface Process {
     env: {
       HOST?: string;
-      HTTPS?: boolean;
-      USE_REDIRECT_HTTPS?: boolean;
+      HTTPS?: string;
+      USE_REDIRECT_HTTPS?: string;
       /** The port the server will be listening to. */
       PORT?: number | string;
       /** Absolute path to the public directory where static the files will be served */

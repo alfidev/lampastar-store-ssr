@@ -11,11 +11,13 @@ import express from "express";
 
 const server = createServer();
 
-if (USE_REDIRECT_HTTPS) {
+if (USE_REDIRECT_HTTPS && USE_HTTPS) {
   const httpServer = express();
 
   httpServer.get("*", function (req, res) {
-    res.redirect("https://" + req.headers.host + req.url);
+    res.redirect(
+      `https://${req.headers.host}${PORT !== 443 ? `:${PORT}` : ""}${req.url}`
+    );
   });
   httpServer.listen(80);
 }
