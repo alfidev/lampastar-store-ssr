@@ -17,7 +17,6 @@ declare namespace NodeJS {
     env: {
       HOST?: string;
       HTTPS?: string;
-      MEASURE?: string;
       USE_REDIRECT_HTTPS?: string;
       /** The port the server will be listening to. */
       PORT?: number | string;

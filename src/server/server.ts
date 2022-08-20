@@ -1,7 +1,7 @@
 import express from "express";
 import { errorMiddleware } from "server/middleware/errorMiddleware";
 import { reactMiddleware } from "server/middleware/reactMiddleware";
-import { useRouting } from "server/middleware/routing";
+// import { useRouting } from "server/middleware/routing";
 import { PUBLIC_DIR_PATH } from "server/configuration";
 
 // we split the express app definition in a module separated from the entry point because its easier to test.
