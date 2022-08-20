@@ -10,7 +10,6 @@ import { ServerStyleSheet } from "styled-components";
  * Renders the react App as a html string.
  * @param url The render url. It will be injected in the react router so it can render the corresponding route.
  * @param context
- * @param prerenderedObject An object created in the server that can be accessed in the client side.
  * @returns A html string;
  */
 export async function renderReactAsync(
@@ -20,8 +19,7 @@ export async function renderReactAsync(
       code: number;
       message: string;
     };
-  },
-  prerenderedObject?: unknown
+  }
 ) {
   // read the html template file
 
@@ -29,26 +27,43 @@ export async function renderReactAsync(
     encoding: "utf-8",
   });
 
+  const helmetContext = {};
+
   const WrappedApp = (
     <StaticRouter location={url}>
-      <App serverData={prerenderedObject ?? null} context={context} />
+      <App context={context} helmetContext={helmetContext} />
     </StaticRouter>
   );
 
   const [reactContent, styleTags] = renderToStringWithStyles(WrappedApp);
 
+  const { helmet = {} } = helmetContext as {
+    helmet?: { title?: ""; meta?: "" };
+  };
+
   // finally combine all parts together
 
-  return buildHtml(staticHtmlContent, reactContent, styleTags);
+  return buildHtml(staticHtmlContent, reactContent, styleTags, helmet);
 }
 
-function buildHtml(templateHtml: string, reactHtml: string, styleTags: string) {
+function buildHtml(
+  templateHtml: string,
+  reactHtml: string,
+  styleTags: string,
+  helmet: any
+) {
   const pattern = /(?<head><head>)|(?<root><div\sid="root">)/g;
 
   return templateHtml.replace(pattern, (match, ...params: any[]) => {
     const groups = params.pop();
 
-    if (groups.head) return groups.head + styleTags;
+    if (groups.head)
+      return (
+        groups.head +
+        styleTags +
+        helmet.title.toString() +
+        helmet.meta.toString()
+      );
     if (groups.root) return groups.root + reactHtml;
 
     return match;

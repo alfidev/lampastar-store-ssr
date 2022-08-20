@@ -6,16 +6,16 @@ import { ErrorContext } from "@common/types";
 
 interface Props {
   /** Data used in the react prerender process. Use only in the server side. */
-  serverData?: unknown;
   context?: ErrorContext;
+  helmetContext?: Record<any, any>;
 }
 
 /** * The root react component for both client side rendering and server side rendering */
-export default function App(props: Props) {
+export default function App({ context, helmetContext }: Props) {
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       <StrictMode>
-        <InitialComponent context={props.context} />
+        <InitialComponent context={context} />
       </StrictMode>
     </HelmetProvider>
   );
