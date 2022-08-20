@@ -19,7 +19,7 @@ function createClientConfig(env: Env): Configuration {
     ],
     plugins: [
       "@babel/plugin-transform-runtime",
-      require.resolve("react-refresh/babel"),
+      env.hot && require.resolve("react-refresh/babel"),
     ].filter(Boolean),
   };
 
@@ -95,7 +95,7 @@ function createClientConfig(env: Env): Configuration {
       new DefinePlugin({
         __SERVER__: JSON.stringify(false),
       }),
-      new ReactRefreshPlugin(),
+      (env.hot && new ReactRefreshPlugin()) as any,
     ].filter(Boolean),
     ...(!env.production && {
       devServer: {
@@ -120,6 +120,7 @@ function createClientConfig(env: Env): Configuration {
 
 export default function (e: any) {
   const env: Env = {
+    hot: !!e["HOT"],
     production: !!e["PRODUCTION"],
     host: process.env.HOST || "0.0.0.0",
     https: Boolean(process.env.HTTPS) || false,
