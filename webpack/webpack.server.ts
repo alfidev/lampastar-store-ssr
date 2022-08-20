@@ -90,12 +90,12 @@ function createServerConfig(): Configuration {
 }
 
 export default function (e: any) {
-  const MEASURE = !!e["MEASURE"];
+  const MEASURE = process.env.MEASURE === "true";
 
   const env: Env = {
     production: !!e["PRODUCTION"],
     host: process.env.HOST || "0.0.0.0",
-    https: Boolean(process.env.HTTPS) || false,
+    https: process.env.HTTPS === "true",
   };
 
   const baseConfig = createBaseConfig(env);
