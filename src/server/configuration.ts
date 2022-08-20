@@ -6,8 +6,8 @@ dotenv.config({ override: true });
 
 export const PORT = process.env.PORT ?? 9000;
 
-export const USE_HTTPS = Boolean(process.env.HTTPS);
-export const USE_REDIRECT_HTTPS = Boolean(process.env.USE_REDIRECT_HTTPS);
+export const USE_HTTPS = process.env.HTTPS === "true";
+export const USE_REDIRECT_HTTPS = process.env.USE_REDIRECT_HTTPS === "true";
 
 export const OPTIONS = USE_HTTPS
   ? {
