@@ -1,4 +1,8 @@
-import { BACKEND_ENABLE, SHOW_ADMIN } from "./featureToggleNames";
+import {
+  BACKEND_ENABLE,
+  NEW_OUR_TEAM_DESIGN,
+  SHOW_ADMIN,
+} from "./featureToggleNames";
 
 export const featureToggleState = {
   [BACKEND_ENABLE]: {
@@ -7,7 +11,10 @@ export const featureToggleState = {
   },
   [SHOW_ADMIN]: {
     enabled: false,
-    description:
-      "Показывать гуру сего проекта, светило мира интернет магазинов, и просто хорошего человека",
+    description: "Показывать админа",
+  },
+  [NEW_OUR_TEAM_DESIGN]: {
+    enabled: false,
+    description: 'Включает новый дизайн страницы "Наша команда"',
   },
 };
