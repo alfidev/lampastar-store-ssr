@@ -1,6 +1,5 @@
 import React, { StrictMode } from "react";
 
-import { ServerDataProvider } from "./serverData";
 import { InitialComponent } from "@common/components";
 import { HelmetProvider } from "react-helmet-async";
 import { ErrorContext } from "@common/types";
@@ -15,11 +14,9 @@ interface Props {
 export default function App(props: Props) {
   return (
     <HelmetProvider>
-      <ServerDataProvider value={props ? props.serverData : null}>
-        <StrictMode>
-          <InitialComponent context={props.context} />
-        </StrictMode>
-      </ServerDataProvider>
+      <StrictMode>
+        <InitialComponent context={props.context} />
+      </StrictMode>
     </HelmetProvider>
   );
 }

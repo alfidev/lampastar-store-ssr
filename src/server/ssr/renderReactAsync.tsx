@@ -4,7 +4,6 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import fs from "fs";
 import { HTML_TEMPLATE_PATH } from "server/configuration";
-import { PrerenderData } from "shared/PrerenderedData";
 import { ServerStyleSheet } from "styled-components";
 
 /**
@@ -30,45 +29,27 @@ export async function renderReactAsync(
     encoding: "utf-8",
   });
 
-  // create an element to store server side data
-
-  const dataElement = PrerenderData.saveToDom(prerenderedObject);
-
-  // In SSR, using react-router-dom/BrowserRouter will throw an exception.
-  // Instead, we use react-router-dom/server/StaticRouter.
-  // In the client compilation, we still use BrowserRouter (see: src/client/Index.tsx)
-
   const WrappedApp = (
     <StaticRouter location={url}>
       <App serverData={prerenderedObject ?? null} context={context} />
     </StaticRouter>
   );
 
-  /*
-        render the react html content and the styledComponents-component style sheet as string.
-        without prerendering styledComponents-components, the page will flash a styleless version of it
-     */
-
   const [reactContent, styleTags] = renderToStringWithStyles(WrappedApp);
 
   // finally combine all parts together
 
-  return buildHtml(staticHtmlContent, reactContent, styleTags, dataElement);
+  return buildHtml(staticHtmlContent, reactContent, styleTags);
 }
 
-function buildHtml(
-  templateHtml: string,
-  reactHtml: string,
-  styleTags: string,
-  dataTag: string
-) {
+function buildHtml(templateHtml: string, reactHtml: string, styleTags: string) {
   const pattern = /(?<head><head>)|(?<root><div\sid="root">)/g;
 
   return templateHtml.replace(pattern, (match, ...params: any[]) => {
     const groups = params.pop();
 
     if (groups.head) return groups.head + styleTags;
-    if (groups.root) return dataTag + groups.root + reactHtml;
+    if (groups.root) return groups.root + reactHtml;
 
     return match;
   });

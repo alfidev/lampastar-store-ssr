@@ -90,7 +90,7 @@ function createServerConfig(): Configuration {
 }
 
 export default function (e: any) {
-  const MEASURE = process.env.MEASURE === "true";
+  const MEASURE = !!e["MEASURE"];
 
   const env: Env = {
     production: !!e["PRODUCTION"],
