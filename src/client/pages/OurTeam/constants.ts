@@ -13,111 +13,142 @@ import Member12 from "@resources/images/team/team_member_12.jpg";
 import Member13 from "@resources/images/team/team_member_13.jpg";
 import MemberMain from "@resources/images/team/team_member_main.jpg";
 import MemberSubMain from "@resources/images/team/team_member_sub_main.jpg";
-import MemberBeautiful from "@resources/images/team/team_member_beautiful.jpg";
-import MemberAdmin from "@resources/images/team/team_member_admin.jpg";
+import Member17 from "@resources/images/team/team_member_17.jpg";
+import { TeamType } from "./types";
 
-export const teams = [
-  {
-    id: 1,
-    image: Member1,
-    name: "Старцев Никита Андреевич",
-    descriptions: "Водитель-экспедитор",
-  },
-  {
-    id: 2,
-    image: Member2,
-    name: "Карась Филипп Юрьевич",
-    descriptions: "Водитель-экспедитор",
-  },
-  {
-    id: 3,
-    image: Member3,
-    name: "Летов Алексей Юрьевич",
-    descriptions: "Кладовщик",
-  },
-  {
-    id: 4,
-    image: Member4,
-    name: "Гриценко Владимир Александрович",
-    descriptions: "Кладовщик",
-  },
-  {
-    id: 5,
-    image: Member5,
-    name: "Кулинич Алексей Олегович",
-    descriptions: "Специалист по хозяйственной части",
-  },
-  {
-    id: 6,
-    image: Member6,
-    name: "Бульда Наталья Евгеньевна",
-    descriptions: "Бухгалтер по учёту труда и заработной платы",
-  },
-  {
-    id: 7,
-    image: Member7,
-    name: "Когутенко Наталья Евгеньевна",
-    descriptions: "Бухгалтер по учёту основных средств и материалов",
-  },
-  {
-    id: 8,
-    image: Member8,
-    name: "Лосева Елена Геннадьевна",
-    descriptions: "Менеджер по продажам",
-  },
-  {
-    id: 9,
-    image: Member9,
-    name: "Котенко Ольга Анатольевна",
-    descriptions: "Специалист тендерного отдела",
-  },
-  {
-    id: 10,
-    image: Member10,
-    name: "Московец Виктория Юрьевна",
-    descriptions: "Менеджер по продажам",
-  },
-  {
-    id: 11,
-    image: Member11,
-    name: "Мамедова Ирина Владимировна",
-    descriptions: "Менеджер по продажам",
-  },
-  {
-    id: 12,
-    image: Member12,
-    name: "Захарченко Ольга Александровна",
-    descriptions: "Менеджер по продажам",
-  },
-  {
-    id: 13,
-    image: Member13,
-    name: "Мананникова Валентина Александровна",
-    descriptions: "Специалист по сопровождению продаж",
-  },
+const HEAD = [
   {
     id: 14,
     image: MemberMain,
-    name: "Щербаха Евгений Сергеевич",
-    descriptions: "Директор",
+    name: "Евгений Щербаха",
+    description: "Директор",
   },
   {
     id: 15,
     image: MemberSubMain,
-    name: "Кобылинская Татьяна Максимовна",
-    descriptions: "Директор по развитию",
+    name: "Татьяна Кобылинская",
+    description: "Директор по развитию",
   },
+];
+
+const SALE = [
+  {
+    id: 8,
+    image: Member8,
+    name: "Елена Лосева",
+    description: "Менеджер по продажам",
+  },
+  {
+    id: 10,
+    image: Member10,
+    name: "Виктория Московец",
+    description: "Менеджер по продажам",
+  },
+  {
+    id: 12,
+    image: Member12,
+    name: "Ольга Захарченко",
+    description: "Менеджер по продажам",
+  },
+  {
+    id: 11,
+    image: Member11,
+    name: "Ирина Мамедова",
+    description: "Менеджер по продажам",
+  },
+  {
+    id: 13,
+    image: Member13,
+    name: "Валентина Мананникова",
+    description: "Специалист по сопровождению продаж",
+  },
+];
+
+const TENDER = [
+  {
+    id: 9,
+    image: Member9,
+    name: "Ольга Котенко",
+    description: "Специалист тендерного отдела",
+  },
+];
+
+const FINANCE = [
+  {
+    id: 6,
+    image: Member6,
+    name: "Наталья Бульда",
+    description: "Бухгалтер по учёту труда и заработной платы",
+  },
+  {
+    id: 7,
+    image: Member7,
+    name: "Наталья Когутенко",
+    description: "Бухгалтер по учёту основных средств и материалов",
+  },
+];
+
+const DELIVERY = [
+  {
+    id: 1,
+    image: Member1,
+    name: "Никита Старцев",
+    description: "Водитель-экспедитор",
+  },
+  {
+    id: 2,
+    image: Member2,
+    name: "Филипп Карась",
+    description: "Водитель-экспедитор",
+  },
+];
+
+const STOCK = [
+  {
+    id: 3,
+    image: Member3,
+    name: "Алексей Летов",
+    description: "Кладовщик",
+  },
+  {
+    id: 4,
+    image: Member4,
+    name: "Владимир Гриценко",
+    description: "Кладовщик",
+  },
+  {
+    id: 5,
+    image: Member5,
+    name: "Алексей Кулинич",
+    description: "Специалист по хозяйственной части",
+  },
+];
+
+const HR = [
   {
     id: 16,
-    image: MemberBeautiful,
-    name: "Барышникова Елизавета Владимировна",
-    descriptions: "HR-менеджер",
+    image: Member17,
+    name: "Елизавета Барышникова",
+    description: "HR-менеджер",
   },
+];
+
+const IT = [
   {
     id: 17,
-    image: MemberAdmin,
-    name: "Фирсаев Алексей Геннадьевич",
-    descriptions: "Директор IT департамента",
+    name: "Алексей Фирсаев",
+    description: "Руководитель IT департамента без сотрудников",
     hidden: true,
   },
 ];
+
+export const TEAM: TeamType = {
+  HEAD,
+  SALE,
+  TENDER,
+  FINANCE,
+  DELIVERY,
+  STOCK,
+  HR,
+  IT,
+};

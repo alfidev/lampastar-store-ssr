@@ -13,7 +13,8 @@
     "test": "npx jest",
     "build:prod": "npx webpack --config ./webpack/webpack.server.ts --env PRODUCTION",
     "build:measure": "npx webpack --config ./webpack/webpack.server.ts --env PRODUCTION --env MEASURE",
-    "start:client": "npx webpack serve --config ./webpack/webpack.client.ts --env HOT",
+    "start:client:hot": "npx webpack serve --config ./webpack/webpack.client.ts --env HOT",
+    "start:client": "npx webpack serve --config ./webpack/webpack.client.ts",
     "start:server": "npx concurrently \"npx webpack -w --config ./webpack/webpack.server.ts\" \"npx nodemon ./dist/app.js\""
   },
   "dependencies": {
