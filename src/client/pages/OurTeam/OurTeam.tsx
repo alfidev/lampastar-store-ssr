@@ -20,6 +20,9 @@ import {
 } from "@common/featureToggles";
 import { locale } from "./locale";
 import { Department } from "./types";
+import { PageTitle } from "@layouts/Lampastar";
+
+const { title } = locale;
 
 const getTeams = (isShowHidden: boolean) =>
   Object.keys(TEAM)
@@ -68,20 +71,24 @@ export const OurTeam = () => {
   }
 
   return (
-    <WrapperContainer>
-      <Row>
-        {team.map(({ members }) =>
-          members.map(({ id, image, name, description }) => (
-            <StyledCol key={id} xs={12} sm={6} md={4} lg={3}>
-              <StyledCard>
-                {image && <StyledImage src={image} />}
-                <StyledName>{name}</StyledName>
-                <StyledDescription>{description}</StyledDescription>
-              </StyledCard>
-            </StyledCol>
-          ))
-        )}
-      </Row>
-    </WrapperContainer>
+    <>
+      <PageTitle>{title}</PageTitle>
+      <Divider />
+      <WrapperContainer>
+        <Row>
+          {team.map(({ members }) =>
+            members.map(({ id, image, name, description }) => (
+              <StyledCol key={id} xs={12} sm={6} md={4} lg={3}>
+                <StyledCard>
+                  {image && <StyledImage src={image} />}
+                  <StyledName>{name}</StyledName>
+                  <StyledDescription>{description}</StyledDescription>
+                </StyledCard>
+              </StyledCol>
+            ))
+          )}
+        </Row>
+      </WrapperContainer>
+    </>
   );
 };
