@@ -11,4 +11,5 @@ export const locale = {
     HR: "HR-менеджеры",
     IT: "Информационные технологии",
   } as Record<Department, string>,
+  title: "Наша команда",
 };
