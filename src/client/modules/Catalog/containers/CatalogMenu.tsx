@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useCategories } from '@modules/Catalog/hooks';
 import { CatalogMenuSkeleton } from '../components';
-import { Col, Container, Row } from 'styled-bootstrap-grid';
+import { Col, Container, Row } from '@ui/components/Adaptive';
 import styled from 'styled-components';
 import { List, ListItem, ListItemLite } from '@ui/components';
 import { CategoryMap } from '@modules/Catalog/types';
@@ -26,9 +26,9 @@ export const CatalogMenu = () => {
   if (isLoading) return <CatalogMenuSkeleton />;
 
   return (
-    <Container fluid>
+    <Container>
       <Row>
-        <StyledColumn sm={4}>
+        <StyledColumn desktopS={4}>
           <List>
             {list?.map((category) => (
               <ListItem
@@ -41,12 +41,12 @@ export const CatalogMenu = () => {
             ))}
           </List>
         </StyledColumn>
-        <Col sm={8}>
-          <Container fluid>
+        <Col desktopS={8}>
+          <Container>
             <Typography variant="title2">{currentCategory?.name}</Typography>
             <Row>
               {currentCategory?.list.map(({ id, name, list }) => (
-                <StyledColumnSecondary key={id} sm={6}>
+                <StyledColumnSecondary key={id} mobile={6}>
                   <Typography variant="body3" tag="p">
                     {name}
                   </Typography>

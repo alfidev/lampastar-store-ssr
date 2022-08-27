@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { NotFound as NotFoundSVG } from "@resources/images";
-import { ContentWrapper } from "@layouts/Lampastar/components/ComponentWrapper";
-import { media } from "styled-bootstrap-grid";
+import styled from 'styled-components';
+import { NotFound as NotFoundSVG } from '@resources/images';
+import { ContentWrapper } from '@layouts/Lampastar/components/ComponentWrapper';
+import { adaptive } from '@ui/components/Adaptive';
 
 export const ErrorWrapper = styled(ContentWrapper)`
   height: 100vh;
@@ -18,10 +18,10 @@ export const InfoBlock = styled.div`
 export const ErrorCode = styled.div`
   font-size: 150px;
   line-height: 219px;
-  ${media.lg`
+  ${adaptive.minWidth.desktopM} {
     font-size: 309px;
     line-height: 219px;
-  `}
+  }
   color: ${({ theme }) => theme.color.text.contrast};
 `;
 
@@ -36,10 +36,10 @@ export const ErrorText = styled.div`
 
 export const ErrorDescription = styled.div`
   margin-top: 20px;
-  ${media.md`
+  ${adaptive.minWidth.desktopS} {
     margin-top: 40px;
     margin-bottom: 64px;
-  `}
+  }
   max-width: 545px;
   text-align: center;
 `;

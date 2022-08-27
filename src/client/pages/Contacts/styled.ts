@@ -1,27 +1,27 @@
-import styled from "styled-components";
-import { Typography } from "@ui/components/Typography";
-import { media } from "styled-bootstrap-grid";
+import styled from 'styled-components';
+import { Typography } from '@ui/components/Typography';
+import { adaptive } from '@ui/components/Adaptive';
 
 export const MapAndFormContainer = styled.div`
   margin-top: 40px;
-  ${media.lg`
+  ${adaptive.minWidth.desktopM} {
     display: flex;
     margin-top: 120px;
-  `}
+  }
 `;
 
 export const MapContainer = styled.div`
-  ${({ theme }) => media.sm`
-    margin-right: ${theme.indents.xl};
-  `}
+  ${adaptive.minWidth.tablet} {
+    margin-right: ${({ theme }) => theme.indents.xl};
+  }
 `;
 
 export const MapBlock = styled.div`
   width: 456px;
 
-  ${media.xs`
+  ${adaptive.maxWidth.tablet} {
     width: 100%;
-  `}
+  }
 
   ymaps {
     border-radius: ${({ theme }) => theme.radius.xs};

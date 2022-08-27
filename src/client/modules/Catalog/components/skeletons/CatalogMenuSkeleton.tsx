@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
+import { Container, Row, Col } from '@ui/components/Adaptive';
 import styled from 'styled-components';
 import { ListItemSkeleton, TextSkeleton } from '@ui/components/Skeleton';
 
@@ -23,24 +23,24 @@ const items = [...Array(11)].map(() => getRandomWidth());
 
 export const CatalogMenuSkeleton = React.memo(() => {
   return (
-    <Container fluid>
+    <Container>
       <Row>
-        <Col sm={3}>
+        <Col desktopS={4}>
           <StyledListSkeleton>
             {items.map((width, index) => (
               <ListItemSkeleton key={index} width={width} active={index === 2} />
             ))}
           </StyledListSkeleton>
         </Col>
-        <Col sm={9}>
-          <Container fluid>
+        <Col desktopS={8}>
+          <Container>
             <TextSkeleton width={140} />
             <Row>
               {[...Array(5)].map((item, index) => (
-                <StyledColumnSecondary key={index} sm={6}>
+                <StyledColumnSecondary key={index} mobile={6}>
                   <TextSkeleton width="50%" size="body2" />
                   {[...Array(2)].map((item, index) => (
-                    <StyledColumnSecondary key={index} sm={6}>
+                    <StyledColumnSecondary key={index} mobile={6}>
                       <TextSkeleton width="50%" size="mini2" />
                     </StyledColumnSecondary>
                   ))}

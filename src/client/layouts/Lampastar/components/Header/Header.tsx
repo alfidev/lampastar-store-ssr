@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BottomLine,
   MiddleLine,
@@ -16,8 +16,6 @@ import {
   CatalogButton,
   NavGroupAdaptive,
   StyledCatalogText,
-  CatalogMenuWrapper,
-  CatalogMenuModal,
 } from './styled';
 import { CONTACTS, MAIN_MENU, ROUTES, PAGE_SD } from '@common/constants';
 import { PhoneIcon, LikeIcon, BasketIcon, MenuRightIcon, CloseIcon } from '@ui/icons';
@@ -26,15 +24,16 @@ import { Logo } from '@resources/images/';
 import { Link } from 'react-router-dom';
 import { SearchInput } from '@ui/components';
 import { BACKEND_ENABLE, USE_CATALOG, useFeature } from '@common/featureToggles';
-import { CatalogMenu } from '@modules/Catalog';
-import { ContentWrapper } from '@layouts/Lampastar/components/ComponentWrapper';
 
 const { paymentAndDelivery, contacts, favourites, basket, home } = ROUTES;
 const { phoneNumber } = CONTACTS;
 
-export const Header = React.memo(() => {
-  const [menuOpened, setMenuOpened] = useState(true);
+type Props = {
+  menuIsOpened: boolean;
+  toggleMenu: () => void;
+};
 
+export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
   const theme = useTheme();
 
   const isBackEnabled = useFeature(BACKEND_ENABLE);
@@ -44,7 +43,7 @@ export const Header = React.memo(() => {
 
   return (
     <>
-      <StyledHeader>
+      <StyledHeader menuIsOpened={menuIsOpened}>
         <TopLine>
           <TopContainer>
             <NavGroup>
@@ -65,8 +64,8 @@ export const Header = React.memo(() => {
             {isUseCatalog && (
               <>
                 <NavGroupSearch>
-                  <CatalogButton onClick={() => setMenuOpened(!menuOpened)}>
-                    {menuOpened ? <CloseIcon /> : <MenuRightIcon />}
+                  <CatalogButton onClick={toggleMenu}>
+                    {menuIsOpened ? <CloseIcon /> : <MenuRightIcon />}
                     <StyledCatalogText>Каталог</StyledCatalogText>
                   </CatalogButton>
                   <SearchInput />
@@ -99,15 +98,6 @@ export const Header = React.memo(() => {
           </BottomContainer>
         </BottomLine>
       </StyledHeader>
-      {menuOpened && (
-        <CatalogMenuModal onClick={() => setMenuOpened(false)}>
-          <CatalogMenuWrapper onClick={(e) => e.stopPropagation()}>
-            <ContentWrapper>
-              <CatalogMenu />
-            </ContentWrapper>
-          </CatalogMenuWrapper>
-        </CatalogMenuModal>
-      )}
     </>
   );
 });

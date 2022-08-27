@@ -9,11 +9,6 @@ export type Typography = {
   [name in TypographyNames]: Font;
 };
 
-type BreakpointsType = {
-  // eslint-disable-next-line no-unused-vars
-  [name in 'xs' | 'sm' | 'md' | 'lg' | 'xl']: number;
-};
-
 export type TypographyColorType = {
   primary: string;
   secondary: string;
@@ -77,5 +72,4 @@ export type ThemeType = {
     modal: number;
   };
   typography: Typography;
-  breakpoints: BreakpointsType;
 };

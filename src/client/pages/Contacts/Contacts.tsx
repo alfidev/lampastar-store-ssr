@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
-import { PageTitle } from "@layouts/Lampastar";
-import { Typography } from "@ui/components/Typography";
+import React, { ReactNode } from 'react';
+import { PageTitle } from '@layouts/Lampastar';
+import { Typography } from '@ui/components/Typography';
 import {
   ContactBlock,
   ContactColumn,
@@ -12,14 +12,14 @@ import {
   MapContainer,
   StyledParagraph,
   StyledTitle,
-} from "./styled";
-import { ClockIcon, GeoIcon, PhoneIcon, MailIcon } from "@ui/icons";
-import { useTheme } from "styled-components";
-import { ContactForm } from "@components/ContactForm";
-import { YaMap } from "@common/components";
-import { YANDEX_COORDINATES } from "@common/constants";
-import { Col, Container, Row } from "styled-bootstrap-grid";
-import { BACKEND_ENABLE, useFeature } from "@common/featureToggles";
+} from './styled';
+import { ClockIcon, GeoIcon, PhoneIcon, MailIcon } from '@ui/icons';
+import { useTheme } from 'styled-components';
+import { ContactForm } from '@components/ContactForm';
+import { YaMap } from '@common/components';
+import { YANDEX_COORDINATES } from '@common/constants';
+import { Col, Container, Row } from '@ui/components/Adaptive';
+import { BACKEND_ENABLE, useFeature } from '@common/featureToggles';
 
 const SectionTitle = ({ children }: { children: ReactNode }) => (
   <Typography variant="title2" tag="h3">
@@ -55,9 +55,9 @@ export const Contacts = () => {
       <PageTitle>Контакты</PageTitle>
       <SectionTitle>Где нас найти?</SectionTitle>
       <ContactColumns>
-        <Container fluid>
+        <Container>
           <Row>
-            <Col xl={3} lg={6} sm={6} xs={12}>
+            <Col desktopS={3} tablet={6} mobile={12}>
               <ContactColumn>
                 <ContactTitle>
                   <GeoIcon size={theme.sizes.xxl} color="contrast" mr="s" />
@@ -65,20 +65,17 @@ export const Contacts = () => {
                 </ContactTitle>
                 <Details>
                   <ContactBlock>
-                    <CaptionText>
-                      Омская область, г. Омск, ул. 20-я Линия, д. 103, 644009
-                    </CaptionText>
+                    <CaptionText>Омская область, г. Омск, ул. 20-я Линия, д. 103, 644009</CaptionText>
                   </ContactBlock>
                   <ContactBlock>
                     <ParameterText>
-                      Въезд с улицы 20-я Линия, остановка автобуса и трамвая
-                      &quot;Улица 20-я линия&quot;
+                      Въезд с улицы 20-я Линия, остановка автобуса и трамвая &quot;Улица 20-я линия&quot;
                     </ParameterText>
                   </ContactBlock>
                 </Details>
               </ContactColumn>
             </Col>
-            <Col xl={3} lg={6} sm={6} xs={12}>
+            <Col desktopS={3} tablet={6} mobile={12}>
               <ContactColumn>
                 <ContactTitle>
                   <ClockIcon size={theme.sizes.xxl} color="contrast" mr="s" />
@@ -96,7 +93,7 @@ export const Contacts = () => {
                 </Details>
               </ContactColumn>
             </Col>
-            <Col xl={3} lg={6} sm={6} xs={12}>
+            <Col desktopS={3} tablet={6} mobile={12}>
               <ContactColumn>
                 <ContactTitle>
                   <PhoneIcon size={theme.sizes.xxl} color="contrast" mr="s" />
@@ -123,7 +120,7 @@ export const Contacts = () => {
                 </Details>
               </ContactColumn>
             </Col>
-            <Col xl={3} lg={6} sm={6} xs={12}>
+            <Col desktopS={3} tablet={6} mobile={12}>
               <ContactColumn>
                 <ContactTitle>
                   <MailIcon size={theme.sizes.xxl} color="contrast" mr="s" />

@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
-import { ContentWrapper } from "../ComponentWrapper";
-import { Button, Input } from "@ui/components";
-import { Logo } from "@resources/images";
-import { media } from "styled-bootstrap-grid";
+import styled, { css } from 'styled-components';
+import { ContentWrapper } from '../ComponentWrapper';
+import { Button, Input } from '@ui/components';
+import { Logo } from '@resources/images';
+import { adaptive } from '@ui/components/Adaptive';
 
 const menuStyle = css`
   padding: 0;
@@ -18,7 +18,10 @@ export const DynamicLineContent = styled(ContentWrapper)`
   overflow: hidden;
 `;
 
-export const StyledFooter = styled.footer`
+export const StyledFooter = styled.footer<{ menuIsOpened: boolean }>`
+  ${adaptive.maxWidth.tablet} {
+    display: ${({ menuIsOpened }) => (menuIsOpened ? 'none' : 'block')};
+  }
   margin-top: ${({ theme }) => theme.indents.xxxxl};
 `;
 
@@ -58,9 +61,9 @@ export const EmailContainer = styled.div`
   flex-grow: 1;
   margin-top: ${({ theme }) => theme.indents.m};
 
-  ${media.xs`
+  ${adaptive.minWidth.mobile} {
     display: block;
-  `}
+  }
 `;
 
 export const EmailInput = styled(Input)`
@@ -74,11 +77,11 @@ export const MobileInput = styled(Input)`
 export const EmailSubmitButton = styled(Button)`
   margin-left: ${({ theme }) => theme.indents.xs};
 
-  ${({ theme }) => media.xs`
-    margin-left: ${theme.indents.none};
-    margin-top: ${theme.indents.s};
+  ${adaptive.maxWidth.mobile} {
+    margin-left: ${({ theme }) => theme.indents.none};
+    margin-top: ${({ theme }) => theme.indents.s};
     width: 100%;
-  `}
+  }
 `;
 
 export const MobileSubmitButton = styled(Button)`
@@ -87,10 +90,9 @@ export const MobileSubmitButton = styled(Button)`
 
 export const BottomInfoContainer = styled.div`
   display: block;
-
-  ${media.lg`
+  ${adaptive.maxWidth.desktopM} {
     display: flex;
-  `};
+  }
 `;
 
 export const FooterColumn = styled.div`
