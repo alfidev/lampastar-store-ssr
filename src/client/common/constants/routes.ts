@@ -18,7 +18,7 @@ export const ROUTES: Record<string, RouteType> = {
   catalog: {
     title: "Каталог товаров",
     label: "Каталог",
-    path: "/catalog",
+    path: "/catalog/*",
     component: Catalog,
   },
   profile: {

@@ -3,6 +3,7 @@ export const MAIN_MENU = [
   "news",
   "about",
   "ourTeam",
+  "catalog",
   // "reviews",
   "contacts",
 ];
@@ -16,4 +17,4 @@ export const FOR_CLIENT_MENU = [
   "paymentAndDelivery",
 ];
 
-export const PAGE_SD = ["sales", "news"]; // page with server data
+export const PAGE_SD = ["sales", "news", "catalog"]; // page with server data

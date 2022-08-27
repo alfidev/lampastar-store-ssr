@@ -1,9 +1,9 @@
-import styled, { css } from "styled-components";
-import { ContentWrapper } from "../ComponentWrapper";
-import { Link } from "react-router-dom";
-import { Button } from "@ui/components";
-import { media } from "styled-bootstrap-grid";
-import { MenuRightIcon } from "@ui/icons";
+import styled, { css } from 'styled-components';
+import { ContentWrapper } from '../ComponentWrapper';
+import { Link } from 'react-router-dom';
+import { Button } from '@ui/components';
+import { media } from 'styled-bootstrap-grid';
+import { CloseIcon, MenuRightIcon } from '@ui/icons';
 
 const getLinkStyle = css`
   display: flex;
@@ -135,7 +135,7 @@ export const CatalogButton = styled(Button)`
     padding: ${theme.indents.s};
   `};
 
-  ${MenuRightIcon} {
+  ${MenuRightIcon}, ${CloseIcon} {
     font-size: ${({ theme }) => theme.sizes.xxxl};
     ${({ theme }) => media.sm`
       margin-right: ${theme.indents.s};
@@ -148,4 +148,18 @@ export const StyledCatalogText = styled.span`
   ${media.xs`
     display: none;
   `};
+`;
+
+export const CatalogMenuModal = styled.div`
+  position: absolute;
+  top: 151px;
+  bottom: 0;
+  width: 100%;
+  z-index: ${({ theme }) => theme.zIndex.menu};
+  background: ${({ theme }) => theme.color.opacity.modal};
+`;
+
+export const CatalogMenuWrapper = styled.div`
+  padding: ${({ theme }) => theme.indents.xxl} 0;
+  background: ${({ theme }) => theme.color.background.primary};
 `;

@@ -15,6 +15,7 @@
       "@layouts/*": ["client/layouts/*"],
       "@pages": ["client/pages"],
       "@components/*": ["client/components/*"],
+      "@modules/*": ["client/modules/*"],
       "@resources/*": ["client/resources/*"],
       "@ui/*": ["client/ui/*"],
       "shared/*": ["shared/*"],

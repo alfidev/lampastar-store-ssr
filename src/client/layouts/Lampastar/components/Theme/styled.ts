@@ -1,20 +1,20 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-import RobotoThin from "@resources/fonts/Roboto-Thin.ttf";
-import RobotoThinItalic from "@resources/fonts/Roboto-ThinItalic.ttf";
-import RobotoLight from "@resources/fonts/Roboto-Light.ttf";
-import RobotoLightItalic from "@resources/fonts/Roboto-LightItalic.ttf";
-import RobotoRegular from "@resources/fonts/Roboto-Regular.ttf";
-import RobotoMedium from "@resources/fonts/Roboto-Medium.ttf";
-import RobotoMediumItalic from "@resources/fonts/Roboto-MediumItalic.ttf";
-import RobotoBold from "@resources/fonts/Roboto-Bold.ttf";
-import RobotoBoldItalic from "@resources/fonts/Roboto-BoldItalic.ttf";
-import RobotoBlack from "@resources/fonts/Roboto-Black.ttf";
-import RobotoBlackItalic from "@resources/fonts/Roboto-BlackItalic.ttf";
+import RobotoThin from '@resources/fonts/Roboto-Thin.ttf';
+import RobotoThinItalic from '@resources/fonts/Roboto-ThinItalic.ttf';
+import RobotoLight from '@resources/fonts/Roboto-Light.ttf';
+import RobotoLightItalic from '@resources/fonts/Roboto-LightItalic.ttf';
+import RobotoRegular from '@resources/fonts/Roboto-Regular.ttf';
+import RobotoMedium from '@resources/fonts/Roboto-Medium.ttf';
+import RobotoMediumItalic from '@resources/fonts/Roboto-MediumItalic.ttf';
+import RobotoBold from '@resources/fonts/Roboto-Bold.ttf';
+import RobotoBoldItalic from '@resources/fonts/Roboto-BoldItalic.ttf';
+import RobotoBlack from '@resources/fonts/Roboto-Black.ttf';
+import RobotoBlackItalic from '@resources/fonts/Roboto-BlackItalic.ttf';
 
-import LampastarFontSvg from "@resources/fonts/lampastar.svg";
-import LampastarFontTtf from "@resources/fonts/lampastar.ttf";
-import LampastarFontWoff from "@resources/fonts/lampastar.woff";
+import LampastarFontSvg from '@resources/fonts/lampastar.svg';
+import LampastarFontTtf from '@resources/fonts/lampastar.ttf';
+import LampastarFontWoff from '@resources/fonts/lampastar.woff';
 
 export const GlobalStyle = createGlobalStyle<{
   backgroundColor: string;
@@ -121,6 +121,7 @@ export const GlobalStyle = createGlobalStyle<{
   }
 
   body {
+    position: relative;
     min-width: 360px;
     margin: 0;
     background: ${({ backgroundColor }) => backgroundColor};

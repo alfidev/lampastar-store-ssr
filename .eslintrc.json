@@ -25,6 +25,7 @@
     "prettier"
   ],
   "rules": {
-    "@typescript-eslint/ban-ts-comment": "warn"
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
   }
 }

@@ -2,6 +2,7 @@ import {
   BACKEND_ENABLE,
   NEW_OUR_TEAM_DESIGN,
   SHOW_ADMIN,
+  USE_CATALOG,
 } from "./featureToggleNames";
 
 export const featureToggleState = {
@@ -16,5 +17,9 @@ export const featureToggleState = {
   [NEW_OUR_TEAM_DESIGN]: {
     enabled: false,
     description: 'Включает новый дизайн страницы "Наша команда"',
+  },
+  [USE_CATALOG]: {
+    enabled: false,
+    description: "Включает каталог",
   },
 };

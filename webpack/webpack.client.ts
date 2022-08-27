@@ -104,6 +104,17 @@ function createClientConfig(env: Env): Configuration {
         open: true,
         port: 3000,
         historyApiFallback: true,
+        proxy: {
+          "/api": {
+            target: "https://test.lampastar.ru/index.php?route=",
+            pathRewrite: { "^/api": "" },
+            secure: true,
+            changeOrigin: true,
+            // onProxyReq: (proxyReq) => {
+            //   console.log(proxyReq);
+            // },
+          },
+        },
         server: env.https
           ? {
               type: "https",
