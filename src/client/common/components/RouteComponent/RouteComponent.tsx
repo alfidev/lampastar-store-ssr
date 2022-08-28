@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
-import { Helmet } from "react-helmet-async";
+import { Helmet } from 'react-helmet-async';
 
 type Props = { children: ReactNode; title: string };
 
