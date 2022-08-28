@@ -12,7 +12,7 @@ export const CatalogMenu = ({ closeMenu }: Props) => {
     <CatalogMenuModal onClick={closeMenu}>
       <CatalogMenuWrapper onClick={(e) => e.stopPropagation()}>
         <ContentWrapper>
-          <CatalogMenuFromModule />
+          <CatalogMenuFromModule closeMenu={closeMenu} />
         </ContentWrapper>
       </CatalogMenuWrapper>
     </CatalogMenuModal>

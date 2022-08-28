@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { ContentWrapper } from '../ComponentWrapper';
-import { Button, Input } from '@ui/components';
+import { ButtonContained, Input } from '@ui/components';
 import { Logo } from '@resources/images';
 import { adaptive } from '@ui/components/Adaptive';
 
@@ -74,7 +74,7 @@ export const MobileInput = styled(Input)`
   //max-width: 370px;
 `;
 
-export const EmailSubmitButton = styled(Button)`
+export const EmailSubmitButton = styled(ButtonContained)`
   margin-left: ${({ theme }) => theme.indents.xs};
 
   ${adaptive.maxWidth.mobile} {
@@ -84,7 +84,7 @@ export const EmailSubmitButton = styled(Button)`
   }
 `;
 
-export const MobileSubmitButton = styled(Button)`
+export const MobileSubmitButton = styled(ButtonContained)`
   margin-left: ${({ theme }) => theme.indents.xl};
 `;
 

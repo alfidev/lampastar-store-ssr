@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, CheckBox, Input } from '@ui/components';
+import { ButtonContained, CheckBox, Input } from '@ui/components';
 import { adaptive } from '@ui/components/Adaptive';
 
 export const ContactFormContainer = styled.div`
@@ -31,7 +31,7 @@ export const StyledCheckBox = styled(CheckBox)`
   margin-right: ${({ theme }) => theme.indents.xxl};
 `;
 
-export const StyledButton = styled(Button)`
+export const StyledButton = styled(ButtonContained)`
   ${adaptive.maxWidth.mobile} {
     margin-top: ${({ theme }) => theme.indents.s};
     width: 100%;

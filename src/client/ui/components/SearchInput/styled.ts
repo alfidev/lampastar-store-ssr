@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Input } from "../Input";
-import { Button } from "../Button";
+import styled from 'styled-components';
+import { Input } from '../Input';
+import { ButtonContained } from '../Button';
 
 export const SearchWrapper = styled.div`
   position: relative;
@@ -8,7 +8,7 @@ export const SearchWrapper = styled.div`
   flex-grow: 1;
 `;
 
-export const SearchButton = styled(Button)`
+export const SearchButton = styled(ButtonContained)`
   position: absolute;
   top: ${({ theme }) => theme.indents.xxs};
   right: ${({ theme }) => theme.indents.xxs};

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints, BreakpointsType } from '../../constants';
+import { breakpoints, BreakpointsType, breakpointsMax } from '../../constants';
 
 export const adaptive = {
   minWidth: {
@@ -10,10 +10,10 @@ export const adaptive = {
     desktopL: `@media screen and (min-width: ${breakpoints.desktopL}px)`,
   },
   maxWidth: {
-    mobile: `@media screen and (max-width: ${breakpoints.tablet - 0.05}px)`,
-    tablet: `@media screen and (max-width: ${breakpoints.desktopS - 0.05}px)`,
-    desktopS: `@media screen and (max-width: ${breakpoints.desktopM - 0.05}px)`,
-    desktopM: `@media screen and (max-width: ${breakpoints.desktopL - 0.05}px)`,
+    mobile: `@media screen and (max-width: ${breakpointsMax.mobile}px)`,
+    tablet: `@media screen and (max-width: ${breakpointsMax.tablet}px)`,
+    desktopS: `@media screen and (max-width: ${breakpointsMax.desktopS}px)`,
+    desktopM: `@media screen and (max-width: ${breakpointsMax.desktopM}px)`,
   },
 };
 

@@ -26,6 +26,10 @@
   ],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "warn",
-    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "ignoreRestSiblings": true, "varsIgnorePattern": "^React$", "args": "after-used", "argsIgnorePattern": "^_$" }
+    ]
   }
 }

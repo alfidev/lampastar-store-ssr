@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ContentWrapper } from '../ComponentWrapper';
 import { Link } from 'react-router-dom';
-import { Button } from '@ui/components';
+import { ButtonContained } from '@ui/components';
 import { CloseIcon, MenuRightIcon } from '@ui/icons';
 import { adaptive } from '@ui/components/Adaptive';
 
@@ -131,7 +131,7 @@ export const StyledLinkBottom = styled(StyledLink)`
   }
 `;
 
-export const CatalogButton = styled(Button)`
+export const CatalogButton = styled(ButtonContained)`
   margin-right: ${({ theme }) => theme.indents.xs};
   padding: 0 ${({ theme }) => theme.indents.xl};
   ${adaptive.maxWidth.mobile} {

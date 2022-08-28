@@ -15,6 +15,7 @@ export type TypographyColorType = {
   tertiary: string;
   copyright: string;
   contrast: string;
+  contrastLine: string;
 };
 
 export type IndentsType = {
@@ -51,6 +52,18 @@ export type ThemeType = {
       modal: string;
     };
     text: TypographyColorType;
+    buttons: {
+      primary: string;
+      primaryHover: string;
+      primaryActive: string;
+      secondary: string;
+      secondaryHover: string;
+      secondaryActive: string;
+      text: string;
+      textHover: string;
+      textActive: string;
+      disabled: string;
+    };
   };
   sizes: {
     m: string;
