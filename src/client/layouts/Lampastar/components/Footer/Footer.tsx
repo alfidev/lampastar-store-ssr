@@ -40,7 +40,7 @@ const { phoneNumber, address, workTime, mail } = CONTACTS;
 const MenuList = ({ menu, isBackEnabled }: { menu: string[]; isBackEnabled: boolean }) => (
   <FooterMenu>
     {menu
-      .filter((page) => !isBackEnabled && !PAGE_SD.includes(page))
+      .filter((page) => isBackEnabled || (!isBackEnabled && !PAGE_SD.includes(page)))
       .map((page) => (
         <FooterMenuItem key={ROUTES[page].path}>
           <Link to={ROUTES[page].path}>{ROUTES[page].label}</Link>

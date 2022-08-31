@@ -1,20 +1,19 @@
 export const MAIN_MENU = [
-  "sales",
-  "news",
-  "about",
-  "ourTeam",
-  "catalog",
+  // 'sales',
+  // 'news',
+  'about',
+  'ourTeam',
   // "reviews",
-  "contacts",
+  'contacts',
 ];
 export const FOR_CLIENT_MENU = [
-  "news",
-  "about",
-  "sales",
-  "ourTeam",
-  "contacts",
+  'news',
+  'about',
+  'sales',
+  'ourTeam',
+  'contacts',
   // "reviews",
-  "paymentAndDelivery",
+  'paymentAndDelivery',
 ];
 
-export const PAGE_SD = ["sales", "news", "catalog"]; // page with server data
+export const PAGE_SD = ['sales', 'news']; // page with server data

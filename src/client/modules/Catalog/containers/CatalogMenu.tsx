@@ -69,8 +69,7 @@ export const CatalogMenu = ({ closeMenu }: Props) => {
   const isMobileOrTablet = useMediaQuery({ maxWidth: 'tablet' });
 
   useEffect(() => {
-    // if (list && !isMobileOrTablet) setCurrentCategory(list[0]);
-    if (list) setCurrentCategory(list[0]);
+    if (list && !isMobileOrTablet) setCurrentCategory(list[0]);
   }, [list]);
 
   if (isLoading) return <CatalogMenuSkeleton />;

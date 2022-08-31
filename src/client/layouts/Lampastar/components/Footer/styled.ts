@@ -90,7 +90,7 @@ export const MobileSubmitButton = styled(ButtonContained)`
 
 export const BottomInfoContainer = styled.div`
   display: block;
-  ${adaptive.maxWidth.desktopM} {
+  ${adaptive.minWidth.desktopS} {
     display: flex;
   }
 `;

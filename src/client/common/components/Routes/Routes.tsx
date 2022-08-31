@@ -28,10 +28,10 @@ export const Routes = ({ themeWrapper }: Props) => {
     <>
       <RoutesSwitch>
         <Route path={ROUTES.home.path} element={themeWrapper}>
-          {Object.values(ROUTES).map(({ path, title, component: Component }) => (
+          {Object.values(ROUTES).map(({ path, route, title, component: Component }) => (
             <Route
               key={path}
-              path={path}
+              path={route || path}
               element={
                 <RouteComponent title={title}>
                   <Component />

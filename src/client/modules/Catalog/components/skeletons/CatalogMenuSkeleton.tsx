@@ -36,10 +36,10 @@ export const CatalogMenuSkeleton = React.memo(() => {
           <Container>
             <TextSkeleton width={140} />
             <Row>
-              {[...Array(5)].map((item, index) => (
+              {[...Array(5)].map((_item, index) => (
                 <StyledColumnSecondary key={index} mobile={6}>
                   <TextSkeleton width="50%" size="body2" />
-                  {[...Array(2)].map((item, index) => (
+                  {[...Array(2)].map((_item, index) => (
                     <StyledColumnSecondary key={index} mobile={6}>
                       <TextSkeleton width="50%" size="mini2" />
                     </StyledColumnSecondary>
