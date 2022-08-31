@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Typography } from "@ui/components/Typography";
-import { media } from "styled-bootstrap-grid";
+import styled from 'styled-components';
+import { Typography } from '@ui/components/Typography';
+import { adaptive } from '@ui/components/Adaptive';
 
 export const Divider = styled.hr`
   background: ${({ theme }) => theme.color.background.line};
@@ -25,7 +25,7 @@ export const Details = styled.div`
 `;
 
 export const TransparentDivider = styled.div`
-  ${({ theme }) => media.md`
-    height: ${theme.indents.xxxxl};
-  `}
+  ${adaptive.minWidth.desktopS} {
+    height: ${({ theme }) => theme.indents.xxxxl};
+  }
 `;

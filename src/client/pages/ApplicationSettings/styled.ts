@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Button } from "@ui/components";
+import styled from 'styled-components';
+import { ButtonContained } from '@ui/components';
 
 export const ToggleCard = styled.div`
   display: flex;
@@ -13,6 +13,6 @@ export const ToggleInfo = styled.div`
   flex-grow: 1;
 `;
 
-export const StyledButton = styled(Button)`
+export const StyledButton = styled(ButtonContained)`
   margin-top: ${({ theme }) => theme.indents.xl};
 `;

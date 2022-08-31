@@ -29,6 +29,7 @@ const options: Config.InitialOptions = {
     "^@pages/(.*)$": "<rootDir>/src/client/pages/$1",
     "^@pages$": "<rootDir>/src/client/pages",
     "^@components/(.*)$": "<rootDir>/src/client/components/$1",
+    "^@modules/(.*)$": "<rootDir>/src/client/modules/$1",
     "^@resources/(.*)$": "<rootDir>/src/client/resources/$1",
     "^@ui/(.*)$": "<rootDir>/src/client/ui/$1",
     "^client/(.*)$": "<rootDir>/src/client/$1",

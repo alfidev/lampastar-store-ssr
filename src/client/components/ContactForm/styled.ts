@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Button, CheckBox, Input } from "@ui/components";
-import { media } from "styled-bootstrap-grid";
+import styled from 'styled-components';
+import { ButtonContained, CheckBox, Input } from '@ui/components';
+import { adaptive } from '@ui/components/Adaptive';
 
 export const ContactFormContainer = styled.div`
   display: flex;
@@ -21,9 +21,9 @@ export const BottomContainer = styled.div`
   justify-content: space-between;
   margin-top: ${({ theme }) => theme.indents.xxl};
 
-  ${media.xs`
+  ${adaptive.maxWidth.mobile} {
     display: block;
-  `}
+  }
 `;
 
 export const StyledCheckBox = styled(CheckBox)`
@@ -31,9 +31,9 @@ export const StyledCheckBox = styled(CheckBox)`
   margin-right: ${({ theme }) => theme.indents.xxl};
 `;
 
-export const StyledButton = styled(Button)`
-  ${({ theme }) => media.xs`
-    margin-top: ${theme.indents.s};
+export const StyledButton = styled(ButtonContained)`
+  ${adaptive.maxWidth.mobile} {
+    margin-top: ${({ theme }) => theme.indents.s};
     width: 100%;
-  `}
+  }
 `;

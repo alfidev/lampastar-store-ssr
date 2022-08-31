@@ -1,9 +1,9 @@
-import styled, { css } from "styled-components";
-import { ContentWrapper } from "../ComponentWrapper";
-import { Link } from "react-router-dom";
-import { Button } from "@ui/components";
-import { media } from "styled-bootstrap-grid";
-import { MenuRightIcon } from "@ui/icons";
+import styled, { css } from 'styled-components';
+import { ContentWrapper } from '../ComponentWrapper';
+import { Link } from 'react-router-dom';
+import { ButtonContained } from '@ui/components';
+import { CloseIcon, MenuRightIcon } from '@ui/icons';
+import { adaptive } from '@ui/components/Adaptive';
 
 const getLinkStyle = css`
   display: flex;
@@ -21,15 +21,18 @@ const getLinkStyle = css`
   }
 `;
 
-export const StyledHeader = styled.header`
-  margin-bottom: ${({ theme }) => theme.indents.xxl};
+export const StyledHeader = styled.header<{ menuIsOpened: boolean }>`
+  ${adaptive.maxWidth.tablet} {
+    display: ${({ menuIsOpened }) => (menuIsOpened ? 'none' : 'block')};
+  }
+  margin-bottom: ${({ theme }) => theme.indents.xl};
   box-shadow: 0 0 10px ${({ theme }) => theme.color.background.secondaryHover};
 `;
 
 export const TopLine = styled.div`
-  ${media.xs`
+  ${adaptive.maxWidth.mobile} {
     display: none;
-  `};
+  }
   background: ${({ theme }) => theme.color.background.secondary};
   height: 30px;
   color: ${({ theme }) => theme.color.text.secondary};
@@ -38,10 +41,10 @@ export const TopLine = styled.div`
 export const MiddleLine = styled.div`
   background: ${({ theme }) => theme.color.background.primary};
   padding: ${({ theme }) => theme.indents.xs} 0;
-  ${({ theme }) => media.md`
+  ${adaptive.minWidth.tablet} {
     height: 80px;
-    padding: ${theme.indents.none}
-  `};
+    padding: ${({ theme }) => theme.indents.none};
+  }
 `;
 
 export const BottomLine = styled.div`
@@ -56,9 +59,9 @@ export const TopContainer = styled(ContentWrapper)`
 `;
 
 export const MiddleContainer = styled(ContentWrapper)`
-  ${media.md`
+  ${adaptive.minWidth.tablet} {
     flex-direction: row;
-  `};
+  }
   flex-direction: column;
   display: flex;
   justify-content: space-between;
@@ -78,19 +81,19 @@ export const NavGroup = styled.div`
 
 export const NavGroupAdaptive = styled(NavGroup)`
   display: none;
-  ${media.md`
+  ${adaptive.minWidth.tablet} {
     display: flex;
-  `};
+  }
 `;
 
 export const NavGroupSearch = styled(NavGroup)`
   flex-grow: 1;
   width: 100%;
-  ${({ theme }) => media.md`
+  ${adaptive.minWidth.tablet} {
     height: 80px;
     max-width: 630px;
-    margin: 0 ${theme.indents.xxl};
-  `};
+    margin: 0 ${({ theme }) => theme.indents.xxl};
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -123,29 +126,29 @@ export const StyledLinkMiddle = styled(Link)`
 export const StyledLinkBottom = styled(StyledLink)`
   white-space: nowrap;
   padding: 0 ${({ theme }) => theme.indents.xs};
-  ${({ theme }) => media.sm`
-    padding: 0 ${theme.indents.xl}
-  `};
+  ${adaptive.minWidth.tablet} {
+    padding: 0 ${({ theme }) => theme.indents.xl};
+  }
 `;
 
-export const CatalogButton = styled(Button)`
+export const CatalogButton = styled(ButtonContained)`
   margin-right: ${({ theme }) => theme.indents.xs};
   padding: 0 ${({ theme }) => theme.indents.xl};
-  ${({ theme }) => media.xs`
-    padding: ${theme.indents.s};
-  `};
+  ${adaptive.maxWidth.mobile} {
+    padding: ${({ theme }) => theme.indents.s};
+  }
 
-  ${MenuRightIcon} {
+  ${MenuRightIcon}, ${CloseIcon} {
     font-size: ${({ theme }) => theme.sizes.xxxl};
-    ${({ theme }) => media.sm`
-      margin-right: ${theme.indents.s};
-      font-size: ${theme.sizes.xl};
-    `}
+    ${adaptive.minWidth.tablet} {
+      margin-right: ${({ theme }) => theme.indents.s};
+      font-size: ${({ theme }) => theme.sizes.xl};
+    }
   }
 `;
 
 export const StyledCatalogText = styled.span`
-  ${media.xs`
+  ${adaptive.maxWidth.mobile} {
     display: none;
-  `};
+  }
 `;

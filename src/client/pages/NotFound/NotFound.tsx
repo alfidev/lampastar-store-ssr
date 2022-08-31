@@ -1,18 +1,10 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { RouteComponent } from "@common/components";
-import {
-  ErrorWrapper,
-  InfoBlock,
-  ErrorText,
-  ErrorCode,
-  ErrorDescription,
-  ImageBox,
-  StyledSvg,
-} from "./styled";
-import { Typography } from "@ui/components/Typography";
-import { Button } from "@ui/components";
-import { ErrorRouterContext } from "@common/context";
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { RouteComponent } from '@common/components';
+import { ErrorWrapper, InfoBlock, ErrorText, ErrorCode, ErrorDescription, ImageBox, StyledSvg } from './styled';
+import { Typography } from '@ui/components/Typography';
+import { ButtonContained } from '@ui/components';
+import { ErrorRouterContext } from '@common/context';
 
 export const NotFound = () => {
   const { setStatusCode } = useContext(ErrorRouterContext);
@@ -21,11 +13,11 @@ export const NotFound = () => {
 
   const onClick = () => {
     if (setStatusCode) setStatusCode(0);
-    navigate("/");
+    navigate('/');
   };
 
   return (
-    <RouteComponent title={"Страница не найдена"}>
+    <RouteComponent title={'Страница не найдена'}>
       <ErrorWrapper>
         <InfoBlock>
           <ErrorCode>404</ErrorCode>
@@ -33,14 +25,13 @@ export const NotFound = () => {
         </InfoBlock>
         <ErrorDescription>
           <Typography variant="body5">
-            Так уж получилось, что из множества страниц нашего сайта Вы
-            оказались как раз на той, которая не существует…
+            Так уж получилось, что из множества страниц нашего сайта Вы оказались как раз на той, которая не существует…
           </Typography>
         </ErrorDescription>
         <ImageBox>
           <StyledSvg />
         </ImageBox>
-        <Button onClick={onClick}>Перейти на главную</Button>
+        <ButtonContained onClick={onClick}>Перейти на главную</ButtonContained>
       </ErrorWrapper>
     </RouteComponent>
   );

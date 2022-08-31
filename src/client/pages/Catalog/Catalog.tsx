@@ -1,6 +1,7 @@
 import React from "react";
-import { Typography } from "@ui/components/Typography";
+
+import { CatalogPage } from "@modules/Catalog";
 
 export const Catalog = () => {
-  return <Typography>sevsdv</Typography>;
+  return <CatalogPage />;
 };

@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Card } from "@ui/components";
-import { Col, Container } from "styled-bootstrap-grid";
-import { Typography } from "@ui/components/Typography";
+import styled from 'styled-components';
+import { Card } from '@ui/components';
+import { Col, Container } from '@ui/components/Adaptive';
+import { Typography } from '@ui/components/Typography';
 
 export const WrapperContainer = styled(Container).attrs(() => ({
   fluid: true,
@@ -23,35 +23,18 @@ export const StyledImage = styled.img`
 `;
 
 export const StyledName = styled(Typography).attrs(() => ({
-  variant: "body3",
-  tag: "h4",
+  variant: 'body3',
+  tag: 'h4',
 }))`
-  margin: ${({ theme }) => theme.indents.xs}
-    ${({ theme }) => theme.indents.none};
+  margin: ${({ theme }) => theme.indents.xs} ${({ theme }) => theme.indents.none};
 `;
 
 export const StyledDescription = styled(Typography).attrs(() => ({
-  variant: "body1",
-  tag: "p",
-  color: "tertiary",
+  variant: 'body1',
+  tag: 'p',
+  color: 'tertiary',
 }))`
-  margin: ${({ theme }) => theme.indents.xs}
-    ${({ theme }) => theme.indents.none};
-`;
-
-export const DepartmentContainer = styled.div`
-  margin-bottom: ${({ theme }) => theme.indents.xxxxl};
-`;
-
-export const DepartmentHead = styled.div`
-  display: flex;
-  justify-content: flex-start;
-`;
-
-export const DepartmentTitle = styled.h2`
-  ${({ theme }) => theme.typography.title1};
-  margin-top: 0;
-  margin-bottom: ${({ theme }) => theme.indents.xxl};
+  margin: ${({ theme }) => theme.indents.xs} ${({ theme }) => theme.indents.none};
 `;
 
 export const Divider = styled.hr`

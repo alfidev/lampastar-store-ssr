@@ -1,13 +1,7 @@
-import React, { ReactNode } from "react";
-import {
-  Divider,
-  StyledTitle,
-  Details,
-  StyledParagraph,
-  TransparentDivider,
-} from "./styled";
-import { PageTitle } from "@layouts/Lampastar";
-import { Col, Container, Row } from "styled-bootstrap-grid";
+import React, { ReactNode } from 'react';
+import { Divider, StyledTitle, Details, StyledParagraph, TransparentDivider } from './styled';
+import { PageTitle } from '@layouts/Lampastar';
+import { Col, Container, Row } from '@ui/components/Adaptive';
 import {
   AirplaneIcon,
   BuildingsIcon,
@@ -18,8 +12,8 @@ import {
   PlasticCardAltIcon,
   ReceiptIcon,
   TruckIcon,
-} from "@ui/icons";
-import { useTheme } from "styled-components";
+} from '@ui/icons';
+import { useTheme } from 'styled-components';
 
 const ItemTitle = ({ children }: { children: ReactNode }) => (
   <StyledTitle variant="body5" tag="h4">
@@ -40,47 +34,39 @@ export const PaymentAndDelivery = () => {
     <>
       <PageTitle>Оплата</PageTitle>
       <Divider />
-      <Container fluid>
+      <Container>
         <Row>
-          <Col md={5} sm={12} xs={12}>
+          <Col desktopS={5} mobile={12}>
             <ItemTitle>
               <MoneyIcon size={theme.sizes.xxl} color="contrast" mr="s" />
               Расчёт наличными и по карте в офисе
             </ItemTitle>
             <Details>
               <CaptionText>
-                Вы можете оплататить заказ при помощи терминала приёма
-                пластиковых карт или наличными средствами.
+                Вы можете оплататить заказ при помощи терминала приёма пластиковых карт или наличными средствами.
               </CaptionText>
             </Details>
             <ItemTitle>
-              <PlasticCardAltIcon
-                size={theme.sizes.xxl}
-                color="contrast"
-                mr="s"
-              />
+              <PlasticCardAltIcon size={theme.sizes.xxl} color="contrast" mr="s" />
               Оплата банковской картой на сайте
             </ItemTitle>
             <Details>
               <CaptionText>
-                Принимаем к оплате Visa, MasterCard, Maestro, PayPal, American
-                Express, Discover. В разделе «Корзина» выберите способ оплаты
-                «Оплата банковской картой на сайте» и следуйте согласно
-                инструкциям.
+                Принимаем к оплате Visa, MasterCard, Maestro, PayPal, American Express, Discover. В разделе «Корзина»
+                выберите способ оплаты «Оплата банковской картой на сайте» и следуйте согласно инструкциям.
               </CaptionText>
             </Details>
           </Col>
-          <Col md={2} sm={12} xs={12} />
-          <Col md={5} sm={12} xs={12}>
+          <Col desktopS={2} mobile={12} />
+          <Col desktopS={5} mobile={12}>
             <ItemTitle>
               <BuildingsIcon size={theme.sizes.xxl} color="contrast" mr="s" />
               Безналичный расчёт для организаций
             </ItemTitle>
             <Details>
               <CaptionText>
-                В разделе «Корзина» выберите тип плательщика «Организация»,
-                заполните реквизиты и оплатите счёт, который генерируется сайтом
-                автоматически.
+                В разделе «Корзина» выберите тип плательщика «Организация», заполните реквизиты и оплатите счёт, который
+                генерируется сайтом автоматически.
               </CaptionText>
             </Details>
             <ItemTitle>
@@ -89,9 +75,8 @@ export const PaymentAndDelivery = () => {
             </ItemTitle>
             <Details>
               <CaptionText>
-                Интернет-заказ Вы можете оплатить наличными в отделении любого
-                банка, предъявив счёт, который генерируется сайтом
-                автоматически.
+                Интернет-заказ Вы можете оплатить наличными в отделении любого банка, предъявив счёт, который
+                генерируется сайтом автоматически.
               </CaptionText>
             </Details>
           </Col>
@@ -100,18 +85,17 @@ export const PaymentAndDelivery = () => {
       <TransparentDivider />
       <PageTitle>Доставка</PageTitle>
       <Divider />
-      <Container fluid>
+      <Container>
         <Row>
-          <Col md={5} sm={12} xs={12}>
+          <Col desktopS={5} mobile={12}>
             <ItemTitle>
               <PackageIcon size={theme.sizes.xxl} color="contrast" mr="s" />
               Cамовывоз
             </ItemTitle>
             <Details>
               <CaptionText>
-                Забрать товар вы можете по адресу: г. Омск, ул. 20-я Линия, д.
-                103. Мы работаем с 9.00 до 18.00 без обеда, кроме субботы и
-                воскресенья.
+                Забрать товар вы можете по адресу: г. Омск, ул. 20-я Линия, д. 103. Мы работаем с 9.00 до 18.00 без
+                обеда, кроме субботы и воскресенья.
               </CaptionText>
             </Details>
             <ItemTitle>
@@ -120,8 +104,7 @@ export const PaymentAndDelivery = () => {
             </ItemTitle>
             <Details>
               <CaptionText>
-                Осуществляется только по г. Омску при заказе до 3 000 руб.
-                Стоимость услуги – 500 руб.
+                Осуществляется только по г. Омску при заказе до 3 000 руб. Стоимость услуги – 500 руб.
               </CaptionText>
             </Details>
             <ItemTitle>
@@ -130,25 +113,22 @@ export const PaymentAndDelivery = () => {
             </ItemTitle>
             <Details>
               <CaptionText>
-                При выборе данного способа доставки ваш заказ будет отправлен
-                вам посылкой. Стоимость почтовых услуг оплачивается Получателем
-                в момент получения заказа в отделении Почты России наложенным
-                платежом (плюс комиссия за денежный перевод, которая составляет
-                в среднем по России около 2%).
+                При выборе данного способа доставки ваш заказ будет отправлен вам посылкой. Стоимость почтовых услуг
+                оплачивается Получателем в момент получения заказа в отделении Почты России наложенным платежом (плюс
+                комиссия за денежный перевод, которая составляет в среднем по России около 2%).
               </CaptionText>
             </Details>
           </Col>
-          <Col md={2} sm={12} xs={12} />
-          <Col md={5} sm={12} xs={12}>
+          <Col desktopS={2} mobile={12} />
+          <Col desktopS={5} mobile={12}>
             <ItemTitle>
               <TruckIcon size={theme.sizes.xxl} color="contrast" mr="s" />
               Бесплатная доставка экспедитором нашей компании
             </ItemTitle>
             <Details>
               <CaptionText>
-                Осуществляется по г. Омску при заказе от 3 000 руб. По Омской
-                области – от 15 000 руб. При меньшей сумме заказа стоимость
-                услуг экспедитора по г. Омску – 500 руб.
+                Осуществляется по г. Омску при заказе от 3 000 руб. По Омской области – от 15 000 руб. При меньшей сумме
+                заказа стоимость услуг экспедитора по г. Омску – 500 руб.
               </CaptionText>
             </Details>
             <ItemTitle>
@@ -157,12 +137,10 @@ export const PaymentAndDelivery = () => {
             </ItemTitle>
             <Details>
               <CaptionText>
-                При заказе на сумму от 3 000 руб.* мы бесплатно доставим товар
-                до любой транспортной компании г. Омска. Нужно только сообщить
-                её название.
+                При заказе на сумму от 3 000 руб.* мы бесплатно доставим товар до любой транспортной компании г. Омска.
+                Нужно только сообщить её название.
                 <br />
-                <br />* для постоянных клиентов бесплатная доставка до ТК
-                возможна и на меньшую сумму.
+                <br />* для постоянных клиентов бесплатная доставка до ТК возможна и на меньшую сумму.
               </CaptionText>
             </Details>
           </Col>

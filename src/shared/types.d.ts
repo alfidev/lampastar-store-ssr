@@ -1,9 +1,9 @@
 // static files declarations
 
-declare module "*.jpg";
-declare module "*.png";
-declare module "*.gif";
-declare module "*.svg";
+declare module '*.jpg';
+declare module '*.png';
+declare module '*.gif';
+declare module '*.svg';
 
 /** Indicates we are in a server (node) environment. Injected via webpack's DefinePlugin. */
 declare const __SERVER__: boolean;
@@ -15,6 +15,7 @@ declare const __PRODUCTION__: boolean;
 declare namespace NodeJS {
   interface Process {
     env: {
+      NODE_ENV: string;
       HOST?: string;
       HTTPS?: string;
       USE_REDIRECT_HTTPS?: string;
