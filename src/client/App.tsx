@@ -6,8 +6,8 @@ import { ErrorContext } from '@common/types';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 interface Props {
-  /** Data used in the react prerender process. Use only in the server side. */
-  context?: ErrorContext;
+  /** Data used in the React prerender process. Use only in the server side. */
+  errorContext?: ErrorContext;
   helmetContext?: Record<any, any>;
 }
 
@@ -24,12 +24,12 @@ const queryClient = new QueryClient({
 });
 
 /** * The root react component for both client side rendering and server side rendering */
-export default function App({ context, helmetContext }: Props) {
+export default function App({ errorContext, helmetContext }: Props) {
   return (
     <StrictMode>
       <HelmetProvider context={helmetContext}>
         <QueryClientProvider client={queryClient}>
-          <InitialComponent context={context} />
+          <InitialComponent context={errorContext} />
         </QueryClientProvider>
       </HelmetProvider>
     </StrictMode>
