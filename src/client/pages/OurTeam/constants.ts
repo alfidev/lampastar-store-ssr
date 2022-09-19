@@ -5,7 +5,6 @@ import Member4 from '@resources/images/team/team_member_4.jpg';
 import Member5 from '@resources/images/team/team_member_5.jpg';
 import Member6 from '@resources/images/team/team_member_6.jpg';
 import Member7 from '@resources/images/team/team_member_7.jpg';
-import Member8 from '@resources/images/team/team_member_8.jpg';
 import Member10 from '@resources/images/team/team_member_10.jpg';
 import Member11 from '@resources/images/team/team_member_11.jpg';
 import Member12 from '@resources/images/team/team_member_12.jpg';
@@ -31,12 +30,6 @@ const HEAD: MemberType[] = [
 ];
 
 const SALE: MemberType[] = [
-  {
-    id: 8,
-    image: Member8,
-    name: 'Елена Лосева',
-    description: 'Менеджер по продажам',
-  },
   {
     id: 10,
     image: Member10,
