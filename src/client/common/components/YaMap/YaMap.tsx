@@ -1,19 +1,60 @@
-import React from "react";
-import { YMaps, Map, Placemark } from "react-yandex-maps";
-import { YaMapDataType } from "../../types";
+import React, { RefObject, useEffect, useRef } from 'react';
+
+import { YANDEX_API_KEY, YANDEX_COORDINATES } from '../../constants';
 
 type Props = {
   width?: number | string;
   height?: number;
-  mapData: YaMapDataType;
 };
 
-export const YaMap = ({ mapData: { center, zoom }, ...props }: Props) => {
-  return (
-    <YMaps>
-      <Map {...props} defaultState={{ center, zoom }}>
-        <Placemark defaultGeometry={center} />
-      </Map>
-    </YMaps>
+const YA_MAPS_ID = 'YA_MAPS_ID';
+
+const loadMaps = async (onLoad: () => void) => {
+  const existingScript = document.getElementById(YA_MAPS_ID);
+
+  if (existingScript) return onLoad();
+
+  const script = document.createElement('script');
+  script.src = `https://api-maps.yandex.ru/2.1/?apikey=${YANDEX_API_KEY}&lang=ru_RU`;
+  script.async = true;
+  script.onload = onLoad;
+  script.id = YA_MAPS_ID;
+
+  document.body.appendChild(script);
+};
+
+const initMap = (ref: RefObject<any>) => {
+  if (ref.current) return;
+
+  // @ts-ignore
+  ref.current = new ymaps.Map(
+    'map_container_contacts',
+    {
+      center: YANDEX_COORDINATES.center,
+      zoom: YANDEX_COORDINATES.zoom,
+    },
+    {
+      searchControlProvider: 'yandex#search',
+    },
   );
+
+  // @ts-ignore
+  const mark = new ymaps.Placemark(YANDEX_COORDINATES.center);
+
+  ref.current.geoObjects.add(mark);
+};
+
+export const YaMap = ({ width, height }: Props) => {
+  const mapRef = useRef<any>(null);
+
+  useEffect(() => {
+    loadMaps(() => {
+      // @ts-ignore
+      window?.ymaps?.ready(() => initMap(mapRef));
+    });
+    return () => {
+      mapRef.current?.destroy();
+    };
+  }, []);
+  return <div style={{ width, height }} id="map_container_contacts" />;
 };

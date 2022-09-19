@@ -17,7 +17,6 @@ import { ClockIcon, GeoIcon, PhoneIcon, MailIcon } from '@ui/icons';
 import { useTheme } from 'styled-components';
 import { ContactForm } from '@components/ContactForm';
 import { YaMap } from '@common/components';
-import { YANDEX_COORDINATES } from '@common/constants';
 import { Col, Container, Row } from '@ui/components/Adaptive';
 import { BACKEND_ENABLE, useFeature } from '@common/featureToggles';
 
@@ -107,7 +106,7 @@ export const Contacts = () => {
                   </ContactBlock>
                   <ContactBlock>
                     <ParameterText>Whatsapp, Viber</ParameterText>
-                    <CaptionText>+7 (962) 030-11-88</CaptionText>
+                    <CaptionText>+7 (962) 059-88-08</CaptionText>
                   </ContactBlock>
                   <ContactBlock>
                     <ParameterText>Факс</ParameterText>
@@ -141,7 +140,7 @@ export const Contacts = () => {
         <MapContainer>
           <SectionTitle>Мы находимся здесь</SectionTitle>
           <MapBlock>
-            <YaMap height={296} width="100%" mapData={YANDEX_COORDINATES} />
+            <YaMap height={296} width="100%" />
           </MapBlock>
         </MapContainer>
         {isBackEnabled && (

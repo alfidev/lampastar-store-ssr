@@ -3,4 +3,5 @@ export interface Env {
   host: string;
   https: boolean;
   hot?: boolean;
+  development?: boolean;
 }

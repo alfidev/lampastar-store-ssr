@@ -26,7 +26,7 @@ function createClientConfig(env: Env): Configuration {
       },
     },
     entry: {
-      index: './Index.tsx',
+      index: env.development ? './Index.development.tsx' : './Index.tsx',
     },
     output: {
       path: path.resolve(__dirname, '../dist', 'public'),
@@ -126,6 +126,7 @@ export default function (e: any) {
     production: !!e['PRODUCTION'],
     host: process.env.HOST || '0.0.0.0',
     https: Boolean(process.env.HTTPS) || false,
+    development: !!e['DEVELOPMENT'],
   };
 
   const baseConfig = createBaseConfig(env);
