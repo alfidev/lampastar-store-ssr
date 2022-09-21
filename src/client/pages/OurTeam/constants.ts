@@ -4,11 +4,9 @@ import Member3 from '@resources/images/team/team_member_3.jpg';
 import Member4 from '@resources/images/team/team_member_4.jpg';
 import Member5 from '@resources/images/team/team_member_5.jpg';
 import Member6 from '@resources/images/team/team_member_6.jpg';
-import Member7 from '@resources/images/team/team_member_7.jpg';
 import Member10 from '@resources/images/team/team_member_10.jpg';
 import Member11 from '@resources/images/team/team_member_11.jpg';
 import Member12 from '@resources/images/team/team_member_12.jpg';
-import Member13 from '@resources/images/team/team_member_13.jpg';
 import MemberMain from '@resources/images/team/team_member_main.jpg';
 import MemberSubMain from '@resources/images/team/team_member_sub_main.jpg';
 import Member17 from '@resources/images/team/team_member_17.jpg';
@@ -48,12 +46,6 @@ const SALE: MemberType[] = [
     name: 'Ирина Мамедова',
     description: 'Менеджер по продажам',
   },
-  {
-    id: 13,
-    image: Member13,
-    name: 'Валентина Мананникова',
-    description: 'Специалист по сопровождению продаж',
-  },
 ];
 
 const TENDER: MemberType[] = [];
@@ -64,12 +56,6 @@ const FINANCE: MemberType[] = [
     image: Member6,
     name: 'Наталья Бульда',
     description: 'Бухгалтер по учёту труда и заработной платы',
-  },
-  {
-    id: 7,
-    image: Member7,
-    name: 'Наталья Когутенко',
-    description: 'Бухгалтер по учёту основных средств и материалов',
   },
 ];
 
