@@ -26,6 +26,8 @@ declare namespace NodeJS {
       /** Absolute path to the html template file witch will be used by the react ssr */
       HTML_TEMPLATE_PATH: string;
       USE_CLIENT_RENDER?: boolean;
+      CRT_PATH?: string;
+      KEY_PATH?: string;
     };
   }
 }
