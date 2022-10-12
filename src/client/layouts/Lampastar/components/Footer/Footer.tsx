@@ -31,7 +31,6 @@ import { Typography } from '@ui/components/Typography';
 import { CONTACTS, FOR_CLIENT_MENU, PAGE_SD, ROUTES } from '@common/constants';
 import { Link } from 'react-router-dom';
 import { ClockIcon, GeoIcon, MailIcon, PhoneIcon, ViberIcon, WhatsappIcon } from '@ui/icons';
-import { useTheme } from 'styled-components';
 import { Container, Row, Col } from '@ui/components/Adaptive';
 import { BACKEND_ENABLE, useFeature } from '@common/featureToggles';
 
@@ -54,8 +53,6 @@ type Props = {
 };
 
 export const Footer = ({ menuIsOpened }: Props) => {
-  const theme = useTheme();
-
   const year = new Date().getFullYear();
 
   const showSubscribe = false;
@@ -153,10 +150,10 @@ export const Footer = ({ menuIsOpened }: Props) => {
               )}
               <SocialBlock>
                 <SocialItem href="">
-                  <ViberIcon size={theme.sizes.xl} />
+                  <ViberIcon size="xl" />
                 </SocialItem>
                 <SocialItem href="">
-                  <WhatsappIcon size={theme.sizes.xl} />
+                  <WhatsappIcon size="xl" />
                 </SocialItem>
               </SocialBlock>
             </RightGroup>

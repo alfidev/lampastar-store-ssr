@@ -1,20 +1,21 @@
 import React from 'react';
-import { ProductType } from '../types';
+import { ProductType, ViewModeType } from '../types';
 import { Container, Row, Col } from '@ui/components/Adaptive';
 import { ProductCard } from '../modules/product';
 import styled from 'styled-components';
+import { VIEW_MODE } from '@modules/Catalog/constants';
 
 type Props = {
   products: ProductType[];
-  lineMode?: boolean;
+  mode: ViewModeType;
 };
 
 const StyledCol = styled(Col)`
   margin-bottom: 16px;
 `;
 
-export const ProductsList = ({ products, lineMode }: Props) => {
-  const lineModeValue = lineMode && 12;
+export const ProductsList = ({ products, mode }: Props) => {
+  const lineModeValue = mode === VIEW_MODE.list && 12;
 
   return (
     <Container>
@@ -26,7 +27,7 @@ export const ProductsList = ({ products, lineMode }: Props) => {
             tablet={lineModeValue || 6}
             desktopS={lineModeValue || 4}
           >
-            <ProductCard product={product} />
+            <ProductCard mode={mode} product={product} />
           </StyledCol>
         ))}
       </Row>

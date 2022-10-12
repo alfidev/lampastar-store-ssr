@@ -1,27 +1,22 @@
 import React from 'react';
-import { NoImage } from '@ui/icons';
+import { ProductCardProps } from './ProductCard';
 import {
-  BottomBlock,
-  StyledCard,
-  ImageBox,
-  TopBlock,
-  PriceContainer,
   ActualPrice,
-  OldPrice,
+  BottomBlock,
+  ImageBox,
   NameContainer,
+  OldPrice,
+  PriceContainer,
+  StyledCardLine,
+  LeftBlock,
+  InfoBlock,
 } from './styled';
+import { NoImage } from '@ui/icons';
 
-export type ProductCardProps = {
-  name: string;
-  image?: string;
-  price: string;
-  oldPrice: string;
-};
-
-export const ProductCard = ({ name, image, price, oldPrice }: ProductCardProps) => {
+export const ProductCardLine = ({ name, image, price, oldPrice }: ProductCardProps) => {
   return (
-    <StyledCard height={316}>
-      <TopBlock>
+    <StyledCardLine height={204}>
+      <LeftBlock>
         {image ? (
           <div>
             <img alt={name} src={image} />
@@ -31,14 +26,16 @@ export const ProductCard = ({ name, image, price, oldPrice }: ProductCardProps) 
             <NoImage />
           </ImageBox>
         )}
+      </LeftBlock>
+      <InfoBlock>
         <NameContainer>{name}</NameContainer>
-      </TopBlock>
+      </InfoBlock>
       <BottomBlock>
         <PriceContainer>
           <OldPrice>{oldPrice}</OldPrice>
           <ActualPrice>{price}</ActualPrice>
         </PriceContainer>
       </BottomBlock>
-    </StyledCard>
+    </StyledCardLine>
   );
 };

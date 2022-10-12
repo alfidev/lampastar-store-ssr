@@ -1,21 +1,31 @@
 import { useQuery } from 'react-query';
 import { API_PRODUCTS_URL } from '../constants';
 import { getQueryRequest } from '../services';
-import { ProductsTypeResponse } from '../types';
+import { OrderType, ProductsTypeResponse, SortType } from '../types';
 import { useMemo } from 'react';
 import { mapProducts } from '../utils';
 
-export const useProducts = (category: string, page = 1, count = 18) => {
+type Props = {
+  category: string;
+  page?: number;
+  count?: number;
+  sort?: SortType;
+  order?: OrderType;
+};
+
+export const useProducts = ({ category, page = 1, count = 18, sort, order }: Props) => {
   const requestOptions = {
     params: {
       filter_category_id: category,
       start: count * (page - 1),
       limit: count,
+      sort,
+      order,
     },
   };
 
   const { isLoading, data } = useQuery(
-    [API_PRODUCTS_URL, category, `${page}${count}`],
+    [API_PRODUCTS_URL, category, sort as string, order as string, `${page}${count}`],
     getQueryRequest<ProductsTypeResponse>(requestOptions),
     {
       retry: false,

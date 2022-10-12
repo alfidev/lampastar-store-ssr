@@ -16,8 +16,16 @@ export const StyledCard = styled(Card)`
   flex-direction: column;
 `;
 
+export const StyledCardLine = styled(Card)`
+  display: flex;
+`;
+
 export const TopBlock = styled.div`
   flex-grow: 1;
+`;
+
+export const LeftBlock = styled.div`
+  margin-right: ${({ theme }) => theme.indents.m};
 `;
 
 export const BottomBlock = styled.div`
@@ -34,6 +42,15 @@ export const NameContainer = styled.div`
   -webkit-line-clamp: 3;
 `;
 
+export const InfoBlock = styled.div`
+  flex-grow: 1;
+  margin-right: ${({ theme }) => theme.indents.m};
+
+  ${NameContainer} {
+    ${({ theme }) => theme.typography.body5}
+  }
+`;
+
 export const PriceContainer = styled.div`
   margin-top: ${({ theme }) => theme.indents.m};
   display: flex;
@@ -44,9 +61,11 @@ export const PriceContainer = styled.div`
 export const ActualPrice = styled.div`
   ${({ theme }) => theme.typography.main1};
   margin-left: 10px;
+  white-space: nowrap;
 `;
 
 export const OldPrice = styled.div`
+  white-space: nowrap;
   ${({ theme }) => theme.typography.main2};
   color: ${({ theme }) => theme.color.text.light};
   position: relative;

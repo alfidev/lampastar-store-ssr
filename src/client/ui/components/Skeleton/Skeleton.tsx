@@ -10,6 +10,8 @@ type TextSkeletonType = {
 const textSizes: Record<TypographyNames, string> = {
   title1: '',
   title2: '',
+  main1: '',
+  main2: '',
   mini1: '',
   mini2: '12px',
   body1: '',

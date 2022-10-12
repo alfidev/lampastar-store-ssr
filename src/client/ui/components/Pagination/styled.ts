@@ -5,7 +5,7 @@ export const PaginationContainer = styled.div`
   display: flex;
 `;
 
-export const PageButton = styled(Card).attrs({ clickable: true })<{ grow?: boolean }>`
+export const PageButton = styled(Card).attrs({ clickable: true, mini: true })<{ grow?: boolean }>`
   ${({ grow }) => (grow ? 'flex-grow: 1' : '')};
   display: flex;
   justify-content: center;

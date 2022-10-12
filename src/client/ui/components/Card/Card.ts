@@ -1,9 +1,15 @@
 import styled, { css } from 'styled-components';
 
-export const Card = styled.div<{ height?: number; clickable?: boolean; disabled?: boolean; info?: boolean }>`
+export const Card = styled.div<{
+  height?: number;
+  clickable?: boolean;
+  disabled?: boolean;
+  info?: boolean;
+  mini?: boolean;
+}>`
   background: ${({ theme, disabled, info }) =>
     disabled || info ? theme.color.background.light : theme.color.background.primary};
-  padding: ${({ theme }) => theme.indents.m};
+  padding: ${({ theme, mini }) => mini && theme.indents.xs} ${({ theme }) => theme.indents.m};
   border: 1px solid ${({ theme }) => theme.color.background.main};
   border-radius: ${({ theme }) => theme.radius.xs};
   ${({ height }) => (height ? `height: ${height}px` : '')};

@@ -1,21 +1,14 @@
-import React from "react";
-import { SearchButton, SearchWrapper, StyledSearchInput } from "./styled";
-import { SearchIcon } from "@ui/icons";
-import { useTheme } from "styled-components";
+import React from 'react';
+import { SearchButton, SearchWrapper, StyledSearchInput } from './styled';
+import { SearchIcon } from '@ui/icons';
 
 export const SearchInput = () => {
-  const theme = useTheme();
-
   return (
     <SearchWrapper>
       <SearchButton>
-        <SearchIcon size={theme.sizes.xl} />
+        <SearchIcon size="xl" />
       </SearchButton>
-      <StyledSearchInput
-        type="text"
-        placeholder={"Искать товары"}
-        autoComplete="off"
-      />
+      <StyledSearchInput type="text" placeholder={'Искать товары'} autoComplete="off" />
     </SearchWrapper>
   );
 };

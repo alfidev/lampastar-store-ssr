@@ -1,1 +1,2 @@
-export * from './ProductCard';
+export { ProductCard } from './ProductCard';
+export * from './ProductCardLine';

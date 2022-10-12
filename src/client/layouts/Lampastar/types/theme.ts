@@ -43,6 +43,14 @@ export type IndentsType = {
   xxxxl: string;
 };
 
+export type SizesType = {
+  m: string;
+  l: string;
+  xl: string;
+  xxl: string;
+  xxxl: string;
+};
+
 export type ThemeType = {
   color: {
     background: {
@@ -78,13 +86,7 @@ export type ThemeType = {
       disabled: string;
     };
   };
-  sizes: {
-    m: string;
-    l: string;
-    xl: string;
-    xxl: string;
-    xxxl: string;
-  };
+  sizes: SizesType;
   indents: IndentsType;
   radius: {
     xxxs: string;
