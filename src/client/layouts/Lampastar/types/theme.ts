@@ -2,7 +2,18 @@ import { FlattenInterpolation, ThemeProps } from 'styled-components';
 
 type Font = FlattenInterpolation<ThemeProps<ThemeType>>;
 
-export type TypographyNames = 'title1' | 'title2' | 'body1' | 'body2' | 'body3' | 'body4' | 'body5' | 'mini1' | 'mini2';
+export type TypographyNames =
+  | 'title1'
+  | 'title2'
+  | 'body1'
+  | 'body2'
+  | 'body3'
+  | 'body4'
+  | 'body5'
+  | 'mini1'
+  | 'mini2'
+  | 'main1'
+  | 'main2';
 
 export type Typography = {
   // eslint-disable-next-line no-unused-vars
@@ -16,6 +27,7 @@ export type TypographyColorType = {
   copyright: string;
   contrast: string;
   contrastLine: string;
+  light: string;
 };
 
 export type IndentsType = {
@@ -35,6 +47,7 @@ export type ThemeType = {
   color: {
     background: {
       main: string;
+      light: string;
       primary: string;
       secondary: string;
       secondaryHover: string;

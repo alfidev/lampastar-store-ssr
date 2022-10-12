@@ -9,6 +9,9 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import fs from 'fs';
 import { Env } from 'shared/envType';
 import createBaseConfig from './webpack.base';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
 
 function createClientConfig(env: Env): Configuration {
   const babelConfig = {
@@ -97,7 +100,7 @@ function createClientConfig(env: Env): Configuration {
         allowedHosts: 'all',
         proxy: {
           '/api': {
-            target: 'https://test.lampastar.ru/index.php?route=',
+            target: env.mock_server ? 'http://localhost:4000' : 'https://test.lampastar.ru/index.php',
             pathRewrite: { '^/api': '' },
             secure: true,
             changeOrigin: true,
@@ -123,11 +126,13 @@ function createClientConfig(env: Env): Configuration {
 export default function (e: any) {
   const env: Env = {
     hot: !!e['HOT'],
+    mock_server: process.env.MOCK_SERVER === 'true',
     production: !!e['PRODUCTION'],
     host: process.env.HOST || '0.0.0.0',
     https: Boolean(process.env.HTTPS) || false,
     development: !!e['DEVELOPMENT'],
   };
+  console.log(process.env);
 
   const baseConfig = createBaseConfig(env);
   const clientConfig = merge(baseConfig, createClientConfig(env));

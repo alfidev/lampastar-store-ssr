@@ -8,6 +8,7 @@ import { CategoryMap } from '@modules/Catalog/types';
 import { Typography } from '@ui/components/Typography';
 import { useMediaQuery } from '@ui/hooks/useMediaQuery';
 import { ArrowLeft } from '@ui/icons';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   closeMenu: () => void;
@@ -26,16 +27,16 @@ const StyledCategoryItem = styled(Typography)`
 `;
 
 const renderSecondaryCategory = (
-  onCLick: (id: string) => void,
+  onCLick: (category: CategoryMap) => void,
   isMobileOrTablet: boolean,
   currentCategory?: CategoryMap,
 ) => {
   if (isMobileOrTablet)
     return (
       <List>
-        {currentCategory?.list.map(({ id, name }) => (
-          <ListItem key={id} onClick={() => onCLick(id)}>
-            {name}
+        {currentCategory?.list.map((category) => (
+          <ListItem key={category.id} onClick={() => onCLick(category)}>
+            {category.name}
           </ListItem>
         ))}
       </List>
@@ -43,16 +44,16 @@ const renderSecondaryCategory = (
 
   return (
     <Row>
-      {currentCategory?.list.map(({ id, name, list }) => (
-        <StyledColumnSecondary key={id} desktopS={6}>
-          <StyledCategoryItem variant="body3" tag="p" onClick={() => onCLick(id)}>
-            {name}
+      {currentCategory?.list.map((parentCategory) => (
+        <StyledColumnSecondary key={parentCategory.id} desktopS={6}>
+          <StyledCategoryItem variant="body3" tag="p" onClick={() => onCLick(parentCategory)}>
+            {parentCategory.name}
           </StyledCategoryItem>
 
           <List>
-            {list.map(({ id, name }) => (
-              <ListItemLite key={id} onClick={() => onCLick(id)}>
-                {name}
+            {parentCategory.list.map((category) => (
+              <ListItemLite key={category.id} onClick={() => onCLick(category)}>
+                {category.name}
               </ListItemLite>
             ))}
           </List>
@@ -63,20 +64,33 @@ const renderSecondaryCategory = (
 };
 
 export const CatalogMenu = ({ closeMenu }: Props) => {
+  const navigate = useNavigate();
+
   const [currentCategory, setCurrentCategory] = useState<CategoryMap>();
-  const { isLoading, list } = useCategories();
+  const { isLoading, map } = useCategories();
 
   const isMobileOrTablet = useMediaQuery({ maxWidth: 'tablet' });
 
   useEffect(() => {
-    if (list && !isMobileOrTablet) setCurrentCategory(list[0]);
-  }, [list]);
+    if (map && !isMobileOrTablet) setCurrentCategory(map[0]);
+  }, [map]);
+
+  const navigateToCategory = (category: CategoryMap) => {
+    navigate(`/catalog/${category.id}`);
+    closeMenu();
+  };
+
+  const onClickFinalCategoryHandler = (category: CategoryMap) => {
+    navigateToCategory(category);
+  };
+
+  const onClickPrimaryCategory = (category: CategoryMap) => {
+    if (category.list.length) return setCurrentCategory(category);
+
+    navigateToCategory(category);
+  };
 
   if (isLoading) return <CatalogMenuSkeleton />;
-
-  const onClickFinalCategoryHandler = (id: string) => {
-    console.log(id);
-  };
 
   return (
     <>
@@ -94,10 +108,10 @@ export const CatalogMenu = ({ closeMenu }: Props) => {
           {(!isMobileOrTablet || !currentCategory) && (
             <StyledColumn desktopS={4}>
               <List>
-                {list?.map((category) => (
+                {map?.map((category) => (
                   <ListItem
                     key={category.id}
-                    onClick={() => setCurrentCategory(category)}
+                    onClick={() => onClickPrimaryCategory(category)}
                     active={category.id === currentCategory?.id}
                   >
                     {category.name}

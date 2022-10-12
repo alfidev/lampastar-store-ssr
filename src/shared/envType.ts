@@ -4,4 +4,5 @@ export interface Env {
   https: boolean;
   hot?: boolean;
   development?: boolean;
+  mock_server?: boolean;
 }

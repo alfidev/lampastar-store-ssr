@@ -5,6 +5,7 @@ export const LIGHT_THEME: ThemeType = {
   color: {
     background: {
       main: '#F3F3F3',
+      light: '#EDEDED',
       primary: '#FFF',
       secondary: '#454545',
       secondaryHover: '#45454512',
@@ -25,6 +26,7 @@ export const LIGHT_THEME: ThemeType = {
       copyright: '#565656',
       contrast: '#FFB811',
       contrastLine: '#FF773D',
+      light: '#D4D4D8',
     },
     buttons: {
       disabled: '#D4D4D8',
@@ -81,6 +83,16 @@ export const LIGHT_THEME: ThemeType = {
     title2: css`
       font-size: 24px;
       line-height: 36px;
+      font-weight: 500;
+    `,
+    main1: css`
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: 500;
+    `,
+    main2: css`
+      font-size: 18px;
+      line-height: 24px;
       font-weight: 500;
     `,
     mini1: css`

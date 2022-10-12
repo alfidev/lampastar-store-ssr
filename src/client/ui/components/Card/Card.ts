@@ -1,8 +1,22 @@
-import styled from "styled-components";
+import styled, { css } from 'styled-components';
 
-export const Card = styled.div`
-  background: ${({ theme }) => theme.color.background.primary};
+export const Card = styled.div<{ height?: number; clickable?: boolean; disabled?: boolean }>`
+  background: ${({ theme, disabled }) => (disabled ? theme.color.background.light : theme.color.background.primary)};
   padding: ${({ theme }) => theme.indents.m};
   border: 1px solid ${({ theme }) => theme.color.background.main};
   border-radius: ${({ theme }) => theme.radius.xs};
+  ${({ height }) => (height ? `height: ${height}px` : '')};
+
+  ${({ disabled }) => disabled && 'cursor: no-drop'};
+
+  ${({ clickable, disabled }) =>
+    clickable &&
+    !disabled &&
+    css`
+      cursor: pointer;
+
+      :hover {
+        box-shadow: 0 0 10px ${({ theme }) => theme.color.background.secondaryHover};
+      }
+    `}
 `;

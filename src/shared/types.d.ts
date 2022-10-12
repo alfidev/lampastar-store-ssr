@@ -28,6 +28,7 @@ declare namespace NodeJS {
       USE_CLIENT_RENDER?: boolean;
       CRT_PATH?: string;
       KEY_PATH?: string;
+      MOCK_SERVER?: string;
     };
   }
 }

@@ -21,14 +21,7 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const Row = styled.div`
-  margin: 0 -15px;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
 export const Col = styled.div<Partial<BreakpointsType>>`
-  padding: 0 15px;
   min-width: ${({ mobile }) => (mobile ? `${8.33333333 * mobile}%` : '100%')};
   max-width: ${({ mobile }) => (mobile ? `${8.33333333 * mobile}%` : '100%')};
 
@@ -71,4 +64,14 @@ export const Col = styled.div<Partial<BreakpointsType>>`
     }
   `
       : ''};
+`;
+
+export const Row = styled.div<{ indent?: number }>`
+  margin: 0 -${({ indent }) => indent || 15}px;
+  display: flex;
+  flex-wrap: wrap;
+
+  ${Col} {
+    padding: 0 ${({ indent }) => indent || 15}px;
+  }
 `;

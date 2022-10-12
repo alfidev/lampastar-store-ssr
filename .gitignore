@@ -6,3 +6,4 @@ dist/
 ecosystem.config.js
 *.env
 /certificates/
+/.env.local
