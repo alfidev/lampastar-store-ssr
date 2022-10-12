@@ -6,3 +6,5 @@ export * from './Skeleton';
 export * from './List';
 export * from './ProductCard';
 export * from './Pagination';
+export * from './Adaptive';
+export * from './Info';

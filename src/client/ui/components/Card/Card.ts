@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 
-export const Card = styled.div<{ height?: number; clickable?: boolean; disabled?: boolean }>`
-  background: ${({ theme, disabled }) => (disabled ? theme.color.background.light : theme.color.background.primary)};
+export const Card = styled.div<{ height?: number; clickable?: boolean; disabled?: boolean; info?: boolean }>`
+  background: ${({ theme, disabled, info }) =>
+    disabled || info ? theme.color.background.light : theme.color.background.primary};
   padding: ${({ theme }) => theme.indents.m};
   border: 1px solid ${({ theme }) => theme.color.background.main};
   border-radius: ${({ theme }) => theme.radius.xs};
