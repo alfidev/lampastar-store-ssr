@@ -4,6 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 
 export const CatalogMain = () => {
   const [searchParams] = useSearchParams();
-  console.log();
-  return <CatalogMainComponent />;
+
+  const search = searchParams.get('search');
+
+  return <CatalogMainComponent search={search} />;
 };

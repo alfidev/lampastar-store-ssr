@@ -22,8 +22,8 @@ import { PhoneIcon, LikeIcon, BasketIcon, MenuRightIcon, CloseIcon } from '@ui/i
 import { useTheme } from 'styled-components';
 import { Logo } from '@resources/images/';
 import { Link } from 'react-router-dom';
-import { SearchInput } from '@ui/components';
 import { BACKEND_ENABLE, USE_CATALOG, useFeature } from '@common/featureToggles';
+import { CatalogSearch } from '@modules/Search';
 
 const { paymentAndDelivery, contacts, favourites, basket, home } = ROUTES;
 const { phoneNumber } = CONTACTS;
@@ -68,7 +68,7 @@ export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
                     {menuIsOpened ? <CloseIcon /> : <MenuRightIcon />}
                     <StyledCatalogText>Каталог</StyledCatalogText>
                   </CatalogButton>
-                  <SearchInput />
+                  <CatalogSearch />
                 </NavGroupSearch>
                 {isBackEnabled && (
                   <NavGroupAdaptive>

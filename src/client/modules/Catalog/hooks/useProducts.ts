@@ -6,17 +6,19 @@ import { useMemo } from 'react';
 import { mapProducts } from '../utils';
 
 type Props = {
-  category: string;
+  category?: string;
+  search?: string;
   page?: number;
   count?: number;
   sort?: SortType;
   order?: OrderType;
 };
 
-export const useProducts = ({ category, page = 1, count = 18, sort, order }: Props) => {
+export const useProducts = ({ category, page = 1, count = 18, sort, order, search }: Props) => {
   const requestOptions = {
     params: {
-      filter_category_id: category,
+      ...(!!category && { filter_category_id: category }),
+      ...(!!search && { filter_name: search }),
       start: count * (page - 1),
       limit: count,
       sort,
@@ -25,13 +27,20 @@ export const useProducts = ({ category, page = 1, count = 18, sort, order }: Pro
   };
 
   const { isLoading, data } = useQuery(
-    [API_PRODUCTS_URL, category, sort as string, order as string, `${page}${count}`],
+    [
+      API_PRODUCTS_URL,
+      ...(category ? [category] : []),
+      ...(search ? [search] : []),
+      sort as string,
+      order as string,
+      `${page}${count}`,
+    ],
     getQueryRequest<ProductsTypeResponse>(requestOptions),
     {
       retry: false,
       refetchOnWindowFocus: false,
       retryOnMount: false,
-      enabled: !!category,
+      enabled: !!category || !!search,
     },
   );
 
