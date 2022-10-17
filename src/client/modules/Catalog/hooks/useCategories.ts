@@ -5,14 +5,28 @@ import { CategoryTypeResponse } from '../types';
 import { getCategoriesRecursive, mapCategories } from '@modules/Catalog/utils';
 import { useMemo } from 'react';
 
-export const useCategories = () => {
-  const { isLoading, data } = useQuery(API_CATEGORIES_URL, getQueryRequest<CategoryTypeResponse[]>(), {
+type Props = {
+  categoryId?: string;
+  parentId?: string;
+};
+
+export const useCategories = (props?: Props) => {
+  const { categoryId, parentId = '0' } = props || {};
+
+  const { isLoading, data } = useQuery([API_CATEGORIES_URL, parentId], getQueryRequest<CategoryTypeResponse[]>(), {
     retry: false,
     refetchOnWindowFocus: false,
     retryOnMount: false,
   });
 
-  const result = useMemo(() => (data ? getCategoriesRecursive(mapCategories(data)) : data), [data]);
+  const categoriesList = useMemo(() => (data ? mapCategories(data) : []), [data]);
 
-  return { isLoading, list: result };
+  const categoriesMap = useMemo(() => getCategoriesRecursive(categoriesList, parentId), [data]);
+
+  const category = useMemo(
+    () => (categoryId && categoriesList?.find(({ id }) => id === categoryId)) || null,
+    [data, categoryId],
+  );
+
+  return { isLoading, list: categoriesMap, map: categoriesMap, category };
 };

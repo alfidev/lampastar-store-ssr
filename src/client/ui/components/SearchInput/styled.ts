@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Input } from '../Input';
 import { ButtonContained } from '../Button';
 
-export const SearchWrapper = styled.div`
+export const SearchWrapper = styled.form`
   position: relative;
   display: flex;
   flex-grow: 1;

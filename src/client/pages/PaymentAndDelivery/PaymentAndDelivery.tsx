@@ -13,7 +13,6 @@ import {
   ReceiptIcon,
   TruckIcon,
 } from '@ui/icons';
-import { useTheme } from 'styled-components';
 
 const ItemTitle = ({ children }: { children: ReactNode }) => (
   <StyledTitle variant="body5" tag="h4">
@@ -28,8 +27,6 @@ const CaptionText = ({ children }: { children: ReactNode }) => (
 );
 
 export const PaymentAndDelivery = () => {
-  const theme = useTheme();
-
   return (
     <>
       <PageTitle>Оплата</PageTitle>
@@ -38,7 +35,7 @@ export const PaymentAndDelivery = () => {
         <Row>
           <Col desktopS={5} mobile={12}>
             <ItemTitle>
-              <MoneyIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <MoneyIcon size="xxl" color="contrast" mr="s" />
               Расчёт наличными и по карте в офисе
             </ItemTitle>
             <Details>
@@ -47,7 +44,7 @@ export const PaymentAndDelivery = () => {
               </CaptionText>
             </Details>
             <ItemTitle>
-              <PlasticCardAltIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <PlasticCardAltIcon size="xxl" color="contrast" mr="s" />
               Оплата банковской картой на сайте
             </ItemTitle>
             <Details>
@@ -60,7 +57,7 @@ export const PaymentAndDelivery = () => {
           <Col desktopS={2} mobile={12} />
           <Col desktopS={5} mobile={12}>
             <ItemTitle>
-              <BuildingsIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <BuildingsIcon size="xxl" color="contrast" mr="s" />
               Безналичный расчёт для организаций
             </ItemTitle>
             <Details>
@@ -70,7 +67,7 @@ export const PaymentAndDelivery = () => {
               </CaptionText>
             </Details>
             <ItemTitle>
-              <ReceiptIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <ReceiptIcon size="xxl" color="contrast" mr="s" />
               Перевод наличных в банке на счёт организации
             </ItemTitle>
             <Details>
@@ -89,7 +86,7 @@ export const PaymentAndDelivery = () => {
         <Row>
           <Col desktopS={5} mobile={12}>
             <ItemTitle>
-              <PackageIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <PackageIcon size="xxl" color="contrast" mr="s" />
               Cамовывоз
             </ItemTitle>
             <Details>
@@ -99,7 +96,7 @@ export const PaymentAndDelivery = () => {
               </CaptionText>
             </Details>
             <ItemTitle>
-              <CoinIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <CoinIcon size="xxl" color="contrast" mr="s" />
               Платная доставка
             </ItemTitle>
             <Details>
@@ -108,7 +105,7 @@ export const PaymentAndDelivery = () => {
               </CaptionText>
             </Details>
             <ItemTitle>
-              <MailIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <MailIcon size="xxl" color="contrast" mr="s" />
               Почта России
             </ItemTitle>
             <Details>
@@ -122,7 +119,7 @@ export const PaymentAndDelivery = () => {
           <Col desktopS={2} mobile={12} />
           <Col desktopS={5} mobile={12}>
             <ItemTitle>
-              <TruckIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <TruckIcon size="xxl" color="contrast" mr="s" />
               Бесплатная доставка экспедитором нашей компании
             </ItemTitle>
             <Details>
@@ -132,7 +129,7 @@ export const PaymentAndDelivery = () => {
               </CaptionText>
             </Details>
             <ItemTitle>
-              <AirplaneIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+              <AirplaneIcon size="xxl" color="contrast" mr="s" />
               Через любую транспортную компанию
             </ItemTitle>
             <Details>

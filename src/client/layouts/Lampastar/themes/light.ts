@@ -5,6 +5,7 @@ export const LIGHT_THEME: ThemeType = {
   color: {
     background: {
       main: '#F3F3F3',
+      light: '#EDEDED',
       primary: '#FFF',
       secondary: '#454545',
       secondaryHover: '#45454512',
@@ -25,15 +26,17 @@ export const LIGHT_THEME: ThemeType = {
       copyright: '#565656',
       contrast: '#FFB811',
       contrastLine: '#FF773D',
+      light: '#D4D4D8',
+      lightTwo: '#BABAC0',
     },
     buttons: {
       disabled: '#D4D4D8',
       primary: '#FFB811',
       primaryHover: '#F2AA00',
       primaryActive: '#D49500',
-      secondary: '#FF773D',
-      secondaryHover: '#FF5C15',
-      secondaryActive: '#C53B00',
+      secondary: '#FF6945',
+      secondaryHover: '#FA4B21',
+      secondaryActive: '#F93A0D',
       text: '#2B3034',
       textHover: '#FF773D',
       textActive: '#C53B00',
@@ -43,6 +46,8 @@ export const LIGHT_THEME: ThemeType = {
     },
   },
   sizes: {
+    xs: '10px',
+    s: '12px',
     m: '14px',
     l: '16px',
     xl: '18px',
@@ -81,6 +86,16 @@ export const LIGHT_THEME: ThemeType = {
     title2: css`
       font-size: 24px;
       line-height: 36px;
+      font-weight: 500;
+    `,
+    main1: css`
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: 500;
+    `,
+    main2: css`
+      font-size: 18px;
+      line-height: 24px;
       font-weight: 500;
     `,
     mini1: css`

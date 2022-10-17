@@ -14,7 +14,6 @@ import {
   StyledTitle,
 } from './styled';
 import { ClockIcon, GeoIcon, PhoneIcon, MailIcon } from '@ui/icons';
-import { useTheme } from 'styled-components';
 import { ContactForm } from '@components/ContactForm';
 import { YaMap } from '@common/components';
 import { Col, Container, Row } from '@ui/components/Adaptive';
@@ -45,8 +44,6 @@ const CaptionText = ({ children }: { children: ReactNode }) => (
 );
 
 export const Contacts = () => {
-  const theme = useTheme();
-
   const isBackEnabled = useFeature(BACKEND_ENABLE);
 
   return (
@@ -59,7 +56,7 @@ export const Contacts = () => {
             <Col desktopS={3} tablet={6} mobile={12}>
               <ContactColumn>
                 <ContactTitle>
-                  <GeoIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+                  <GeoIcon size="xxl" color="contrast" mr="s" />
                   Адрес
                 </ContactTitle>
                 <Details>
@@ -77,7 +74,7 @@ export const Contacts = () => {
             <Col desktopS={3} tablet={6} mobile={12}>
               <ContactColumn>
                 <ContactTitle>
-                  <ClockIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+                  <ClockIcon size="xxl" color="contrast" mr="s" />
                   Режим работы
                 </ContactTitle>
                 <Details>
@@ -95,7 +92,7 @@ export const Contacts = () => {
             <Col desktopS={3} tablet={6} mobile={12}>
               <ContactColumn>
                 <ContactTitle>
-                  <PhoneIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+                  <PhoneIcon size="xxl" color="contrast" mr="s" />
                   Контакты
                 </ContactTitle>
                 <Details>
@@ -122,7 +119,7 @@ export const Contacts = () => {
             <Col desktopS={3} tablet={6} mobile={12}>
               <ContactColumn>
                 <ContactTitle>
-                  <MailIcon size={theme.sizes.xxl} color="contrast" mr="s" />
+                  <MailIcon size="xxl" color="contrast" mr="s" />
                   Социальные сети
                 </ContactTitle>
                 <Details>
