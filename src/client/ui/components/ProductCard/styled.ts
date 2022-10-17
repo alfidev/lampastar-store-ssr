@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Card } from '../Card';
+import { Button } from '@ui/components';
 
 export const ImageBox = styled.div`
   height: 170px;
@@ -79,5 +80,21 @@ export const OldPrice = styled.div`
     height: 2px;
     background: ${({ theme }) => theme.color.text.light};
     transform: rotate(175deg);
+  }
+`;
+
+export const ActionsBlock = styled.div`
+  display: flex;
+  margin-top: ${({ theme }) => theme.indents.m};
+`;
+
+export const AdditionalButton = styled(Button.Text)<{ active: boolean }>`
+  color: ${({ theme, active }) => (active ? theme.color.buttons.secondaryActive : theme.color.text.lightTwo)};
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: ${({ theme }) => theme.indents.m};
+
+  :hover {
+    color: ${({ theme }) => theme.color.buttons.secondaryHover};
   }
 `;

@@ -27,12 +27,13 @@ export const mapProducts = (products: ProductTypeResponse[]): ProductType[] =>
       date_modified,
       special,
       reward,
+      old_price,
       ...props
     }) => ({
       id: product_id,
       image: image || undefined,
-      price: Number(price) || 99,
-      oldPrice: 106,
+      price: Number(price),
+      oldPrice: old_price ? Number(old_price) : undefined,
       metaTitle: meta_title,
       metaDescription: meta_description,
       metaKeyword: meta_keyword,
@@ -77,11 +78,16 @@ export const mapCategories = (categories: CategoryTypeResponse[]): CategoryType[
     }),
   );
 
-export const getCategoriesRecursive = (list: CategoryType[], currentParentId = '0', depth = 0): CategoryMap[] =>
+export const getCategoriesRecursive = (
+  list: CategoryType[],
+  currentParentId = '0',
+  maxDepth = 2,
+  depth = 0,
+): CategoryMap[] =>
   list
     .filter(({ parentId }) => parentId === currentParentId)
     .map(({ id, name }) => ({
       id: id,
       name: name,
-      list: depth <= 2 ? getCategoriesRecursive(list, id, depth + 1) : [],
+      list: maxDepth === -1 || depth <= maxDepth ? getCategoriesRecursive(list, id, maxDepth, depth + 1) : [],
     }));

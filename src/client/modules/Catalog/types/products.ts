@@ -1,4 +1,4 @@
-type ProductTypeResponse = {
+export type ProductTypeResponse = {
   product_id: string;
   name: string;
   price: string;
@@ -40,6 +40,7 @@ type ProductTypeResponse = {
   date_added: string;
   date_modified: string;
   viewed: string;
+  old_price: string | null; //test
 };
 
 export type ProductsTypeResponse = {
@@ -51,7 +52,7 @@ export type ProductType = {
   id: string;
   name: string;
   price: number;
-  oldPrice: number;
+  oldPrice?: number;
   image?: string;
   description: string;
   metaTitle: string;

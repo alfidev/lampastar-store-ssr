@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { PageTitle } from '@layouts/Lampastar';
 import { ProductsList, ProductsFilters, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
-import { useCategories, useProducts } from '@modules/Catalog/hooks';
+import { useCategories, useProducts } from '../hooks';
 import styled from 'styled-components';
-import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '@modules/Catalog/constants';
+import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
+import { ProductType } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   categoryAlias: string;
@@ -30,12 +32,15 @@ const ControlContainer = styled.div`
 const PaginationContainer = styled.div``;
 
 export const CatalogCategory = ({ categoryAlias }: Props) => {
+  const navigate = useNavigate();
+
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState(SORT_TYPE.price);
   const [order, setOrder] = useState(ORDER_TYPE.ASC);
-  const [viewMode, setViewMode] = useState(VIEW_MODE.list);
+  const [viewMode, setViewMode] = useState(VIEW_MODE.grid);
 
-  const { category } = useCategories(categoryAlias);
+  const { category, map } = useCategories({ categoryId: categoryAlias });
+
   const {
     list: products,
     totalPage,
@@ -45,16 +50,36 @@ export const CatalogCategory = ({ categoryAlias }: Props) => {
 
   const { name: categoryName } = category || {};
 
+  const onChangeCount = (product: ProductType, count: number) => {
+    console.log('addProduct', product.name, 'count', count);
+  };
+
+  const onChangeFavourite = (product: ProductType, value: boolean) => {
+    console.log('addFavourite', product.name, 'value', value);
+  };
+
+  const onClickCategory = (id: string) => {
+    navigate(`/catalog/${id}`);
+  };
+
   const getProductsJSX = () => {
     if (isLoadingProducts) return <ProductsListSkeleton />;
 
-    return <ProductsList products={products} mode={viewMode} />;
+    return (
+      <ProductsList
+        products={products}
+        mode={viewMode}
+        onChangeCount={onChangeCount}
+        onChangeFavourite={onChangeFavourite}
+        disabled
+      />
+    );
   };
 
   const getProductsFiltersJSX = () => {
     if (isLoadingFilters) return <>Filters skeleton</>;
 
-    return <ProductsFilters />;
+    return <ProductsFilters categoriesMap={map} onClickCategory={onClickCategory} />;
   };
 
   return (

@@ -28,6 +28,7 @@ export type TypographyColorType = {
   contrast: string;
   contrastLine: string;
   light: string;
+  lightTwo: string;
 };
 
 export type IndentsType = {
@@ -44,6 +45,8 @@ export type IndentsType = {
 };
 
 export type SizesType = {
+  xs: string;
+  s: string;
   m: string;
   l: string;
   xl: string;

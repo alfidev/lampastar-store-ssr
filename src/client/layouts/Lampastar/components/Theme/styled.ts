@@ -141,7 +141,7 @@ export const GlobalStyle = createGlobalStyle<{
     }
     
     div {
-      cursor: default;
+      //cursor: default;
     }
   }
   

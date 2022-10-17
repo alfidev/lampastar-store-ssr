@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, { ReactNode } from 'react';
+import { SizesType } from '@layouts/Lampastar';
 
 type VariantProp = {
   secondary?: boolean;
@@ -9,12 +10,13 @@ type ButtonType = {
   loading?: boolean;
   disabled?: boolean;
   hideText?: boolean;
+  isFluid?: boolean;
 };
 
 type ButtonBaseType = {
   icon?: React.FC;
   iconRight?: boolean;
-  iconSize?: 's' | 'm' | 'l';
+  iconSize?: keyof SizesType;
   noPadding?: boolean;
   children?: ReactNode;
 } & ButtonType;
@@ -35,7 +37,9 @@ export const ButtonContained = styled.button<VariantProp & ButtonType>`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   white-space: nowrap;
   outline: none;
-  color: ${({ disabled, theme }) => (disabled ? theme.color.text.secondary : theme.color.text.primary)};
+  color: ${({ disabled, theme, secondary }) =>
+    disabled || secondary ? theme.color.text.secondary : theme.color.text.primary};
+  width: ${({ isFluid }) => (isFluid ? '100%' : 'auto')};
 
   :hover {
     background: ${({ theme, secondary, disabled }) =>
@@ -164,7 +168,7 @@ const ButtonContainedWithIcon = styled(
   },
 )``;
 
-const ButtonOutlineWithIcon = styled(
+const ButtonOutlinedWithIcon = styled(
   ({
     icon,
     iconRight,
@@ -185,5 +189,5 @@ const ButtonOutlineWithIcon = styled(
 export const Button = {
   Text: ButtonTextWithIcon,
   Contained: ButtonContainedWithIcon,
-  Outline: ButtonOutlineWithIcon,
+  Outlined: ButtonOutlinedWithIcon,
 };

@@ -8,3 +8,5 @@ export * from './ProductCard';
 export * from './Pagination';
 export * from './Adaptive';
 export * from './Info';
+export * from './Counter';
+export * from './Accordion';

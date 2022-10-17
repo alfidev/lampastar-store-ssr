@@ -32,7 +32,7 @@ export const ProductCardLine = ({ name, image, price, oldPrice }: ProductCardPro
       </InfoBlock>
       <BottomBlock>
         <PriceContainer>
-          <OldPrice>{oldPrice}</OldPrice>
+          {oldPrice && <OldPrice>{oldPrice}</OldPrice>}
           <ActualPrice>{price}</ActualPrice>
         </PriceContainer>
       </BottomBlock>
