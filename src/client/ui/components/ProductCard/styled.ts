@@ -7,7 +7,9 @@ export const ImageBox = styled.div`
   display: flex;
   justify-content: center;
 
-  svg {
+  svg,
+  img {
+    max-width: 100%;
     max-height: 100%;
   }
 `;

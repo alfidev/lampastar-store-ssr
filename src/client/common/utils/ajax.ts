@@ -5,7 +5,7 @@ class Ajax {
 
   constructor() {
     this.ajax = axios.create({
-      baseURL: '/api',
+      baseURL: 'https://test.lampastar.ru/index.php',
       timeout: 1000,
     });
 
