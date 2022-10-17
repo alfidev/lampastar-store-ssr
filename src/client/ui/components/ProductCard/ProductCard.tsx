@@ -59,15 +59,7 @@ export const ProductCard = ({
   return (
     <StyledCard height={disabled ? 316 : 372}>
       <TopBlock>
-        {image ? (
-          <div>
-            <img alt={name} src={image} />
-          </div>
-        ) : (
-          <ImageBox>
-            <NoImage />
-          </ImageBox>
-        )}
+        <ImageBox>{image ? <img alt={name} src={`https://test.lampastar.ru/image${image}`} /> : <NoImage />}</ImageBox>
         <NameContainer>{name}</NameContainer>
       </TopBlock>
       <BottomBlock>

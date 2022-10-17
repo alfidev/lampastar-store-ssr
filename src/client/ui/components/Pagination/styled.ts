@@ -11,6 +11,7 @@ export const PageButton = styled(Card).attrs({ clickable: true, mini: true })<{ 
   justify-content: center;
   margin: 0 2px;
   max-width: 70px;
+  white-space: nowrap;
 
   :first-child {
     margin-left: 0;
