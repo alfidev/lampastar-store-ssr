@@ -16,7 +16,6 @@ export type ProductTypeResponse = {
   isbn: string;
   mpn: string;
   location: string;
-  quantity: string;
   stock_status: string | null;
   manufacturer_id: string | null;
   manufacturer: string | null;
@@ -41,6 +40,9 @@ export type ProductTypeResponse = {
   date_modified: string;
   viewed: string;
   old_price: string | null; //test
+  not_available: boolean;
+  available: boolean;
+  for_order: boolean;
 };
 
 export type ProductsTypeResponse = {
@@ -67,7 +69,6 @@ export type ProductType = {
   isbn: string;
   mpn: string;
   location: string;
-  quantity: string;
   stockStatus?: string;
   manufacturerId?: string;
   manufacturer?: string;
@@ -91,4 +92,7 @@ export type ProductType = {
   dateAdded: string;
   dateModified: string;
   viewed: string;
+  notAvailable: boolean;
+  available: boolean;
+  forOrder: boolean;
 };

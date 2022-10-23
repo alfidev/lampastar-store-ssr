@@ -46,6 +46,7 @@ export const CatalogCategory = ({ categoryAlias }: Props) => {
     totalPage,
     isLoading: isLoadingProducts,
   } = useProducts({ category: categoryAlias, page, sort, order });
+
   const isLoadingFilters = false;
 
   const { name: categoryName } = category || {};
@@ -71,7 +72,6 @@ export const CatalogCategory = ({ categoryAlias }: Props) => {
         mode={viewMode}
         onChangeCount={onChangeCount}
         onChangeFavourite={onChangeFavourite}
-        disabled
       />
     );
   };

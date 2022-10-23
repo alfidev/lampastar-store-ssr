@@ -28,6 +28,8 @@ export const mapProducts = (products: ProductTypeResponse[]): ProductType[] =>
       special,
       reward,
       old_price,
+      not_available,
+      for_order,
       ...props
     }) => ({
       id: product_id,
@@ -49,6 +51,8 @@ export const mapProducts = (products: ProductTypeResponse[]): ProductType[] =>
       manufacturer: manufacturer || undefined,
       special: special || undefined,
       reward: reward || undefined,
+      notAvailable: not_available,
+      forOrder: for_order,
       ...props,
     }),
   );

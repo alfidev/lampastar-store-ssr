@@ -10,7 +10,7 @@ export const featureToggleState = {
     description: 'Показывать админа',
   },
   [USE_CATALOG]: {
-    enabled: false,
+    enabled: true,
     description: 'Включает каталог',
   },
 };
