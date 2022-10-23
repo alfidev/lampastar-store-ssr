@@ -18,14 +18,14 @@ import { ButtonContained, Counter } from '@ui/components';
 export type ProductCardProps = {
   name: string;
   image?: string;
-  price: string;
+  price?: string;
   oldPrice?: string;
   isFavourite: boolean;
   isCompare: boolean;
   countInBasket: number;
   notAvailable: boolean;
-  forOder: boolean;
-  disabled: boolean;
+  available: boolean;
+  forOrder: boolean;
   onChangeCount: (count: number) => void;
   onChangeFavourite: () => void;
 };
@@ -38,13 +38,14 @@ export const ProductCard = ({
   isFavourite,
   isCompare,
   notAvailable,
+  available,
   countInBasket,
-  forOder,
-  disabled,
+  forOrder,
   onChangeCount,
   onChangeFavourite,
 }: ProductCardProps) => {
-  const buttonText = (forOder && 'Под заказ') || (notAvailable && 'Нет в наличии') || 'В корзину';
+  const buttonText =
+    (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || (available && 'В наличии') || 'В корзину';
 
   const addToBasketHandler = () => {
     onChangeCount(1);
@@ -54,40 +55,44 @@ export const ProductCard = ({
     onChangeCount(count);
   };
 
-  const showCounter = countInBasket && !notAvailable && !forOder && !disabled;
+  const showCounter = countInBasket && !notAvailable && !forOrder;
 
   return (
-    <StyledCard height={disabled ? 316 : 372}>
+    <StyledCard height={372}>
       <TopBlock>
-        <ImageBox>{image ? <img alt={name} src={`https://test.lampastar.ru/image${image}`} /> : <NoImage />}</ImageBox>
+        <ImageBox>{image ? <img alt={name} src={`${image}`} /> : <NoImage />}</ImageBox>
         <NameContainer>{name}</NameContainer>
       </TopBlock>
       <BottomBlock>
         <PriceContainer>
           {oldPrice && <OldPrice>{oldPrice}</OldPrice>}
-          <ActualPrice>{price}</ActualPrice>
+          {price && <ActualPrice>{price}</ActualPrice>}
         </PriceContainer>
       </BottomBlock>
-
-      {!disabled && (
-        <ActionsBlock>
-          {showCounter ? (
-            <Counter value={countInBasket} onChange={onChangeCounter} />
-          ) : (
-            <ButtonContained secondary isFluid disabled={notAvailable || forOder} onClick={addToBasketHandler}>
-              {buttonText}
-            </ButtonContained>
-          )}
-          {isCompare && (
-            <AdditionalButton active={isCompare}>
-              <LikeIcon size="xxxl" />
-            </AdditionalButton>
-          )}
+      <ActionsBlock>
+        {showCounter ? (
+          <Counter value={countInBasket} onChange={onChangeCounter} />
+        ) : (
+          <ButtonContained
+            secondary
+            isFluid
+            disabled={notAvailable || forOrder || available}
+            onClick={addToBasketHandler}
+          >
+            {buttonText}
+          </ButtonContained>
+        )}
+        {false && (
+          <AdditionalButton active={isCompare}>
+            <LikeIcon size="xxxl" />
+          </AdditionalButton>
+        )}
+        {false && (
           <AdditionalButton active={isFavourite} onClick={onChangeFavourite}>
             {isFavourite ? <LikeActiveIcon size="xxxl" /> : <LikeIcon size="xxxl" />}
           </AdditionalButton>
-        </ActionsBlock>
-      )}
+        )}
+      </ActionsBlock>
     </StyledCard>
   );
 };

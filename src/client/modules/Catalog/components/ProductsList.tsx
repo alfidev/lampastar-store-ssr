@@ -10,14 +10,13 @@ type Props = {
   mode: ViewModeType;
   onChangeCount: (product: ProductType, count: number) => void;
   onChangeFavourite: (product: ProductType, value: boolean) => void;
-  disabled?: boolean;
 };
 
 const StyledCol = styled(Col)`
   margin-bottom: 16px;
 `;
 
-export const ProductsList = ({ products, mode, onChangeCount, onChangeFavourite, disabled }: Props) => {
+export const ProductsList = ({ products, mode, onChangeCount, onChangeFavourite }: Props) => {
   const lineModeValue = mode === VIEW_MODE.list && 12;
 
   return (
@@ -35,7 +34,6 @@ export const ProductsList = ({ products, mode, onChangeCount, onChangeFavourite,
               product={product}
               onChangeCount={onChangeCount}
               onChangeFavourite={onChangeFavourite}
-              disabled={disabled}
             />
           </StyledCol>
         ))}

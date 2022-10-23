@@ -2,38 +2,38 @@ import React, { useState } from 'react';
 import { ProductCard as ProductCardUI, ProductCardLine as ProductCardLineUI } from '@ui/components';
 import { ProductType, ViewModeType } from '../../../types';
 import { VIEW_MODE } from '@modules/Catalog/constants';
+import { formatSum } from '@common/utils';
 
 type Props = {
   product: ProductType;
   mode: ViewModeType;
   onChangeCount: (product: ProductType, count: number) => void;
   onChangeFavourite: (product: ProductType, value: boolean) => void;
-  disabled?: boolean;
 };
 
-export const ProductCard = ({ product, mode, onChangeCount, onChangeFavourite, disabled }: Props) => {
-  const { image, name, price, oldPrice } = product;
+export const ProductCard = ({ product, mode, onChangeCount, onChangeFavourite }: Props) => {
+  const { image, name, price, oldPrice, notAvailable, forOrder, available } = product;
 
   const [count, setCount] = useState(0);
   const [isFavourite, setIsFavourite] = useState(false);
 
-  const priceString = `${price.toString()} ₽`;
-  const oldPriceString = oldPrice ? `${oldPrice.toString()} ₽` : undefined;
+  const priceString = price ? formatSum(price) : undefined;
+  const oldPriceString = oldPrice ? formatSum(oldPrice) : undefined;
 
   const isCompare = false;
-  const notAvailable = false;
-  const forOder = false;
 
   const onChangeCountHandler = (count: number) => {
-    if (!notAvailable && !forOder && !disabled) onChangeCount(product, count);
-
-    setCount(count);
+    if (!notAvailable && !forOrder && !available) {
+      onChangeCount(product, count);
+      setCount(count);
+    }
   };
 
   const onChangeFavouriteHandler = () => {
-    if (!notAvailable && !forOder && !disabled) onChangeFavourite(product, !isFavourite);
-
-    setIsFavourite(!isFavourite);
+    if (!notAvailable && !forOrder && !available) {
+      onChangeFavourite(product, !isFavourite);
+      setIsFavourite(!isFavourite);
+    }
   };
 
   if (mode === VIEW_MODE.grid)
@@ -46,9 +46,9 @@ export const ProductCard = ({ product, mode, onChangeCount, onChangeFavourite, d
         isCompare={isCompare}
         isFavourite={isFavourite}
         notAvailable={notAvailable}
+        available={available}
         countInBasket={count}
-        forOder={forOder}
-        disabled={!!disabled}
+        forOrder={forOrder}
         onChangeCount={onChangeCountHandler}
         onChangeFavourite={onChangeFavouriteHandler}
       />
@@ -63,9 +63,9 @@ export const ProductCard = ({ product, mode, onChangeCount, onChangeFavourite, d
       isCompare={isCompare}
       isFavourite={isFavourite}
       notAvailable={notAvailable}
+      available={available}
       countInBasket={count}
-      forOder={forOder}
-      disabled={!!disabled}
+      forOrder={forOrder}
       onChangeCount={onChangeCountHandler}
       onChangeFavourite={onChangeFavouriteHandler}
     />

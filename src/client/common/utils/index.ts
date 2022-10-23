@@ -1,5 +1,6 @@
-export * from "./ajax";
+export * from './ajax';
+export * from './data';
 
 export const isClient = () => {
-  return typeof window !== "undefined";
+  return typeof window !== 'undefined';
 };
