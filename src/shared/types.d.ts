@@ -29,6 +29,7 @@ declare namespace NodeJS {
       CRT_PATH?: string;
       KEY_PATH?: string;
       MOCK_SERVER?: string;
+      PROXY_SERVER_URL?: string;
     };
   }
 }

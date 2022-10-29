@@ -132,7 +132,6 @@ export default function (e: any) {
     https: Boolean(process.env.HTTPS) || false,
     development: !!e['DEVELOPMENT'],
   };
-  console.log(process.env);
 
   const baseConfig = createBaseConfig(env);
   const clientConfig = merge(baseConfig, createClientConfig(env));
