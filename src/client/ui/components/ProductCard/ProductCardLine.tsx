@@ -3,13 +3,13 @@ import { ProductCardProps } from './ProductCard';
 import {
   ActualPrice,
   BottomBlock,
-  ImageBox,
   NameContainer,
   OldPrice,
   PriceContainer,
   StyledCardLine,
   LeftBlock,
   InfoBlock,
+  ImageBoxLine,
 } from './styled';
 import { NoImage } from '@ui/icons';
 
@@ -17,15 +17,7 @@ export const ProductCardLine = ({ name, image, price, oldPrice }: ProductCardPro
   return (
     <StyledCardLine height={204}>
       <LeftBlock>
-        {image ? (
-          <div>
-            <img alt={name} src={image} />
-          </div>
-        ) : (
-          <ImageBox>
-            <NoImage />
-          </ImageBox>
-        )}
+        <ImageBoxLine>{image ? <img alt={name} src={`${image}`} /> : <NoImage />}</ImageBoxLine>
       </LeftBlock>
       <InfoBlock>
         <NameContainer>{name}</NameContainer>

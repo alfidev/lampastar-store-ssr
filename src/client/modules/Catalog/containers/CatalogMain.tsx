@@ -59,7 +59,6 @@ export const CatalogMain = ({ search }: Props) => {
         mode={viewMode}
         onChangeCount={onChangeCount}
         onChangeFavourite={onChangeFavourite}
-        disabled
       />
     );
   };
