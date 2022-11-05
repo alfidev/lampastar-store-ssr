@@ -14,6 +14,11 @@ export const ImageBox = styled.div`
   }
 `;
 
+export const ImageBoxLine = styled(ImageBox)`
+  min-width: 170px;
+  max-width: 170px;
+`;
+
 export const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
