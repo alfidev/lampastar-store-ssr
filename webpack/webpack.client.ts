@@ -100,7 +100,7 @@ function createClientConfig(env: Env): Configuration {
         allowedHosts: 'all',
         proxy: {
           '/api': {
-            target: env.mock_server ? 'http://localhost:4000' : 'https://test.lampastar.ru/index.php',
+            target: env.mock_server ? 'http://localhost:4000' : env.proxy_server_url,
             pathRewrite: { '^/api': '' },
             secure: true,
             changeOrigin: true,
@@ -131,6 +131,7 @@ export default function (e: any) {
     host: process.env.HOST || '0.0.0.0',
     https: Boolean(process.env.HTTPS) || false,
     development: !!e['DEVELOPMENT'],
+    proxy_server_url: process.env.PROXY_SERVER_URL ?? '',
   };
 
   const baseConfig = createBaseConfig(env);
