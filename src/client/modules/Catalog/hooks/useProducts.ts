@@ -44,7 +44,7 @@ export const useProducts = ({ category, page = 1, count = 18, sort, order, searc
     },
   );
 
-  const productsList = useMemo(() => (data ? mapProducts(data.list) : []), [data]);
+  const productsList = useMemo(() => (data?.list ? mapProducts(data.list) : []), [data]);
 
   const totalPage = Math.ceil((data?.total || 0) / (count || 18));
 
