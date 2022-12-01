@@ -7,7 +7,7 @@ import { Button, List, ListItem, ListItemLite } from '@ui/components';
 import { CategoryMap } from '@modules/Catalog/types';
 import { Typography } from '@ui/components/Typography';
 import { useMediaQuery } from '@ui/hooks/useMediaQuery';
-import { ArrowLeft } from '@ui/icons';
+import { ChevronLeft } from '@ui/icons';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
@@ -96,7 +96,7 @@ export const CatalogMenu = ({ closeMenu }: Props) => {
     <>
       {isMobileOrTablet && (
         <Button.Text
-          icon={ArrowLeft}
+          icon={ChevronLeft}
           onClick={() => (currentCategory ? setCurrentCategory(undefined) : closeMenu())}
           noPadding
         >

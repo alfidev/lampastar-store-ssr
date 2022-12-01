@@ -6,7 +6,7 @@ class Ajax {
   constructor() {
     this.ajax = axios.create({
       baseURL: '/api',
-      timeout: 1000,
+      // timeout: 1000,
     });
 
     // this.ajax.interceptors.response.use(

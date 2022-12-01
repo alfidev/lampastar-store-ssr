@@ -1,4 +1,4 @@
-import { About, ApplicationSettings, Catalog, Contacts, OurTeam, PaymentAndDelivery } from '@pages';
+import { About, ApplicationSettings, Catalog, Contacts, OurTeam, PaymentAndDelivery, Home } from '@pages';
 import { RouteType } from '../types';
 
 export const ROUTES: Record<string, RouteType> = {
@@ -6,7 +6,7 @@ export const ROUTES: Record<string, RouteType> = {
     title: 'ВЕСЬ СВЕТ',
     label: 'Главная',
     path: '/',
-    component: About,
+    component: Home,
   },
   catalog: {
     title: 'Каталог товаров',

@@ -6,12 +6,12 @@ import { formatSum } from '@common/utils';
 
 type Props = {
   product: ProductType;
-  mode: ViewModeType;
+  mode?: ViewModeType;
   onChangeCount: (product: ProductType, count: number) => void;
   onChangeFavourite: (product: ProductType, value: boolean) => void;
 };
 
-export const ProductCard = ({ product, mode, onChangeCount, onChangeFavourite }: Props) => {
+export const ProductCard = ({ product, mode = VIEW_MODE.grid, onChangeCount, onChangeFavourite }: Props) => {
   const { image, name, price, oldPrice, notAvailable, forOrder, available } = product;
 
   const [count, setCount] = useState(0);

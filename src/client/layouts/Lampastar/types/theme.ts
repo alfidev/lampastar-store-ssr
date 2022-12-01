@@ -41,6 +41,7 @@ export type IndentsType = {
   l: string;
   xl: string;
   xxl: string;
+  xxxl: string;
   xxxxl: string;
 };
 
@@ -59,6 +60,7 @@ export type ThemeType = {
     background: {
       main: string;
       light: string;
+      dark: string;
       primary: string;
       secondary: string;
       secondaryHover: string;
@@ -88,6 +90,11 @@ export type ThemeType = {
       textActive: string;
       disabled: string;
     };
+    tags: {
+      new: string;
+      hit: string;
+      sale: string;
+    };
   };
   sizes: SizesType;
   indents: IndentsType;
@@ -99,6 +106,7 @@ export type ThemeType = {
     m: string;
   };
   zIndex: {
+    button: number;
     menu: number;
     modal: number;
   };
