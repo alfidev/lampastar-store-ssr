@@ -5,5 +5,5 @@ export interface Env {
   hot?: boolean;
   development?: boolean;
   mock_server?: boolean;
-  proxy_server_url: string;
+  proxy_server_url?: string;
 }
