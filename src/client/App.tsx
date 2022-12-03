@@ -4,6 +4,7 @@ import { InitialComponent } from '@common/components';
 import { HelmetProvider } from 'react-helmet-async';
 import { ErrorContext } from '@common/types';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 interface Props {
   /** Data used in the React prerender process. Use only in the server side. */
@@ -29,6 +30,7 @@ export default function App({ errorContext, helmetContext }: Props) {
     <StrictMode>
       <HelmetProvider context={helmetContext}>
         <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
           <InitialComponent context={errorContext} />
         </QueryClientProvider>
       </HelmetProvider>

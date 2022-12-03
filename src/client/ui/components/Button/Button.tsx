@@ -6,20 +6,29 @@ type VariantProp = {
   secondary?: boolean;
 };
 
+type Sizes = 's' | 'm' | 'l';
+
 type ButtonType = {
   loading?: boolean;
   disabled?: boolean;
   hideText?: boolean;
   isFluid?: boolean;
+  size?: Sizes;
 };
 
 type ButtonBaseType = {
   icon?: React.FC;
   iconRight?: boolean;
-  iconSize?: keyof SizesType;
   noPadding?: boolean;
   children?: ReactNode;
+  iconSize?: SizesType;
 } & ButtonType;
+
+const ICON_SIZES: Record<Sizes, string> = {
+  s: '36px',
+  m: '40px',
+  l: '46px',
+};
 
 export const ButtonContained = styled.button<VariantProp & ButtonType>`
   ${({ theme }) => theme.typography.body2}
@@ -30,7 +39,7 @@ export const ButtonContained = styled.button<VariantProp & ButtonType>`
     (disabled && theme.color.buttons.disabled) ||
     (secondary && theme.color.buttons.secondary) ||
     theme.color.buttons.primary};
-  height: 40px;
+  height: ${({ size }) => (size ? ICON_SIZES[size] : ICON_SIZES.m)};
   padding: 0 ${({ theme, hideText }) => (hideText ? theme.indents.xs : theme.indents.xl)};
   border-radius: ${({ theme }) => theme.radius.xs};
   border: none;

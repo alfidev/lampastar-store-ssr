@@ -10,3 +10,8 @@ export * from './Adaptive';
 export * from './Info';
 export * from './Counter';
 export * from './Accordion';
+export * from './Slider';
+export * from './Tag';
+export * from './Carousel';
+export * from './Header';
+export * from './Typography';

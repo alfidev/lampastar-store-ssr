@@ -6,6 +6,7 @@ export const LIGHT_THEME: ThemeType = {
     background: {
       main: '#F3F3F3',
       light: '#EDEDED',
+      dark: '#000',
       primary: '#FFF',
       secondary: '#454545',
       secondaryHover: '#45454512',
@@ -41,6 +42,11 @@ export const LIGHT_THEME: ThemeType = {
       textHover: '#FF773D',
       textActive: '#C53B00',
     },
+    tags: {
+      new: '#41C34E',
+      hit: '#ff1900',
+      sale: '#7B61FF',
+    },
     opacity: {
       modal: 'rgba(0,0,0,0.2)',
     },
@@ -64,6 +70,7 @@ export const LIGHT_THEME: ThemeType = {
     l: '20px',
     xl: '24px',
     xxl: '32px',
+    xxxl: '64px',
     xxxxl: '80px',
   },
   radius: {
@@ -74,6 +81,7 @@ export const LIGHT_THEME: ThemeType = {
     m: '16px',
   },
   zIndex: {
+    button: 10,
     menu: 100,
     modal: 1000,
   },
