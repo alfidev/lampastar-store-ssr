@@ -7,7 +7,7 @@ type TextSkeletonType = {
   size?: TypographyNames;
 };
 
-const textSizes: Record<TypographyNames, string> = {
+const textSizes: Partial<Record<TypographyNames, string>> = {
   title1: '',
   title2: '',
   main1: '',
