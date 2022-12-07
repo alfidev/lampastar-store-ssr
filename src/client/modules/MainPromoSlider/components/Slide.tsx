@@ -6,10 +6,11 @@ import { Button } from '@ui/components';
 type Props = {
   type: promoSliderEnum;
   color: string;
-  elementId: string;
+  elementId?: number;
   text: string;
   buttonText: string;
   image: string;
+  onClick: (type: promoSliderEnum, elementId?: number) => void;
 };
 
 const Wrapper = styled.div<{ color: string }>`
@@ -46,9 +47,9 @@ const SlideText = styled.div<{ black?: boolean }>`
   white-space: pre-line;
 `;
 
-export const Slide = ({ type, elementId, color, text, buttonText, image }: Props) => {
+export const Slide = ({ type, elementId, color, text, buttonText, image, onClick }: Props) => {
   const handleClickButton = () => {
-    console.log(type, text, elementId);
+    onClick(type, elementId);
   };
 
   return (
