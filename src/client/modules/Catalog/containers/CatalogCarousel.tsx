@@ -43,7 +43,7 @@ export const CatalogCarousel = ({ type }: Props) => {
         <Container>
           <Row wrap={false} indent={12}>
             {list.map((product) => (
-              <Col key={product.id} mobile={3}>
+              <Col key={product.id} mobile={8} tablet={4} desktopS={3}>
                 <ProductCard
                   product={product}
                   onChangeCount={handleChangeCount}
