@@ -3,6 +3,7 @@ import { FlattenInterpolation, ThemeProps } from 'styled-components';
 type Font = FlattenInterpolation<ThemeProps<ThemeType>>;
 
 export type TypographyNames =
+  | 'big1'
   | 'title1'
   | 'title2'
   | 'body1'

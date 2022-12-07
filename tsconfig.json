@@ -12,6 +12,9 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "baseUrl": "src",
+    "lib": [
+      "ES2021.String"
+    ],
     "paths": {
       "@common/*": ["client/common/*"],
       "@layouts/*": ["client/layouts/*"],

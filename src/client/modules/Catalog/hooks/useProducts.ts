@@ -1,9 +1,10 @@
 import { useQuery } from 'react-query';
 import { API_PRODUCTS_URL } from '../constants';
-import { getQueryRequest } from '../services';
+
 import { OrderType, ProductsTypeResponse, SortType } from '../types';
 import { useMemo } from 'react';
 import { mapProducts } from '../utils';
+import { getQueryRequest } from '@common/utils';
 
 type Props = {
   category?: string;

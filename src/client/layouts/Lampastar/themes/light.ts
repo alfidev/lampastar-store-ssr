@@ -86,6 +86,11 @@ export const LIGHT_THEME: ThemeType = {
     modal: 1000,
   },
   typography: {
+    big1: css`
+      font-size: 46px;
+      line-height: 56px;
+      font-weight: 800;
+    `,
     title1: css`
       font-size: 28px;
       line-height: 40px;
