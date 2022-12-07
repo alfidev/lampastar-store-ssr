@@ -9,8 +9,16 @@ export const MainPromoSlider = () => {
   return (
     <>
       <Slider
-        slides={slides.map(({ type, background, elementId }, index) => (
-          <Slide key={index} type={type} elementId={elementId} color={background} />
+        slides={slides.map(({ type, background, id, bannerText, buttonText, image }) => (
+          <Slide
+            key={id}
+            type={type}
+            elementId={id}
+            color={background}
+            text={bannerText}
+            buttonText={buttonText}
+            image={image}
+          />
         ))}
       />
     </>

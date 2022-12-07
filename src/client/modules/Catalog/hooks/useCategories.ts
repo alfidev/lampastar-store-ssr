@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { API_CATEGORIES_URL } from '../constants';
-import { getQueryRequest } from '../services/requests';
+import { getQueryRequest } from '@common/utils';
 import { CategoryTypeResponse } from '../types';
 import { getCategoriesRecursive, mapCategories } from '@modules/Catalog/utils';
 import { useMemo } from 'react';

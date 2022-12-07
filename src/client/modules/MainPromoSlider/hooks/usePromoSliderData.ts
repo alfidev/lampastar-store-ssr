@@ -1,7 +1,14 @@
-import { promoSliderEnum } from '../constants';
-import { SlideType } from '../types';
+import { API_BANNERS_URL } from '../constants';
+import { BannersResponseType } from '../types';
+import { useQuery } from 'react-query';
+import { getQueryRequest } from '@common/utils';
+import { useMemo } from 'react';
+import { mapBanners } from '../utils';
 
-const SLIDES_LIST: SlideType[] = [{ type: promoSliderEnum.CATEGORY, elementId: '3', background: '#FFB811' }];
 export const usePromoSliderData = () => {
-  return { slides: SLIDES_LIST, isLoading: false, isError: false };
+  const { isLoading, data, isError } = useQuery([API_BANNERS_URL], getQueryRequest<BannersResponseType>());
+
+  const bannerList = useMemo(() => (data?.list ? mapBanners(data.list) : []), [data]);
+
+  return { slides: bannerList, isLoading, isError };
 };

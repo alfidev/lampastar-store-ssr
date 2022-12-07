@@ -1,4 +1,4 @@
-import { ajax } from '@common/utils';
+import { ajax } from './ajax';
 import { AxiosRequestConfig } from 'axios';
 
 export const getQueryRequest =
