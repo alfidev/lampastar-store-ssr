@@ -11,10 +11,10 @@ export const Home = () => {
   return (
     <Container>
       <PromoSection indent={12}>
-        <Col desktopS={9}>
+        <Col tablet={7} desktopS={8} desktopM={9}>
           <MainPromoSlider />
         </Col>
-        <Col desktopS={3}>
+        <Col tablet={5} desktopS={4} desktopM={3}>
           <MainHitsSlider />
         </Col>
       </PromoSection>

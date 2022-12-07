@@ -10,6 +10,10 @@ const StyledHeader = styled(Header)`
   margin-bottom: ${({ theme }) => theme.indents.m};
 `;
 
+const StyledCol = styled(Col)`
+  margin-bottom: ${({ theme }) => theme.indents.m};
+`;
+
 const TitleTypography = styled(Typography).attrs({ tag: 'h2', variant: 'main1' })`
   margin: 0;
 `;
@@ -20,18 +24,18 @@ export const MainPageAbout = () => {
       <StyledHeader title={<TitleTypography>Наши преимущества</TitleTypography>} />
       <Container>
         <Row indent={12}>
-          <Col mobile={3}>
+          <StyledCol mobile={12} tablet={6} desktopS={6} desktopM={3}>
             <AboutItem icon={<Sync />} text="Быстрый обмен и возврат" />
-          </Col>
-          <Col mobile={3}>
+          </StyledCol>
+          <StyledCol mobile={12} tablet={6} desktopS={6} desktopM={3}>
             <AboutItem icon={<PriceTag />} text="Беспроцентная рассрочка" />
-          </Col>
-          <Col mobile={3}>
+          </StyledCol>
+          <StyledCol mobile={12} tablet={6} desktopS={6} desktopM={3}>
             <AboutItem icon={<FastDelivery />} text="Удобная доставка" />
-          </Col>
-          <Col mobile={3}>
+          </StyledCol>
+          <StyledCol mobile={12} tablet={6} desktopS={6} desktopM={3}>
             <AboutItem icon={<Speed />} text="Тест-драйв" />
-          </Col>
+          </StyledCol>
         </Row>
       </Container>
     </>
