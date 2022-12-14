@@ -21,3 +21,5 @@ export const Typography = styled(TypographyComponent)`
   ${({ theme, color }) => (color ? `color: ${theme.color.text[color]}` : '')};
   ${({ theme, variant }) => theme.typography[variant || 'body1']};
 `;
+
+Typography.displayName = 'Typography';

@@ -39,7 +39,7 @@ const NextArrowButton = styled(ArrowButton)`
   right: -12px;
 `;
 
-export const Carousel = ({ children }: { children: ReactNode }) => {
+export const Carousel = ({ children, isLoading }: { children: ReactNode; isLoading?: boolean }) => {
   const carouselRef = useRef<HTMLDivElement | null>();
 
   const handleClickPrevSlide = () => {
@@ -57,13 +57,16 @@ export const Carousel = ({ children }: { children: ReactNode }) => {
   return (
     <Container>
       <CarouselBlock>
-        <PrevArrowButton onClick={handleClickPrevSlide}>
-          <ArrowLeft />
-        </PrevArrowButton>
-        <NextArrowButton onClick={handleClickNextSlide}>
-          <ArrowRight />
-        </NextArrowButton>
-
+        {!isLoading && (
+          <>
+            <PrevArrowButton onClick={handleClickPrevSlide}>
+              <ArrowLeft />
+            </PrevArrowButton>
+            <NextArrowButton onClick={handleClickNextSlide}>
+              <ArrowRight />
+            </NextArrowButton>
+          </>
+        )}
         <Wrapper ref={(instance) => (carouselRef.current = instance)}>{children}</Wrapper>
       </CarouselBlock>
     </Container>

@@ -6,3 +6,4 @@ export * from './PaymentAndDelivery';
 export * from './NotFound';
 export * from './OurTeam';
 export * from './Home';
+export * from './News';

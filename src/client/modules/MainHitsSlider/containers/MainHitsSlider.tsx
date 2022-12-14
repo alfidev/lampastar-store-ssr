@@ -1,10 +1,12 @@
 import React from 'react';
 import { Slider } from '@ui/components';
-import { Slide } from '../components';
+import { Slide, SlideSkeleton } from '../components';
 import { useHitsSliderData } from '../hooks';
 
 export const MainHitsSlider = () => {
-  const { list } = useHitsSliderData();
+  const { list, isLoading } = useHitsSliderData();
+
+  if (isLoading) return <SlideSkeleton />;
 
   return (
     <>

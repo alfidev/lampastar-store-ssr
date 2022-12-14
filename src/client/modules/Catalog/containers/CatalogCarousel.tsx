@@ -5,6 +5,7 @@ import { useProductsCarousel, useProductActions } from '../hooks';
 import { ProductCard } from '../modules/product';
 import { Container, Row, Col, Header, Typography } from '@ui/components';
 import styled from 'styled-components';
+import { CarouselSkeleton } from '../components';
 
 type Props = {
   type: CarouselType;
@@ -34,23 +35,25 @@ export const CatalogCarousel = ({ type }: Props) => {
   const { list, isLoading } = useProductsCarousel(type);
   const { handleChangeFavourite, handleChangeCount } = useProductActions();
 
-  if (isLoading) return null;
-
   return (
     <>
       <StyledHeader title={<TitleTypography>{getTitle(type)}</TitleTypography>} />
-      <Carousel>
+      <Carousel isLoading={isLoading}>
         <Container>
           <Row wrap={false} indent={12}>
-            {list.map((product) => (
-              <Col key={product.id} mobile={8} tablet={4} desktopS={3}>
-                <ProductCard
-                  product={product}
-                  onChangeCount={handleChangeCount}
-                  onChangeFavourite={handleChangeFavourite}
-                />
-              </Col>
-            ))}
+            {isLoading ? (
+              <CarouselSkeleton />
+            ) : (
+              list.map((product) => (
+                <Col key={product.id} mobile={8} tablet={4} desktopS={3}>
+                  <ProductCard
+                    product={product}
+                    onChangeCount={handleChangeCount}
+                    onChangeFavourite={handleChangeFavourite}
+                  />
+                </Col>
+              ))
+            )}
           </Row>
         </Container>
       </Carousel>

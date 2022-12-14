@@ -1,6 +1,6 @@
 export const MAIN_MENU = [
   // 'sales',
-  // 'news',
+  'news',
   'about',
   'ourTeam',
   // "reviews",
