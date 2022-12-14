@@ -9,16 +9,23 @@ type Props = {
   mode?: ViewModeType;
   onChangeCount: (product: ProductType, count: number) => void;
   onChangeFavourite: (product: ProductType, value: boolean) => void;
+  onClickCard: (id: number) => void;
 };
 
-export const ProductCard = ({ product, mode = VIEW_MODE.grid, onChangeCount, onChangeFavourite }: Props) => {
-  const { image, name, price, oldPrice, notAvailable, forOrder, available } = product;
+export const ProductCard = ({
+  product,
+  mode = VIEW_MODE.grid,
+  onChangeCount,
+  onChangeFavourite,
+  onClickCard,
+}: Props) => {
+  const { image, name, price, discount, special, notAvailable, forOrder, available, id } = product;
 
   const [count, setCount] = useState(0);
   const [isFavourite, setIsFavourite] = useState(false);
 
-  const priceString = price ? formatSum(price) : undefined;
-  const oldPriceString = oldPrice ? formatSum(oldPrice) : undefined;
+  const priceString = price ? formatSum(special || discount || price) : undefined;
+  const oldPriceString = priceString && (special || discount) ? formatSum(price) : undefined;
 
   const isCompare = false;
 
@@ -36,6 +43,10 @@ export const ProductCard = ({ product, mode = VIEW_MODE.grid, onChangeCount, onC
     }
   };
 
+  const onClickCardHandler = () => {
+    onClickCard(id);
+  };
+
   if (mode === VIEW_MODE.grid)
     return (
       <ProductCardUI
@@ -51,6 +62,7 @@ export const ProductCard = ({ product, mode = VIEW_MODE.grid, onChangeCount, onC
         forOrder={forOrder}
         onChangeCount={onChangeCountHandler}
         onChangeFavourite={onChangeFavouriteHandler}
+        onClickCard={onClickCardHandler}
       />
     );
 
@@ -68,6 +80,7 @@ export const ProductCard = ({ product, mode = VIEW_MODE.grid, onChangeCount, onC
       forOrder={forOrder}
       onChangeCount={onChangeCountHandler}
       onChangeFavourite={onChangeFavouriteHandler}
+      onClickCard={onClickCardHandler}
     />
   );
 };

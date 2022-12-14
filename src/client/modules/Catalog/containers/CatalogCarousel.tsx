@@ -34,6 +34,7 @@ const TitleTypography = styled(Typography).attrs({ tag: 'h2', variant: 'main1' }
 export const CatalogCarousel = ({ type }: Props) => {
   const { list, isLoading } = useProductsCarousel(type);
   const { handleChangeFavourite, handleChangeCount } = useProductActions();
+  const { handleClickCard } = useProductActions();
 
   return (
     <>
@@ -50,6 +51,7 @@ export const CatalogCarousel = ({ type }: Props) => {
                     product={product}
                     onChangeCount={handleChangeCount}
                     onChangeFavourite={handleChangeFavourite}
+                    onClickCard={handleClickCard}
                   />
                 </Col>
               ))

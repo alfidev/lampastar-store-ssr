@@ -2,8 +2,6 @@ import { useQuery } from 'react-query';
 import { API_PRODUCTS_URL } from '../constants';
 
 import { OrderType, ProductsTypeResponse, SortType } from '../types';
-import { useMemo } from 'react';
-import { mapProducts } from '../utils';
 import { getQueryRequest } from '@common/utils';
 
 type Props = {
@@ -45,9 +43,7 @@ export const useProducts = ({ category, page = 1, count = 18, sort, order, searc
     },
   );
 
-  const productsList = useMemo(() => (data?.list ? mapProducts(data.list) : []), [data]);
-
   const totalPage = Math.ceil((data?.total || 0) / (count || 18));
 
-  return { isLoading, list: productsList, category, totalPage };
+  return { isLoading, list: data?.list || [], category, totalPage };
 };
