@@ -1,5 +1,6 @@
 import { ThemeType } from '@layouts/Lampastar/types';
 import { css } from 'styled-components';
+import 'simplebar-react/dist/simplebar.min.css';
 
 export const LIGHT_THEME: ThemeType = {
   color: {

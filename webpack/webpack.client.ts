@@ -59,6 +59,10 @@ function createClientConfig(env: Env): Configuration {
           },
         },
         {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
           test: /\.svg$/,
           include: [path.resolve(__dirname, '../src/client/resources/images')],
           use: {

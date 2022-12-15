@@ -30,7 +30,7 @@ const SliderButton = styled(Button.Contained).attrs({ secondary: true, size: 'l'
 
 const ImageBox = styled.div`
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   z-index: 1;
 `;

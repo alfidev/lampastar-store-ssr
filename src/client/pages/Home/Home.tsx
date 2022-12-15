@@ -1,8 +1,8 @@
 import React from 'react';
-import { ContentSection, PromoSection } from './styled';
+import { ContentSection, PromoSection, SliderCol } from './styled';
 import { MainPromoSlider } from '@modules/MainPromoSlider';
 import { MainHitsSlider } from '@modules/MainHitsSlider';
-import { Container, Col } from '@ui/components';
+import { Container } from '@ui/components';
 import { CAROUSEL_TYPE, CatalogCarousel } from '@modules/Catalog';
 import { NewsCarousel } from '@modules/News';
 import { MainPageAbout } from '@modules/About';
@@ -11,12 +11,12 @@ export const Home = () => {
   return (
     <Container>
       <PromoSection indent={12}>
-        <Col tablet={7} desktopS={8} desktopM={9}>
+        <SliderCol tablet={7} desktopS={8} desktopM={9}>
           <MainPromoSlider />
-        </Col>
-        <Col tablet={5} desktopS={4} desktopM={3}>
+        </SliderCol>
+        <SliderCol tablet={5} desktopS={4} desktopM={3}>
           <MainHitsSlider />
-        </Col>
+        </SliderCol>
       </PromoSection>
       <ContentSection>
         <CatalogCarousel type={CAROUSEL_TYPE.BUY} />

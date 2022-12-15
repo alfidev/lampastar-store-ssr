@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Container } from '../Adaptive';
 import { ArrowButton } from '../ArrowButton';
 import { ArrowLeft, ArrowRight } from '@ui/icons';
+import SimpleBar from 'simplebar-react';
 
 const CarouselBlock = styled.div`
   position: relative;
@@ -21,11 +22,6 @@ const CarouselBlock = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  overflow: hidden;
-`;
-
 const PrevArrowButton = styled(ArrowButton)`
   z-index: ${({ theme }) => theme.zIndex.button};
   position: absolute;
@@ -40,17 +36,19 @@ const NextArrowButton = styled(ArrowButton)`
 `;
 
 export const Carousel = ({ children, isLoading }: { children: ReactNode; isLoading?: boolean }) => {
-  const carouselRef = useRef<HTMLDivElement | null>();
+  const carouselRef = useRef<SimpleBar | null>();
 
   const handleClickPrevSlide = () => {
-    if (carouselRef.current) {
-      carouselRef.current?.scrollTo({ left: carouselRef.current?.scrollLeft - 288, behavior: 'smooth' });
+    const elem = carouselRef.current?.getScrollElement();
+    if (elem) {
+      elem?.scrollTo({ left: elem?.scrollLeft - 288, behavior: 'smooth' });
     }
   };
 
   const handleClickNextSlide = () => {
-    if (carouselRef.current) {
-      carouselRef.current?.scrollTo({ left: carouselRef.current?.scrollLeft + 288, behavior: 'smooth' });
+    const elem = carouselRef.current?.getScrollElement();
+    if (elem) {
+      elem?.scrollTo({ left: elem?.scrollLeft + 288, behavior: 'smooth' });
     }
   };
 
@@ -67,7 +65,7 @@ export const Carousel = ({ children, isLoading }: { children: ReactNode; isLoadi
             </NextArrowButton>
           </>
         )}
-        <Wrapper ref={(instance) => (carouselRef.current = instance)}>{children}</Wrapper>
+        <SimpleBar ref={(instance) => (carouselRef.current = instance)}>{children}</SimpleBar>
       </CarouselBlock>
     </Container>
   );

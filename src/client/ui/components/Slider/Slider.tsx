@@ -7,7 +7,8 @@ import { ArrowLeft, ArrowRight } from '@ui/icons';
 type Props = {
   slides: ReactNode[];
   isLoading?: boolean;
-  isDisabled?: boolean;
+  enableAuto?: boolean;
+  timeAuto?: number;
 };
 
 const SliderBlock = styled.div`
@@ -80,38 +81,96 @@ const BottomControlButton = styled.div<{ active: boolean }>`
   }
 `;
 
-export const Slider = ({ slides }: Props) => {
+export const Slider = ({ slides, isLoading, enableAuto = true, timeAuto = 4000 }: Props) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  const activeSliderRef = useRef<HTMLDivElement | null>();
+  const [autoStopped, setAutoStopped] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const sliderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (activeSliderRef.current) {
-      activeSliderRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (sliderRef.current) {
+      sliderRef.current?.scrollTo({
+        left: (activeSlideIndex * sliderRef.current?.scrollWidth) / (slides.length || 1),
+        behavior: 'smooth',
+      });
     }
-  }, [activeSliderRef.current]);
+  }, [activeSlideIndex]);
 
   const handleClickBottomControl = (index: number) => {
     setActiveSlideIndex(index);
   };
 
   const handleClickPrevSlide = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+
     let newIndex = activeSlideIndex - 1;
     if (newIndex < 0) newIndex = slides.length - 1;
 
     setActiveSlideIndex(newIndex);
+
+    if (!isLoading && slides.length > 1 && enableAuto) {
+      timerRef.current = setTimeout(() => setCounter(counter + 1), timeAuto);
+    }
+  };
+
+  const nextSlideWithTimeout = (skipSliding: boolean) => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+
+    if (!skipSliding) {
+      let newIndex = activeSlideIndex + 1;
+      if (newIndex >= slides.length) newIndex = 0;
+
+      setActiveSlideIndex(newIndex);
+    }
+
+    if (!isLoading && slides.length > 1 && enableAuto) {
+      timerRef.current = setTimeout(() => setCounter(counter + 1), timeAuto);
+    }
   };
 
   const handleClickNextSlide = () => {
-    let newIndex = activeSlideIndex + 1;
-    if (newIndex >= slides.length) newIndex = 0;
-
-    setActiveSlideIndex(newIndex);
+    nextSlideWithTimeout(false);
   };
+
+  useEffect(() => {
+    if (autoStopped) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    } else {
+      nextSlideWithTimeout(true);
+    }
+  }, [autoStopped]);
+
+  useEffect(() => {
+    nextSlideWithTimeout(counter < 1);
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [isLoading, slides, enableAuto, counter]);
 
   if (!slides.length) return null;
 
   return (
-    <Container>
+    <Container
+      onMouseEnter={() => setAutoStopped(true)}
+      onMouseLeave={() => setAutoStopped(false)}
+      onTouchMove={() => setAutoStopped(true)}
+      onTouchEnd={() => setAutoStopped(false)}
+    >
       <SliderBlock>
         {slides.length > 1 && (
           <>
@@ -123,16 +182,9 @@ export const Slider = ({ slides }: Props) => {
             </NextArrowButton>
           </>
         )}
-        <Wrapper>
+        <Wrapper ref={(instance) => (sliderRef.current = instance)}>
           {slides.map((slide, index) => (
-            <Slide
-              key={index}
-              ref={(instance) => {
-                if (index === activeSlideIndex) activeSliderRef.current = instance;
-              }}
-            >
-              {slide}
-            </Slide>
+            <Slide key={index}>{slide}</Slide>
           ))}
         </Wrapper>
       </SliderBlock>
