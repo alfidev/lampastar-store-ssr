@@ -6,6 +6,7 @@ import { merge } from 'webpack-merge';
 import createBaseConfig from './webpack.base';
 import { Env } from 'shared/envType';
 import { default as clientConfig } from './webpack.client';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
@@ -72,12 +73,14 @@ function createServerConfig(): Configuration {
         },
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
       ],
     },
 
     plugins: [
+      new MiniCssExtractPlugin(),
+
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: ['!public/**'],
       }),

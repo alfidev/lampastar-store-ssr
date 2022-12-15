@@ -10,6 +10,7 @@ import fs from 'fs';
 import { Env } from 'shared/envType';
 import createBaseConfig from './webpack.base';
 import dotenv from 'dotenv';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
 
@@ -60,7 +61,7 @@ function createClientConfig(env: Env): Configuration {
         },
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
           test: /\.svg$/,
@@ -82,6 +83,8 @@ function createClientConfig(env: Env): Configuration {
       ],
     },
     plugins: [
+      new MiniCssExtractPlugin(),
+
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: './index.html',
