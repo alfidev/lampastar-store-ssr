@@ -38,10 +38,10 @@ const OnBuy = styled.span`
 `;
 
 export const Slide = ({ product }: Props) => {
-  const { image, name, price, oldPrice } = product;
+  const { image, name, price, special, discount } = product;
 
-  const priceString = price ? formatSum(price) : undefined;
-  const oldPriceString = oldPrice ? formatSum(oldPrice) : undefined;
+  const priceString = price ? formatSum(special || discount || price) : undefined;
+  const oldPriceString = priceString && (special || discount) ? formatSum(price) : undefined;
 
   return (
     <StyledCard height={300}>
