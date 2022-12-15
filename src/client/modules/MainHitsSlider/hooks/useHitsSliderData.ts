@@ -2,8 +2,6 @@ import { useQuery } from 'react-query';
 import { API_PRODUCTS_HITS_URL } from '@modules/Catalog/constants';
 
 import { ProductsTypeResponse } from '@modules/Catalog/types';
-import { useMemo } from 'react';
-import { mapProducts } from '@modules/Catalog/utils';
 import { getQueryRequest } from '@common/utils';
 
 export const useHitsSliderData = () => {
@@ -12,7 +10,5 @@ export const useHitsSliderData = () => {
     getQueryRequest<ProductsTypeResponse>(),
   );
 
-  const productsList = useMemo(() => (data?.list ? mapProducts(data.list) : []), [data]);
-
-  return { isLoading, list: productsList };
+  return { isLoading, list: data?.list || [] };
 };

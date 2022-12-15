@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   background: ${({ theme }) => theme.color.buttons.primary};
   border-radius: ${({ theme }) => theme.radius.xs};
   padding: ${({ theme }) => theme.indents.xs} ${({ theme }) => theme.indents.s};
+  color: ${({ theme }) => theme.color.text.secondary};
 `;
 
 const StyledText = styled(Typography).attrs({ color: 'secondary', variant: 'body4' })`

@@ -30,6 +30,7 @@ export const StyledCardLine = styled(Card)`
 
 export const TopBlock = styled.div`
   flex-grow: 1;
+  cursor: pointer;
 `;
 
 export const LeftBlock = styled.div`
@@ -39,6 +40,7 @@ export const LeftBlock = styled.div`
 export const BottomBlock = styled.div`
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 export const NameContainer = styled.div`

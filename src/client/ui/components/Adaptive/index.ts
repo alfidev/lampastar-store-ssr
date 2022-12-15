@@ -1,1 +1,1 @@
-export * from './Adaptive';
+export { Container, Col, Row, adaptive } from './Adaptive';

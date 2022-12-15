@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PageTitle } from '@layouts/Lampastar';
 import { ProductsList, ProductsFilters, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
-import { useCategories, useProducts } from '../hooks';
+import { useCategories, useProductActions, useProducts } from '../hooks';
 import styled from 'styled-components';
 import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
 import { ProductType } from '../types';
@@ -46,6 +46,7 @@ export const CatalogCategory = ({ categoryAlias }: Props) => {
     totalPage,
     isLoading: isLoadingProducts,
   } = useProducts({ category: categoryAlias, page, sort, order });
+  const { handleClickCard } = useProductActions();
 
   const isLoadingFilters = false;
 
@@ -72,6 +73,7 @@ export const CatalogCategory = ({ categoryAlias }: Props) => {
         mode={viewMode}
         onChangeCount={onChangeCount}
         onChangeFavourite={onChangeFavourite}
+        onClickCard={handleClickCard}
       />
     );
   };

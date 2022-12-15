@@ -28,6 +28,7 @@ export type ProductCardProps = {
   forOrder: boolean;
   onChangeCount: (count: number) => void;
   onChangeFavourite: () => void;
+  onClickCard: () => void;
 };
 
 export const ProductCard = ({
@@ -43,6 +44,7 @@ export const ProductCard = ({
   forOrder,
   onChangeCount,
   onChangeFavourite,
+  onClickCard,
 }: ProductCardProps) => {
   const buttonText =
     (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || (available && 'В наличии') || 'В корзину';
@@ -59,11 +61,11 @@ export const ProductCard = ({
 
   return (
     <StyledCard height={372}>
-      <TopBlock>
+      <TopBlock onClick={onClickCard}>
         <ImageBox>{image ? <img alt={name} src={`${image}`} /> : <NoImage />}</ImageBox>
         <NameContainer>{name}</NameContainer>
       </TopBlock>
-      <BottomBlock>
+      <BottomBlock onClick={onClickCard}>
         <PriceContainer>
           {oldPrice && <OldPrice>{oldPrice}</OldPrice>}
           {price && <ActualPrice>{price}</ActualPrice>}

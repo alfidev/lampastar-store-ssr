@@ -1,60 +1,7 @@
-export type ProductTypeResponse = {
-  product_id: string;
-  name: string;
-  price: string;
-  image: string | null;
-  description: string;
-  meta_title: string;
-  meta_description: string;
-  meta_keyword: string;
-  tag: string;
-  model: string;
-  sku: string;
-  upc: string;
-  ean: string;
-  jan: string;
-  isbn: string;
-  mpn: string;
-  location: string;
-  stock_status: string | null;
-  manufacturer_id: string | null;
-  manufacturer: string | null;
-  special: string | null;
-  reward: string | null;
-  points: string;
-  tax_class_id: string;
-  date_available: string;
-  weight: string;
-  weight_class_id: string;
-  length: string;
-  width: string;
-  height: string;
-  length_class_id: string;
-  subtract: string;
-  rating: number;
-  reviews: number;
-  minimum: string;
-  sort_order: string;
-  status: string;
-  date_added: string;
-  date_modified: string;
-  viewed: string;
-  old_price: string | null; //test
-  not_available: boolean;
-  available: boolean;
-  for_order: boolean;
-};
-
-export type ProductsTypeResponse = {
-  list: ProductTypeResponse[];
-  total: number;
-};
-
 export type ProductType = {
-  id: string;
+  id: number;
   name: string;
   price: number;
-  oldPrice?: number;
   image?: string;
   description: string;
   metaTitle: string;
@@ -72,7 +19,8 @@ export type ProductType = {
   stockStatus?: string;
   manufacturerId?: string;
   manufacturer?: string;
-  special?: string;
+  discount?: number;
+  special?: number;
   reward?: string;
   points: string;
   taxClassId: string;
@@ -95,4 +43,9 @@ export type ProductType = {
   notAvailable: boolean;
   available: boolean;
   forOrder: boolean;
+};
+
+export type ProductsTypeResponse = {
+  list: ProductType[];
+  total: number;
 };

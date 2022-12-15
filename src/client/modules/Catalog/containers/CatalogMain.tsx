@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PageTitle } from '@layouts/Lampastar';
 import { ProductsList, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
-import { useProducts } from '../hooks';
+import { useProductActions, useProducts } from '../hooks';
 import styled from 'styled-components';
 import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
 import { ProductType } from '../types';
@@ -41,6 +41,7 @@ export const CatalogMain = ({ search }: Props) => {
     totalPage,
     isLoading: isLoadingProducts,
   } = useProducts({ page, sort, order, ...(search && { search }) });
+  const { handleClickCard } = useProductActions();
 
   const onChangeCount = (product: ProductType, count: number) => {
     console.log('addProduct', product.name, 'count', count);
@@ -59,6 +60,7 @@ export const CatalogMain = ({ search }: Props) => {
         mode={viewMode}
         onChangeCount={onChangeCount}
         onChangeFavourite={onChangeFavourite}
+        onClickCard={handleClickCard}
       />
     );
   };

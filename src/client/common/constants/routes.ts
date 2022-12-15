@@ -1,4 +1,4 @@
-import { About, ApplicationSettings, Catalog, Contacts, OurTeam, PaymentAndDelivery, Home } from '@pages';
+import { About, ApplicationSettings, Catalog, Contacts, OurTeam, PaymentAndDelivery, Home, News } from '@pages';
 import { RouteType } from '../types';
 
 export const ROUTES: Record<string, RouteType> = {
@@ -49,7 +49,8 @@ export const ROUTES: Record<string, RouteType> = {
     title: 'Новости',
     label: 'Новости',
     path: '/news',
-    component: Catalog,
+    route: '/news/*',
+    component: News,
   },
   sales: {
     title: 'Распродажа',

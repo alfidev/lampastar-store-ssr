@@ -1,6 +1,6 @@
 import React from 'react';
 import { Slider } from '@ui/components';
-import { Slide } from '../components';
+import { Slide, SlideSkeleton } from '../components';
 import { usePromoSliderData } from '../hooks';
 import { promoSliderEnum } from '../constants';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ const getElementId = (type: promoSliderEnum, categoryId?: number, productId?: nu
 export const MainPromoSlider = () => {
   const navigate = useNavigate();
 
-  const { slides } = usePromoSliderData();
+  const { slides, isLoading } = usePromoSliderData();
 
   const handleOnClick = (type: promoSliderEnum, elementId?: number) => {
     switch (type) {
@@ -25,6 +25,8 @@ export const MainPromoSlider = () => {
         return navigate(`/catalog/${elementId}`);
     }
   };
+
+  if (isLoading) return <SlideSkeleton />;
 
   return (
     <>
