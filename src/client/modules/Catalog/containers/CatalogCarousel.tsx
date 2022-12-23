@@ -23,7 +23,6 @@ const getTitle = (type: CarouselType) => {
 };
 
 const StyledHeader = styled(Header)`
-  margin-top: ${({ theme }) => theme.indents.xxxl};
   margin-bottom: ${({ theme }) => theme.indents.m};
 `;
 

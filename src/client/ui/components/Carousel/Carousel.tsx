@@ -20,6 +20,10 @@ const CarouselBlock = styled.div`
       opacity: 1;
     }
   }
+
+  .simplebar-track.simplebar-horizontal {
+    display: none;
+  }
 `;
 
 const PrevArrowButton = styled(ArrowButton)`
