@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import { Logo } from "@resources/images";
+import styled from 'styled-components';
+import { Logo } from '@resources/images';
 
-const MAX_WIDTH = "744px";
+const MAX_WIDTH = '744px';
 
 export const StyledLogo = styled(Logo)`
-  width: 360px;
-  height: 191px;
+  width: 200px;
+  height: 110px;
 `;
 
 export const AboutWrapper = styled.section`
@@ -21,6 +21,10 @@ export const TitleLine = styled.div`
   align-items: center;
   height: 68px;
   margin-top: 100px;
+
+  :first-of-type {
+    margin-top: 40px;
+  }
 `;
 
 export const TitleLineBackground = styled.div`
@@ -77,9 +81,20 @@ export const StyledImageAbout = styled.img`
   margin: 20px 20px;
 `;
 
+export const StyledImageCert = styled.img`
+  margin: 20px 10px;
+  cursor: pointer;
+`;
+
 export const CertificatesContainer = styled.div`
   ${({ theme }) => theme.typography.body5}
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+export const CertificatesLine = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
