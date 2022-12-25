@@ -15,3 +15,5 @@ export * from './Tag';
 export * from './Carousel';
 export * from './Header';
 export { Typography } from './Typography';
+export { ModalBackground } from './ModalBackground';
+export { FullImageSlider } from './FullImageSlider';
