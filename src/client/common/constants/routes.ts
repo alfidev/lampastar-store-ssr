@@ -52,12 +52,6 @@ export const ROUTES: Record<string, RouteType> = {
     route: '/news/*',
     component: News,
   },
-  sales: {
-    title: 'Распродажа',
-    label: 'Распродажа',
-    path: '/sales',
-    component: Catalog,
-  },
   about: {
     title: 'Кто мы',
     label: 'Кто мы',
