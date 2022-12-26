@@ -17,12 +17,12 @@ import {
   NavGroupAdaptive,
   StyledCatalogText,
 } from './styled';
-import { CONTACTS, MAIN_MENU, ROUTES, PAGE_SD } from '@common/constants';
+import { CONTACTS, MAIN_MENU, ROUTES } from '@common/constants';
 import { PhoneIcon, LikeIcon, BasketIcon, MenuRightIcon, CloseIcon } from '@ui/icons';
 import { useTheme } from 'styled-components';
 import { Logo } from '@resources/images/';
 import { Link } from 'react-router-dom';
-import { BACKEND_ENABLE, USE_CATALOG, useFeature } from '@common/featureToggles';
+import { USE_ORDER, useFeature } from '@common/featureToggles';
 import { CatalogSearch } from '@modules/Search';
 
 const { paymentAndDelivery, contacts, favourites, basket, home } = ROUTES;
@@ -36,10 +36,7 @@ type Props = {
 export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
   const theme = useTheme();
 
-  const isBackEnabled = useFeature(BACKEND_ENABLE);
-  const isUseCatalog = useFeature(USE_CATALOG);
-
-  const filterPage = (page: string) => (isUseCatalog && page === 'catalog') || isBackEnabled || !PAGE_SD.includes(page);
+  const isUseOrder = useFeature(USE_ORDER);
 
   return (
     <>
@@ -61,35 +58,31 @@ export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
             <Link to={home.path}>
               <Logo />
             </Link>
-            {isUseCatalog && (
-              <>
-                <NavGroupSearch>
-                  <CatalogButton onClick={toggleMenu}>
-                    {menuIsOpened ? <CloseIcon /> : <MenuRightIcon />}
-                    <StyledCatalogText>Каталог</StyledCatalogText>
-                  </CatalogButton>
-                  <CatalogSearch />
-                </NavGroupSearch>
-                {isBackEnabled && (
-                  <NavGroupAdaptive>
-                    <StyledLinkMiddle to={favourites.path}>
-                      <LikeIcon size="xxl" style={{ marginBottom: theme.indents.xxxs }} />
-                      {favourites.label}
-                    </StyledLinkMiddle>
-                    <StyledLinkMiddle to={basket.path}>
-                      <BasketIcon size="xxl" style={{ marginBottom: theme.indents.xxxs }} />
-                      {basket.label}
-                    </StyledLinkMiddle>
-                  </NavGroupAdaptive>
-                )}
-              </>
+            <NavGroupSearch>
+              <CatalogButton onClick={toggleMenu}>
+                {menuIsOpened ? <CloseIcon /> : <MenuRightIcon />}
+                <StyledCatalogText>Каталог</StyledCatalogText>
+              </CatalogButton>
+              <CatalogSearch />
+            </NavGroupSearch>
+            {isUseOrder && (
+              <NavGroupAdaptive>
+                <StyledLinkMiddle to={favourites.path}>
+                  <LikeIcon size="xxl" style={{ marginBottom: theme.indents.xxxs }} />
+                  {favourites.label}
+                </StyledLinkMiddle>
+                <StyledLinkMiddle to={basket.path}>
+                  <BasketIcon size="xxl" style={{ marginBottom: theme.indents.xxxs }} />
+                  {basket.label}
+                </StyledLinkMiddle>
+              </NavGroupAdaptive>
             )}
           </MiddleContainer>
         </MiddleLine>
         <BottomLine>
           <BottomContainer>
             <NavGroup>
-              {MAIN_MENU.filter(filterPage).map((page) => (
+              {MAIN_MENU.map((page) => (
                 <StyledLinkBottom key={ROUTES[page].path} to={ROUTES[page].path}>
                   {ROUTES[page].label}
                 </StyledLinkBottom>

@@ -11,6 +11,7 @@ export const MainHitsSlider = () => {
   return (
     <>
       <Slider
+        enableAuto={false}
         slides={list.map((product, index) => (
           <Slide key={index} product={product} />
         ))}

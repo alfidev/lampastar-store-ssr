@@ -1,15 +1,7 @@
 import React from 'react';
 
 import { Card } from '@ui/components';
-import {
-  ActualPrice,
-  BottomBlock,
-  ImageBox,
-  NameContainer,
-  OldPrice,
-  PriceContainer,
-  TopBlock,
-} from '@ui/components/ProductCard/styled';
+import { BottomBlock, ImageBox, OldPrice, TopBlock } from '@ui/components/ProductCard/styled';
 import { NoImage } from '@ui/icons';
 import { Tag } from '@ui/components';
 import { ProductType } from '@modules/Catalog/types';
@@ -33,8 +25,31 @@ const TagsBlock = styled.div`
   }
 `;
 
+export const ActualPrice = styled.div`
+  ${({ theme }) => theme.typography.main2};
+  margin-left: 10px;
+  white-space: nowrap;
+`;
+
 const OnBuy = styled.span`
   color: ${({ theme }) => theme.color.text.contrastLine};
+`;
+
+export const NameContainer = styled.div`
+  word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  /* Ограничиваем блок текста тремя строками */
+  -webkit-line-clamp: 2;
+`;
+
+export const PriceContainer = styled.div`
+  margin-top: ${({ theme }) => theme.indents.s};
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 export const Slide = ({ product }: Props) => {

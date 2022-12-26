@@ -28,7 +28,7 @@ import {
 } from './styled';
 import { Mail } from '@resources/images';
 import { Typography } from '@ui/components/Typography';
-import { CONTACTS, FOR_CLIENT_MENU, PAGE_SD, ROUTES } from '@common/constants';
+import { CONTACTS, FOR_CLIENT_MENU, ROUTES } from '@common/constants';
 import { Link } from 'react-router-dom';
 import { ClockIcon, GeoIcon, MailIcon, PhoneIcon, ViberIcon, WhatsappIcon } from '@ui/icons';
 import { Container, Row, Col } from '@ui/components/Adaptive';
@@ -36,15 +36,13 @@ import { BACKEND_ENABLE, useFeature } from '@common/featureToggles';
 
 const { phoneNumber, address, workTime, mail } = CONTACTS;
 
-const MenuList = ({ menu, isBackEnabled }: { menu: string[]; isBackEnabled: boolean }) => (
+const MenuList = ({ menu }: { menu: string[] }) => (
   <FooterMenu>
-    {menu
-      .filter((page) => isBackEnabled || (!isBackEnabled && !PAGE_SD.includes(page)))
-      .map((page) => (
-        <FooterMenuItem key={ROUTES[page].path}>
-          <Link to={ROUTES[page].path}>{ROUTES[page].label}</Link>
-        </FooterMenuItem>
-      ))}
+    {menu.map((page) => (
+      <FooterMenuItem key={ROUTES[page].path}>
+        <Link to={ROUTES[page].path}>{ROUTES[page].label}</Link>
+      </FooterMenuItem>
+    ))}
   </FooterMenu>
 );
 
@@ -111,7 +109,7 @@ export const Footer = ({ menuIsOpened }: Props) => {
                   <Col tablet={4} desktopS={3}>
                     <FooterColumn>
                       <Typography variant="body3">Покупателям</Typography>
-                      <MenuList menu={FOR_CLIENT_MENU} isBackEnabled={isBackEnabled} />
+                      <MenuList menu={FOR_CLIENT_MENU} />
                     </FooterColumn>
                   </Col>
                   <Col tablet={5} desktopS={6}>
