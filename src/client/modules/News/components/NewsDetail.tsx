@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { NewsItemType } from '../types';
 import { PageTitle } from '@layouts/Lampastar';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Container, Row, Col } from '@ui/components';
 import { Breadcrumbs } from '@ui/components/Breadcrumbs';
+import { reformatLinks } from '../utils';
 
 type Props = {
   item: NewsItemType;
@@ -45,6 +46,8 @@ export const NewsDetail = ({ item }: Props) => {
   const mainImage = images.filter(({ r }) => r?.imageId === mainImageId);
   const otherImages = images.filter(({ r }) => r?.imageId !== mainImageId);
 
+  const formattedText = useMemo(() => reformatLinks(text), [text]);
+
   return (
     <>
       <Breadcrumbs items={breadcrumbs} />
@@ -55,7 +58,7 @@ export const NewsDetail = ({ item }: Props) => {
       <Container>
         <Row>
           <StyledCol desktopS={7}>
-            <TextBlock>{text}</TextBlock>
+            <TextBlock>{formattedText}</TextBlock>
           </StyledCol>
           <Col desktopS={5}>
             <Container>

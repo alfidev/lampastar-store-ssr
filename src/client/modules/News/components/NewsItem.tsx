@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ImageSizeEnum, NewsItemType } from '../types';
 import styled from 'styled-components';
 import { Container, Col, Row, Typography } from '@ui/components';
 import { format } from 'date-fns';
+import { reformatLinks } from '../utils';
 
 type Props = {
   item: NewsItemType;
@@ -43,6 +44,8 @@ export const NewsItem = ({ item, onClick, imageType }: Props) => {
     ? images.filter((image) => image?.[imageType]?.imageId === mainImageId)?.[0]?.[imageType]?.url
     : images[0]?.[imageType]?.url;
 
+  const formattedText = useMemo(() => reformatLinks(text), [text]);
+
   return (
     <Wrapper>
       <Container>
@@ -51,7 +54,7 @@ export const NewsItem = ({ item, onClick, imageType }: Props) => {
           <Col desktopS={10}>
             <Title onClick={() => onClick(id)}>{title}</Title>
             <DateBlock>{format(new Date(dateAdded), 'dd.MM.yyyy')}</DateBlock>
-            <TextBlock>{text}</TextBlock>
+            <TextBlock>{formattedText}</TextBlock>
           </Col>
         </Row>
       </Container>
