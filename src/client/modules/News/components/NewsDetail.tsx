@@ -40,7 +40,10 @@ const StyledImg = styled.img`
 const breadcrumbs = [{ path: '/news', label: 'Новости' }];
 
 export const NewsDetail = ({ item }: Props) => {
-  const { title, dateAdded, text, images } = item;
+  const { title, dateAdded, text, images, mainImageId } = item;
+
+  const mainImage = images.filter(({ r }) => r?.imageId === mainImageId);
+  const otherImages = images.filter(({ r }) => r?.imageId !== mainImageId);
 
   return (
     <>
@@ -57,7 +60,21 @@ export const NewsDetail = ({ item }: Props) => {
           <Col desktopS={5}>
             <Container>
               <Row indent={10}>
-                {images.map(({ q, r }) => {
+                {mainImage.map(({ q, r }) => {
+                  if (q && q.width < q.height)
+                    return (
+                      <StyledCol key={q?.id} mobile={6}>
+                        <StyledImg src={q?.url} />
+                      </StyledCol>
+                    );
+                  if (r && r.width >= r.height)
+                    return (
+                      <StyledCol key={r?.id} mobile={12}>
+                        <StyledImg src={r?.url} />
+                      </StyledCol>
+                    );
+                })}
+                {otherImages.map(({ q, r }) => {
                   if (q && q.width < q.height)
                     return (
                       <StyledCol key={q?.id} mobile={6}>

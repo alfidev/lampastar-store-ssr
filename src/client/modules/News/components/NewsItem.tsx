@@ -37,13 +37,17 @@ const Title = styled(Typography).attrs({ variant: 'main2', tag: 'h2' })`
 `;
 
 export const NewsItem = ({ item, onClick, imageType }: Props) => {
-  const { text, images, dateAdded, title, id } = item;
+  const { text, images, dateAdded, title, id, mainImageId } = item;
+
+  const imageUrl = mainImageId
+    ? images.filter((image) => image?.[imageType]?.imageId === mainImageId)?.[0]?.[imageType]?.url
+    : images[0]?.[imageType]?.url;
 
   return (
     <Wrapper>
       <Container>
         <Row>
-          <Col desktopS={2}>{images[0] && <StyledImg src={images[0][imageType]?.url} />}</Col>
+          <Col desktopS={2}>{imageUrl && <StyledImg src={imageUrl} />}</Col>
           <Col desktopS={10}>
             <Title onClick={() => onClick(id)}>{title}</Title>
             <DateBlock>{format(new Date(dateAdded), 'dd.MM.yyyy')}</DateBlock>
