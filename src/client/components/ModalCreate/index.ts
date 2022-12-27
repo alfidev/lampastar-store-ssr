@@ -20,7 +20,13 @@ export const ModalCreate = ({ modalId, children }: Props) => {
     modalProps: app.modalProps,
   }));
 
-  const portal = useMemo(() => document.getElementById(MODAL_PORTAL_ID), [openedModalIds]);
+  const portal = useMemo(() => {
+    if (typeof document !== 'undefined') {
+      return document?.getElementById(MODAL_PORTAL_ID);
+    }
+
+    return null;
+  }, [openedModalIds]);
 
   const handleClose = () => {
     dispatch(closeModalAction({ modalId }));
