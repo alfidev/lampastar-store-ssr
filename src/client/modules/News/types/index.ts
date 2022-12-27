@@ -13,6 +13,7 @@ export enum ImageSizeEnum {
 
 export type NewsImageType = {
   id: number;
+  imageId: number;
   newsId: number;
   type: string;
   url: string;
@@ -28,6 +29,7 @@ export type NewsItemType = {
   dateAdded: string;
   text: string;
   title: string;
+  mainImageId?: number;
   images: ImageSizeLineType[];
 };
 

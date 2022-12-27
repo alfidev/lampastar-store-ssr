@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { NewsItemType } from '../types';
 import { PageTitle } from '@layouts/Lampastar';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Container, Row, Col } from '@ui/components';
 import { Breadcrumbs } from '@ui/components/Breadcrumbs';
+import { reformatLinks } from '../utils';
 
 type Props = {
   item: NewsItemType;
@@ -40,7 +41,12 @@ const StyledImg = styled.img`
 const breadcrumbs = [{ path: '/news', label: 'Новости' }];
 
 export const NewsDetail = ({ item }: Props) => {
-  const { title, dateAdded, text, images } = item;
+  const { title, dateAdded, text, images, mainImageId } = item;
+
+  const mainImage = images.filter(({ r }) => r?.imageId === mainImageId);
+  const otherImages = images.filter(({ r }) => r?.imageId !== mainImageId);
+
+  const formattedText = useMemo(() => reformatLinks(text), [text]);
 
   return (
     <>
@@ -52,12 +58,26 @@ export const NewsDetail = ({ item }: Props) => {
       <Container>
         <Row>
           <StyledCol desktopS={7}>
-            <TextBlock>{text}</TextBlock>
+            <TextBlock>{formattedText}</TextBlock>
           </StyledCol>
           <Col desktopS={5}>
             <Container>
               <Row indent={10}>
-                {images.map(({ q, r }) => {
+                {mainImage.map(({ q, r }) => {
+                  if (q && q.width < q.height)
+                    return (
+                      <StyledCol key={q?.id} mobile={6}>
+                        <StyledImg src={q?.url} />
+                      </StyledCol>
+                    );
+                  if (r && r.width >= r.height)
+                    return (
+                      <StyledCol key={r?.id} mobile={12}>
+                        <StyledImg src={r?.url} />
+                      </StyledCol>
+                    );
+                })}
+                {otherImages.map(({ q, r }) => {
                   if (q && q.width < q.height)
                     return (
                       <StyledCol key={q?.id} mobile={6}>

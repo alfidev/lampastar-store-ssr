@@ -48,7 +48,10 @@ const TitleBlock = styled.div`
 `;
 
 export const NewsSlide = ({ news, onClick }: Props) => {
-  const { title, images, dateAdded, id } = news;
+  const { title, images, dateAdded, id, mainImageId } = news;
+
+  const imageUrl =
+    (mainImageId ? images.filter(({ p }) => p?.imageId === mainImageId)?.[0]?.p?.url : images[0]?.p?.url) || '';
 
   return (
     <Wrapper onClick={() => onClick(id)}>
@@ -57,7 +60,7 @@ export const NewsSlide = ({ news, onClick }: Props) => {
         <TitleBlock>{title}</TitleBlock>
       </TextBlock>
       <Black />
-      <StyledImage src={images[0]?.p?.url || ''} />
+      <StyledImage src={imageUrl} />
     </Wrapper>
   );
 };

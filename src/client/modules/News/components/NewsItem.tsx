@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ImageSizeEnum, NewsItemType } from '../types';
 import styled from 'styled-components';
 import { Container, Col, Row, Typography } from '@ui/components';
 import { format } from 'date-fns';
+import { reformatLinks } from '../utils';
 
 type Props = {
   item: NewsItemType;
@@ -37,17 +38,23 @@ const Title = styled(Typography).attrs({ variant: 'main2', tag: 'h2' })`
 `;
 
 export const NewsItem = ({ item, onClick, imageType }: Props) => {
-  const { text, images, dateAdded, title, id } = item;
+  const { text, images, dateAdded, title, id, mainImageId } = item;
+
+  const imageUrl = mainImageId
+    ? images.filter((image) => image?.[imageType]?.imageId === mainImageId)?.[0]?.[imageType]?.url
+    : images[0]?.[imageType]?.url;
+
+  const formattedText = useMemo(() => reformatLinks(text), [text]);
 
   return (
     <Wrapper>
       <Container>
         <Row>
-          <Col desktopS={2}>{images[0] && <StyledImg src={images[0][imageType]?.url} />}</Col>
+          <Col desktopS={2}>{imageUrl && <StyledImg src={imageUrl} />}</Col>
           <Col desktopS={10}>
             <Title onClick={() => onClick(id)}>{title}</Title>
             <DateBlock>{format(new Date(dateAdded), 'dd.MM.yyyy')}</DateBlock>
-            <TextBlock>{text}</TextBlock>
+            <TextBlock>{formattedText}</TextBlock>
           </Col>
         </Row>
       </Container>
