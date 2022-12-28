@@ -1,5 +1,5 @@
 import React from 'react';
-import { LikeActiveIcon, LikeIcon, NoImage } from '@ui/icons';
+import { Compare, Like, NoImage } from '@ui/icons';
 
 import {
   BottomBlock,
@@ -12,6 +12,7 @@ import {
   NameContainer,
   ActionsBlock,
   AdditionalButton,
+  LikeActive,
 } from './styled';
 import { ButtonContained, Counter } from '@ui/components';
 
@@ -39,15 +40,13 @@ export const ProductCard = ({
   isFavourite,
   isCompare,
   notAvailable,
-  available,
   countInBasket,
   forOrder,
   onChangeCount,
   onChangeFavourite,
   onClickCard,
 }: ProductCardProps) => {
-  const buttonText =
-    (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || (available && 'В наличии') || 'В корзину';
+  const buttonText = (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || 'В корзину';
 
   const addToBasketHandler = () => {
     onChangeCount(1);
@@ -75,25 +74,16 @@ export const ProductCard = ({
         {showCounter ? (
           <Counter value={countInBasket} onChange={onChangeCounter} />
         ) : (
-          <ButtonContained
-            secondary
-            isFluid
-            disabled={notAvailable || forOrder || available}
-            onClick={addToBasketHandler}
-          >
+          <ButtonContained secondary isFluid disabled={notAvailable || forOrder} onClick={addToBasketHandler}>
             {buttonText}
           </ButtonContained>
         )}
-        {false && (
-          <AdditionalButton active={isCompare}>
-            <LikeIcon size="xxxl" />
-          </AdditionalButton>
-        )}
-        {false && (
-          <AdditionalButton active={isFavourite} onClick={onChangeFavourite}>
-            {isFavourite ? <LikeActiveIcon size="xxxl" /> : <LikeIcon size="xxxl" />}
-          </AdditionalButton>
-        )}
+        <AdditionalButton active={isCompare}>
+          <Compare />
+        </AdditionalButton>
+        <AdditionalButton active={isFavourite} onClick={onChangeFavourite}>
+          {isFavourite ? <LikeActive /> : <Like />}
+        </AdditionalButton>
       </ActionsBlock>
     </StyledCard>
   );
