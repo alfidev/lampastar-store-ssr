@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import { TypographyNames } from '@layouts/Lampastar';
+
+import { TypographyNames } from '@layouts/Lampastar/types';
 
 type TextSkeletonType = {
   width?: string | number;

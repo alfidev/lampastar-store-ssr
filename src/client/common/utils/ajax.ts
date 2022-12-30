@@ -15,9 +15,9 @@ class Ajax {
     // );
   }
 
-  request<T>(method: Method, url: string, options?: AxiosRequestConfig) {
+  request<T, U>(method: Method, url: string, options?: AxiosRequestConfig<U>) {
     try {
-      return this.ajax.request<T>({ ...options, method, url });
+      return this.ajax.request<T>({ method, url, ...options });
     } catch (e) {
       throw e as AxiosError<any>;
     }

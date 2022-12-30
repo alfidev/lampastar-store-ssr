@@ -1,11 +1,12 @@
-import React, { ReactNode } from "react";
-import styled, { css } from "styled-components";
-import { Typography } from "../Typography";
+import React, { ReactNode, RefObject } from 'react';
+import styled, { css } from 'styled-components';
 
-const inputBorderStyles = css`
+import { Typography } from '../Typography';
+
+const inputBorderStyles = css<{ isError?: boolean }>`
   outline: none;
   border-radius: ${({ theme }) => theme.radius.xs};
-  border: 1px solid ${({ theme }) => theme.color.border.input};
+  border: 1px solid ${({ theme, isError }) => (isError ? theme.color.status.error : theme.color.border.input)};
 `;
 
 const inputStyles = css`
@@ -43,22 +44,21 @@ const CustomCheckBox = styled.label<{ checked: boolean; withText: boolean }>`
   position: relative;
 
   ::before {
-    content: "";
+    content: '';
     display: inline-block;
     min-width: 18px;
     height: 18px;
     border-radius: ${({ theme }) => theme.radius.xxs};
     border: 1px solid ${({ theme }) => theme.color.border.input};
     background: ${({ theme }) => theme.color.background.primary};
-    margin-right: ${({ theme, withText }) =>
-      withText ? theme.indents.xs : theme.indents.none};
+    margin-right: ${({ theme, withText }) => (withText ? theme.indents.xs : theme.indents.none)};
   }
 
   ::after {
-    display: ${({ checked }) => (checked ? "block" : "none")};
+    display: ${({ checked }) => (checked ? 'block' : 'none')};
     position: absolute;
-    content: "";
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAyMCAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuNSA3LjVMNy4wOTU5NCAxMy4wOTU5TDE4LjExMjIgMi4wNzk3MSIgc3Ryb2tlPSIjRkY3NzNEIiBzdHJva2Utd2lkdGg9IjIuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=");
+    content: '';
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAyMCAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuNSA3LjVMNy4wOTU5NCAxMy4wOTU5TDE4LjExMjIgMi4wNzk3MSIgc3Ryb2tlPSIjRkY3NzNEIiBzdHJva2Utd2lkdGg9IjIuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=');
     min-width: 20px;
     height: 16px;
     left: 3px;
@@ -66,31 +66,32 @@ const CustomCheckBox = styled.label<{ checked: boolean; withText: boolean }>`
   }
 `;
 
+const FakeInputCheckBox = styled.input`
+  display: none;
+`;
+
 export const CheckBox = styled(
   ({
-    value,
-    onChange,
     children,
     className,
+    value,
+    ref,
+    ...props
   }: {
-    value: boolean;
-    onChange: (value: boolean) => void;
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
-  }) => {
+    value?: boolean;
+    ref?: ((instance: HTMLInputElement | null) => void) | RefObject<HTMLInputElement> | null;
+  } & Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'value'>) => {
     const withText = Boolean(children);
 
     return (
-      <CustomCheckBox
-        className={className}
-        checked={value}
-        withText={withText}
-        onClick={() => onChange(!value)}
-      >
+      <CustomCheckBox checked={!!value} className={className} withText={withText}>
+        <FakeInputCheckBox checked={!!value} {...props} type="checkbox" />
         {withText && <Typography variant="mini2">{children}</Typography>}
       </CustomCheckBox>
     );
-  }
+  },
 )``;
 
 export const ToggleCheckBox = styled.label<{
@@ -104,7 +105,7 @@ export const ToggleCheckBox = styled.label<{
   height: 18px;
 
   ::before {
-    content: "";
+    content: '';
     display: inline-block;
     min-width: 36px;
     width: 36px;
@@ -117,12 +118,10 @@ export const ToggleCheckBox = styled.label<{
   ::after {
     position: absolute;
     transition: left ease 0.3s;
-    content: "";
+    content: '';
     border-radius: 50%;
     background: ${({ theme, checked }) =>
-      checked
-        ? theme.color.background.contrastLine
-        : theme.color.background.main};
+      checked ? theme.color.background.contrastLine : theme.color.background.main};
     min-width: 10px;
     width: 10px;
     height: 10px;

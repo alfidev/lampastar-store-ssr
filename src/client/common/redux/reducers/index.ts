@@ -1,4 +1,4 @@
-import { ApplicationReducerState } from '@common/redux/reducers/application';
+import { ApplicationReducerState } from './application';
 
 export { applicationReducer } from './application';
 

@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RouteComponent } from '@common/components';
-import { ErrorWrapper, InfoBlock, ErrorText, ErrorCode, ErrorDescription, ImageBox, StyledSvg } from './styled';
-import { Typography } from '@ui/components/Typography';
-import { ButtonContained } from '@ui/components';
+
+import { RouteComponent } from '@common/components/RouteComponent';
 import { ErrorRouterContext } from '@common/context';
+import { ButtonContained } from '@ui/components';
+import { Typography } from '@ui/components';
+
+import { ErrorWrapper, InfoBlock, ErrorText, ErrorCode, ErrorDescription, ImageBox, StyledSvg } from './styled';
 
 export const NotFound = () => {
   const { setStatusCode } = useContext(ErrorRouterContext);

@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { Card } from '../Card';
-import { Button } from '@ui/components';
+
 import { Like } from '@ui/icons';
+
+import { Button } from '../Button';
+import { Card } from '../Card';
 
 export const ImageBox = styled.div`
   height: 170px;

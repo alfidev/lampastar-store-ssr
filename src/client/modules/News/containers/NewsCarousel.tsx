@@ -1,13 +1,13 @@
 import React from 'react';
-
-import { Carousel } from '@ui/components/Carousel';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { Container, Row, Col, Header, Typography } from '@ui/components';
-import styled from 'styled-components';
-import { useNewsCarousel } from '@modules/News/hooks';
-import { NewsSlide } from '@modules/News/components/NewsSlide';
-import { useNavigate } from 'react-router-dom';
-import { CarouselSlideSkeleton } from '@modules/News/components';
+import { Carousel } from '@ui/components/Carousel';
+
+import { CarouselSlideSkeleton } from '../components';
+import { NewsSlide } from '../components/NewsSlide';
+import { useNewsCarousel } from '../hooks';
 
 const StyledHeader = styled(Header)`
   margin-top: ${({ theme }) => theme.indents.xxxl};

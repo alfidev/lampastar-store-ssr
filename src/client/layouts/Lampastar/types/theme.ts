@@ -17,7 +17,6 @@ export type TypographyNames =
   | 'main2';
 
 export type Typography = {
-  // eslint-disable-next-line no-unused-vars
   [name in TypographyNames]: Font;
 };
 
@@ -71,6 +70,11 @@ export type ThemeType = {
       contrastLine: string;
       skeletonPrimary: string;
       skeletonSecondary: string;
+    };
+    status: {
+      success: string;
+      warning: string;
+      error: string;
     };
     border: {
       input: string;

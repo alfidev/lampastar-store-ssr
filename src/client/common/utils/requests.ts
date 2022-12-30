@@ -1,15 +1,21 @@
-import { ajax } from './ajax';
 import { AxiosRequestConfig } from 'axios';
 
+import { ajax } from './ajax';
+
 export const getQueryRequest =
-  <T>(options?: AxiosRequestConfig) =>
-  async ({ queryKey }: { queryKey: string[] }): Promise<T> => {
-    const { params, ...rest } = options || {};
+  <T, U = unknown>(options?: AxiosRequestConfig) =>
+  async (queryData?: { queryKey?: string[] } & U): Promise<T> => {
+    const { queryKey, ...requestData } = queryData || {};
+    const { url, params, ...rest } = options || {};
     try {
-      const { data } = await ajax.request<T>('GET', '', { params: { route: queryKey[0], ...params }, ...rest });
+      const { data } = await ajax.request<T, U>('GET', '', {
+        params: { route: url || queryKey?.[0], ...params },
+        data: requestData,
+        ...rest,
+      });
 
       return data;
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
       throw e;
     }

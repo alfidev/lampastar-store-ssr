@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { Routes as RoutesSwitch, Route, useLocation } from 'react-router-dom';
-import { ROUTES } from '../../constants';
-import { RouteComponent } from '../RouteComponent';
+
 import { NotFound } from '@pages';
-import { RouteNotFound } from '@common/components/Routes/RouteNotFound';
-import { ErrorRouterContext } from '@common/context';
+
+import { ROUTES } from '../../constants';
+import { ErrorRouterContext } from '../../context';
+import { RouteComponent } from '../RouteComponent';
+import { RouteNotFound } from '../Routes/RouteNotFound';
 
 type Props = {
   themeWrapper: JSX.Element;

@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
+
 import { closeModalAction, openModalAction } from '../actions';
 
 export type ApplicationReducerState = {

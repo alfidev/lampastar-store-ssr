@@ -1,6 +1,9 @@
 import React from 'react';
+
 import { Compare, Like, NoImage } from '@ui/icons';
 
+import { ButtonContained } from '../Button';
+import { Counter } from '../Counter';
 import {
   BottomBlock,
   StyledCard,
@@ -14,7 +17,6 @@ import {
   AdditionalButton,
   LikeActive,
 } from './styled';
-import { ButtonContained, Counter } from '@ui/components';
 
 export type ProductCardProps = {
   name: string;

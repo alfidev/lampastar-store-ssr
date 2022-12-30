@@ -1,12 +1,14 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+
+import { store } from '@common/redux';
 import { Theme, Wrapper } from '@layouts/Lampastar';
-import { Routes } from '../Routes';
-import { ErrorContext } from '../../types';
+
+import { MODAL_PORTAL_ID } from '../../constants';
 import { ErrorRouterContext, defaultContext } from '../../context';
 import { FeatureTogglesContextProvider, getToggles } from '../../featureToggles';
-import { MODAL_PORTAL_ID } from '@common/constants';
-import { store } from '@common/redux';
+import { ErrorContext } from '../../types';
+import { Routes } from '../Routes';
 
 type Props = {
   context?: ErrorContext;

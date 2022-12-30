@@ -1,5 +1,6 @@
-import { ThemeType } from '@layouts/Lampastar/types';
 import { css } from 'styled-components';
+
+import { ThemeType } from '../types';
 import 'simplebar-react/dist/simplebar.min.css';
 
 export const LIGHT_THEME: ThemeType = {
@@ -30,6 +31,11 @@ export const LIGHT_THEME: ThemeType = {
       contrastLine: '#FF773D',
       light: '#D4D4D8',
       lightTwo: '#BABAC0',
+    },
+    status: {
+      success: '#34c406',
+      warning: '#ffcb4b',
+      error: '#c70000',
     },
     buttons: {
       disabled: '#D4D4D8',

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Typography as TypographyType, TypographyColorType } from '@layouts/Lampastar';
+
+import { Typography as TypographyType, TypographyColorType } from '@layouts/Lampastar/types';
 
 type Props = {
   tag?: string;
