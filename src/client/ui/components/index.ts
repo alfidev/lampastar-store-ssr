@@ -17,3 +17,4 @@ export * from './Header';
 export { Typography } from './Typography';
 export { ModalBackground } from './ModalBackground';
 export { FullImageSlider } from './FullImageSlider';
+export { Tabs, Tab } from './Tabs';

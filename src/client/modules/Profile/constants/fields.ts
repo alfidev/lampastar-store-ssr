@@ -1,4 +1,3 @@
-export const FIELD_LOGIN = 'FIELD_LOGIN';
 export const FIELD_PASSWORD = 'FIELD_PASSWORD';
 export const FIELD_FIRST_NAME = 'FIELD_FIRST_NAME';
 export const FIELD_LAST_NAME = 'FIELD_LAST_NAME';

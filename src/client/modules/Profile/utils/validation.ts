@@ -42,3 +42,5 @@ export const registerValidationSchema = yup.object().shape({
     .required('Введите пароль')
     .oneOf([true], 'Нужно соглашение с политикой конфиденциальности'),
 });
+
+export const sdafasdf = 4;

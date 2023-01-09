@@ -5,6 +5,8 @@
     "jest": true
   },
   "extends": [
+    "airbnb",
+    "airbnb/hooks",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -16,7 +18,8 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "import",
@@ -32,6 +35,10 @@
       "error",
       { "ignoreRestSiblings": true, "varsIgnorePattern": "^React$", "args": "after-used" }
     ],
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx", ".jsx"] }],
+    "react/function-component-definition": "off",
+    "react/jsx-props-no-spreading": ["warn"],
+    "react/require-default-props": "off",
     "import/no-cycle": "error",
     "import/no-duplicates": "off",
     "import/prefer-default-export": "off",
@@ -49,8 +56,7 @@
       }
     ],
     "import/extensions": ["error", { "ts": "never", "tsx": "never", "json": "always" }],
-    "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
-    "import/no-unused-modules": [1, { "missingExports": true }]
+    "import/no-unresolved": [2, { "commonjs": true, "amd": true }]
   },
   "settings": {
     "react": {
