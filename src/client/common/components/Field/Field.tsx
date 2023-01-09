@@ -79,7 +79,7 @@ export const Field = ({ validation, label, ...props }: Props) => {
         {validation && <ValidationMark>* </ValidationMark>}
         {label}
       </Label>
-      <Input isError={showError} {...field} {...props} />
+      <Input isError={validation && showError} {...field} {...props} />
       {validation && <Error>{showError && meta.error}</Error>}
     </Wrapper>
   );
@@ -102,7 +102,7 @@ export const FieldMobile = ({ validation, label, ...props }: Props) => {
         {validation && <ValidationMark>* </ValidationMark>}
         {label}
       </Label>
-      <Input onChange={handleChange} isError={showError} {...field} {...props} />
+      <Input onChange={handleChange} isError={validation && showError} {...field} {...props} />
       {validation && <Error>{showError && meta.error}</Error>}
     </Wrapper>
   );

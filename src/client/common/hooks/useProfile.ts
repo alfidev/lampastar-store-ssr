@@ -1,9 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
+import { useToasts } from '@common/hooks/useToasts';
+import { ToastStatusEnum } from '@common/types';
 import { getQueryRequest } from '@common/utils';
 
 type RegisterOrLoginResponseType = {
-  success: string;
+  success?: string;
+  error?: string;
 };
 
 type RegisterOrLoginRequestType = {
@@ -31,6 +34,7 @@ const logoutOptions = {
 
 export const useProfile = () => {
   const queryClient = useQueryClient();
+  const { addToast } = useToasts();
 
   const { isSuccess, isError } = useQuery([CHECK_AUTHORIZE_API], getQueryRequest(), {
     refetchInterval: 30 * 1000,
@@ -65,8 +69,14 @@ export const useProfile = () => {
   const login = (data: any) => {
     loginAsync(data)
       .then(() => invalidate())
-      .catch(() => console.log('Login error'));
+      .catch((data) => addToast({ message: data?.response?.data?.error, status: ToastStatusEnum.ERROR }));
   };
 
-  return { isAuthorized: isSuccess && !isError, invalidate, logout, register, login };
+  return {
+    isAuthorized: isSuccess && !isError,
+    invalidate,
+    logout,
+    register,
+    login,
+  };
 };

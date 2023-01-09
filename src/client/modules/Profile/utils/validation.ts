@@ -5,19 +5,23 @@ import {
   FIELD_EMAIL,
   FIELD_FIRST_NAME,
   FIELD_LAST_NAME,
-  FIELD_LOGIN,
   FIELD_NEW_PASSWORD,
   FIELD_NEW_PASSWORD_CONFIRM,
   FIELD_PASSWORD,
   FIELD_PHONE,
 } from '../constants';
 
-export const loginValidationSchema = yup.object().shape({
-  [FIELD_LOGIN]: yup.string().email('Неправильный email').required('Введите email'),
+const phoneRegExp = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+
+export const loginPhoneValidationSchema = yup.object().shape({
+  [FIELD_PHONE]: yup.string().matches(phoneRegExp, 'Неверный номер телефона').required('Введите номер телефона'),
   [FIELD_PASSWORD]: yup.string().required('Введите пароль'),
 });
 
-const phoneRegExp = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+export const loginEmailValidationSchema = yup.object().shape({
+  [FIELD_EMAIL]: yup.string().email('Неправильный email').required('Введите email'),
+  [FIELD_PASSWORD]: yup.string().required('Введите пароль'),
+});
 
 export const registerValidationSchema = yup.object().shape({
   [FIELD_FIRST_NAME]: yup.string().required('Введите имя').max(32, 'Длинна имя не должна превышать 32 символов'),
