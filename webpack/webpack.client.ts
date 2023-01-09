@@ -1,16 +1,22 @@
-import { DefinePlugin, Configuration } from 'webpack';
-import 'webpack-dev-server';
-import path from 'path';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import { merge } from 'webpack-merge';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import fs from 'fs';
-import { Env } from 'shared/envType';
-import createBaseConfig from './webpack.base';
+import path from 'path';
+
+import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import dotenv from 'dotenv';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+// eslint-disable-next-line import/order
+import { DefinePlugin, Configuration } from 'webpack';
+
+import 'webpack-dev-server';
+
+import { merge } from 'webpack-merge';
+
+import { Env } from 'shared/envType';
+
+import createBaseConfig from './webpack.base';
 
 dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
 
