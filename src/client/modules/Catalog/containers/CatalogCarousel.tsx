@@ -1,11 +1,14 @@
 import React from 'react';
-import { CarouselType } from '../types';
+import styled from 'styled-components';
+
+import { USE_BUY_TOP, useFeature } from '@common/featureToggles';
+import { Container, Row, Col, Header, Typography } from '@ui/components';
 import { Carousel } from '@ui/components/Carousel';
+
+import { CarouselSkeleton } from '../components';
 import { useProductsCarousel, useProductActions } from '../hooks';
 import { ProductCard } from '../modules/product';
-import { Container, Row, Col, Header, Typography } from '@ui/components';
-import styled from 'styled-components';
-import { CarouselSkeleton } from '../components';
+import { CarouselType } from '../types';
 
 type Props = {
   type: CarouselType;
@@ -19,6 +22,8 @@ const getTitle = (type: CarouselType) => {
       return 'Новинки';
     case 'VIEW':
       return 'Самые просматриваемые';
+    default:
+      return '';
   }
 };
 
@@ -34,6 +39,9 @@ export const CatalogCarousel = ({ type }: Props) => {
   const { list, isLoading } = useProductsCarousel(type);
   const { handleChangeFavourite, handleChangeCount } = useProductActions();
   const { handleClickCard } = useProductActions();
+  const enabled = useFeature(USE_BUY_TOP) || type !== 'BUY';
+
+  if (!enabled) return null;
 
   return (
     <>
