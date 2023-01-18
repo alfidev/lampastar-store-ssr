@@ -1,10 +1,10 @@
 import React, { StrictMode } from 'react';
-
-import { InitialComponent } from '@common/components';
 import { HelmetProvider } from 'react-helmet-async';
-import { ErrorContext } from '@common/types';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+
+import { InitialComponent } from '@common/components/InitialComponents';
+import { ErrorContext } from '@common/types';
 
 interface Props {
   /** Data used in the React prerender process. Use only in the server side. */

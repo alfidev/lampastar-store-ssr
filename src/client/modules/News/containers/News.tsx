@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { NewsList, PaginationPanel } from '../components';
-import { useNews } from '../hooks';
+
 import { PageTitle } from '@layouts/Lampastar';
-import { useNewsItem } from '@modules/News/hooks/useNewsItem';
-import { NewsDetail } from '@modules/News/components/NewsDetail';
+
+import { NewsList, PaginationPanel } from '../components';
+import { NewsDetail } from '../components/NewsDetail';
+import { useNews, useNewsItem } from '../hooks';
 
 export const News = () => {
   const navigate = useNavigate();

@@ -1,6 +1,13 @@
 import React, { ReactNode } from 'react';
+
+import { ContactForm } from '@common/components/ContactForm';
+import { YaMap } from '@common/components/YaMap';
+import { BACKEND_ENABLE, useFeature } from '@common/featureToggles';
 import { PageTitle } from '@layouts/Lampastar';
-import { Typography } from '@ui/components/Typography';
+import { Typography } from '@ui/components';
+import { Col, Container, Row } from '@ui/components/Adaptive';
+import { ClockIcon, GeoIcon, PhoneIcon, MailIcon } from '@ui/icons';
+
 import {
   ContactBlock,
   ContactColumn,
@@ -13,11 +20,6 @@ import {
   StyledParagraph,
   StyledTitle,
 } from './styled';
-import { ClockIcon, GeoIcon, PhoneIcon, MailIcon } from '@ui/icons';
-import { ContactForm } from '@components/ContactForm';
-import { YaMap } from '@common/components';
-import { Col, Container, Row } from '@ui/components/Adaptive';
-import { BACKEND_ENABLE, useFeature } from '@common/featureToggles';
 
 const SectionTitle = ({ children }: { children: ReactNode }) => (
   <Typography variant="title2" tag="h3">

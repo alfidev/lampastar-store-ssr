@@ -1,6 +1,7 @@
+import React, { ReactNode, RefObject } from 'react';
 import styled from 'styled-components';
-import React, { ReactNode } from 'react';
-import { SizesType } from '@layouts/Lampastar';
+
+import { SizesType } from '@layouts/Lampastar/types';
 
 type VariantProp = {
   secondary?: boolean;
@@ -166,7 +167,11 @@ const ButtonContainedWithIcon = styled(
     children,
     hideText,
     ...props
-  }: ButtonBaseType & VariantProp & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => {
+  }: ButtonBaseType &
+    VariantProp & {
+      className?: string;
+      ref?: ((instance: HTMLButtonElement | null) => void) | RefObject<HTMLButtonElement> | null;
+    } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => {
     return (
       <ButtonContained {...props} hideText={hideText}>
         <ButtonInner icon={icon} iconRight={iconRight}>

@@ -1,9 +1,11 @@
-import { FlattenInterpolation, ThemeProps } from 'styled-components';
+import { DefaultTheme, FlattenInterpolation, ThemeProps } from 'styled-components';
 
-type Font = FlattenInterpolation<ThemeProps<ThemeType>>;
+type Font = FlattenInterpolation<ThemeProps<DefaultTheme>>;
 
 export type TypographyNames =
   | 'big1'
+  | 'big2'
+  | 'big3'
   | 'title1'
   | 'title2'
   | 'body1'
@@ -17,7 +19,6 @@ export type TypographyNames =
   | 'main2';
 
 export type Typography = {
-  // eslint-disable-next-line no-unused-vars
   [name in TypographyNames]: Font;
 };
 
@@ -71,6 +72,11 @@ export type ThemeType = {
       contrastLine: string;
       skeletonPrimary: string;
       skeletonSecondary: string;
+    };
+    status: {
+      success: string;
+      warning: string;
+      error: string;
     };
     border: {
       input: string;

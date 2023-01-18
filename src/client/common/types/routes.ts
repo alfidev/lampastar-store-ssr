@@ -6,4 +6,5 @@ export type RouteType = {
   path: string;
   route?: string;
   component: FC;
+  isAuthorized?: boolean;
 };

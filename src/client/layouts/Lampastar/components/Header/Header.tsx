@@ -1,4 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTheme } from 'styled-components';
+
+import { CONTACTS, MAIN_MENU, ROUTES } from '@common/constants';
+import { USE_ORDER, useFeature } from '@common/featureToggles';
+import { useProfile } from '@common/hooks';
+import { CatalogSearch } from '@modules/Search';
+import { Logo } from '@resources/images/';
+import { PhoneIcon, MenuRightIcon, CloseIcon, User, Like, Basket } from '@ui/icons';
+
 import {
   BottomLine,
   MiddleLine,
@@ -16,16 +26,10 @@ import {
   CatalogButton,
   NavGroupAdaptive,
   StyledCatalogText,
+  HeaderIcon,
 } from './styled';
-import { CONTACTS, MAIN_MENU, ROUTES } from '@common/constants';
-import { PhoneIcon, LikeIcon, BasketIcon, MenuRightIcon, CloseIcon } from '@ui/icons';
-import { useTheme } from 'styled-components';
-import { Logo } from '@resources/images/';
-import { Link } from 'react-router-dom';
-import { USE_ORDER, useFeature } from '@common/featureToggles';
-import { CatalogSearch } from '@modules/Search';
 
-const { paymentAndDelivery, contacts, favourites, basket, home } = ROUTES;
+const { paymentAndDelivery, contacts, favourites, basket, home, profile } = ROUTES;
 const { phoneNumber } = CONTACTS;
 
 type Props = {
@@ -34,6 +38,7 @@ type Props = {
 };
 
 export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
+  const { isAuthorized } = useProfile();
   const theme = useTheme();
 
   const isUseOrder = useFeature(USE_ORDER);
@@ -68,11 +73,31 @@ export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
             {isUseOrder && (
               <NavGroupAdaptive>
                 <StyledLinkMiddle to={favourites.path}>
-                  <LikeIcon size="xxl" style={{ marginBottom: theme.indents.xxxs }} />
+                  <HeaderIcon>
+                    <Like />
+                  </HeaderIcon>
                   {favourites.label}
                 </StyledLinkMiddle>
+                {isAuthorized && (
+                  <StyledLinkMiddle to={profile.path}>
+                    <HeaderIcon>
+                      <User />
+                    </HeaderIcon>
+                    {profile.label}
+                  </StyledLinkMiddle>
+                )}
+                {!isAuthorized && (
+                  <StyledLinkMiddle to={'/profile/login'}>
+                    <HeaderIcon>
+                      <User />
+                    </HeaderIcon>
+                    Вход
+                  </StyledLinkMiddle>
+                )}
                 <StyledLinkMiddle to={basket.path}>
-                  <BasketIcon size="xxl" style={{ marginBottom: theme.indents.xxxs }} />
+                  <HeaderIcon>
+                    <Basket />
+                  </HeaderIcon>
                   {basket.label}
                 </StyledLinkMiddle>
               </NavGroupAdaptive>

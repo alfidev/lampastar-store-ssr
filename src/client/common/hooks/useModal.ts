@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { openModalAction, closeModalAction } from '@common/redux';
+
+import { openModalAction, closeModalAction } from '..//redux';
 
 export const useModal = () => {
   const dispatch = useDispatch();

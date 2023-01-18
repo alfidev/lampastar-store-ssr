@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { ProductCard as ProductCardUI, ProductCardLine as ProductCardLineUI } from '@ui/components';
-import { ProductType, ViewModeType } from '../../../types';
-import { VIEW_MODE } from '@modules/Catalog/constants';
+
 import { formatSum } from '@common/utils';
+import { VIEW_MODE } from '@modules/Catalog/constants';
+import { ProductCard as ProductCardUI, ProductCardLine as ProductCardLineUI } from '@ui/components';
+
+import { ProductType, ViewModeType } from '../../../types';
 
 type Props = {
   product: ProductType;
@@ -29,10 +31,10 @@ export const ProductCard = ({
 
   const isCompare = false;
 
-  const onChangeCountHandler = (count: number) => {
+  const onChangeCountHandler = (newCount: number) => {
     if (!notAvailable && !forOrder && !available) {
-      onChangeCount(product, count);
-      setCount(count);
+      onChangeCount(product, newCount);
+      setCount(newCount);
     }
   };
 

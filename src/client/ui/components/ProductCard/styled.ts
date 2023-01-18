@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+
+import { Like } from '@ui/icons';
+
+import { Button } from '../Button';
 import { Card } from '../Card';
-import { Button } from '@ui/components';
 
 export const ImageBox = styled.div`
   height: 170px;
@@ -107,4 +110,13 @@ export const AdditionalButton = styled(Button.Text)<{ active: boolean }>`
   :hover {
     color: ${({ theme }) => theme.color.buttons.secondaryHover};
   }
+
+  svg {
+    width: ${({ theme }) => theme.sizes.xxxl};
+    height: ${({ theme }) => theme.sizes.xxxl};
+  }
+`;
+
+export const LikeActive = styled(Like)`
+  fill: currentColor;
 `;

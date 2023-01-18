@@ -1,9 +1,9 @@
 import { useMemo, ReactNode } from 'react';
-import { MODAL_PORTAL_ID } from '@common/constants';
 import { createPortal } from 'react-dom';
-import { StateType } from '@common/redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModalAction } from '@common/redux';
+
+import { MODAL_PORTAL_ID } from '../../constants';
+import { closeModalAction, StateType } from '../../redux';
 
 export type ModalFuncPropsType = { modalProps: any; onClose: () => void };
 

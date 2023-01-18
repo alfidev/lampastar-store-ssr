@@ -1,5 +1,6 @@
 import { createContext } from 'react';
-import { ErrorContext } from '@common/types';
+
+import { ErrorContext } from '../types';
 
 export const defaultContext: ErrorContext = {
   error: { code: 0, message: '' },

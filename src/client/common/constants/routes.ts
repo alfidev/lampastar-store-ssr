@@ -1,11 +1,22 @@
-import { About, ApplicationSettings, Catalog, Contacts, OurTeam, PaymentAndDelivery, Home, News } from '@pages';
+import {
+  About,
+  ApplicationSettings,
+  Catalog,
+  Contacts,
+  OurTeam,
+  PaymentAndDelivery,
+  Home,
+  News,
+  Profile,
+} from '@pages';
+
 import { RouteType } from '../types';
 
 export const ROUTES: Record<string, RouteType> = {
   home: {
     title: 'ВЕСЬ СВЕТ',
     label: 'Главная',
-    path: '/',
+    path: '',
     component: Home,
   },
   catalog: {
@@ -19,7 +30,8 @@ export const ROUTES: Record<string, RouteType> = {
     title: 'Страница профиля',
     label: 'Профиль',
     path: '/profile',
-    component: Catalog,
+    route: '/profile/*',
+    component: Profile,
   },
   paymentAndDelivery: {
     title: 'Оплата и доставка',

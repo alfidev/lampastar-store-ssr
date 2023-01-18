@@ -1,1 +1,1 @@
-export * from "./ApplicationSettings";
+export { ApplicationSettings } from './ApplicationSettings';

@@ -1,7 +1,9 @@
 import React from 'react';
-import { ModalCreate, ModalFuncPropsType } from '@components/ModalCreate';
+
 import { FullImageSlider, ModalBackground } from '@ui/components';
-import { ImageWithSizeType } from '@common/types';
+
+import { ImageWithSizeType } from '../../types';
+import { ModalCreate, ModalFuncPropsType } from '../ModalCreate';
 
 type Props = {
   modalId: string;

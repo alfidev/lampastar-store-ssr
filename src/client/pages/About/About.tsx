@@ -1,5 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
+
+import { ImageModal } from '@common/components/ImageModal';
+import { useModal } from '@common/hooks/useModal';
 import { PageTitle } from '@layouts/Lampastar';
+import BrandAbb from '@resources/images/about/brand_abb.png';
+import BrandDkc from '@resources/images/about/brand_dkc.png';
+import BrandEkf from '@resources/images/about/brand_ekf.png';
+import BrandEra from '@resources/images/about/brand_era.png';
+import BrandGsz from '@resources/images/about/brand_gsz.png';
+import BrandIek from '@resources/images/about/brand_iek.png';
+import BrandLegrand from '@resources/images/about/brand_legrand.png';
+import BrandNkz from '@resources/images/about/brand_nkz.png';
+import BrandSe from '@resources/images/about/brand_se.png';
+import BrandSt from '@resources/images/about/brand_st.png';
+import { Typography } from '@ui/components/Typography';
+
+import { certImages, officeImages } from './constants';
+import { INFORMATION_ABOUT, INFORMATION_ONLY_WE, INFORMATION_WHAT_WE_DO } from './information';
 import {
   StyledLogo,
   TitleLine,
@@ -17,24 +35,6 @@ import {
   StyledImageCert,
   CertificatesLine,
 } from './styled';
-import { Typography } from '@ui/components/Typography';
-import { INFORMATION_ABOUT, INFORMATION_ONLY_WE, INFORMATION_WHAT_WE_DO } from './information';
-
-import BrandAbb from '@resources/images/about/brand_abb.png';
-import BrandDkc from '@resources/images/about/brand_dkc.png';
-import BrandEkf from '@resources/images/about/brand_ekf.png';
-import BrandEra from '@resources/images/about/brand_era.png';
-import BrandGsz from '@resources/images/about/brand_gsz.png';
-import BrandIek from '@resources/images/about/brand_iek.png';
-import BrandLegrand from '@resources/images/about/brand_legrand.png';
-import BrandNkz from '@resources/images/about/brand_nkz.png';
-import BrandSe from '@resources/images/about/brand_se.png';
-import BrandSt from '@resources/images/about/brand_st.png';
-
-import { useModal } from '@common/hooks/useModal';
-import { certImages, officeImages } from './constants';
-import { ImageModal } from '@components/ImageModal';
-import styled from 'styled-components';
 
 const TitleLineContainer = React.memo(
   styled(({ title, className }: { title: string; className?: string }) => (

@@ -1,15 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
+import { formatSum } from '@common/utils';
+import { ProductType } from '@modules/Catalog/types';
 import { Card } from '@ui/components';
+import { Tag } from '@ui/components';
 import { BottomBlock, ImageBox, OldPrice, TopBlock } from '@ui/components/ProductCard/styled';
 import { NoImage } from '@ui/icons';
-import { Tag } from '@ui/components';
-import { ProductType } from '@modules/Catalog/types';
-import styled from 'styled-components';
-import { formatSum } from '@common/utils';
 
 type Props = {
   product: ProductType;
+  onClick: (id: number) => void;
 };
 
 const StyledCard = styled(Card)`
@@ -52,14 +53,18 @@ export const PriceContainer = styled.div`
   align-items: center;
 `;
 
-export const Slide = ({ product }: Props) => {
-  const { image, name, price, special, discount } = product;
+export const Slide = ({ product, onClick }: Props) => {
+  const { image, name, price, special, discount, id } = product;
 
   const priceString = price ? formatSum(special || discount || price) : undefined;
   const oldPriceString = priceString && (special || discount) ? formatSum(price) : undefined;
 
+  const handleClick = () => {
+    onClick(id);
+  };
+
   return (
-    <StyledCard height={300}>
+    <StyledCard height={300} onClick={handleClick}>
       <TopBlock>
         <TagsBlock>
           <Tag.Sale />

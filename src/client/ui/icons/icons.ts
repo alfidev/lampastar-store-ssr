@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { IndentsType, SizesType, TypographyColorType } from '@layouts/Lampastar';
+
+import { IndentsType, SizesType, TypographyColorType } from '@layouts/Lampastar/types';
 
 const Icon = styled.i<{
   size?: keyof SizesType;

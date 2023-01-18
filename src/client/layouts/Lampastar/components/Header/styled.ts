@@ -1,9 +1,11 @@
-import styled, { css } from 'styled-components';
-import { ContentWrapper } from '../ComponentWrapper';
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+
 import { ButtonContained } from '@ui/components';
-import { CloseIcon, MenuRightIcon } from '@ui/icons';
 import { adaptive } from '@ui/components/Adaptive';
+import { CloseIcon, MenuRightIcon } from '@ui/icons';
+
+import { ContentWrapper } from '../ComponentWrapper';
 
 const getLinkStyle = css`
   display: flex;
@@ -117,6 +119,7 @@ export const StyledLinkMiddle = styled(Link)`
   padding: 0 ${({ theme }) => theme.indents.xs};
   border-radius: ${({ theme }) => theme.radius.xs};
   height: 55px;
+  min-width: 72px;
 
   :hover {
     background: ${({ theme }) => theme.color.background.secondaryHover};
@@ -150,5 +153,15 @@ export const CatalogButton = styled(ButtonContained)`
 export const StyledCatalogText = styled.span`
   ${adaptive.maxWidth.mobile} {
     display: none;
+  }
+`;
+
+export const HeaderIcon = styled.div`
+  width: ${({ theme }) => theme.sizes.xxxl};
+  height: ${({ theme }) => theme.sizes.xxxl};
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 `;
