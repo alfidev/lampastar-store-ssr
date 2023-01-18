@@ -1,9 +1,11 @@
-import { FlattenInterpolation, ThemeProps } from 'styled-components';
+import { DefaultTheme, FlattenInterpolation, ThemeProps } from 'styled-components';
 
-type Font = FlattenInterpolation<ThemeProps<ThemeType>>;
+type Font = FlattenInterpolation<ThemeProps<DefaultTheme>>;
 
 export type TypographyNames =
   | 'big1'
+  | 'big2'
+  | 'big3'
   | 'title1'
   | 'title2'
   | 'body1'

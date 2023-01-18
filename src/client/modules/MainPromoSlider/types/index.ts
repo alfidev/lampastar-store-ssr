@@ -12,6 +12,9 @@ export type BannerResponseType = {
   status: string;
   date_added: string;
   date_modified: string;
+  price?: number;
+  background_color: string;
+  text_color: string;
 };
 
 export type BannersResponseType = {
@@ -31,5 +34,7 @@ export type BannerType = {
   status: number;
   dateAdded: string;
   dateModified: string;
-  background: string;
+  backgroundColor: string;
+  textColor: string;
+  price?: number;
 };

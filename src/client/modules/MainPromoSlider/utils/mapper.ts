@@ -1,5 +1,5 @@
-import { BannerResponseType, BannerType } from '../types';
 import { promoSliderEnum } from '../constants';
+import { BannerResponseType, BannerType } from '../types';
 
 const getBannerType = (type: string) => {
   switch (type) {
@@ -25,5 +25,7 @@ export const mapBanners = (banners: BannerResponseType[]): BannerType[] =>
     sortOrder: Number(banner.sort_order),
     dateAdded: banner.date_added,
     dateModified: banner.date_modified,
-    background: '#FFB811',
+    backgroundColor: banner.background_color,
+    textColor: banner.text_color,
+    price: banner.price,
   }));

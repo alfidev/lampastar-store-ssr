@@ -98,6 +98,16 @@ export const LIGHT_THEME: ThemeType = {
       line-height: 56px;
       font-weight: 800;
     `,
+    big2: css`
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 500;
+    `,
+    big3: css`
+      font-size: 24px;
+      line-height: 40px;
+      font-weight: 500;
+    `,
     title1: css`
       font-size: 28px;
       line-height: 40px;
