@@ -1,7 +1,8 @@
-import React from 'react';
-import { NewsItemType } from '../types';
-import styled from 'styled-components';
 import { format } from 'date-fns';
+import React from 'react';
+import styled from 'styled-components';
+
+import { NewsItemType } from '../types';
 
 type Props = {
   news: NewsItemType;
@@ -15,10 +16,18 @@ const Wrapper = styled.div`
   overflow: hidden;
   border-radius: ${({ theme }) => theme.radius.xs};
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ImageBox = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const StyledImage = styled.img`
-  max-width: 100%;
   min-height: 100%;
 `;
 
@@ -60,7 +69,9 @@ export const NewsSlide = ({ news, onClick }: Props) => {
         <TitleBlock>{title}</TitleBlock>
       </TextBlock>
       <Black />
-      <StyledImage src={imageUrl} />
+      <ImageBox>
+        <StyledImage src={imageUrl} />
+      </ImageBox>
     </Wrapper>
   );
 };
