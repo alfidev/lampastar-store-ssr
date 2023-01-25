@@ -1,10 +1,12 @@
-import React, { useMemo } from 'react';
-import { NewsItemType } from '../types';
-import { PageTitle } from '@layouts/Lampastar';
-import styled from 'styled-components';
 import { format } from 'date-fns';
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
+
+import { PageTitle } from '@layouts/Lampastar';
 import { Container, Row, Col } from '@ui/components';
 import { Breadcrumbs } from '@ui/components/Breadcrumbs';
+
+import { NewsItemType } from '../types';
 import { reformatLinks } from '../utils';
 
 type Props = {
@@ -70,12 +72,15 @@ export const NewsDetail = ({ item }: Props) => {
                         <StyledImg src={q?.url} />
                       </StyledCol>
                     );
+
                   if (r && r.width >= r.height)
                     return (
                       <StyledCol key={r?.id} mobile={12}>
                         <StyledImg src={r?.url} />
                       </StyledCol>
                     );
+
+                  return null;
                 })}
                 {otherImages.map(({ q, r }) => {
                   if (q && q.width < q.height)
@@ -84,12 +89,15 @@ export const NewsDetail = ({ item }: Props) => {
                         <StyledImg src={q?.url} />
                       </StyledCol>
                     );
+
                   if (r && r.width >= r.height)
                     return (
                       <StyledCol key={r?.id} mobile={12}>
                         <StyledImg src={r?.url} />
                       </StyledCol>
                     );
+
+                  return null;
                 })}
               </Row>
             </Container>

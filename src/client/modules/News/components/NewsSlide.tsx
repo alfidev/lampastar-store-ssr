@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
 import { NewsItemType } from '../types';
@@ -44,6 +44,7 @@ const Black = styled.div`
 const TextBlock = styled.div`
   position: absolute;
   bottom: 0;
+  left: 0;
   padding: ${({ theme }) => theme.indents.xs};
   z-index: 1;
 `;
@@ -54,13 +55,23 @@ const DateBlock = styled.div`
 
 const TitleBlock = styled.div`
   color: ${({ theme }) => theme.color.text.secondary};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 `;
 
 export const NewsSlide = ({ news, onClick }: Props) => {
   const { title, images, dateAdded, id, mainImageId } = news;
 
-  const imageUrl =
-    (mainImageId ? images.filter(({ p }) => p?.imageId === mainImageId)?.[0]?.p?.url : images[0]?.p?.url) || '';
+  const imageUrl = useMemo(() => {
+    const image = mainImageId ? images.filter((imageItem) => imageItem?.p?.imageId === mainImageId)?.[0] : images[0];
+
+    const isVertical = image?.p?.width && image?.p?.width < image?.p?.height;
+
+    return isVertical ? image?.p?.url : image?.r?.url;
+  }, [images, mainImageId]);
 
   return (
     <Wrapper onClick={() => onClick(id)}>
