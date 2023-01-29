@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { USE_ORDER, useFeature } from '@common/featureToggles';
 import { formatSum } from '@common/utils';
 import { PageTitle } from '@layouts/Lampastar';
 import { ProductType } from '@modules/Catalog/types';
@@ -73,6 +74,8 @@ const StyledColCard = styled(Col)`
 `;
 
 export const ProductDetail = ({ product, onChangeCount }: Props) => {
+  const enableOrderFeature = useFeature(USE_ORDER);
+
   const { id, name, image, price, discount, special, notAvailable, forOrder } = product;
 
   const addToBasketHandler = () => {
@@ -83,14 +86,18 @@ export const ProductDetail = ({ product, onChangeCount }: Props) => {
     onChangeCount(id, count);
   };
 
-  const buttonText = (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || 'В корзину';
+  const buttonText =
+    (forOrder && 'Под заказ') ||
+    (notAvailable && 'Нет в наличии') ||
+    (!enableOrderFeature && 'В наличии') ||
+    'В корзину';
 
   const priceString = price ? formatSum(special || discount || price) : undefined;
   const oldPriceString = priceString && (special || discount) ? formatSum(price) : undefined;
 
   const countInBasket = 0;
 
-  const showCounter = countInBasket && !notAvailable && !forOrder;
+  const showCounter = enableOrderFeature && countInBasket && !notAvailable && !forOrder;
 
   return (
     <Container>
@@ -126,7 +133,12 @@ export const ProductDetail = ({ product, onChangeCount }: Props) => {
                   {showCounter ? (
                     <Counter value={countInBasket} onChange={onChangeCounter} />
                   ) : (
-                    <ButtonContained secondary isFluid disabled={notAvailable || forOrder} onClick={addToBasketHandler}>
+                    <ButtonContained
+                      secondary
+                      isFluid
+                      disabled={!enableOrderFeature || notAvailable || forOrder}
+                      onClick={addToBasketHandler}
+                    >
                       {buttonText}
                     </ButtonContained>
                   )}

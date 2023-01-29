@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { USE_COMPARE, USE_FAVORITES, USE_ORDER, useFeature } from '@common/featureToggles';
 import { Compare, Like, NoImage } from '@ui/icons';
 
 import { ButtonContained } from '../Button';
@@ -52,7 +53,15 @@ export const ProductCard = ({
   onClickCard,
   isLoading,
 }: ProductCardProps) => {
-  const buttonText = (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || 'В корзину';
+  const enableOrderFeature = useFeature(USE_ORDER);
+  const enableFavoriteFeature = useFeature(USE_FAVORITES);
+  const enableCompareFeature = useFeature(USE_COMPARE);
+
+  const buttonText =
+    (forOrder && 'Под заказ') ||
+    (notAvailable && 'Нет в наличии') ||
+    (!enableOrderFeature && 'В наличии') ||
+    'В корзину';
 
   const addToBasketHandler = () => {
     onChangeCount(1);
@@ -62,7 +71,7 @@ export const ProductCard = ({
     onChangeCount(count);
   };
 
-  const showCounter = countInBasket && !notAvailable;
+  const showCounter = enableOrderFeature && countInBasket && !notAvailable && !forOrder;
 
   const renderActions = () => {
     if (isLoading) return <ProductCardActionsSkeleton />;
@@ -72,16 +81,25 @@ export const ProductCard = ({
         {showCounter ? (
           <Counter value={countInBasket} onChange={onChangeCounter} />
         ) : (
-          <ButtonContained secondary isFluid disabled={notAvailable || forOrder} onClick={addToBasketHandler}>
+          <ButtonContained
+            secondary
+            isFluid
+            disabled={!enableOrderFeature || notAvailable || forOrder}
+            onClick={addToBasketHandler}
+          >
             {buttonText}
           </ButtonContained>
         )}
-        <AdditionalButton active={isCompare} onClick={onChangeCompare}>
-          <Compare />
-        </AdditionalButton>
-        <AdditionalButton active={isFavourite} onClick={onChangeFavourite}>
-          {isFavourite ? <LikeActive /> : <Like />}
-        </AdditionalButton>
+        {enableCompareFeature && (
+          <AdditionalButton active={isCompare} onClick={onChangeCompare}>
+            <Compare />
+          </AdditionalButton>
+        )}
+        {enableFavoriteFeature && (
+          <AdditionalButton active={isFavourite} onClick={onChangeFavourite}>
+            {isFavourite ? <LikeActive /> : <Like />}
+          </AdditionalButton>
+        )}
       </>
     );
   };
