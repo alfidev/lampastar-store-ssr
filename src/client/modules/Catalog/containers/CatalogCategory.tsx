@@ -9,7 +9,7 @@ import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
 import { useCategories, useProductActions, useProducts } from '../hooks';
 
 type Props = {
-  categoryAlias: string;
+  categoryId: number;
 };
 
 const CatalogContainer = styled.div`
@@ -32,7 +32,7 @@ const ControlContainer = styled.div`
 
 const PaginationContainer = styled.div``;
 
-export const CatalogCategory = ({ categoryAlias }: Props) => {
+export const CatalogCategory = ({ categoryId }: Props) => {
   const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
@@ -40,20 +40,20 @@ export const CatalogCategory = ({ categoryAlias }: Props) => {
   const [order, setOrder] = useState(ORDER_TYPE.ASC);
   const [viewMode, setViewMode] = useState(VIEW_MODE.grid);
 
-  const { category, map } = useCategories({ categoryId: categoryAlias });
+  const { category, map } = useCategories({ categoryId });
 
   const {
     list: products,
     totalPage,
     isLoading: isLoadingProducts,
-  } = useProducts({ category: categoryAlias, page, sort, order });
+  } = useProducts({ category: categoryId, page, sort, order });
   const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
 
   const isLoadingFilters = false;
 
   const { name: categoryName } = category || {};
 
-  const onClickCategory = (id: string) => {
+  const onClickCategory = (id: number) => {
     navigate(`/catalog/${id}`);
   };
 

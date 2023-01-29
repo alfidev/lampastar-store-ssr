@@ -4,7 +4,7 @@ import { CategoryMap, CategoryType, ProductType } from '../types';
 
 export const getCategoriesRecursive = (
   list: CategoryType[],
-  currentParentId = '0',
+  currentParentId = 0,
   maxDepth = 2,
   depth = 0,
 ): CategoryMap[] =>
