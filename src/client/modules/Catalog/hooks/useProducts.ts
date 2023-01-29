@@ -9,7 +9,7 @@ import { API_PRODUCTS_URL } from '../constants';
 import { OrderType, ProductsTypeResponse, SortType } from '../types';
 
 type Props = {
-  category?: string;
+  category?: number;
   search?: string;
   page?: number;
   count?: number;
@@ -34,7 +34,7 @@ export const useProducts = ({ category, page = 1, count = 18, sort, order, searc
   const { isLoading, data } = useQuery(
     [
       API_PRODUCTS_URL,
-      ...(category ? [category] : []),
+      ...(category ? [`${category}`] : []),
       ...(search ? [search] : []),
       sort as string,
       order as string,

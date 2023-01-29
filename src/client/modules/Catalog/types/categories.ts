@@ -1,5 +1,5 @@
 export type CategoryType = {
-  id: string;
+  id: number;
   createdAt: string;
   updatedAt: string;
   description: string;
@@ -8,13 +8,13 @@ export type CategoryType = {
   metaKeyword: string;
   metaTitle: string;
   name: string;
-  parentId: string;
-  sortOrder: string;
+  parentId: number;
+  sortOrder: number;
   status: string;
 };
 
 export type CategoryMap = {
-  id: string;
+  id: number;
   name: string;
   list: CategoryMap[];
 };
