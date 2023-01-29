@@ -4,6 +4,7 @@ import { Compare, Like, NoImage } from '@ui/icons';
 
 import { ButtonContained } from '../Button';
 import { Counter } from '../Counter';
+import { ProductCardActionsSkeleton } from './ProductCardActionsSkeleton';
 import {
   BottomBlock,
   StyledCard,
@@ -27,11 +28,12 @@ export type ProductCardProps = {
   isCompare: boolean;
   countInBasket: number;
   notAvailable: boolean;
-  available: boolean;
   forOrder: boolean;
   onChangeCount: (count: number) => void;
   onChangeFavourite: () => void;
+  onChangeCompare: () => void;
   onClickCard: () => void;
+  isLoading: boolean;
 };
 
 export const ProductCard = ({
@@ -46,7 +48,9 @@ export const ProductCard = ({
   forOrder,
   onChangeCount,
   onChangeFavourite,
+  onChangeCompare,
   onClickCard,
+  isLoading,
 }: ProductCardProps) => {
   const buttonText = (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || 'В корзину';
 
@@ -58,7 +62,29 @@ export const ProductCard = ({
     onChangeCount(count);
   };
 
-  const showCounter = countInBasket && !notAvailable && !forOrder;
+  const showCounter = countInBasket && !notAvailable;
+
+  const renderActions = () => {
+    if (isLoading) return <ProductCardActionsSkeleton />;
+
+    return (
+      <>
+        {showCounter ? (
+          <Counter value={countInBasket} onChange={onChangeCounter} />
+        ) : (
+          <ButtonContained secondary isFluid disabled={notAvailable || forOrder} onClick={addToBasketHandler}>
+            {buttonText}
+          </ButtonContained>
+        )}
+        <AdditionalButton active={isCompare} onClick={onChangeCompare}>
+          <Compare />
+        </AdditionalButton>
+        <AdditionalButton active={isFavourite} onClick={onChangeFavourite}>
+          {isFavourite ? <LikeActive /> : <Like />}
+        </AdditionalButton>
+      </>
+    );
+  };
 
   return (
     <StyledCard height={372}>
@@ -72,21 +98,7 @@ export const ProductCard = ({
           {price && <ActualPrice>{price}</ActualPrice>}
         </PriceContainer>
       </BottomBlock>
-      <ActionsBlock>
-        {showCounter ? (
-          <Counter value={countInBasket} onChange={onChangeCounter} />
-        ) : (
-          <ButtonContained secondary isFluid disabled={notAvailable || forOrder} onClick={addToBasketHandler}>
-            {buttonText}
-          </ButtonContained>
-        )}
-        <AdditionalButton active={isCompare}>
-          <Compare />
-        </AdditionalButton>
-        <AdditionalButton active={isFavourite} onClick={onChangeFavourite}>
-          {isFavourite ? <LikeActive /> : <Like />}
-        </AdditionalButton>
-      </ActionsBlock>
+      <ActionsBlock>{renderActions()}</ActionsBlock>
     </StyledCard>
   );
 };

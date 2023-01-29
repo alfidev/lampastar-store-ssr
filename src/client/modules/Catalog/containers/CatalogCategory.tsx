@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { PageTitle } from '@layouts/Lampastar';
-import { ProductsList, ProductsFilters, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
-import { useCategories, useProductActions, useProducts } from '../hooks';
-import styled from 'styled-components';
-import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
-import { ProductType } from '../types';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { PageTitle } from '@layouts/Lampastar';
+
+import { ProductsList, ProductsFilters, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
+import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
+import { useCategories, useProductActions, useProducts } from '../hooks';
 
 type Props = {
   categoryAlias: string;
@@ -46,19 +47,11 @@ export const CatalogCategory = ({ categoryAlias }: Props) => {
     totalPage,
     isLoading: isLoadingProducts,
   } = useProducts({ category: categoryAlias, page, sort, order });
-  const { handleClickCard } = useProductActions();
+  const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
 
   const isLoadingFilters = false;
 
   const { name: categoryName } = category || {};
-
-  const onChangeCount = (product: ProductType, count: number) => {
-    console.log('addProduct', product.name, 'count', count);
-  };
-
-  const onChangeFavourite = (product: ProductType, value: boolean) => {
-    console.log('addFavourite', product.name, 'value', value);
-  };
 
   const onClickCategory = (id: string) => {
     navigate(`/catalog/${id}`);
@@ -71,8 +64,9 @@ export const CatalogCategory = ({ categoryAlias }: Props) => {
       <ProductsList
         products={products}
         mode={viewMode}
-        onChangeCount={onChangeCount}
-        onChangeFavourite={onChangeFavourite}
+        onChangeCount={handleChangeBasketCount}
+        onChangeFavourite={handleChangeFavourite}
+        onChangeCompare={handleChangeCompare}
         onClickCard={handleClickCard}
       />
     );

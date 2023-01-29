@@ -41,8 +41,8 @@ export type ProductType = {
   dateModified: string;
   viewed: string;
   notAvailable: boolean;
-  available: boolean;
   forOrder: boolean;
+  basketQuantity?: number;
 };
 
 export type ProductsTypeResponse = {

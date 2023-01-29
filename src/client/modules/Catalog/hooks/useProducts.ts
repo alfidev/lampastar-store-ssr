@@ -1,8 +1,12 @@
+import { useMemo } from 'react';
 import { useQuery } from 'react-query';
-import { API_PRODUCTS_URL } from '../constants';
 
-import { OrderType, ProductsTypeResponse, SortType } from '../types';
+import { useBasket } from '@common/hooks';
 import { getQueryRequest } from '@common/utils';
+import { mapProducts } from '@modules/Catalog/utils';
+
+import { API_PRODUCTS_URL } from '../constants';
+import { OrderType, ProductsTypeResponse, SortType } from '../types';
 
 type Props = {
   category?: string;
@@ -14,6 +18,8 @@ type Props = {
 };
 
 export const useProducts = ({ category, page = 1, count = 18, sort, order, search }: Props) => {
+  const { products } = useBasket();
+
   const requestOptions = {
     params: {
       ...(!!category && { filter_category_id: category }),
@@ -45,5 +51,7 @@ export const useProducts = ({ category, page = 1, count = 18, sort, order, searc
 
   const totalPage = Math.ceil((data?.total || 0) / (count || 18));
 
-  return { isLoading, list: data?.list || [], category, totalPage };
+  const list = useMemo(() => mapProducts(data?.list ?? [], products), [data?.list, products]);
+
+  return { isLoading, list, category, totalPage };
 };

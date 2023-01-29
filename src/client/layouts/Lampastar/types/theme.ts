@@ -57,6 +57,12 @@ export type SizesType = {
   xxxl: string;
 };
 
+export type LoaderSizeType = {
+  s: string;
+  m: string;
+  l: string;
+};
+
 export type ThemeType = {
   color: {
     background: {
@@ -118,4 +124,5 @@ export type ThemeType = {
     modal: number;
   };
   typography: Typography;
+  loaderSize: LoaderSizeType;
 };

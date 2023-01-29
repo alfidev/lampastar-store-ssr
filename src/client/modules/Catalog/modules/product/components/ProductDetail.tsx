@@ -1,15 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+
+import { formatSum } from '@common/utils';
+import { PageTitle } from '@layouts/Lampastar';
 import { ProductType } from '@modules/Catalog/types';
 import { Container, Row, Col, Card, Counter, ButtonContained } from '@ui/components';
-import styled from 'styled-components';
-import { PageTitle } from '@layouts/Lampastar';
-import { formatSum } from '@common/utils';
 import { Typography } from '@ui/components';
 import { FastDelivery, NoImage, OpenedBox, Shop } from '@ui/icons';
 
 type Props = {
   product: ProductType;
-  onChangeCount: (count: number) => void;
+  onChangeCount: (id: number, count: number) => Promise<void>;
 };
 
 const StyledImage = styled.img`
@@ -72,18 +73,17 @@ const StyledColCard = styled(Col)`
 `;
 
 export const ProductDetail = ({ product, onChangeCount }: Props) => {
-  const { name, image, price, discount, special, notAvailable, forOrder, available } = product;
+  const { id, name, image, price, discount, special, notAvailable, forOrder } = product;
 
   const addToBasketHandler = () => {
-    onChangeCount(1);
+    onChangeCount(id, 1);
   };
 
   const onChangeCounter = (count: number) => {
-    onChangeCount(count);
+    onChangeCount(id, count);
   };
 
-  const buttonText =
-    (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || (available && 'В наличии') || 'В корзину';
+  const buttonText = (forOrder && 'Под заказ') || (notAvailable && 'Нет в наличии') || 'В корзину';
 
   const priceString = price ? formatSum(special || discount || price) : undefined;
   const oldPriceString = priceString && (special || discount) ? formatSum(price) : undefined;
@@ -126,12 +126,7 @@ export const ProductDetail = ({ product, onChangeCount }: Props) => {
                   {showCounter ? (
                     <Counter value={countInBasket} onChange={onChangeCounter} />
                   ) : (
-                    <ButtonContained
-                      secondary
-                      isFluid
-                      disabled={notAvailable || forOrder || available}
-                      onClick={addToBasketHandler}
-                    >
+                    <ButtonContained secondary isFluid disabled={notAvailable || forOrder} onClick={addToBasketHandler}>
                       {buttonText}
                     </ButtonContained>
                   )}
