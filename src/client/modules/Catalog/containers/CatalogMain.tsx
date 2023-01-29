@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { PageTitle } from '@layouts/Lampastar';
-import { ProductsList, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
-import { useProductActions, useProducts } from '../hooks';
 import styled from 'styled-components';
+
+import { PageTitle } from '@layouts/Lampastar';
+
+import { ProductsList, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
 import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
-import { ProductType } from '../types';
+import { useProductActions, useProducts } from '../hooks';
 
 type Props = {
   search?: string | null;
@@ -43,12 +44,16 @@ export const CatalogMain = ({ search }: Props) => {
   } = useProducts({ page, sort, order, ...(search && { search }) });
   const { handleClickCard } = useProductActions();
 
-  const onChangeCount = (product: ProductType, count: number) => {
-    console.log('addProduct', product.name, 'count', count);
+  const onChangeCount = async (id: number, count: number) => {
+    console.log('addProduct', id, 'count', count);
   };
 
-  const onChangeFavourite = (product: ProductType, value: boolean) => {
-    console.log('addFavourite', product.name, 'value', value);
+  const onChangeFavourite = async (id: number, value: boolean) => {
+    console.log('addFavourite', id, 'value', value);
+  };
+
+  const onChangeCompare = async (id: number, value: boolean) => {
+    console.log('addCompare', id, 'value', value);
   };
 
   const getProductsJSX = () => {
@@ -60,6 +65,7 @@ export const CatalogMain = ({ search }: Props) => {
         mode={viewMode}
         onChangeCount={onChangeCount}
         onChangeFavourite={onChangeFavourite}
+        onChangeCompare={onChangeCompare}
         onClickCard={handleClickCard}
       />
     );

@@ -67,6 +67,11 @@ export const LIGHT_THEME: ThemeType = {
     xxl: '20px',
     xxxl: '24px',
   },
+  loaderSize: {
+    s: '28px',
+    m: '40px',
+    l: '80px',
+  },
   indents: {
     none: '0',
     xxxs: '2px',

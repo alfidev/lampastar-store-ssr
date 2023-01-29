@@ -37,8 +37,8 @@ const TitleTypography = styled(Typography).attrs({ tag: 'h2', variant: 'main1' }
 
 export const CatalogCarousel = ({ type }: Props) => {
   const { list, isLoading } = useProductsCarousel(type);
-  const { handleChangeFavourite, handleChangeCount } = useProductActions();
-  const { handleClickCard } = useProductActions();
+  const { handleChangeFavourite, handleChangeBasketCount, handleChangeCompare, handleClickCard } = useProductActions();
+
   const enabled = useFeature(USE_BUY_TOP) || type !== 'BUY';
 
   if (!enabled) return null;
@@ -56,8 +56,9 @@ export const CatalogCarousel = ({ type }: Props) => {
                 <Col key={product.id} mobile={8} tablet={4} desktopS={3}>
                   <ProductCard
                     product={product}
-                    onChangeCount={handleChangeCount}
+                    onChangeCount={handleChangeBasketCount}
                     onChangeFavourite={handleChangeFavourite}
+                    onChangeCompare={handleChangeCompare}
                     onClickCard={handleClickCard}
                   />
                 </Col>

@@ -1,7 +1,8 @@
 import React, { ChangeEvent } from 'react';
 
-import { CounterButton, CounterContainer, CounterInput, StyledMinusIcon } from './styled';
 import { PlusIcon } from '@ui/icons';
+
+import { CounterButton, CounterContainer, CounterInput, StyledMinusIcon } from './styled';
 
 type Props = {
   value: number;

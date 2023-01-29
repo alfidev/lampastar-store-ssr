@@ -1,7 +1,9 @@
-import { Button } from '../Button';
 import styled from 'styled-components';
+
+import { MinusIcon } from '@ui/icons';
+
+import { Button } from '../Button';
 import { Input } from '../Input';
-import { MinusIcon } from '../../icons';
 
 export const CounterContainer = styled.div`
   background: ${({ theme }) => theme.color.background.main};

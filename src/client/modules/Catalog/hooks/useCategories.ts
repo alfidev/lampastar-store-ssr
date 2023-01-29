@@ -1,9 +1,11 @@
-import { useQuery } from 'react-query';
-import { API_CATEGORIES_URL } from '../constants';
-import { getQueryRequest } from '@common/utils';
-import { CategoryTypeResponse } from '../types';
-import { getCategoriesRecursive, mapCategories } from '@modules/Catalog/utils';
 import { useMemo } from 'react';
+import { useQuery } from 'react-query';
+
+import { getQueryRequest } from '@common/utils';
+import { getCategoriesRecursive } from '@modules/Catalog/utils';
+
+import { API_CATEGORIES_URL } from '../constants';
+import { CategoryType } from '../types';
 
 type Props = {
   categoryId?: string;
@@ -13,20 +15,15 @@ type Props = {
 export const useCategories = (props?: Props) => {
   const { categoryId, parentId = '0' } = props || {};
 
-  const { isLoading, data } = useQuery([API_CATEGORIES_URL, parentId], getQueryRequest<CategoryTypeResponse[]>(), {
+  const { isLoading, data = [] } = useQuery([API_CATEGORIES_URL, parentId], getQueryRequest<CategoryType[]>(), {
     retry: false,
     refetchOnWindowFocus: false,
     retryOnMount: false,
   });
 
-  const categoriesList = useMemo(() => (data ? mapCategories(data) : []), [data]);
+  const categoriesMap = useMemo(() => getCategoriesRecursive(data, parentId), [data, parentId]);
 
-  const categoriesMap = useMemo(() => getCategoriesRecursive(categoriesList, parentId), [data]);
-
-  const category = useMemo(
-    () => (categoryId && categoriesList?.find(({ id }) => id === categoryId)) || null,
-    [data, categoryId],
-  );
+  const category = useMemo(() => (categoryId && data?.find(({ id }) => id === categoryId)) || null, [data, categoryId]);
 
   return { isLoading, list: categoriesMap, map: categoriesMap, category };
 };

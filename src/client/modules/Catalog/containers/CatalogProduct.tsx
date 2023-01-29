@@ -1,12 +1,13 @@
 import React from 'react';
 
+import { Breadcrumbs } from '@ui/components/Breadcrumbs';
+
+import { ContentSection } from '../../../pages/Home/styled';
+import { CAROUSEL_TYPE } from '../constants';
 import { useProduct, useProductActions } from '../hooks';
 import { ProductDetail } from '../modules/product';
-import { Breadcrumbs } from '@ui/components/Breadcrumbs';
 import { ProductType } from '../types';
 import { CatalogCarousel } from './CatalogCarousel';
-import { CAROUSEL_TYPE } from '../constants';
-import { ContentSection } from '../../../pages/Home/styled';
 
 type Props = {
   productId: number;
@@ -16,7 +17,7 @@ const getBreadcrumbItem = (product: ProductType) => ({ path: `/catalog/products/
 
 export const CatalogProduct = ({ productId }: Props) => {
   const { product, isLoading, isError } = useProduct(productId);
-  const { handleChangeCount } = useProductActions();
+  const { handleChangeBasketCount } = useProductActions();
 
   if (isLoading) return <>LOADING...</>;
 
@@ -25,7 +26,7 @@ export const CatalogProduct = ({ productId }: Props) => {
   return (
     <>
       <Breadcrumbs items={[getBreadcrumbItem(product)]} />
-      <ProductDetail product={product} onChangeCount={handleChangeCount} />
+      <ProductDetail product={product} onChangeCount={handleChangeBasketCount} />
       <ContentSection>
         <CatalogCarousel type={CAROUSEL_TYPE.VIEW} />
       </ContentSection>

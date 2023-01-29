@@ -1,29 +1,6 @@
-import { CategoryMap, CategoryTypeResponse, CategoryType } from '../types';
+import { BasketProductsQuantityType } from '@common/types';
 
-export const mapCategories = (categories: CategoryTypeResponse[]): CategoryType[] =>
-  categories.map(
-    ({
-      category_id,
-      date_added,
-      date_modified,
-      parent_id,
-      sort_order,
-      meta_description,
-      meta_keyword,
-      meta_title,
-      ...props
-    }) => ({
-      id: category_id,
-      createdAt: date_added,
-      updatedAt: date_modified,
-      parentId: parent_id,
-      sortOrder: sort_order,
-      metaDescription: meta_description,
-      metaKeyword: meta_keyword,
-      metaTitle: meta_title,
-      ...props,
-    }),
-  );
+import { CategoryMap, CategoryType, ProductType } from '../types';
 
 export const getCategoriesRecursive = (
   list: CategoryType[],
@@ -34,7 +11,10 @@ export const getCategoriesRecursive = (
   list
     .filter(({ parentId }) => parentId === currentParentId)
     .map(({ id, name }) => ({
-      id: id,
-      name: name,
+      id,
+      name,
       list: maxDepth === -1 || depth <= maxDepth ? getCategoriesRecursive(list, id, maxDepth, depth + 1) : [],
     }));
+
+export const mapProducts = (list: ProductType[], basket: BasketProductsQuantityType) =>
+  list.map(({ ...data }) => ({ ...data, basketQuantity: basket[data.id]?.quantity }));
