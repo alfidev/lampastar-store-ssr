@@ -49,6 +49,7 @@ export const MainPromoSlider = () => {
             textColor={textColor}
             text={bannerText}
             price={price}
+            minPrice={!!price && type === promoSliderEnum.CATEGORY}
             buttonText={buttonText}
             image={image}
           />

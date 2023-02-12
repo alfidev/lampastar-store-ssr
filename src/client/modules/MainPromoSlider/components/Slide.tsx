@@ -15,6 +15,7 @@ type Props = {
   buttonText: string;
   image: string;
   price?: number;
+  minPrice?: boolean;
   onClick: (type: promoSliderEnum, elementId?: number) => void;
 };
 
@@ -97,6 +98,7 @@ export const Slide = ({
   image,
   onClick,
   price,
+  minPrice,
 }: Props) => {
   const handleClickButton = () => {
     onClick(type, elementId);
@@ -104,10 +106,12 @@ export const Slide = ({
 
   const priceString = price ? formatSum(price) : undefined;
 
+  const priceResult = minPrice ? `от ${priceString}` : priceString;
+
   return (
     <Wrapper color={textColor} background={backgroundColor}>
       <SlideText black={!image}>{text.replaceAll('\\n', '\n')}</SlideText>
-      {priceString && <SliderPrice>{priceString}</SliderPrice>}
+      {priceString && <SliderPrice>{priceResult}</SliderPrice>}
       <ImageBox>{image && <img alt={buttonText} src={`${image}`} />}</ImageBox>
       {!!elementId && <SliderButton onClick={handleClickButton}>{buttonText}</SliderButton>}
     </Wrapper>
