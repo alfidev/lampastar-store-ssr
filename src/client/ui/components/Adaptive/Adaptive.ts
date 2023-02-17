@@ -67,10 +67,10 @@ export const Col = styled.div<Partial<BreakpointsType>>`
       : ''};
 `;
 
-export const Row = styled.div<{ indent?: number; wrap?: boolean }>`
+export const Row = styled.div<{ indent?: number; isWrap?: boolean }>`
   margin: 0 -${({ indent }) => indent || 15}px;
   display: flex;
-  flex-wrap: ${({ wrap = true }) => (wrap ? 'wrap' : 'nowrap')};
+  flex-wrap: ${({ isWrap = true }) => (isWrap ? 'wrap' : 'nowrap')};
 
   ${Col} {
     padding: 0 ${({ indent }) => indent || 15}px;

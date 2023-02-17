@@ -42,6 +42,7 @@ function createClientConfig(env: Env): Configuration {
       path: path.resolve(__dirname, '../dist', 'public'),
       filename: env.production ? 'js/[name].[chunkhash].js' : 'js/[name].js',
     },
+    devtool: env.development ? 'eval-cheap-module-source-map' : 'none',
     module: {
       rules: [
         {
@@ -106,7 +107,7 @@ function createClientConfig(env: Env): Configuration {
     ...(!env.production && {
       devServer: {
         hot: true,
-        host: '0.0.0.0', //env.host,
+        host: '0.0.0.0', // env.host,
         open: [`${env.https ? 'https' : 'http'}://${env.host}:3000`],
         port: 3000,
         historyApiFallback: true,
@@ -138,12 +139,12 @@ function createClientConfig(env: Env): Configuration {
 
 export default function (e: any) {
   const env: Env = {
-    hot: !!e['HOT'],
+    hot: !!e.HOT,
     mock_server: process.env.MOCK_SERVER === 'true',
-    production: !!e['PRODUCTION'],
+    production: !!e.PRODUCTION,
     host: process.env.HOST || '0.0.0.0',
     https: Boolean(process.env.HTTPS) || false,
-    development: !!e['DEVELOPMENT'],
+    development: !!e.DEVELOPMENT,
     proxy_server_url: process.env.PROXY_SERVER_URL ?? '',
   };
 
