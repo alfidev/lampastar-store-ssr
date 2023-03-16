@@ -17,7 +17,7 @@ const BASKET_ADD = '/profile/basket/add';
 const BASKET_EDIT = '/profile/basket/edit';
 const BASKET_REMOVE = '/profile/basket/remove';
 
-const BASKET_DATA_QUERY_KEY = 'ACTUAL_BASKET_DATA';
+export const BASKET_DATA_QUERY_KEY = 'ACTUAL_BASKET_DATA';
 const GET_BASKET_DATA_URL = '/profile/basket/quantity';
 
 const addOptions = {

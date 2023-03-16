@@ -1,7 +1,9 @@
 import { useQuery } from 'react-query';
-import { ProductType } from '../types';
-import { API_PRODUCT_URL } from '@modules/Catalog/constants';
+
 import { getQueryRequest } from '@common/utils';
+
+import { API_PRODUCT_URL } from '../constants';
+import { ProductType } from '../types';
 
 export const useProduct = (id: number) => {
   const options = {
