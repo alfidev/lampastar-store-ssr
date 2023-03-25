@@ -54,8 +54,14 @@ const BaseSkeletonSecondary = styled.div`
 
 const textSceletonStyle = css<TextSkeletonType>`
   border-radius: ${({ theme }) => theme.radius.xxxs};
-  height: ${({ size }) => (size && textSizes[size]) || textSizes['body3']};
-  width: ${({ width }) => (!width ? '100%' : typeof width === 'number' ? `${width}px` : width)};
+  height: ${({ size }) => (size && textSizes[size]) || textSizes.body3};
+  width: ${({ width }) => {
+    if (width) return '100%';
+
+    if (typeof width === 'number') return `${width}px`;
+
+    return width;
+  }};
 `;
 
 export const TextSkeleton = styled(BaseSkeletonSecondary)<TextSkeletonType>`
@@ -88,6 +94,7 @@ export const CardSkeleton = styled(({ children, className }: { children?: ReactN
 ))`
   height: 100%;
   border-radius: ${({ theme }) => theme.radius.s};
+  padding: ${({ theme }) => theme.indents.m};
 `;
 
 export const ImageSkeleton = styled(({ className }: { className?: string }) => <BaseSkeleton className={className} />)`

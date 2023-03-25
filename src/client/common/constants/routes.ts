@@ -8,6 +8,7 @@ import {
   Home,
   News,
   Profile,
+  Basket,
 } from '@pages';
 
 import { RouteType } from '../types';
@@ -55,7 +56,7 @@ export const ROUTES: Record<string, RouteType> = {
     title: 'Корзина',
     label: 'Корзина',
     path: '/basket',
-    component: Catalog,
+    component: Basket,
   },
   news: {
     title: 'Новости',

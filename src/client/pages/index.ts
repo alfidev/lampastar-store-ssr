@@ -8,3 +8,4 @@ export { OurTeam } from './OurTeam';
 export { Home } from './Home';
 export { News } from './News';
 export { Profile } from './Profile';
+export { Basket } from './Basket';

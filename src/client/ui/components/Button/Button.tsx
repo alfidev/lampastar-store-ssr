@@ -105,7 +105,6 @@ const ButtonText = styled.button<{ noPadding?: boolean }>`
   align-items: center;
   justify-content: center;
   background: transparent;
-  height: 40px;
   padding: 0 ${({ theme, noPadding }) => (noPadding ? theme.indents.none : theme.indents.xl)};
   border: none;
   cursor: pointer;
@@ -149,15 +148,13 @@ const ButtonTextWithIcon = styled(
     iconRight,
     children,
     ...props
-  }: ButtonBaseType & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => {
-    return (
-      <ButtonText {...props}>
-        <ButtonInner icon={icon} iconRight={iconRight}>
-          {children}
-        </ButtonInner>
-      </ButtonText>
-    );
-  },
+  }: ButtonBaseType & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => (
+    <ButtonText {...props}>
+      <ButtonInner icon={icon} iconRight={iconRight}>
+        {children}
+      </ButtonInner>
+    </ButtonText>
+  ),
 )``;
 
 const ButtonContainedWithIcon = styled(
@@ -171,15 +168,13 @@ const ButtonContainedWithIcon = styled(
     VariantProp & {
       className?: string;
       ref?: ((instance: HTMLButtonElement | null) => void) | RefObject<HTMLButtonElement> | null;
-    } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => {
-    return (
-      <ButtonContained {...props} hideText={hideText}>
-        <ButtonInner icon={icon} iconRight={iconRight}>
-          {!hideText && children}
-        </ButtonInner>
-      </ButtonContained>
-    );
-  },
+    } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => (
+    <ButtonContained {...props} hideText={hideText}>
+      <ButtonInner icon={icon} iconRight={iconRight}>
+        {!hideText && children}
+      </ButtonInner>
+    </ButtonContained>
+  ),
 )``;
 
 const ButtonOutlinedWithIcon = styled(
@@ -189,15 +184,13 @@ const ButtonOutlinedWithIcon = styled(
     children,
     hideText,
     ...props
-  }: ButtonBaseType & VariantProp & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => {
-    return (
-      <ButtonOutline {...props} hideText={hideText}>
-        <ButtonInner icon={icon} iconRight={iconRight}>
-          {!hideText && children}
-        </ButtonInner>
-      </ButtonOutline>
-    );
-  },
+  }: ButtonBaseType & VariantProp & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => (
+    <ButtonOutline {...props} hideText={hideText}>
+      <ButtonInner icon={icon} iconRight={iconRight}>
+        {!hideText && children}
+      </ButtonInner>
+    </ButtonOutline>
+  ),
 )``;
 
 export const Button = {

@@ -48,7 +48,7 @@ export const CatalogCarousel = ({ type }: Props) => {
       <StyledHeader title={<TitleTypography>{getTitle(type)}</TitleTypography>} />
       <Carousel isLoading={isLoading}>
         <Container>
-          <Row wrap={false} indent={12}>
+          <Row isWrap={false} indent={12}>
             {isLoading ? (
               <CarouselSkeleton />
             ) : (

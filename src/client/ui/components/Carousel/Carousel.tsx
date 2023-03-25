@@ -1,9 +1,11 @@
 import React, { ReactNode, useRef } from 'react';
+import SimpleBar from 'simplebar-react';
 import styled from 'styled-components';
+
+import { ArrowLeft, ArrowRight } from '@ui/icons';
+
 import { Container } from '../Adaptive';
 import { ArrowButton } from '../ArrowButton';
-import { ArrowLeft, ArrowRight } from '@ui/icons';
-import SimpleBar from 'simplebar-react';
 
 const CarouselBlock = styled.div`
   position: relative;
@@ -45,14 +47,14 @@ export const Carousel = ({ children, isLoading }: { children: ReactNode; isLoadi
   const handleClickPrevSlide = () => {
     const elem = carouselRef.current?.getScrollElement();
     if (elem) {
-      elem?.scrollTo({ left: elem?.scrollLeft - 288, behavior: 'smooth' });
+      elem?.scrollTo({ left: elem.scrollLeft - 288, behavior: 'smooth' });
     }
   };
 
   const handleClickNextSlide = () => {
     const elem = carouselRef.current?.getScrollElement();
     if (elem) {
-      elem?.scrollTo({ left: elem?.scrollLeft + 288, behavior: 'smooth' });
+      elem?.scrollTo({ left: elem.scrollLeft + 288, behavior: 'smooth' });
     }
   };
 
@@ -69,7 +71,13 @@ export const Carousel = ({ children, isLoading }: { children: ReactNode; isLoadi
             </NextArrowButton>
           </>
         )}
-        <SimpleBar ref={(instance) => (carouselRef.current = instance)}>{children}</SimpleBar>
+        <SimpleBar
+          ref={(instance) => {
+            carouselRef.current = instance;
+          }}
+        >
+          {children}
+        </SimpleBar>
       </CarouselBlock>
     </Container>
   );

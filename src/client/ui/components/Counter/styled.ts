@@ -9,6 +9,7 @@ export const CounterContainer = styled.div`
   background: ${({ theme }) => theme.color.background.main};
   border-radius: ${({ theme }) => theme.radius.xs};
   display: flex;
+  width: 100%;
 `;
 
 export const CounterButton = styled(Button.Outlined)`

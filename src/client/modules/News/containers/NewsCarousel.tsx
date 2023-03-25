@@ -31,10 +31,10 @@ export const NewsCarousel = () => {
       <StyledHeader title={<TitleTypography>Новости</TitleTypography>} />
       <Carousel>
         <Container>
-          <Row wrap={false} indent={12}>
+          <Row isWrap={false} indent={12}>
             {isLoading
-              ? [...Array(6)].map((_item) => (
-                  <Col key={_item} mobile={6} tablet={3} desktopS={2}>
+              ? [...Array(6)].map((_item, index) => (
+                  <Col key={index} mobile={6} tablet={3} desktopS={2}>
                     <CarouselSlideSkeleton />
                   </Col>
                 ))
