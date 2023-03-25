@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { getSidebarMargin, MIN_SIDEBAR_WIDTH } from '@layouts/Lampastar';
+import { ProductLIstSkeleton } from '@modules/Basket/components/skeletons';
 import { adaptive } from '@ui/components';
 
 import { useProductActions } from '../../Catalog/hooks';
@@ -32,27 +33,31 @@ const SidebarContainer = styled.div`
 `;
 
 export const Basket = () => {
-  const { list, basket } = useBasket();
+  const { list, basket, isLoading } = useBasket();
   const { handleChangeBasketCount, handleChangeFavourite, handleChangeCompare, handleClickCard } = useProductActions();
 
-  if (!list.length) return <>Выша корзина пуста, сначала добавьте товары</>;
+  const renderList = () => {
+    if (isLoading) return <ProductLIstSkeleton />;
+
+    if (!list.length) return <>Выша корзина пуста, сначала добавьте товары</>;
+
+    return list.map((item) => (
+      <ProductCard
+        key={item.id}
+        product={item}
+        onClickCard={handleClickCard}
+        onChangeCount={handleChangeBasketCount}
+        onChangeCompare={handleChangeCompare}
+        onChangeFavourite={handleChangeFavourite}
+      />
+    ));
+  };
 
   return (
     <Container>
-      <ProductListContainer>
-        {list.map((item) => (
-          <ProductCard
-            key={item.id}
-            product={item}
-            onClickCard={handleClickCard}
-            onChangeCount={handleChangeBasketCount}
-            onChangeCompare={handleChangeCompare}
-            onChangeFavourite={handleChangeFavourite}
-          />
-        ))}
-      </ProductListContainer>
+      <ProductListContainer>{renderList()}</ProductListContainer>
       <SidebarContainer>
-        <BasketTotal total={basket?.total} />
+        <BasketTotal total={basket?.total} disabled={!list.length} />
       </SidebarContainer>
     </Container>
   );

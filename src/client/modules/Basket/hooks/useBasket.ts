@@ -10,9 +10,9 @@ const getBasketOptions = {
   url: API_BASKET_URL,
 };
 export const useBasket = () => {
-  const { data } = useQuery(
+  const { data, isLoading } = useQuery(
     [BASKET_DATA_QUERY_KEY, API_BASKET_URL],
     getQueryRequest<BasketListResponse>(getBasketOptions),
   );
-  return { list: data?.products || [], basket: data?.basket };
+  return { list: data?.products || [], basket: data?.basket, isLoading };
 };
