@@ -105,7 +105,7 @@ export const ProductCard = ({
   };
 
   return (
-    <StyledCard height={372}>
+    <StyledCard>
       <TopBlock onClick={onClickCard}>
         <ImageBox>{image ? <img alt={name} src={`${image}`} /> : <NoImage />}</ImageBox>
         <NameContainer>{name}</NameContainer>

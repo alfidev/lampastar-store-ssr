@@ -12,7 +12,7 @@ export const Card = styled.div<{
   padding: ${({ theme, mini }) => mini && theme.indents.xs} ${({ theme }) => theme.indents.m};
   border: 1px solid ${({ theme }) => theme.color.background.main};
   border-radius: ${({ theme }) => theme.radius.xs};
-  ${({ height }) => (height ? `height: ${height}px` : '')};
+  height: ${({ height }) => (height ? `${height}px` : '100%')};
 
   ${({ disabled }) => disabled && 'cursor: no-drop'};
 
