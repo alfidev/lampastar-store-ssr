@@ -1,6 +1,6 @@
 {
   "name": "lampastar-store",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React SSR lampastar store",
   "main": "./dist/app.js",
   "author": "Alfi",
