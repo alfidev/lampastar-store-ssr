@@ -42,7 +42,6 @@ function createClientConfig(env: Env): Configuration {
       path: path.resolve(__dirname, '../dist', 'public'),
       filename: env.production ? 'js/[name].[chunkhash].js' : 'js/[name].js',
     },
-    devtool: env.development ? 'eval-cheap-module-source-map' : 'none',
     module: {
       rules: [
         {
