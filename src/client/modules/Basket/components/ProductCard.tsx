@@ -17,7 +17,7 @@ const ProductBlock = styled.div`
   margin-bottom: ${({ theme }) => theme.indents.m};
 `;
 export const ProductCard = ({ product, onClickCard, onChangeCompare, onChangeCount, onChangeFavourite }: Props) => {
-  const { image, name, price, total, notAvailable, forOrder, productId, quantity } = product;
+  const { image, name, price, total, notAvailable, forOrder, productId, quantity, availableQuantity } = product;
 
   const [count, setCount] = useState(quantity ?? 0);
   const [isFavourite, setIsFavourite] = useState(false);
@@ -67,6 +67,8 @@ export const ProductCard = ({ product, onClickCard, onChangeCompare, onChangeCou
     onClickCard(productId);
   };
 
+  const partAvailable = quantity > availableQuantity && availableQuantity > 0;
+
   return (
     <ProductBlock>
       <ProductCardBasket
@@ -77,6 +79,7 @@ export const ProductCard = ({ product, onClickCard, onChangeCompare, onChangeCou
         isCompare={isCompare}
         isFavourite={isFavourite}
         notAvailable={notAvailable}
+        partAvailable={partAvailable}
         countInBasket={count}
         forOrder={forOrder}
         onChangeCount={onChangeCountHandler}

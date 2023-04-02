@@ -86,6 +86,7 @@ export type ThemeType = {
       skeletonSecondary: string;
     };
     status: StatusColorType;
+    statusBackground: StatusColorType;
     border: {
       input: string;
     };

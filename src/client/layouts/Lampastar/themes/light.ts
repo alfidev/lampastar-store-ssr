@@ -37,6 +37,11 @@ export const LIGHT_THEME: ThemeType = {
       warning: '#ffcb4b',
       error: '#c70000',
     },
+    statusBackground: {
+      success: '#85bb73',
+      warning: '#fff3d7',
+      error: '#ffb3b3',
+    },
     buttons: {
       disabled: '#D4D4D8',
       primary: '#FFB811',

@@ -5,6 +5,7 @@ export type BasketProduct = {
   model: string;
   option: string[];
   quantity: number;
+  availableQuantity: number;
   price: number;
   total: number;
   image?: string;
