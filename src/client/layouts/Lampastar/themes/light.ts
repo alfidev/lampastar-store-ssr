@@ -96,6 +96,7 @@ export const LIGHT_THEME: ThemeType = {
     button: 10,
     menu: 100,
     modal: 1000,
+    loader: 2000,
   },
   typography: {
     big1: css`

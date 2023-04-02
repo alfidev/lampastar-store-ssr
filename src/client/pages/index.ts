@@ -9,3 +9,4 @@ export { Home } from './Home';
 export { News } from './News';
 export { Profile } from './Profile';
 export { Basket } from './Basket';
+export { Order } from './Order';

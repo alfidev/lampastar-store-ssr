@@ -1,7 +1,8 @@
 import { useField } from 'formik';
-import React, { ReactNode, RefObject } from 'react';
+import React, { ReactNode, RefObject, useState } from 'react';
 import styled from 'styled-components';
 
+import { formatPhoneNumber } from '@common/utils';
 import { CheckBox, Input } from '@ui/components';
 
 type Props = {
@@ -28,42 +29,6 @@ const Error = styled.div`
   line-height: 16px;
 `;
 
-const reformatNumber = (val: string) => {
-  const match = val.match(/(\+7)|(\d)/g);
-
-  let res = [...(match || [])];
-
-  let result;
-
-  if (res[0] === '+7') {
-    result = '+7';
-    res.shift();
-  } else {
-    result = '+7';
-  }
-
-  if (res.length >= 1) {
-    result = result + ' (' + res.slice(0, 3).join('');
-    res = res.slice(3);
-  }
-
-  if (res.length >= 1) {
-    result = result + ') ' + res.slice(0, 3).join('');
-    res = res.slice(3);
-  }
-
-  if (res.length >= 1) {
-    result = result + '-' + res.slice(0, 2).join('');
-    res = res.slice(2);
-  }
-
-  if (res.length >= 1) {
-    result = result + '-' + res.slice(0, 2).join('');
-  }
-
-  return result;
-};
-
 const ValidationMark = styled.span`
   color: ${({ theme }) => theme.color.status.error};
 `;
@@ -76,9 +41,10 @@ export const Field = ({ validation, label, ...props }: Props) => {
   return (
     <Wrapper validation={validation}>
       <Label>
-        {validation && <ValidationMark>* </ValidationMark>}
+        {label && validation && <ValidationMark>* </ValidationMark>}
         {label}
       </Label>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Input isError={validation && showError} {...field} {...props} />
       {validation && <Error>{showError && meta.error}</Error>}
     </Wrapper>
@@ -86,23 +52,38 @@ export const Field = ({ validation, label, ...props }: Props) => {
 };
 
 export const FieldMobile = ({ validation, label, ...props }: Props) => {
-  const [{ onChange, ...field }, meta] = useField(props);
+  const [{ onChange, value, ...field }, meta, { setValue }] = useField(props);
+  const [isFocused, setIsFocused] = useState(false);
 
   const showError = meta.touched && !!meta.error;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value = reformatNumber(e.target.value);
+    const newValue = e.target.value?.slice(2)?.match(/\d+/g)?.join('') ?? '';
 
-    onChange(e);
+    setValue(newValue);
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
   };
 
   return (
     <Wrapper validation={validation}>
       <Label>
-        {validation && <ValidationMark>* </ValidationMark>}
+        {label && validation && <ValidationMark>* </ValidationMark>}
         {label}
       </Label>
-      <Input onChange={handleChange} isError={validation && showError} {...field} {...props} />
+
+      <Input
+        onChange={handleChange}
+        onFocus={handleFocus}
+        isError={validation && showError}
+        value={meta.touched || isFocused || value ? formatPhoneNumber(value) : ''}
+        /* eslint-disable-next-line react/jsx-props-no-spreading */
+        {...field}
+        /* eslint-disable-next-line react/jsx-props-no-spreading */
+        {...props}
+      />
       {validation && <Error>{showError && meta.error}</Error>}
     </Wrapper>
   );
@@ -116,9 +97,10 @@ export const FieldCheckbox = ({ validation, text, label, ...props }: Props & { t
   return (
     <Wrapper validation={validation}>
       <Label>
-        {validation && <ValidationMark>* </ValidationMark>}
+        {label && validation && <ValidationMark>* </ValidationMark>}
         {label}
       </Label>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <CheckBox {...field} {...props}>
         {text}
       </CheckBox>

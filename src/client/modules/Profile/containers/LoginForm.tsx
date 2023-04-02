@@ -12,7 +12,7 @@ import { loginEmailValidationSchema, loginPhoneValidationSchema } from '../utils
 
 const loginInitialValues = {
   [FIELD_EMAIL]: '',
-  [FIELD_PHONE]: '+7',
+  [FIELD_PHONE]: '',
   [FIELD_PASSWORD]: '',
 };
 
@@ -29,7 +29,7 @@ type FormProps = {
 export const LoginPhoneForm = ({ onSubmit }: FormProps) => {
   const handleSubmit = (values: typeof loginInitialValues) => {
     const data = {
-      telephone: values[FIELD_PHONE].match(/\d/g)?.join('') || '',
+      telephone: values[FIELD_PHONE],
       password: values[FIELD_PASSWORD],
     };
 

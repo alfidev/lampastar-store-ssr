@@ -24,7 +24,7 @@ const registerInitialValues = {
   [FIELD_FIRST_NAME]: '',
   [FIELD_LAST_NAME]: '',
   [FIELD_EMAIL]: '',
-  [FIELD_PHONE]: '+7',
+  [FIELD_PHONE]: '',
   [FIELD_NEW_PASSWORD]: '',
   [FIELD_NEW_PASSWORD_CONFIRM]: '',
   [FIELD_SUBSCRIBE_NEWS]: true,
@@ -44,7 +44,7 @@ export const RegisterForm = () => {
     if (isAuthorized) {
       navigate('/profile');
     }
-  }, [isAuthorized]);
+  }, [isAuthorized, navigate]);
 
   const handleSubmit = (values: typeof registerInitialValues) => {
     const data = {
@@ -92,7 +92,7 @@ export const RegisterForm = () => {
                 type="password"
               />
             </Col>
-            <Col desktopS={6}></Col>
+            <Col desktopS={6} />
           </Row>
           <Row>
             <Col>

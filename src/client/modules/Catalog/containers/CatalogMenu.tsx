@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useCategories } from '@modules/Catalog/hooks';
-import { CatalogMenuSkeleton } from '../components';
-import { Col, Container, Row } from '@ui/components/Adaptive';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button, List, ListItem, ListItemLite } from '@ui/components';
+
+import { useCategories } from '@modules/Catalog/hooks';
 import { CategoryMap } from '@modules/Catalog/types';
+import { Button, List, ListItem, ListItemLite } from '@ui/components';
+import { Col, Container, Row } from '@ui/components/Adaptive';
 import { Typography } from '@ui/components/Typography';
 import { useMediaQuery } from '@ui/hooks/useMediaQuery';
 import { ChevronLeft } from '@ui/icons';
-import { useNavigate } from 'react-router-dom';
+
+import { CatalogMenuSkeleton } from '../components';
 
 type Props = {
   closeMenu: () => void;
@@ -73,7 +75,7 @@ export const CatalogMenu = ({ closeMenu }: Props) => {
 
   useEffect(() => {
     if (map && !isMobileOrTablet) setCurrentCategory(map[0]);
-  }, [map]);
+  }, [isMobileOrTablet, map]);
 
   const navigateToCategory = (category: CategoryMap) => {
     navigate(`/catalog/${category.id}`);
@@ -85,7 +87,10 @@ export const CatalogMenu = ({ closeMenu }: Props) => {
   };
 
   const onClickPrimaryCategory = (category: CategoryMap) => {
-    if (category.list.length) return setCurrentCategory(category);
+    if (category.list.length) {
+      setCurrentCategory(category);
+      return;
+    }
 
     navigateToCategory(category);
   };
@@ -95,11 +100,7 @@ export const CatalogMenu = ({ closeMenu }: Props) => {
   return (
     <>
       {isMobileOrTablet && (
-        <Button.Text
-          icon={ChevronLeft}
-          onClick={() => (currentCategory ? setCurrentCategory(undefined) : closeMenu())}
-          noPadding
-        >
+        <Button.Text icon={ChevronLeft} onClick={() => (currentCategory ? setCurrentCategory(undefined) : closeMenu())}>
           Назад
         </Button.Text>
       )}

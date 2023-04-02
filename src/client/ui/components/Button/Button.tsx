@@ -1,29 +1,31 @@
 import React, { ReactNode, RefObject } from 'react';
 import styled from 'styled-components';
 
-import { SizesType } from '@layouts/Lampastar/types';
-
-type VariantProp = {
-  secondary?: boolean;
-};
-
 type Sizes = 's' | 'm' | 'l';
 
 type ButtonType = {
-  loading?: boolean;
+  icon?: React.FC;
+  iconRight?: boolean;
   disabled?: boolean;
-  hideText?: boolean;
   isFluid?: boolean;
   size?: Sizes;
+  hideText?: boolean;
+  secondary?: boolean;
+};
+
+type StyledButtonType = {
+  disabled?: boolean;
+  isFluid?: boolean;
+  size?: Sizes;
+  hideText?: boolean;
+  secondary?: boolean;
 };
 
 type ButtonBaseType = {
   icon?: React.FC;
   iconRight?: boolean;
-  noPadding?: boolean;
   children?: ReactNode;
-  iconSize?: SizesType;
-} & ButtonType;
+};
 
 const ICON_SIZES: Record<Sizes, string> = {
   s: '36px',
@@ -31,7 +33,7 @@ const ICON_SIZES: Record<Sizes, string> = {
   l: '46px',
 };
 
-export const ButtonContained = styled.button<VariantProp & ButtonType>`
+export const ButtonContained = styled.button<StyledButtonType>`
   ${({ theme }) => theme.typography.body2}
   display: flex;
   align-items: center;
@@ -66,7 +68,7 @@ export const ButtonContained = styled.button<VariantProp & ButtonType>`
   }
 `;
 
-const ButtonOutline = styled.button<VariantProp & ButtonType>`
+const ButtonOutline = styled.button<StyledButtonType>`
   ${({ theme }) => theme.typography.body2}
   display: flex;
   align-items: center;
@@ -83,6 +85,7 @@ const ButtonOutline = styled.button<VariantProp & ButtonType>`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   white-space: nowrap;
   outline: none;
+  width: ${({ isFluid }) => (isFluid ? '100%' : 'auto')};
 
   :hover {
     border-color: ${({ theme, secondary, disabled }) =>
@@ -99,18 +102,21 @@ const ButtonOutline = styled.button<VariantProp & ButtonType>`
   }
 `;
 
-const ButtonText = styled.button<{ noPadding?: boolean }>`
+const ButtonText = styled.button<StyledButtonType & { withPadding?: boolean }>`
   ${({ theme }) => theme.typography.body2}
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-  padding: 0 ${({ theme, noPadding }) => (noPadding ? theme.indents.none : theme.indents.xl)};
+  padding: 0 ${({ theme, withPadding }) => (withPadding ? theme.indents.xl : theme.indents.none)};
   border: none;
   cursor: pointer;
   white-space: nowrap;
   outline: none;
-  color: ${({ theme, disabled }) => (disabled && theme.color.buttons.disabled) || theme.color.buttons.text};
+  color: ${({ theme, disabled, secondary }) =>
+    (disabled && theme.color.buttons.disabled) ||
+    (secondary && theme.color.buttons.secondary) ||
+    theme.color.buttons.text};
 
   :hover {
     color: ${({ theme, disabled }) => (disabled && theme.color.buttons.disabled) || theme.color.buttons.textHover};
@@ -148,7 +154,8 @@ const ButtonTextWithIcon = styled(
     iconRight,
     children,
     ...props
-  }: ButtonBaseType & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => (
+  }: Omit<ButtonType, 'hideText'> & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <ButtonText {...props}>
       <ButtonInner icon={icon} iconRight={iconRight}>
         {children}
@@ -164,11 +171,11 @@ const ButtonContainedWithIcon = styled(
     children,
     hideText,
     ...props
-  }: ButtonBaseType &
-    VariantProp & {
-      className?: string;
-      ref?: ((instance: HTMLButtonElement | null) => void) | RefObject<HTMLButtonElement> | null;
-    } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => (
+  }: ButtonType & {
+    className?: string;
+    ref?: ((instance: HTMLButtonElement | null) => void) | RefObject<HTMLButtonElement> | null;
+  } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <ButtonContained {...props} hideText={hideText}>
       <ButtonInner icon={icon} iconRight={iconRight}>
         {!hideText && children}
@@ -184,7 +191,8 @@ const ButtonOutlinedWithIcon = styled(
     children,
     hideText,
     ...props
-  }: ButtonBaseType & VariantProp & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => (
+  }: ButtonType & { className?: string } & React.HTMLAttributes<HTMLButtonElement>) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <ButtonOutline {...props} hideText={hideText}>
       <ButtonInner icon={icon} iconRight={iconRight}>
         {!hideText && children}
