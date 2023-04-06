@@ -5,34 +5,30 @@ import { Route } from 'react-router-dom';
 import { RouteComponent } from '@common/components/RouteComponent';
 import { RouteNotFound } from '@common/components/Routes';
 import { ProfileNavigation } from '@modules/Profile';
-import { Container, Row, Col } from '@ui/components';
 
 import { PROFILE_ROUTES } from './constants';
+import { ProfileContentContainer, ProfileSidebarContainer, ProfileWrapper } from './styled';
 
-export const Profile = () => {
-  return (
-    <Container>
-      <Row>
-        <Col tablet={9}>
-          <RoutesSwitch>
-            {Object.values(PROFILE_ROUTES).map(({ path, route, title, component: Component, isAuthorized }) => (
-              <Route
-                key={path}
-                path={route || path}
-                element={
-                  <RouteComponent title={title} isAuthorized={isAuthorized}>
-                    <Component />
-                  </RouteComponent>
-                }
-              />
-            ))}
-            <Route path="*" element={<RouteNotFound />} />
-          </RoutesSwitch>
-        </Col>
-        <Col tablet={3}>
-          <ProfileNavigation />
-        </Col>
-      </Row>
-    </Container>
-  );
-};
+export const Profile = () => (
+  <ProfileWrapper>
+    <ProfileContentContainer>
+      <RoutesSwitch>
+        {Object.values(PROFILE_ROUTES).map(({ path, route, title, component: Component, isAuthorized }) => (
+          <Route
+            key={path}
+            path={route || path}
+            element={
+              <RouteComponent title={title} isAuthorized={isAuthorized}>
+                <Component />
+              </RouteComponent>
+            }
+          />
+        ))}
+        <Route path="*" element={<RouteNotFound />} />
+      </RoutesSwitch>
+    </ProfileContentContainer>
+    <ProfileSidebarContainer>
+      <ProfileNavigation />
+    </ProfileSidebarContainer>
+  </ProfileWrapper>
+);

@@ -1,9 +1,26 @@
-export const FIELD_PASSWORD = 'FIELD_PASSWORD';
-export const FIELD_FIRST_NAME = 'FIELD_FIRST_NAME';
-export const FIELD_LAST_NAME = 'FIELD_LAST_NAME';
-export const FIELD_EMAIL = 'FIELD_EMAIL';
-export const FIELD_PHONE = 'FIELD_PHONE';
-export const FIELD_NEW_PASSWORD = 'FIELD_NEW_PASSWORD';
-export const FIELD_NEW_PASSWORD_CONFIRM = 'FIELD_NEW_PASSWORD_CONFIRM';
-export const FIELD_SUBSCRIBE_NEWS = 'FIELD_SUBSCRIBE_NEWS';
-export const FIELD_ACCEPT_POLICY = 'FIELD_ACCEPT_POLICY';
+export enum LOGIN_FIELDS {
+  EMAIL = 'email',
+  PHONE = 'telephone',
+  PASSWORD = 'password',
+}
+
+export enum REGISTER_FIELDS {
+  FIRST_NAME = 'firstname',
+  LAST_NAME = 'lastname',
+  EMAIL = 'email',
+  PHONE = 'telephone',
+  NEW_PASSWORD = 'password',
+  NEW_PASSWORD_CONFIRM = 'confirm',
+  SUBSCRIBE_NEWS = 'subscribe',
+  ACCEPT_POLICY = 'agree',
+}
+
+export enum SETTINGS_FIELDS {
+  FIRST_NAME = 'firstname',
+  LAST_NAME = 'lastname',
+  EMAIL = 'email',
+  PHONE = 'telephone',
+  NEW_PASSWORD = 'password',
+  NEW_PASSWORD_CONFIRM = 'confirm',
+  SUBSCRIBE_NEWS = 'subscribe',
+}
