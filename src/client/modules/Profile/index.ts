@@ -1,1 +1,1 @@
-export { ProfileNavigation, Login, ProfileDashboard, Register, ProfileSettings } from './containers';
+export { ProfileNavigation, Login, ProfileDashboard, Register, ProfileSettings, ProfileOrders } from './containers';

@@ -7,14 +7,14 @@ import { useProfile } from '@common/hooks';
 type Props = { children: ReactNode; title: string; isAuthorized?: boolean };
 
 export const RouteComponent = ({ title, children, isAuthorized }: Props) => {
-  const { isAuthorized: isAuthorizedUser } = useProfile();
+  const { isAuthorized: isAuthorizedUser, isLoading } = useProfile();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthorized && !isAuthorizedUser) {
+    if (isAuthorized && !isAuthorizedUser && !isLoading) {
       navigate('/profile/login');
     }
-  }, [isAuthorized, isAuthorizedUser]);
+  }, [isAuthorized, isAuthorizedUser, isLoading]);
 
   if (isAuthorized && !isAuthorizedUser) return null;
 

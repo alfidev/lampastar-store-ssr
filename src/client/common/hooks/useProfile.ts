@@ -36,7 +36,7 @@ export const useProfile = () => {
   const queryClient = useQueryClient();
   const { addToast } = useToasts();
 
-  const { isSuccess, isError } = useQuery([CHECK_AUTHORIZE_API], getQueryRequest(), {
+  const { isSuccess, isError, isLoading } = useQuery([CHECK_AUTHORIZE_API], getQueryRequest(), {
     refetchInterval: 30 * 1000,
   });
 
@@ -50,9 +50,7 @@ export const useProfile = () => {
 
   const { mutateAsync: logoutAsync } = useMutation(getQueryRequest(logoutOptions));
 
-  const invalidate = () => {
-    return queryClient.invalidateQueries([CHECK_AUTHORIZE_API]);
-  };
+  const invalidate = () => queryClient.invalidateQueries([CHECK_AUTHORIZE_API]);
 
   const logout = () => {
     logoutAsync({})
@@ -78,5 +76,6 @@ export const useProfile = () => {
     logout,
     register,
     login,
+    isLoading,
   };
 };

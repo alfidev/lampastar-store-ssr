@@ -26,3 +26,34 @@ export type SettingsFormValuesType = {
   [SETTINGS_FIELDS.NEW_PASSWORD_CONFIRM]: string;
   [SETTINGS_FIELDS.SUBSCRIBE_NEWS]: boolean;
 };
+
+export type ProductType = {
+  id: number;
+  model: string;
+  name: string;
+  orderId: number;
+  price: number;
+  productId: number;
+  quantity: number;
+  reward: string;
+  tax: string;
+  total: number;
+  image?: string;
+};
+
+export type OrderType = {
+  id: number;
+  currencyCode: string;
+  currencyValue: number;
+  dateAdded: string;
+  firstname: string;
+  lastname: string;
+  status: string;
+  total: number;
+  products: ProductType[];
+};
+
+export type OrdersResponseType = {
+  list: OrderType[];
+  total: number;
+};
