@@ -2,6 +2,7 @@ import { RouteType } from '@common/types';
 
 import { ProfileDashboard } from './ProfileDashboard';
 import { ProfileLogin } from './ProfileLogin';
+import { ProfileOrders } from './ProfileOrders';
 import { ProfileRegister } from './ProfileRegister';
 import { ProfileSettings } from './ProfileSettings';
 
@@ -30,6 +31,13 @@ export const PROFILE_ROUTES: Record<string, RouteType> = {
     label: 'Настройки профиля',
     path: '/settings',
     component: ProfileSettings,
+    isAuthorized: true,
+  },
+  orders: {
+    title: 'Мои заказы',
+    label: 'Мои заказы',
+    path: '/orders',
+    component: ProfileOrders,
     isAuthorized: true,
   },
 };

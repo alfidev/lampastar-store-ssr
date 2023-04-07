@@ -33,6 +33,12 @@ export type TypographyColorType = {
   lightTwo: string;
 };
 
+export type StatusColorType = {
+  success: string;
+  warning: string;
+  error: string;
+};
+
 export type IndentsType = {
   none: string;
   xxxs: string;
@@ -79,11 +85,8 @@ export type ThemeType = {
       skeletonPrimary: string;
       skeletonSecondary: string;
     };
-    status: {
-      success: string;
-      warning: string;
-      error: string;
-    };
+    status: StatusColorType;
+    statusBackground: StatusColorType;
     border: {
       input: string;
     };
@@ -122,6 +125,7 @@ export type ThemeType = {
     button: number;
     menu: number;
     modal: number;
+    loader: number;
   };
   typography: Typography;
   loaderSize: LoaderSizeType;

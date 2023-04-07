@@ -22,6 +22,7 @@ import {
   AdditionalBasketButton,
   StyledBasketCardLine,
   BasketNameContainer,
+  WarningContainer,
 } from './styled';
 
 export type ProductCardProps = {
@@ -33,6 +34,7 @@ export type ProductCardProps = {
   isCompare: boolean;
   countInBasket: number;
   notAvailable: boolean;
+  partAvailable: boolean;
   forOrder: boolean;
   onChangeCount: (count: number) => void;
   onChangeFavourite: () => void;
@@ -50,6 +52,7 @@ export const ProductCardBasket = ({
   isFavourite,
   isCompare,
   notAvailable,
+  partAvailable,
   countInBasket,
   forOrder,
   onChangeCount,
@@ -132,6 +135,9 @@ export const ProductCardBasket = ({
           <BasketControlBlock>{renderActionsTop()}</BasketControlBlock>
         </BasketTopBlock>
         <BasketBottomBlock>
+          {partAvailable && (
+            <WarningContainer>Количество товара больше доступного в данный момент для заказа</WarningContainer>
+          )}
           <PriceBasketContainer>
             {totalPrice && <BasketPriceTotal>{totalPrice}</BasketPriceTotal>}
             {price && (

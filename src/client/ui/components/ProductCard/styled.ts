@@ -181,6 +181,20 @@ export const BasketBottomBlock = styled.div`
   }
 `;
 
+export const WarningContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: ${({ theme }) => theme.indents.s};
+  ${({ theme }) => theme.typography.mini1};
+  background: ${({ theme }) => theme.color.statusBackground.warning};
+  padding: 0 ${({ theme }) => theme.indents.s};
+  flex-grow: 1;
+  ${adaptive.maxWidth.mobile} {
+    margin-right: 0;
+  }
+`;
+
 export const BasketCounterBlock = styled.div`
   margin-left: ${({ theme }) => theme.indents.m};
   max-width: 146px;

@@ -37,6 +37,11 @@ export const LIGHT_THEME: ThemeType = {
       warning: '#ffcb4b',
       error: '#c70000',
     },
+    statusBackground: {
+      success: '#85bb73',
+      warning: '#fff3d7',
+      error: '#ffb3b3',
+    },
     buttons: {
       disabled: '#D4D4D8',
       primary: '#FFB811',
@@ -96,6 +101,7 @@ export const LIGHT_THEME: ThemeType = {
     button: 10,
     menu: 100,
     modal: 1000,
+    loader: 2000,
   },
   typography: {
     big1: css`

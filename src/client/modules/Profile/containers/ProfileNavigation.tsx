@@ -18,7 +18,7 @@ export const ProfileNavigation = () => {
   const { pathname } = useLocation();
 
   const handleOnClick = (path: string) => {
-    navigate('/profile' + path);
+    navigate(`/profile${path}`);
   };
 
   return (
@@ -27,7 +27,7 @@ export const ProfileNavigation = () => {
         {Object.values(PROFILE_ROUTES)
           .filter(({ isAuthorized: isAuthorizedPath }) => !!isAuthorizedPath === isAuthorized)
           .map(({ label, path }) => (
-            <ListItem key={path} onClick={() => handleOnClick(path)} active={pathname === '/profile' + path}>
+            <ListItem key={path} onClick={() => handleOnClick(path)} active={pathname === `/profile${path}`}>
               {label}
             </ListItem>
           ))}

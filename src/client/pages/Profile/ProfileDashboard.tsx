@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { PageTitle } from '@layouts/Lampastar';
+import { ProfileDashboard as ProfileDashboardContainer } from '@modules/Profile';
 
-export const ProfileDashboard = () => {
-  return (
-    <>
-      <PageTitle>Dashboard</PageTitle>
-    </>
-  );
-};
+export const ProfileDashboard = () => (
+  <>
+    <PageTitle>Dashboard</PageTitle>
+    <ProfileDashboardContainer />
+  </>
+);
