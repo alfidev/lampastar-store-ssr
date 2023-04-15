@@ -33,6 +33,7 @@ export const Input = styled.input`
 export const Textarea = styled.textarea`
   ${inputStyles};
   resize: none;
+  height: 100%;
   padding-top: ${({ theme }) => theme.indents.xs};
   padding-bottom: ${({ theme }) => theme.indents.xs};
 `;
@@ -87,6 +88,7 @@ export const CheckBox = styled(
 
     return (
       <CustomCheckBox checked={!!value} className={className} withText={withText}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <FakeInputCheckBox checked={!!value} {...props} type="checkbox" />
         {withText && <Typography variant="mini2">{children}</Typography>}
       </CustomCheckBox>

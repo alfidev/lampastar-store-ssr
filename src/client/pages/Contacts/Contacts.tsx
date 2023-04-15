@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 
-import { ContactForm } from '@common/components/ContactForm';
 import { YaMap } from '@common/components/YaMap';
-import { BACKEND_ENABLE, useFeature } from '@common/featureToggles';
+import { USE_CONTACTS_FORM, useFeature } from '@common/featureToggles';
 import { PageTitle } from '@layouts/Lampastar';
+import { ContactForm } from '@modules/Contacts';
 import { Typography } from '@ui/components';
 import { Col, Container, Row } from '@ui/components/Adaptive';
 import { ClockIcon, GeoIcon, PhoneIcon, MailIcon } from '@ui/icons';
@@ -46,7 +46,7 @@ const CaptionText = ({ children }: { children: ReactNode }) => (
 );
 
 export const Contacts = () => {
-  const isBackEnabled = useFeature(BACKEND_ENABLE);
+  const isContactEnabled = useFeature(USE_CONTACTS_FORM);
 
   return (
     <>
@@ -142,7 +142,7 @@ export const Contacts = () => {
             <YaMap height={296} width="100%" />
           </MapBlock>
         </MapContainer>
-        {isBackEnabled && (
+        {isContactEnabled && (
           <ContactContainer>
             <SectionTitle>Есть вопросы? Мы ответим</SectionTitle>
             <ContactForm />
