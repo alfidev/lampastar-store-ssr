@@ -1,4 +1,11 @@
-import { BACKEND_ENABLE, USE_BUY_TOP, USE_COMPARE, USE_FAVORITES, USE_ORDER } from './featureToggleNames';
+import {
+  BACKEND_ENABLE,
+  USE_BUY_TOP,
+  USE_COMPARE,
+  USE_CONTACTS_FORM,
+  USE_FAVORITES,
+  USE_ORDER,
+} from './featureToggleNames';
 
 export const featureToggleState = {
   [USE_ORDER]: {
@@ -16,6 +23,10 @@ export const featureToggleState = {
   [BACKEND_ENABLE]: {
     enabled: false,
     description: 'Включает отображение функций, которые еще не реализованы на бэке',
+  },
+  [USE_CONTACTS_FORM]: {
+    enabled: true,
+    description: 'Включает отображение форм контакта с клиентами',
   },
   [USE_BUY_TOP]: {
     enabled: false,

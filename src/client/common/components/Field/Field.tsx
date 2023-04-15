@@ -3,17 +3,24 @@ import React, { ReactNode, RefObject, useState } from 'react';
 import styled from 'styled-components';
 
 import { formatPhoneNumber } from '@common/utils';
-import { CheckBox, Input } from '@ui/components';
+import { CheckBox, Input, Textarea } from '@ui/components';
 
-type Props = {
+type Props<U = HTMLInputElement> = {
   label?: string;
   name: string;
   validation?: boolean;
-  ref?: ((instance: HTMLInputElement | null) => void) | RefObject<HTMLInputElement> | null;
-} & React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+  ref?: ((instance: U | null) => void) | RefObject<U> | null;
+} & React.DetailedHTMLProps<React.InputHTMLAttributes<U>, U>;
+
+type TextAreaProps = Props<HTMLTextAreaElement>;
 
 const Wrapper = styled.div<{ validation?: boolean }>`
+  width: 100%;
   margin-bottom: ${({ theme, validation }) => (validation ? theme.indents.none : theme.indents.m)};
+`;
+
+const TextAreaWrapper = styled(Wrapper)`
+  height: 100%;
 `;
 
 const Label = styled.label`
@@ -40,14 +47,36 @@ export const Field = ({ validation, label, ...props }: Props) => {
 
   return (
     <Wrapper validation={validation}>
-      <Label>
-        {label && validation && <ValidationMark>* </ValidationMark>}
-        {label}
-      </Label>
+      {label && (
+        <Label>
+          {validation && <ValidationMark>* </ValidationMark>}
+          {label}
+        </Label>
+      )}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Input isError={validation && showError} {...field} {...props} />
       {validation && <Error>{showError && meta.error}</Error>}
     </Wrapper>
+  );
+};
+
+export const FieldTextarea = ({ validation, label, ...props }: TextAreaProps) => {
+  const [field, meta] = useField(props);
+
+  const showError = meta.touched && !!meta.error;
+
+  return (
+    <TextAreaWrapper validation={validation}>
+      {label && (
+        <Label>
+          {validation && <ValidationMark>* </ValidationMark>}
+          {label}
+        </Label>
+      )}
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Textarea isError={validation && showError} {...field} {...props} />
+      {validation && <Error>{showError && meta.error}</Error>}
+    </TextAreaWrapper>
   );
 };
 
@@ -69,10 +98,12 @@ export const FieldMobile = ({ validation, label, ...props }: Props) => {
 
   return (
     <Wrapper validation={validation}>
-      <Label>
-        {label && validation && <ValidationMark>* </ValidationMark>}
-        {label}
-      </Label>
+      {label && (
+        <Label>
+          {label && validation && <ValidationMark>* </ValidationMark>}
+          {label}
+        </Label>
+      )}
 
       <Input
         onChange={handleChange}
@@ -96,10 +127,12 @@ export const FieldCheckbox = ({ validation, text, label, ...props }: Props & { t
 
   return (
     <Wrapper validation={validation}>
-      <Label>
-        {label && validation && <ValidationMark>* </ValidationMark>}
-        {label}
-      </Label>
+      {label && (
+        <Label>
+          {label && validation && <ValidationMark>* </ValidationMark>}
+          {label}
+        </Label>
+      )}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <CheckBox {...field} {...props}>
         {text}

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { Typography } from '@ui/components/Typography';
+
 import { adaptive } from '@ui/components/Adaptive';
+import { Typography } from '@ui/components/Typography';
 
 export const MapAndFormContainer = styled.div`
   margin-top: 40px;
-  ${adaptive.minWidth.desktopM} {
+  ${adaptive.minWidth.desktopS} {
     display: flex;
     margin-top: 120px;
   }
@@ -17,7 +18,7 @@ export const MapContainer = styled.div`
 `;
 
 export const MapBlock = styled.div`
-  width: 456px;
+  width: 468px;
 
   ${adaptive.maxWidth.tablet} {
     width: 100%;
@@ -29,7 +30,7 @@ export const MapBlock = styled.div`
 `;
 
 export const ContactContainer = styled.div`
-  height: 452px;
+  height: 468px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;

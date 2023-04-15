@@ -64,6 +64,7 @@ export const BottomBlock = styled.div`
 `;
 
 export const NameContainer = styled.div`
+  height: 72px;
   word-break: break-word;
   overflow: hidden;
   display: -webkit-box;

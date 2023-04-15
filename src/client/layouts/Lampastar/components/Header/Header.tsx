@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
@@ -43,80 +43,87 @@ export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
 
   const isUseOrder = useFeature(USE_ORDER);
 
+  const onClickHeader = () => {
+    if (menuIsOpened) toggleMenu();
+  };
+
+  const onClickMenu = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    toggleMenu();
+  };
+
   return (
-    <>
-      <StyledHeader menuIsOpened={menuIsOpened}>
-        <TopLine>
-          <TopContainer>
-            <NavGroup>
-              <StyledLinkTop to={paymentAndDelivery.path}>{paymentAndDelivery.label}</StyledLinkTop>
-              <StyledLinkTop to={contacts.path}>{contacts.label}</StyledLinkTop>
-              <StyledLinkOuter href={`tel:${phoneNumber.value}`}>
-                <PhoneIcon style={{ marginRight: theme.indents.xs }} size="xxl" />
-                {phoneNumber.label}
-              </StyledLinkOuter>
-            </NavGroup>
-          </TopContainer>
-        </TopLine>
-        <MiddleLine>
-          <MiddleContainer>
-            <Link to={home.path}>
-              <Logo />
-            </Link>
-            <NavGroupSearch>
-              <CatalogButton onClick={toggleMenu}>
-                {menuIsOpened ? <CloseIcon /> : <MenuRightIcon />}
-                <StyledCatalogText>Каталог</StyledCatalogText>
-              </CatalogButton>
-              <CatalogSearch />
-            </NavGroupSearch>
-            {isUseOrder && (
-              <NavGroupAdaptive>
-                <StyledLinkMiddle to={favourites.path}>
+    <StyledHeader menuIsOpened={menuIsOpened} onClick={onClickHeader}>
+      <TopLine>
+        <TopContainer>
+          <NavGroup>
+            <StyledLinkTop to={paymentAndDelivery.path}>{paymentAndDelivery.label}</StyledLinkTop>
+            <StyledLinkTop to={contacts.path}>{contacts.label}</StyledLinkTop>
+            <StyledLinkOuter href={`tel:${phoneNumber.value}`}>
+              <PhoneIcon style={{ marginRight: theme.indents.xs }} size="xxl" />
+              {phoneNumber.label}
+            </StyledLinkOuter>
+          </NavGroup>
+        </TopContainer>
+      </TopLine>
+      <MiddleLine>
+        <MiddleContainer>
+          <Link to={home.path}>
+            <Logo />
+          </Link>
+          <NavGroupSearch>
+            <CatalogButton onClick={onClickMenu}>
+              {menuIsOpened ? <CloseIcon /> : <MenuRightIcon />}
+              <StyledCatalogText>Каталог</StyledCatalogText>
+            </CatalogButton>
+            <CatalogSearch />
+          </NavGroupSearch>
+          {isUseOrder && (
+            <NavGroupAdaptive>
+              <StyledLinkMiddle to={favourites.path}>
+                <HeaderIcon>
+                  <Like />
+                </HeaderIcon>
+                {favourites.label}
+              </StyledLinkMiddle>
+              {isAuthorized && (
+                <StyledLinkMiddle to={profile.path}>
                   <HeaderIcon>
-                    <Like />
+                    <User />
                   </HeaderIcon>
-                  {favourites.label}
+                  {profile.label}
                 </StyledLinkMiddle>
-                {isAuthorized && (
-                  <StyledLinkMiddle to={profile.path}>
-                    <HeaderIcon>
-                      <User />
-                    </HeaderIcon>
-                    {profile.label}
-                  </StyledLinkMiddle>
-                )}
-                {!isAuthorized && (
-                  <StyledLinkMiddle to={'/profile/login'}>
-                    <HeaderIcon>
-                      <User />
-                    </HeaderIcon>
-                    Вход
-                  </StyledLinkMiddle>
-                )}
-                <StyledLinkMiddle to={basket.path}>
+              )}
+              {!isAuthorized && (
+                <StyledLinkMiddle to="/profile/login">
                   <HeaderIcon>
-                    <Basket />
+                    <User />
                   </HeaderIcon>
-                  {basket.label}
+                  Вход
                 </StyledLinkMiddle>
-              </NavGroupAdaptive>
-            )}
-          </MiddleContainer>
-        </MiddleLine>
-        <BottomLine>
-          <BottomContainer>
-            <NavGroup>
-              {MAIN_MENU.map((page) => (
-                <StyledLinkBottom key={ROUTES[page].path} to={ROUTES[page].path}>
-                  {ROUTES[page].label}
-                </StyledLinkBottom>
-              ))}
-            </NavGroup>
-          </BottomContainer>
-        </BottomLine>
-      </StyledHeader>
-    </>
+              )}
+              <StyledLinkMiddle to={basket.path}>
+                <HeaderIcon>
+                  <Basket />
+                </HeaderIcon>
+                {basket.label}
+              </StyledLinkMiddle>
+            </NavGroupAdaptive>
+          )}
+        </MiddleContainer>
+      </MiddleLine>
+      <BottomLine>
+        <BottomContainer>
+          <NavGroup>
+            {MAIN_MENU.map((page) => (
+              <StyledLinkBottom key={ROUTES[page].path} to={ROUTES[page].path}>
+                {ROUTES[page].label}
+              </StyledLinkBottom>
+            ))}
+          </NavGroup>
+        </BottomContainer>
+      </BottomLine>
+    </StyledHeader>
   );
 });
 
