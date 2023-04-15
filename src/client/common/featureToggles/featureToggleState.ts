@@ -25,7 +25,7 @@ export const featureToggleState = {
     description: 'Включает отображение функций, которые еще не реализованы на бэке',
   },
   [USE_CONTACTS_FORM]: {
-    enabled: false,
+    enabled: true,
     description: 'Включает отображение форм контакта с клиентами',
   },
   [USE_BUY_TOP]: {
