@@ -5,4 +5,7 @@ export enum MESSAGE_FIELDS {
   AGREE = 'agree',
 }
 
+export const TELEPHONE_FIELD = 'telephone';
+
 export const API_SEND_MESSAGE_URL = '/contacts/message';
+export const API_SEND_CALL_ME_URL = '/contacts/message/callMe';

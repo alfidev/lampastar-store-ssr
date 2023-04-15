@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
-import { ContentWrapper } from '../ComponentWrapper';
-import { ButtonContained, Input } from '@ui/components';
+
 import { Logo } from '@resources/images';
+import { ButtonContained, Input } from '@ui/components';
 import { adaptive } from '@ui/components/Adaptive';
+
+import { ContentWrapper } from '../ComponentWrapper';
 
 const menuStyle = css`
   padding: 0;
@@ -70,10 +72,6 @@ export const EmailInput = styled(Input)`
   //max-width: 370px;
 `;
 
-export const MobileInput = styled(Input)`
-  //max-width: 370px;
-`;
-
 export const EmailSubmitButton = styled(ButtonContained)`
   margin-left: ${({ theme }) => theme.indents.xs};
 
@@ -82,10 +80,6 @@ export const EmailSubmitButton = styled(ButtonContained)`
     margin-top: ${({ theme }) => theme.indents.s};
     width: 100%;
   }
-`;
-
-export const MobileSubmitButton = styled(ButtonContained)`
-  margin-left: ${({ theme }) => theme.indents.xl};
 `;
 
 export const BottomInfoContainer = styled.div`
@@ -131,11 +125,6 @@ export const LeftGroup = styled.div`
 
 export const RightGroup = styled.div`
   max-width: 370px;
-`;
-
-export const CallForm = styled.div`
-  display: flex;
-  margin-top: ${({ theme }) => theme.indents.m};
 `;
 
 export const SocialBlock = styled.div`

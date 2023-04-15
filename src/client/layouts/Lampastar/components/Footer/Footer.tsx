@@ -1,4 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { CONTACTS, FOR_CLIENT_MENU, ROUTES } from '@common/constants';
+import { USE_CONTACTS_FORM, useFeature } from '@common/featureToggles';
+import { CallMeForm } from '@modules/Contacts';
+import { Mail } from '@resources/images';
+import { Container, Row, Col } from '@ui/components/Adaptive';
+import { Typography } from '@ui/components/Typography';
+import { ClockIcon, GeoIcon, MailIcon, PhoneIcon, ViberIcon, WhatsappIcon } from '@ui/icons';
+
 import {
   DynamicLine,
   StyledFooter,
@@ -17,22 +27,12 @@ import {
   LeftGroup,
   RightGroup,
   FooterMenuItem,
-  MobileInput,
   EmailSubmitButton,
-  MobileSubmitButton,
-  CallForm,
   SocialBlock,
   SocialItem,
   StyledLinkOuter,
   FooterContactMenu,
 } from './styled';
-import { Mail } from '@resources/images';
-import { Typography } from '@ui/components/Typography';
-import { CONTACTS, FOR_CLIENT_MENU, ROUTES } from '@common/constants';
-import { Link } from 'react-router-dom';
-import { ClockIcon, GeoIcon, MailIcon, PhoneIcon, ViberIcon, WhatsappIcon } from '@ui/icons';
-import { Container, Row, Col } from '@ui/components/Adaptive';
-import { BACKEND_ENABLE, useFeature } from '@common/featureToggles';
 
 const { phoneNumber, address, workTime, mail } = CONTACTS;
 
@@ -55,7 +55,7 @@ export const Footer = ({ menuIsOpened }: Props) => {
 
   const showSubscribe = false;
 
-  const isBackEnabled = useFeature(BACKEND_ENABLE);
+  const isContactFormEnabled = useFeature(USE_CONTACTS_FORM);
 
   return (
     <StyledFooter menuIsOpened={menuIsOpened}>
@@ -140,12 +140,7 @@ export const Footer = ({ menuIsOpened }: Props) => {
             </LeftGroup>
             <RightGroup>
               <Typography variant="body3">Свяжитесь с нами</Typography>
-              {isBackEnabled && (
-                <CallForm>
-                  <MobileInput placeholder="+7(___)___-__-__" />
-                  <MobileSubmitButton>Заказать звонок</MobileSubmitButton>
-                </CallForm>
-              )}
+              {isContactFormEnabled && <CallMeForm />}
               <SocialBlock>
                 <SocialItem href="">
                   <ViberIcon size="xl" />
