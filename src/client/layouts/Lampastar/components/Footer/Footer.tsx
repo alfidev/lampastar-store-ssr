@@ -142,10 +142,10 @@ export const Footer = ({ menuIsOpened }: Props) => {
               <Typography variant="body3">Свяжитесь с нами</Typography>
               {isContactFormEnabled && <CallMeForm />}
               <SocialBlock>
-                <SocialItem href="">
+                <SocialItem href={`viber://chat?number=${phoneNumber.wa}`} target="_blank">
                   <ViberIcon size="xl" />
                 </SocialItem>
-                <SocialItem href="">
+                <SocialItem href={`https://wa.me/${phoneNumber.wa}`} target="_blank">
                   <WhatsappIcon size="xl" />
                 </SocialItem>
               </SocialBlock>
