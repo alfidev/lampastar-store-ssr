@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { useToasts } from '@common/hooks';
@@ -21,6 +21,7 @@ const confirmOrderOptions = {
 export const useOrder = () => {
   const navigate = useNavigate();
   const { addToast } = useToasts();
+  const queryClient = useQueryClient();
 
   const confirmOrderQueryOptions = {
     onError: () => {
@@ -31,6 +32,7 @@ export const useOrder = () => {
     },
     onSuccess: () => {
       navigate('status', { replace: true });
+      queryClient.invalidateQueries([BASKET_DATA_QUERY_KEY]);
     },
   };
 
