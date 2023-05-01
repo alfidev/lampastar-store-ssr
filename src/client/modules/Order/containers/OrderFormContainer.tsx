@@ -2,6 +2,7 @@ import { Form, Formik, FormikProps } from 'formik';
 import React, { Ref, useMemo } from 'react';
 import styled from 'styled-components';
 
+import { useProfile } from '@common/hooks';
 import { CustomerType } from '@common/types';
 import { adaptive, Typography } from '@ui/components';
 
@@ -27,6 +28,7 @@ const StyledOrderPolicyContainer = styled.div`
 `;
 
 export const OrderFormContainer = ({ customer, formRef, onConfirm }: Props) => {
+  const { isAuthorized } = useProfile();
   const { firstName, lastName, email, phone } = customer ?? {};
 
   const initialFormValues = useMemo<OrderFormValuesType>(
@@ -69,7 +71,7 @@ export const OrderFormContainer = ({ customer, formRef, onConfirm }: Props) => {
           <Typography tag="h2" variant="main1">
             1. Данные покупателя
           </Typography>
-          <CustomerForm initialState={customerInitialState} />
+          <CustomerForm initialState={customerInitialState} showIAmCustomer={isAuthorized} />
         </FormContainer>
         <FormContainer>
           <Typography tag="h2" variant="main1">
