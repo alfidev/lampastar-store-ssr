@@ -22,6 +22,7 @@ export const ProfileSidebarContainer = styled.div`
   width: ${MIN_SIDEBAR_WIDTH};
 
   ${adaptive.maxWidth.tablet} {
+    margin-top: ${({ theme }) => theme.indents.m};
     margin-left: unset;
     width: 100%;
   }

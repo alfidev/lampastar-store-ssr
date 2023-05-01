@@ -15,6 +15,7 @@ type Props = {
 const TopLine = styled.div`
   margin-left: ${({ theme }) => theme.indents.m};
   margin-bottom: ${({ theme }) => theme.indents.xxs};
+  ${({ theme }) => theme.typography.mini2};
   display: flex;
 `;
 
@@ -34,10 +35,12 @@ const TotalLine = styled.div`
   justify-content: flex-end;
 `;
 
+const ProductsContainer = styled.div``;
+
 export const OrderItem = ({ order }: Props) => {
   const { dateAdded, status, id, products, total } = order;
 
-  const formattedDate = format(new Date(dateAdded), 'dd.MM.yyyy HH.mm');
+  const formattedDate = format(new Date(dateAdded), 'dd.MM.yyyy HH:mm');
 
   const title = `Заказ №${id} от ${formattedDate}`;
 
@@ -48,9 +51,11 @@ export const OrderItem = ({ order }: Props) => {
       <TopLine>{title}</TopLine>
       <Card>
         <StatusLine>Статус: {status}</StatusLine>
-        {products.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
+        <ProductsContainer>
+          {products.map((product) => (
+            <ProductItem key={product.id} product={product} />
+          ))}
+        </ProductsContainer>
         <TotalLine>Итого: {formattedSum}</TotalLine>
       </Card>
     </OrderWrapper>
