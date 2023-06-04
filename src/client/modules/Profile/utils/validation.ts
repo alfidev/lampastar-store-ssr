@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { REGISTER_FIELDS, LOGIN_FIELDS, SETTINGS_FIELDS } from '../constants';
+import { REGISTER_FIELDS, LOGIN_FIELDS, SETTINGS_FIELDS, FORGOT_FIELDS, RESET_FIELDS } from '../constants';
 
 export const loginPhoneValidationSchema = yup.object().shape({
   [LOGIN_FIELDS.PHONE]: yup.string().required('Введите номер телефона'),
@@ -42,6 +42,17 @@ export const settingsValidationSchema = yup.object().shape({
   [SETTINGS_FIELDS.PHONE]: yup.string().required('Введите номер телефона'),
   [SETTINGS_FIELDS.NEW_PASSWORD]: yup.string().max(30, 'Длинна пароля не должна превышать 30 символов'),
   [SETTINGS_FIELDS.NEW_PASSWORD_CONFIRM]: yup
+    .string()
+    .oneOf([yup.ref(SETTINGS_FIELDS.NEW_PASSWORD)], 'Пароли не совпадают'),
+});
+
+export const forgotValidationSchema = yup.object().shape({
+  [FORGOT_FIELDS.EMAIL]: yup.string().email('Неправильный email').required('Введите email'),
+});
+
+export const resetValidationSchema = yup.object().shape({
+  [RESET_FIELDS.NEW_PASSWORD]: yup.string().max(30, 'Длинна пароля не должна превышать 30 символов'),
+  [RESET_FIELDS.NEW_PASSWORD_CONFIRM]: yup
     .string()
     .oneOf([yup.ref(SETTINGS_FIELDS.NEW_PASSWORD)], 'Пароли не совпадают'),
 });
