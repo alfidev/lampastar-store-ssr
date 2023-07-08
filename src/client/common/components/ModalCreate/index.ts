@@ -1,4 +1,4 @@
-import { useMemo, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,13 +20,7 @@ export const ModalCreate = ({ modalId, children }: Props) => {
     modalProps: app.modalProps,
   }));
 
-  const portal = useMemo(() => {
-    if (typeof document !== 'undefined') {
-      return document?.getElementById(MODAL_PORTAL_ID);
-    }
-
-    return null;
-  }, [openedModalIds]);
+  const portal = typeof document !== 'undefined' ? document?.getElementById(MODAL_PORTAL_ID) : null;
 
   const handleClose = () => {
     dispatch(closeModalAction({ modalId }));
