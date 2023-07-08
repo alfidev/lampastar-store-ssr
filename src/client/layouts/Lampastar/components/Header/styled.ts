@@ -27,7 +27,6 @@ export const StyledHeader = styled.header<{ menuIsOpened: boolean }>`
   ${adaptive.maxWidth.tablet} {
     display: ${({ menuIsOpened }) => (menuIsOpened ? 'none' : 'block')};
   }
-  margin-bottom: ${({ theme }) => theme.indents.xl};
   box-shadow: 0 0 10px ${({ theme }) => theme.color.background.secondaryHover};
 `;
 

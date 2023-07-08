@@ -1,4 +1,4 @@
-import { LOGIN_FIELDS, REGISTER_FIELDS, SETTINGS_FIELDS } from '../constants';
+import { FORGOT_FIELDS, LOGIN_FIELDS, REGISTER_FIELDS, RESET_FIELDS, SETTINGS_FIELDS } from '../constants';
 
 export type RegisterFormValuesType = {
   [REGISTER_FIELDS.FIRST_NAME]: string;
@@ -25,6 +25,15 @@ export type SettingsFormValuesType = {
   [SETTINGS_FIELDS.NEW_PASSWORD]: string;
   [SETTINGS_FIELDS.NEW_PASSWORD_CONFIRM]: string;
   [SETTINGS_FIELDS.SUBSCRIBE_NEWS]: boolean;
+};
+
+export type ForgotFormValuesType = {
+  [FORGOT_FIELDS.EMAIL]: string;
+};
+
+export type ResetFormValuesType = {
+  [RESET_FIELDS.NEW_PASSWORD]: string;
+  [RESET_FIELDS.NEW_PASSWORD_CONFIRM]: string;
 };
 
 export type ProductType = {

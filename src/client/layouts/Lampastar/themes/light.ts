@@ -12,6 +12,7 @@ export const LIGHT_THEME: ThemeType = {
       primary: '#FFF',
       secondary: '#454545',
       secondaryHover: '#45454512',
+      secondaryHoverLight: '#525252',
       tertiary: '#FFB811',
       social: '#565656',
       line: '#D4D4D8',

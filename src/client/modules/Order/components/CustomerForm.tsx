@@ -17,13 +17,14 @@ const tempCustomerInitialState = {
 
 type Props = {
   initialState: TempCustomerType;
+  showIAmCustomer: boolean;
 };
 
-export const CustomerForm = ({ initialState }: Props) => {
+export const CustomerForm = ({ initialState, showIAmCustomer }: Props) => {
   const { values, setValues, getFieldMeta } = useFormikContext<OrderFormValuesType>();
   const [tempCustomer, setTempCustomer] = useState<TempCustomerType>(tempCustomerInitialState);
 
-  const disabledFields = values[CUSTOMER_FIELDS.I_AM_CUSTOMER];
+  const disabledFields = values[CUSTOMER_FIELDS.I_AM_CUSTOMER] && showIAmCustomer;
 
   useEffect(() => {
     const fieldFirstNameMeta = getFieldMeta(CUSTOMER_FIELDS.FIRST_NAME);
@@ -60,11 +61,13 @@ export const CustomerForm = ({ initialState }: Props) => {
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <FieldCheckbox name={CUSTOMER_FIELDS.I_AM_CUSTOMER} text="Я получатель *" />
-        </Col>
-      </Row>
+      {showIAmCustomer && (
+        <Row>
+          <Col>
+            <FieldCheckbox name={CUSTOMER_FIELDS.I_AM_CUSTOMER} text="Я получатель *" />
+          </Col>
+        </Row>
+      )}
       <Row indent={12}>
         <OrderColumn>
           <Field name={CUSTOMER_FIELDS.FIRST_NAME} placeholder="Имя" disabled={disabledFields} validation />

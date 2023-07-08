@@ -25,9 +25,15 @@ export const useCategories = (props?: Props) => {
     },
   );
 
-  const categoriesMap = useMemo(() => getCategoriesRecursive(data ?? [], parentId), [data, parentId]);
-
   const category = useMemo(() => (categoryId && data?.find(({ id }) => id === categoryId)) || null, [data, categoryId]);
 
-  return { isLoading, list: data, map: categoriesMap, category };
+  const categoriesMap = useMemo(() => getCategoriesRecursive(data ?? [], parentId), [data, parentId]);
+
+  const currentList = useMemo(
+    () =>
+      (category && data?.filter(({ parentId: categoryParentId }) => categoryParentId === category.parentId)) || null,
+    [data, categoryId],
+  );
+
+  return { isLoading, list: data, map: categoriesMap, category, currentList };
 };

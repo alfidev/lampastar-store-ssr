@@ -20,3 +20,4 @@ export { FullImageSlider } from './FullImageSlider';
 export { Tabs, Tab } from './Tabs';
 export { Loader } from './Loader';
 export * from './PageLoader';
+export * from './DownSheet';

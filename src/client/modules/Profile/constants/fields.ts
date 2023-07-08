@@ -24,3 +24,12 @@ export enum SETTINGS_FIELDS {
   NEW_PASSWORD_CONFIRM = 'confirm',
   SUBSCRIBE_NEWS = 'subscribe',
 }
+
+export enum FORGOT_FIELDS {
+  EMAIL = 'email',
+}
+
+export enum RESET_FIELDS {
+  NEW_PASSWORD = 'password',
+  NEW_PASSWORD_CONFIRM = 'confirm',
+}

@@ -11,6 +11,7 @@ export const PROFILE_ROUTES: Record<string, RouteType> = {
     title: 'Войти в аккаунт',
     label: 'Вход',
     path: '/login',
+    route: '/login/*',
     component: ProfileLogin,
   },
   register: {

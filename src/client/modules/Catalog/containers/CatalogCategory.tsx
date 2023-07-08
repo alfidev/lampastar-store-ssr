@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { PageTitle } from '@layouts/Lampastar';
+import { adaptive } from '@ui/components';
 
 import { ProductsList, ProductsFilters, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
 import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
-import { useCategories, useProductActions, useProducts } from '../hooks';
+import { useCategories, useControlAndFilters, useFilters, useProductActions, useProducts } from '../hooks';
 
 type Props = {
   categoryId: number;
@@ -14,12 +15,20 @@ type Props = {
 
 const CatalogContainer = styled.div`
   display: flex;
+
+  ${adaptive.maxWidth.desktopS} {
+    flex-direction: column;
+  }
 `;
 
 const FiltersContainer = styled.div`
   min-width: 264px;
   width: 264px;
   margin-right: ${({ theme }) => theme.indents.l};
+
+  ${adaptive.maxWidth.desktopS} {
+    width: 100%;
+  }
 `;
 
 const ProductsContainer = styled.div`
@@ -39,21 +48,27 @@ export const CatalogCategory = ({ categoryId }: Props) => {
   const [sort, setSort] = useState(SORT_TYPE.price);
   const [order, setOrder] = useState(ORDER_TYPE.ASC);
   const [viewMode, setViewMode] = useState(VIEW_MODE.grid);
+  const [filtersValues, setFiltersValues] = useState({});
 
-  const { category, map } = useCategories({ categoryId });
+  const { category, currentList } = useCategories({ categoryId, parentId: categoryId });
 
   const {
     list: products,
     totalPage,
     isLoading: isLoadingProducts,
-  } = useProducts({ category: categoryId, page, sort, order });
+  } = useProducts({ category: categoryId, page, sort, order, filters: filtersValues });
   const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
+  const { list: filters, priceLimits } = useFilters(categoryId);
+
+  const { isShowedFilters, openFilters, closeFilters } = useControlAndFilters();
 
   const isLoadingFilters = false;
 
   const { name: categoryName } = category || {};
 
   const onClickCategory = (id: number) => {
+    setFiltersValues({});
+
     navigate(`/catalog/${id}`);
   };
 
@@ -75,7 +90,18 @@ export const CatalogCategory = ({ categoryId }: Props) => {
   const getProductsFiltersJSX = () => {
     if (isLoadingFilters) return <>Filters skeleton</>;
 
-    return <ProductsFilters categoriesMap={map} onClickCategory={onClickCategory} />;
+    return (
+      <ProductsFilters
+        filters={filters}
+        categories={currentList}
+        categoryId={categoryId}
+        onClickCategory={onClickCategory}
+        showFilters={isShowedFilters}
+        closeFilters={closeFilters}
+        setFilters={setFiltersValues}
+        priceLimits={priceLimits}
+      />
+    );
   };
 
   return (
@@ -92,6 +118,7 @@ export const CatalogCategory = ({ categoryId }: Props) => {
               setSortType={setSort}
               setOrderType={setOrder}
               setViewMode={setViewMode}
+              openFilters={openFilters}
             />
           </ControlContainer>
           {getProductsJSX()}

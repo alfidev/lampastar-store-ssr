@@ -10,6 +10,7 @@ import { CreateOrderData } from '../types';
 type Props = {
   resetStage: () => void;
   orderData?: CreateOrderData;
+  showLCInfo?: boolean;
 };
 
 const MyOrdersButton = styled(Button.Contained)`
@@ -20,7 +21,7 @@ const GoHomeButton = styled(Button.Text)`
   margin-top: ${({ theme }) => theme.indents.l};
 `;
 
-export const OrderStatusStage = ({ resetStage, orderData }: Props) => {
+export const OrderStatusStage = ({ resetStage, orderData, showLCInfo }: Props) => {
   const navigate = useNavigate();
 
   const { id } = orderData || {};
@@ -41,7 +42,13 @@ export const OrderStatusStage = ({ resetStage, orderData }: Props) => {
         {titleNumber}
         {titleStatus}
       </PageTitle>
-      <Typography variant="body4">Все заказы вы можете отслеживать в вашем Личном кабинете.</Typography>
+      <Typography variant="body4">
+        {showLCInfo ? (
+          <>Все заказы вы можете отслеживать в вашем Личном кабинете.</>
+        ) : (
+          <>Детали заказа отправлены вам на почту указанную при заказе</>
+        )}
+      </Typography>
       <MyOrdersButton onClick={goMyOrders}>Мои заказы</MyOrdersButton>
       <GoHomeButton secondary onClick={goHome}>
         Назад на главную

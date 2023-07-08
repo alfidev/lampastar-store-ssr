@@ -69,7 +69,7 @@ export const OrderFormContainer = ({ customer, formRef, onConfirm }: Props) => {
           <Typography tag="h2" variant="main1">
             1. Данные покупателя
           </Typography>
-          <CustomerForm initialState={customerInitialState} />
+          <CustomerForm initialState={customerInitialState} showIAmCustomer={!!customer?.id} />
         </FormContainer>
         <FormContainer>
           <Typography tag="h2" variant="main1">

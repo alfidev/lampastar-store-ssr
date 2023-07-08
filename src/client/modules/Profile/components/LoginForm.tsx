@@ -16,19 +16,23 @@ const loginInitialValues = {
   [LOGIN_FIELDS.PASSWORD]: '',
 };
 
-const StyledButton = styled(Button.Contained)`
-  margin-top: ${({ theme }) => theme.indents.m};
-`;
-
 type FormPhoneProps = {
   onSubmit: (data: Omit<LoginFormValuesType, LOGIN_FIELDS.EMAIL>) => void;
+  forgotPassword: () => void;
 };
 
 type FormEmailProps = {
   onSubmit: (data: Omit<LoginFormValuesType, LOGIN_FIELDS.PHONE>) => void;
+  forgotPassword: () => void;
 };
 
-export const LoginPhoneForm = ({ onSubmit }: FormPhoneProps) => {
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: ${({ theme }) => theme.indents.m};
+`;
+
+export const LoginPhoneForm = ({ onSubmit, forgotPassword }: FormPhoneProps) => {
   const handleSubmit = (values: LoginFormValuesType) => {
     const { [LOGIN_FIELDS.EMAIL]: email, ...data } = values;
 
@@ -45,10 +49,13 @@ export const LoginPhoneForm = ({ onSubmit }: FormPhoneProps) => {
             <Tab>
               <FieldMobile name={LOGIN_FIELDS.PHONE} label="Телефон" placeholder="Телефон" type="tel" />
               <Field name={LOGIN_FIELDS.PASSWORD} label="Пароль" placeholder="Пароль" type="password" />
+              <ButtonContainer>
+                <Button.Contained type="submit" disabled={!isValid || !isTouched}>
+                  Войти
+                </Button.Contained>
+                <Button.Text onClick={forgotPassword}>Восстановить пароль</Button.Text>
+              </ButtonContainer>
             </Tab>
-            <StyledButton type="submit" disabled={!isValid || !isTouched}>
-              Войти
-            </StyledButton>
           </Form>
         );
       }}
@@ -56,7 +63,7 @@ export const LoginPhoneForm = ({ onSubmit }: FormPhoneProps) => {
   );
 };
 
-export const LoginEmailForm = ({ onSubmit }: FormEmailProps) => {
+export const LoginEmailForm = ({ onSubmit, forgotPassword }: FormEmailProps) => {
   const handleSubmit = (values: LoginFormValuesType) => {
     const { [LOGIN_FIELDS.PHONE]: telephone, ...data } = values;
 
@@ -73,10 +80,13 @@ export const LoginEmailForm = ({ onSubmit }: FormEmailProps) => {
             <Tab>
               <Field name={LOGIN_FIELDS.EMAIL} label="E-mail" placeholder="E-mail" type="text" />
               <Field name={LOGIN_FIELDS.PASSWORD} label="Пароль" placeholder="Пароль" type="password" />
+              <ButtonContainer>
+                <Button.Contained type="submit" disabled={!isValid || !isTouched}>
+                  Войти
+                </Button.Contained>
+                <Button.Text onClick={forgotPassword}>Восстановить пароль</Button.Text>
+              </ButtonContainer>
             </Tab>
-            <StyledButton type="submit" disabled={!isValid || !isTouched}>
-              Войти
-            </StyledButton>
           </Form>
         );
       }}

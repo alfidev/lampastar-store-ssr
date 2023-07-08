@@ -29,4 +29,5 @@ export const ContentContainer = styled.div<{ opened: boolean }>`
 
 export const InnerContainer = styled.div`
   padding: ${({ theme }) => theme.indents.m} 0;
+  ${({ theme }) => theme.typography.mini2};
 `;

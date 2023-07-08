@@ -1,34 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { CategoryMap } from '../../types';
+import { CheckBox } from '@ui/components';
+
+import { CategoryType } from '../../types';
 
 type Props = {
-  categoriesMap: CategoryMap[];
-  onClick: (id: number) => void;
+  categories: CategoryType[];
+  onChange: (id: number) => void;
+  categoryId: number;
 };
 
-const StyledList = styled.ul`
+const StyledList = styled.div`
   ${({ theme }) => theme.typography.mini2};
-  list-style-type: circle;
-  margin: 0;
-  padding-left: 13px;
 `;
 
-const StyledListItem = styled.li`
+const StyledListItem = styled.div`
   cursor: pointer;
+  margin-bottom: ${({ theme }) => theme.indents.m};
 `;
 
-const renderList = (categoriesMap: CategoryMap[], onClick: (id: number) => void) => (
+export const CategoryFilter = ({ categories, onChange, categoryId }: Props) => (
   <StyledList>
-    {categoriesMap.map(({ id, name, list }) => (
+    {categories.map(({ id, name }) => (
       <StyledListItem key={id}>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div onClick={() => onClick(id)}>{name}</div>
-        {!!list.length && <StyledList>{renderList(list, onClick)}</StyledList>}
+        <CheckBox value={id === categoryId} onChange={() => onChange(id)}>
+          {name}
+        </CheckBox>
       </StyledListItem>
     ))}
   </StyledList>
 );
-
-export const CategoryFilter = ({ categoriesMap, onClick }: Props) => renderList(categoriesMap, onClick);

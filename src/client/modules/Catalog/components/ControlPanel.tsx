@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Card } from '@ui/components';
-import { OrderType, SortType, ViewModeType } from '../types';
-import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
+
+import { DownSheet } from '@common/components/DownSheet';
+import { Card, DownSheet as DownSheetComponent } from '@ui/components';
+import { useMediaQuery } from '@ui/hooks/useMediaQuery';
+import { Filters, GridIcon, ListIcon, SortOrderAsc, SortOrderDesc } from '@ui/icons';
+
+import { ORDER_TYPE, SORT_MOBILE_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
 import { locale } from '../locale';
-import { GridIcon, ListIcon, SortAscIcon, SortDescIcon } from '@ui/icons';
+import { OrderType, SortMobileType, SortType, ViewModeType } from '../types';
 
 const { sortOrder } = locale;
 
@@ -15,6 +19,7 @@ type Props = {
   setViewMode: (mode: ViewModeType) => void;
   setSortType: (mode: SortType) => void;
   setOrderType: (mode: OrderType) => void;
+  openFilters?: () => void;
 };
 
 const ControlContainer = styled.div`
@@ -44,7 +49,49 @@ const ItemIcon = styled(Item)`
   }
 `;
 
-export const ControlPanel = ({ viewMode, sortType, orderType, setViewMode, setSortType, setOrderType }: Props) => {
+const SortOrderAscIconLeft = styled(SortOrderAsc)`
+  margin-right: ${({ theme }) => theme.indents.xs};
+  width: ${({ theme }) => theme.sizes.xxl};
+  height: ${({ theme }) => theme.sizes.xxl};
+`;
+
+const SortOrderAscIconRight = styled(SortOrderAsc)`
+  margin-left: ${({ theme }) => theme.indents.xs};
+  width: ${({ theme }) => theme.sizes.xxl};
+  height: ${({ theme }) => theme.sizes.xxl};
+`;
+
+const SortOrderDescIconLeft = styled(SortOrderDesc)`
+  margin-right: ${({ theme }) => theme.indents.xs};
+  width: ${({ theme }) => theme.sizes.xxl};
+  height: ${({ theme }) => theme.sizes.xxl};
+`;
+
+const SortOrderDescIconRight = styled(SortOrderDesc)`
+  margin-left: ${({ theme }) => theme.indents.xs};
+  width: ${({ theme }) => theme.sizes.xxl};
+  height: ${({ theme }) => theme.sizes.xxl};
+`;
+
+const FilterIcon = styled(Filters)`
+  margin-right: ${({ theme }) => theme.indents.xs};
+  width: ${({ theme }) => theme.sizes.xxl};
+  height: ${({ theme }) => theme.sizes.xxl};
+`;
+
+export const ControlPanel = ({
+  viewMode,
+  sortType,
+  orderType,
+  setViewMode,
+  setSortType,
+  setOrderType,
+  openFilters,
+}: Props) => {
+  const isMobile = useMediaQuery({ maxWidth: 'tablet' });
+
+  const [isShowedSort, setIsShowedSort] = useState(false);
+
   const onClickSortHandler = (sortKey: SortType) => {
     if (sortKey === sortType) {
       if (orderType === ORDER_TYPE.ASC) setOrderType(ORDER_TYPE.DESC);
@@ -55,6 +102,41 @@ export const ControlPanel = ({ viewMode, sortType, orderType, setViewMode, setSo
     }
   };
 
+  const onClickSortMobileHandler = (sortKey: SortMobileType) => {
+    setSortType(SORT_MOBILE_TYPE[sortKey].key);
+    setOrderType(SORT_MOBILE_TYPE[sortKey].type);
+    setIsShowedSort(false);
+  };
+
+  if (isMobile)
+    return (
+      <>
+        <ControlContainer>
+          <ButtonContainer onClick={() => setIsShowedSort(true)}>
+            {orderType === ORDER_TYPE.ASC ? <SortOrderAscIconLeft /> : <SortOrderDescIconLeft />}
+            {sortOrder[sortType]}
+          </ButtonContainer>
+          {openFilters && (
+            <ButtonContainer onClick={openFilters}>
+              <FilterIcon />
+              Фильтры
+            </ButtonContainer>
+          )}
+        </ControlContainer>
+        <DownSheet isOpen={isShowedSort} onClose={() => setIsShowedSort(false)} title="Сортировать по">
+          {Object.keys(SORT_MOBILE_TYPE).map((key) => (
+            <DownSheetComponent.DownSheetItem key={key} onClick={() => onClickSortMobileHandler(key as SortMobileType)}>
+              {
+                sortOrder[
+                  `${SORT_MOBILE_TYPE[key as SortMobileType].key}${SORT_MOBILE_TYPE[key as SortMobileType].type}`
+                ]
+              }
+            </DownSheetComponent.DownSheetItem>
+          ))}
+        </DownSheet>
+      </>
+    );
+
   return (
     <ControlContainer>
       <ButtonContainer>
@@ -63,17 +145,13 @@ export const ControlPanel = ({ viewMode, sortType, orderType, setViewMode, setSo
           <Item key={key} onClick={() => onClickSortHandler(key as SortType)} active={key === sortType}>
             {sortOrder[key]}
             {key === sortType && (
-              <>
-                {orderType === ORDER_TYPE.ASC ? (
-                  <SortAscIcon size="xxl" ml="xs" />
-                ) : (
-                  <SortDescIcon size="xxl" ml="xs" />
-                )}
-              </>
+              // eslint-disable-next-line react/jsx-no-useless-fragment
+              <>{orderType === ORDER_TYPE.ASC ? <SortOrderAscIconRight /> : <SortOrderDescIconRight />}</>
             )}
           </Item>
         ))}
       </ButtonContainer>
+
       <ButtonContainer>
         <ItemIcon active={viewMode === VIEW_MODE.grid} onClick={() => setViewMode(VIEW_MODE.grid)}>
           <GridIcon size="xxl" />
