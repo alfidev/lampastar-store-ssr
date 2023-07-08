@@ -76,13 +76,7 @@ export const ProductsFilters = ({
   const isMobile = useMediaQuery({ maxWidth: 'tablet' });
   const [filtersValues, setFiltersValues] = useState<Record<string, string | number>>({});
 
-  const portal = useMemo(() => {
-    if (typeof document !== 'undefined') {
-      return document?.getElementById(FILTERS_PORTAL_ID);
-    }
-
-    return null;
-  }, [document, showFilters]);
+  const portal = typeof document !== 'undefined' ? document?.getElementById(FILTERS_PORTAL_ID) : null;
 
   useEffect(() => {
     if (!isMobile) setFilters(filtersValues);

@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode, useMemo } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { DOWN_SHEET_PORTAL_ID } from '@common/constants';
@@ -12,13 +12,7 @@ type Props = {
 };
 
 export const DownSheet = ({ isOpen, onClose, children, title }: Props) => {
-  const portal = useMemo(() => {
-    if (typeof document !== 'undefined') {
-      return document?.getElementById(DOWN_SHEET_PORTAL_ID);
-    }
-
-    return null;
-  }, [document, isOpen]);
+  const portal = typeof document !== 'undefined' ? document?.getElementById(DOWN_SHEET_PORTAL_ID) : null;
 
   if (!isOpen || !portal) return null;
 
