@@ -42,19 +42,8 @@ export const CatalogMain = ({ search }: Props) => {
     totalPage,
     isLoading: isLoadingProducts,
   } = useProducts({ page, sort, order, ...(search && { search }) });
-  const { handleClickCard } = useProductActions();
 
-  const onChangeCount = async (id: number, count: number) => {
-    console.log('addProduct', id, 'count', count);
-  };
-
-  const onChangeFavourite = async (id: number, value: boolean) => {
-    console.log('addFavourite', id, 'value', value);
-  };
-
-  const onChangeCompare = async (id: number, value: boolean) => {
-    console.log('addCompare', id, 'value', value);
-  };
+  const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
 
   const getProductsJSX = () => {
     if (isLoadingProducts) return <ProductsListSkeleton />;
@@ -63,9 +52,9 @@ export const CatalogMain = ({ search }: Props) => {
       <ProductsList
         products={products}
         mode={viewMode}
-        onChangeCount={onChangeCount}
-        onChangeFavourite={onChangeFavourite}
-        onChangeCompare={onChangeCompare}
+        onChangeCount={handleChangeBasketCount}
+        onChangeFavourite={handleChangeFavourite}
+        onChangeCompare={handleChangeCompare}
         onClickCard={handleClickCard}
       />
     );

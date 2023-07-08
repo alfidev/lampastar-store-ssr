@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from '@common/redux';
 import { Theme, Wrapper } from '@layouts/Lampastar';
 
-import { MODAL_PORTAL_ID } from '../../constants';
+import { DOWN_SHEET_PORTAL_ID, MODAL_PORTAL_ID } from '../../constants';
 import { ErrorRouterContext, defaultContext, ToastsContext } from '../../context';
 import { FeatureTogglesContextProvider, getToggles } from '../../featureToggles';
 import { ErrorContext, ToastsContextType, ToastType } from '../../types';
@@ -81,6 +81,7 @@ export class InitialComponent extends React.Component<Props, State> {
               <ToastsContext.Provider value={this.state.toastsContext}>
                 <Routes themeWrapper={<Wrapper />} />
                 <div id={MODAL_PORTAL_ID} />
+                <div id={DOWN_SHEET_PORTAL_ID} />
                 <Toasts />
               </ToastsContext.Provider>
             </Theme>

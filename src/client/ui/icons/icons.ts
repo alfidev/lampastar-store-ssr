@@ -232,18 +232,6 @@ export const ShopIcon = styled(Icon)`
   }
 `;
 
-export const SortAscIcon = styled(Icon)`
-  :before {
-    content: '\\e929';
-  }
-`;
-
-export const SortDescIcon = styled(Icon)`
-  :before {
-    content: '\\e92a';
-  }
-`;
-
 export const StarIcon = styled(Icon)`
   :before {
     content: '\\e92b';

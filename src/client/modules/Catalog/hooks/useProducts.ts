@@ -15,15 +15,18 @@ type Props = {
   count?: number;
   sort?: SortType;
   order?: OrderType;
+  filters?: Record<string, any>;
 };
 
-export const useProducts = ({ category, page = 1, count = 18, sort, order, search }: Props) => {
+export const useProducts = ({ category, page = 1, count = 18, sort, order, search, filters }: Props) => {
   const { products } = useBasket();
 
   const requestOptions = {
     params: {
-      ...(!!category && { filter_category_id: category }),
-      ...(!!search && { filter_name: search }),
+      ...(!!category && { category_id: category }),
+      ...(!!search && { search }),
+      ...(!!(filters && Object.keys(filters).length) &&
+        Object.keys(filters).reduce((acc, current) => ({ ...acc, [`filter_${current}`]: filters[current] }), {})),
       start: count * (page - 1),
       limit: count,
       sort,
@@ -39,6 +42,7 @@ export const useProducts = ({ category, page = 1, count = 18, sort, order, searc
       sort as string,
       order as string,
       `${page}${count}`,
+      JSON.stringify(filters),
     ],
     getQueryRequest<ProductsTypeResponse>(requestOptions),
     {

@@ -78,6 +78,7 @@ export type ThemeType = {
       primary: string;
       secondary: string;
       secondaryHover: string;
+      secondaryHoverLight: string;
       tertiary: string;
       social: string;
       line: string;

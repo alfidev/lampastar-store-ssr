@@ -1,6 +1,8 @@
 import React, { ReactNode, useState } from 'react';
-import { ContentContainer, Header, InnerContainer, Title, TitleIcon } from './styled';
+
 import { ArrowBottomIcon, ArrowTopIcon } from '@ui/icons';
+
+import { ContentContainer, Header, InnerContainer, Title, TitleIcon } from './styled';
 
 type Props = {
   title?: string;
