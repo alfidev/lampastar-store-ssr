@@ -87,7 +87,7 @@ export const FieldMobile = ({ validation, label, ...props }: Props) => {
   const showError = meta.touched && !!meta.error;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value?.slice(2)?.match(/\d+/g)?.join('') ?? '';
+    const newValue = e.target.value?.slice(2)?.match(/\d+/g)?.join('')?.slice(0, 10) ?? '';
 
     setValue(newValue);
   };

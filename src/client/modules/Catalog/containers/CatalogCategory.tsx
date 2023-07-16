@@ -16,7 +16,7 @@ type Props = {
 const CatalogContainer = styled.div`
   display: flex;
 
-  ${adaptive.maxWidth.desktopS} {
+  ${adaptive.maxWidth.tablet} {
     flex-direction: column;
   }
 `;
@@ -26,7 +26,7 @@ const FiltersContainer = styled.div`
   width: 264px;
   margin-right: ${({ theme }) => theme.indents.l};
 
-  ${adaptive.maxWidth.desktopS} {
+  ${adaptive.maxWidth.tablet} {
     width: 100%;
   }
 `;
