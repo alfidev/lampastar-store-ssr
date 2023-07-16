@@ -18,6 +18,7 @@ export const PROFILE_ROUTES: Record<string, RouteType> = {
     title: 'Регистрация аккаунта',
     label: 'Регистрация',
     path: '/register',
+    route: '/register/*',
     component: ProfileRegister,
   },
   dashboard: {

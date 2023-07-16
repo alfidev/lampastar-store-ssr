@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { useProfile } from '@common/hooks';
+import { Button } from '@ui/components';
 
-import { RegisterForm } from '../components';
+import { RegisterForm, Verification } from '../components';
 import { REGISTER_FIELDS } from '../constants';
 import { RegisterFormValuesType } from '../types';
 
 export const Register = () => {
   const navigate = useNavigate();
 
-  const { isAuthorized, register } = useProfile();
+  const { isAuthorized, register, isSuccessRegister, isErrorRegister, registerError, resetRegister } = useProfile();
 
   useEffect(() => {
     if (isAuthorized) {
@@ -35,5 +36,29 @@ export const Register = () => {
 
   if (isAuthorized) return null;
 
-  return <RegisterForm onSubmit={handleSubmit} />;
+  if (isErrorRegister) {
+    return (
+      <>
+        <div>
+          {
+            // @ts-ignore
+            registerError?.error
+          }
+        </div>
+        <div>
+          <Button.Contained onClick={resetRegister}>OK</Button.Contained>
+        </div>
+      </>
+    );
+  }
+
+  if (isSuccessRegister)
+    return <>Вы успешно зарегистрировали. На указанную почту было направлено письмо для подтверждения регистрации.</>;
+
+  return (
+    <Routes>
+      <Route index element={<RegisterForm onSubmit={handleSubmit} />} />
+      <Route path="/verification" element={<Verification />} />
+    </Routes>
+  );
 };
