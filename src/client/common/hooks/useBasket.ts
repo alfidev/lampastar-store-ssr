@@ -83,6 +83,7 @@ export const useBasket = () => {
     editProduct,
     removeProduct,
     products: data?.products ?? {},
+    productsCount: Object.keys(data?.products ?? {}).length,
     isLoading: isLoadingAdd || isLoadingEdit || isLoadingRemove,
   };
 };

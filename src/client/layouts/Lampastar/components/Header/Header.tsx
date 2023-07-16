@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
 import { CONTACTS, MAIN_MENU, ROUTES } from '@common/constants';
-import { USE_ORDER, useFeature } from '@common/featureToggles';
-import { useProfile } from '@common/hooks';
+import { USE_FAVORITES, USE_ORDER, useFeature } from '@common/featureToggles';
+import { useBasket, useProfile } from '@common/hooks';
 import { CatalogSearch } from '@modules/Search';
 import { Logo } from '@resources/images/';
 import { PhoneIcon, MenuRightIcon, CloseIcon, User, Like, Basket } from '@ui/icons';
@@ -27,6 +27,7 @@ import {
   NavGroupAdaptive,
   StyledCatalogText,
   HeaderIcon,
+  HeaderIconCounter,
 } from './styled';
 
 const { paymentAndDelivery, contacts, favourites, basket, home, profile } = ROUTES;
@@ -39,9 +40,11 @@ type Props = {
 
 export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
   const { isAuthorized } = useProfile();
+  const { productsCount } = useBasket();
   const theme = useTheme();
 
   const isUseOrder = useFeature(USE_ORDER);
+  const enableFavoriteFeature = useFeature(USE_FAVORITES);
 
   const onClickHeader = () => {
     if (menuIsOpened) toggleMenu();
@@ -80,12 +83,14 @@ export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
           </NavGroupSearch>
           {isUseOrder && (
             <NavGroupAdaptive>
-              <StyledLinkMiddle to={favourites.path}>
-                <HeaderIcon>
-                  <Like />
-                </HeaderIcon>
-                {favourites.label}
-              </StyledLinkMiddle>
+              {enableFavoriteFeature && (
+                <StyledLinkMiddle to={favourites.path}>
+                  <HeaderIcon>
+                    <Like />
+                  </HeaderIcon>
+                  {favourites.label}
+                </StyledLinkMiddle>
+              )}
               {isAuthorized && (
                 <StyledLinkMiddle to={profile.path}>
                   <HeaderIcon>
@@ -104,6 +109,7 @@ export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
               )}
               <StyledLinkMiddle to={basket.path}>
                 <HeaderIcon>
+                  {!!productsCount && <HeaderIconCounter count={productsCount} />}
                   <Basket />
                 </HeaderIcon>
                 {basket.label}
