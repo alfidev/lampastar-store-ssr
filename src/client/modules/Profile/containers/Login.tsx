@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
+import { RouteNotFound } from '@common/components/Routes';
 import { useProfile } from '@common/hooks';
 import { Tabs } from '@ui/components';
 
@@ -43,6 +44,7 @@ export const Login = () => {
     <Routes>
       <Route index element={<Tabs tabs={tabs} />} />
       <Route path="/forgot" element={<ForgotForm goToLogin={goToLogin} />} />
+      <Route path="*" element={<RouteNotFound />} />
     </Routes>
   );
 };

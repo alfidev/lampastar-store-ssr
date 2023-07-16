@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { RouteNotFound } from '@common/components/Routes';
 import { PageTitle } from '@layouts/Lampastar';
 import { adaptive } from '@ui/components';
 
@@ -50,7 +51,7 @@ export const CatalogCategory = ({ categoryId }: Props) => {
   const [viewMode, setViewMode] = useState(VIEW_MODE.grid);
   const [filtersValues, setFiltersValues] = useState({});
 
-  const { category, currentList } = useCategories({ categoryId, parentId: categoryId });
+  const { isLoading, category, currentList, notFound } = useCategories({ categoryId, parentId: categoryId });
 
   const {
     list: products,
@@ -103,6 +104,8 @@ export const CatalogCategory = ({ categoryId }: Props) => {
       />
     );
   };
+
+  if (!isLoading && notFound) return <RouteNotFound />;
 
   return (
     <>

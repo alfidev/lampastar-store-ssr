@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
+import { RouteNotFound } from '@common/components/Routes';
 import { useProfile } from '@common/hooks';
 import { Button } from '@ui/components';
 
@@ -59,6 +60,7 @@ export const Register = () => {
     <Routes>
       <Route index element={<RegisterForm onSubmit={handleSubmit} />} />
       <Route path="/verification" element={<Verification />} />
+      <Route path="*" element={<RouteNotFound />} />
     </Routes>
   );
 };

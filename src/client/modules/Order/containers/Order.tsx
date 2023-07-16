@@ -2,6 +2,8 @@ import { FormikProps } from 'formik';
 import React, { Ref, useRef } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
+import { RouteNotFound } from '@common/components/Routes';
+
 import { OrderInputStage } from '../components/OrderInputStage';
 import { OrderStatusStage } from '../components/OrderStatusStage';
 import { useOrder } from '../hooks';
@@ -37,6 +39,7 @@ export const Order = () => {
         path="status"
         element={<OrderStatusStage resetStage={resetStage} orderData={orderData} showLCInfo={!!customer?.id} />}
       />
+      <Route path="*" element={<RouteNotFound />} />
     </Routes>
   );
 };
