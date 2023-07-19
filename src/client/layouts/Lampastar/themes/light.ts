@@ -140,6 +140,11 @@ export const LIGHT_THEME: ThemeType = {
       line-height: 24px;
       font-weight: 500;
     `,
+    mini0: css`
+      font-size: 10px;
+      line-height: 14px;
+      font-weight: 400;
+    `,
     mini1: css`
       font-size: 12px;
       line-height: 18px;

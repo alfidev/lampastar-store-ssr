@@ -1,8 +1,10 @@
+import { useMemo } from 'react';
+import { useQuery } from 'react-query';
+
+import { getQueryRequest } from '@common/utils';
+
 import { API_BANNERS_URL } from '../constants';
 import { BannersResponseType } from '../types';
-import { useQuery } from 'react-query';
-import { getQueryRequest } from '@common/utils';
-import { useMemo } from 'react';
 import { mapBanners } from '../utils';
 
 export const usePromoSliderData = () => {

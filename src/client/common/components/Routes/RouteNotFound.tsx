@@ -1,5 +1,6 @@
-import { useContext } from "react";
-import { ErrorRouterContext } from "../../context";
+import { useContext } from 'react';
+
+import { ErrorRouterContext } from '../../context';
 
 export const RouteNotFound = () => {
   const { setStatusCode, error } = useContext(ErrorRouterContext);

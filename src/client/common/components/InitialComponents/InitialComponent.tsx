@@ -16,7 +16,6 @@ type Props = {
 };
 
 type State = {
-  isInitApp: boolean;
   context: ErrorContext;
   toastsContext: ToastsContextType;
 };
@@ -32,8 +31,7 @@ export class InitialComponent extends React.Component<Props, State> {
     this.removeToast = this.removeToast.bind(this);
 
     this.state = {
-      isInitApp: false,
-      context: this.props.context || {
+      context: props.context || {
         ...defaultContext,
         setStatusCode: this.setStatusCode,
       },
@@ -46,39 +44,41 @@ export class InitialComponent extends React.Component<Props, State> {
   }
 
   setStatusCode(code: number) {
-    this.setState({
+    this.setState((state) => ({
       context: {
-        setStatusCode: this.state.context.setStatusCode,
-        error: { code, message: this.state.context.error.message },
+        setStatusCode: state.context.setStatusCode,
+        error: { code, message: state.context.error.message },
       },
-    });
+    }));
   }
 
   addToast(toast: ToastType) {
-    this.setState({
+    this.setState((state) => ({
       toastsContext: {
-        ...this.state.toastsContext,
-        toasts: [...this.state.toastsContext.toasts, toast],
+        ...state.toastsContext,
+        toasts: [...state.toastsContext.toasts, toast],
       },
-    });
+    }));
   }
 
   removeToast(toastId: string) {
-    this.setState({
+    this.setState((state) => ({
       toastsContext: {
-        ...this.state.toastsContext,
-        toasts: this.state.toastsContext.toasts.filter(({ id }) => id !== toastId),
+        ...state.toastsContext,
+        toasts: state.toastsContext.toasts.filter(({ id }) => id !== toastId),
       },
-    });
+    }));
   }
 
   render() {
+    const { context, toastsContext } = this.state;
+
     return (
-      <ErrorRouterContext.Provider value={this.state.context}>
+      <ErrorRouterContext.Provider value={context}>
         <FeatureTogglesContextProvider value={initialToggles}>
           <Provider store={store}>
             <Theme>
-              <ToastsContext.Provider value={this.state.toastsContext}>
+              <ToastsContext.Provider value={toastsContext}>
                 <Routes themeWrapper={<Wrapper />} />
                 <div id={MODAL_PORTAL_ID} />
                 <div id={DOWN_SHEET_PORTAL_ID} />

@@ -9,6 +9,7 @@ import { useProductActions, useProducts } from '../hooks';
 
 type Props = {
   search?: string | null;
+  tag?: string | null;
 };
 
 const CatalogContainer = styled.div`
@@ -31,7 +32,7 @@ const ControlContainer = styled.div`
 
 const PaginationContainer = styled.div``;
 
-export const CatalogMain = ({ search }: Props) => {
+export const CatalogMain = ({ search, tag }: Props) => {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState(SORT_TYPE.price);
   const [order, setOrder] = useState(ORDER_TYPE.ASC);
@@ -41,7 +42,7 @@ export const CatalogMain = ({ search }: Props) => {
     list: products,
     totalPage,
     isLoading: isLoadingProducts,
-  } = useProducts({ page, sort, order, ...(search && { search }) });
+  } = useProducts({ page, sort, order, ...(search && { search }), ...(tag && { tag }) });
 
   const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
 

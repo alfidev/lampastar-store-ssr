@@ -13,6 +13,7 @@ export type TypographyNames =
   | 'body3'
   | 'body4'
   | 'body5'
+  | 'mini0'
   | 'mini1'
   | 'mini2'
   | 'main1'

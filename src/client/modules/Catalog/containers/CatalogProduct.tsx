@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { RouteNotFound } from '@common/components/Routes';
 import { Breadcrumbs } from '@ui/components/Breadcrumbs';
 
 import { ContentSection } from '../../../pages/Home/styled';
@@ -21,7 +22,7 @@ export const CatalogProduct = ({ productId }: Props) => {
 
   if (isLoading) return <>LOADING...</>;
 
-  if (isError || !product) return <>ERROR...</>;
+  if (isError || !product) return <RouteNotFound />;
 
   return (
     <>

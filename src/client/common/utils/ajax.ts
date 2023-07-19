@@ -19,7 +19,8 @@ class Ajax {
     try {
       return this.ajax.request<T>({ method, url, ...options });
     } catch (e) {
-      throw e as AxiosError<any>;
+      // eslint-disable-next-line no-throw-literal
+      throw e as AxiosError<T, U>;
     }
   }
 }

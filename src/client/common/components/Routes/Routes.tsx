@@ -6,7 +6,7 @@ import { NotFound } from '@pages';
 import { ROUTES } from '../../constants';
 import { ErrorRouterContext } from '../../context';
 import { RouteComponent } from '../RouteComponent';
-import { RouteNotFound } from '../Routes/RouteNotFound';
+import { RouteNotFound } from './RouteNotFound';
 
 type Props = {
   themeWrapper: JSX.Element;
@@ -27,23 +27,21 @@ export const Routes = ({ themeWrapper }: Props) => {
   if (isError) return <NotFound />;
 
   return (
-    <>
-      <RoutesSwitch>
-        <Route path={ROUTES.home.path} element={themeWrapper}>
-          {Object.values(ROUTES).map(({ path, route, title, component: Component }) => (
-            <Route
-              key={path}
-              path={route || path}
-              element={
-                <RouteComponent title={title}>
-                  <Component />
-                </RouteComponent>
-              }
-            />
-          ))}
-          <Route path="*" element={<RouteNotFound />} />
-        </Route>
-      </RoutesSwitch>
-    </>
+    <RoutesSwitch>
+      <Route path={ROUTES.home.path} element={themeWrapper}>
+        {Object.values(ROUTES).map(({ path, route, title, component: Component }) => (
+          <Route
+            key={path}
+            path={route || path}
+            element={
+              <RouteComponent title={title}>
+                <Component />
+              </RouteComponent>
+            }
+          />
+        ))}
+        <Route path="*" element={<RouteNotFound />} />
+      </Route>
+    </RoutesSwitch>
   );
 };

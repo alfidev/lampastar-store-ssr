@@ -15,8 +15,10 @@ export const getQueryRequest =
       });
 
       return data;
-    } catch (e: any) {
+    } catch (e) {
       console.log(e);
-      throw e;
+      // @ts-ignore
+      // eslint-disable-next-line no-throw-literal
+      throw e?.response?.data as T;
     }
   };

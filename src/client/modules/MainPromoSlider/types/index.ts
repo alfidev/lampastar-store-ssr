@@ -7,6 +7,7 @@ export type BannerResponseType = {
   type: string;
   category_id: string;
   product_id: string;
+  filter: string | null;
   image: string;
   sort_order: string;
   status: string;
@@ -29,6 +30,7 @@ export type BannerType = {
   type: promoSliderEnum;
   categoryId: number;
   productId: number;
+  filter: string;
   image: string;
   sortOrder: number;
   status: number;

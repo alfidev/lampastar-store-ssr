@@ -35,5 +35,7 @@ export const useCategories = (props?: Props) => {
     [data, categoryId],
   );
 
-  return { isLoading, list: data, map: categoriesMap, category, currentList };
+  const notFound = !!categoryId && !category;
+
+  return { isLoading, list: data, map: categoriesMap, category, currentList, notFound };
 };

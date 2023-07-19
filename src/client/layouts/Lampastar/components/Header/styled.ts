@@ -156,11 +156,35 @@ export const StyledCatalogText = styled.span`
 `;
 
 export const HeaderIcon = styled.div`
+  position: relative;
   width: ${({ theme }) => theme.sizes.xxxl};
   height: ${({ theme }) => theme.sizes.xxxl};
 
   svg {
     width: 100%;
     height: 100%;
+  }
+`;
+
+export const HeaderIconCounter = styled.div<{ count?: number }>`
+  position: absolute;
+  background: ${({ theme }) => theme.color.background.primary};
+  top: -5px;
+  left: 50%;
+  height: 18px;
+  padding: 2px;
+  border-radius: 9px;
+
+  :after {
+    ${({ theme }) => theme.typography.mini0};
+    content: '${({ count }) => count}';
+    color: ${({ theme }) => theme.color.text.secondary};
+    background: ${({ theme }) => theme.color.background.contrastLine};
+    display: flex;
+    justify-content: center;
+    padding: 0 2px;
+    height: 14px;
+    min-width: 14px;
+    border-radius: 7px;
   }
 `;

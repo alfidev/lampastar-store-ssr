@@ -40,9 +40,13 @@ export const useProfile = () => {
     refetchInterval: 30 * 1000,
   });
 
-  const { mutateAsync: registerAsync } = useMutation(
-    getQueryRequest<RegisterOrLoginResponseType, RegisterOrLoginRequestType>(registerOptions),
-  );
+  const {
+    mutateAsync: registerAsync,
+    isSuccess: isSuccessRegister,
+    isError: isErrorRegister,
+    error: registerError,
+    reset: resetRegister,
+  } = useMutation(getQueryRequest<RegisterOrLoginResponseType, RegisterOrLoginRequestType>(registerOptions));
 
   const { mutateAsync: loginAsync } = useMutation(
     getQueryRequest<RegisterOrLoginResponseType, RegisterOrLoginRequestType>(loginOptions),
@@ -67,11 +71,15 @@ export const useProfile = () => {
   const login = (data: any) => {
     loginAsync(data)
       .then(() => invalidate())
-      .catch((data) => addToast({ message: data?.response?.data?.error, status: ToastStatusEnum.ERROR }));
+      .catch((data) => addToast({ message: data?.error, status: ToastStatusEnum.ERROR }));
   };
 
   return {
     isAuthorized: isSuccess && !isError,
+    isSuccessRegister,
+    isErrorRegister,
+    registerError,
+    resetRegister,
     invalidate,
     logout,
     register,

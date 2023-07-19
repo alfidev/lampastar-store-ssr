@@ -20,6 +20,7 @@ export const mapBanners = (banners: BannerResponseType[]): BannerType[] =>
     type: getBannerType(banner.type),
     categoryId: Number(banner.category_id),
     productId: Number(banner.product_id),
+    filter: banner.filter ?? '',
     image: banner.image,
     status: Number(banner.status),
     sortOrder: Number(banner.sort_order),
