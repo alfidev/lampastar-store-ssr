@@ -11,6 +11,7 @@ import { OrderType, ProductsTypeResponse, SortType } from '../types';
 type Props = {
   category?: number;
   search?: string;
+  tag?: string;
   page?: number;
   count?: number;
   sort?: SortType;
@@ -18,13 +19,14 @@ type Props = {
   filters?: Record<string, any>;
 };
 
-export const useProducts = ({ category, page = 1, count = 18, sort, order, search, filters }: Props) => {
+export const useProducts = ({ category, page = 1, count = 18, sort, order, search, tag, filters }: Props) => {
   const { products } = useBasket();
 
   const requestOptions = {
     params: {
       ...(!!category && { category_id: category }),
       ...(!!search && { search }),
+      ...(!!tag && { tag }),
       ...(!!(filters && Object.keys(filters).length) &&
         Object.keys(filters).reduce((acc, current) => ({ ...acc, [`filter_${current}`]: filters[current] }), {})),
       start: count * (page - 1),
@@ -49,7 +51,7 @@ export const useProducts = ({ category, page = 1, count = 18, sort, order, searc
       retry: false,
       refetchOnWindowFocus: false,
       retryOnMount: false,
-      enabled: !!category || !!search,
+      enabled: !!category || !!search || !!tag,
     },
   );
 

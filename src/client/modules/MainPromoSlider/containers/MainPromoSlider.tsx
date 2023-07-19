@@ -7,12 +7,14 @@ import { Slide, SlideSkeleton } from '../components';
 import { promoSliderEnum } from '../constants';
 import { usePromoSliderData } from '../hooks';
 
-const getElementId = (type: promoSliderEnum, categoryId?: number, productId?: number) => {
+const getElementFilter = (type: promoSliderEnum, categoryId?: number, productId?: number, filter?: string) => {
   switch (type) {
     case promoSliderEnum.CATEGORY:
       return categoryId;
     case promoSliderEnum.PRODUCT:
       return productId;
+    case promoSliderEnum.FILTER:
+      return filter;
     default:
       return productId;
   }
@@ -23,14 +25,16 @@ export const MainPromoSlider = () => {
 
   const { slides, isLoading } = usePromoSliderData();
 
-  const handleOnClick = (type: promoSliderEnum, elementId?: number) => {
+  const handleOnClick = (type: promoSliderEnum, filter?: number | string) => {
     switch (type) {
       case promoSliderEnum.CATEGORY:
-        return navigate(`/catalog/${elementId}`);
+        return navigate(`/catalog/${filter}`);
       case promoSliderEnum.PRODUCT:
-        return navigate(`/catalog/products/${elementId}`);
+        return navigate(`/catalog/products/${filter}`);
+      case promoSliderEnum.FILTER:
+        return navigate({ pathname: '/catalog', search: filter as string });
       default:
-        return navigate(`/catalog/${elementId}`);
+        return navigate(`/catalog/${filter}`);
     }
   };
 
@@ -39,12 +43,24 @@ export const MainPromoSlider = () => {
   return (
     <Slider
       slides={slides.map(
-        ({ type, backgroundColor, textColor, id, bannerText, buttonText, image, categoryId, productId, price }) => (
+        ({
+          type,
+          backgroundColor,
+          textColor,
+          id,
+          bannerText,
+          buttonText,
+          image,
+          categoryId,
+          productId,
+          filter,
+          price,
+        }) => (
           <Slide
             key={id}
             onClick={handleOnClick}
             type={type}
-            elementId={getElementId(type, categoryId, productId)}
+            elementFilter={getElementFilter(type, categoryId, productId, filter)}
             backgroundColor={backgroundColor}
             textColor={textColor}
             text={bannerText}

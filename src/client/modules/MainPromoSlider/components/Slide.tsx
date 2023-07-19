@@ -10,13 +10,13 @@ type Props = {
   type: promoSliderEnum;
   backgroundColor: string;
   textColor: string;
-  elementId?: number;
+  elementFilter?: number | string;
   text: string;
   buttonText: string;
   image: string;
   price?: number;
   minPrice?: boolean;
-  onClick: (type: promoSliderEnum, elementId?: number) => void;
+  onClick: (type: promoSliderEnum, elementId?: number | string) => void;
 };
 
 const Wrapper = styled.div<{ background: string; color: string }>`
@@ -90,7 +90,7 @@ const SlideText = styled.div<{ black?: boolean }>`
 
 export const Slide = ({
   type,
-  elementId,
+  elementFilter,
   backgroundColor,
   textColor,
   text,
@@ -101,7 +101,7 @@ export const Slide = ({
   minPrice,
 }: Props) => {
   const handleClickButton = () => {
-    onClick(type, elementId);
+    onClick(type, elementFilter);
   };
 
   const priceString = price ? formatSum(price) : undefined;
@@ -113,7 +113,7 @@ export const Slide = ({
       <SlideText black={!image}>{text.replaceAll('\\n', '\n')}</SlideText>
       {priceString && <SliderPrice>{priceResult}</SliderPrice>}
       <ImageBox>{image && <img alt={buttonText} src={`${image}`} />}</ImageBox>
-      {!!elementId && <SliderButton onClick={handleClickButton}>{buttonText}</SliderButton>}
+      {!!elementFilter && <SliderButton onClick={handleClickButton}>{buttonText}</SliderButton>}
     </Wrapper>
   );
 };
