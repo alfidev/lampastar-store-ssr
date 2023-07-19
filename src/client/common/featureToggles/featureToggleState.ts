@@ -1,15 +1,8 @@
-import {
-  BACKEND_ENABLE,
-  USE_BUY_TOP,
-  USE_COMPARE,
-  USE_CONTACTS_FORM,
-  USE_FAVORITES,
-  USE_ORDER,
-} from './featureToggleNames';
+import { USE_BUY_TOP, USE_COMPARE, USE_CONTACTS_FORM, USE_FAVORITES, USE_ORDER } from './featureToggleNames';
 
 export const featureToggleState = {
   [USE_ORDER]: {
-    enabled: false,
+    enabled: true,
     description: 'Включает работу с корзиной и заказами',
   },
   [USE_FAVORITES]: {
@@ -19,10 +12,6 @@ export const featureToggleState = {
   [USE_COMPARE]: {
     enabled: false,
     description: 'Включает работу с сравнением',
-  },
-  [BACKEND_ENABLE]: {
-    enabled: false,
-    description: 'Включает отображение функций, которые еще не реализованы на бэке',
   },
   [USE_CONTACTS_FORM]: {
     enabled: true,
