@@ -59,7 +59,7 @@ export const Register = () => {
   return (
     <Routes>
       <Route index element={<RegisterForm onSubmit={handleSubmit} />} />
-      <Route path="/verification" element={<Verification />} />
+      <Route path="verification" element={<Verification />} />
       <Route path="*" element={<RouteNotFound />} />
     </Routes>
   );

@@ -43,7 +43,7 @@ export const Login = () => {
   return (
     <Routes>
       <Route index element={<Tabs tabs={tabs} />} />
-      <Route path="/forgot" element={<ForgotForm goToLogin={goToLogin} />} />
+      <Route path="forgot" element={<ForgotForm goToLogin={goToLogin} />} />
       <Route path="*" element={<RouteNotFound />} />
     </Routes>
   );
