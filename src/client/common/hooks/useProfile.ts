@@ -36,9 +36,13 @@ export const useProfile = () => {
   const queryClient = useQueryClient();
   const { addToast } = useToasts();
 
-  const { isSuccess, isError, isLoading } = useQuery([CHECK_AUTHORIZE_API], getQueryRequest(), {
-    refetchInterval: 30 * 1000,
-  });
+  const { data, isSuccess, isError, isLoading } = useQuery(
+    [CHECK_AUTHORIZE_API],
+    getQueryRequest<RegisterOrLoginResponseType>(),
+    {
+      refetchInterval: 30 * 1000,
+    },
+  );
 
   const {
     mutateAsync: registerAsync,
@@ -74,8 +78,10 @@ export const useProfile = () => {
       .catch((data) => addToast({ message: data?.error, status: ToastStatusEnum.ERROR }));
   };
 
+  const isAuthorized = isSuccess && !isError && !!data?.success;
+
   return {
-    isAuthorized: isSuccess && !isError,
+    isAuthorized,
     isSuccessRegister,
     isErrorRegister,
     registerError,
