@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { useState } from 'react';
 
 import { PlusIcon } from '@ui/icons';
 
@@ -10,8 +10,9 @@ type Props = {
 };
 
 export const Counter = ({ value, onChange }: Props) => {
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange?.(Number(e.target.value) ?? 0);
+  const [count, setCount] = useState(value);
+  const onBlurHandler = () => {
+    onChange?.(count);
   };
 
   const onChangePlus = () => {
@@ -27,7 +28,12 @@ export const Counter = ({ value, onChange }: Props) => {
       <CounterButton secondary onClick={onChangeMinus}>
         <StyledMinusIcon />
       </CounterButton>
-      <CounterInput type="number" value={value} onChange={onChangeHandler} />
+      <CounterInput
+        type="number"
+        value={count}
+        onBlur={onBlurHandler}
+        onChange={(e) => setCount(Number(e.target.value) ?? 0)}
+      />
       <CounterButton secondary onClick={onChangePlus}>
         <PlusIcon size="xs" />
       </CounterButton>

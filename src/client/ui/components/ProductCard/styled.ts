@@ -49,6 +49,7 @@ export const TopBlock = styled.div`
 
 export const LeftBlock = styled.div`
   margin-right: ${({ theme }) => theme.indents.m};
+  cursor: pointer;
 `;
 
 export const RightBlock = styled.div`
@@ -57,23 +58,35 @@ export const RightBlock = styled.div`
   flex-direction: column;
 `;
 
+export const RightBlockCart = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 139px;
+  min-width: 139px;
+  justify-content: space-between;
+`;
+
 export const BottomBlock = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
 `;
 
-export const NameContainer = styled.div`
-  height: 72px;
+export const NameContainer = styled.div<{ row?: number }>`
+  height: ${({ row = 3 }) => 24 * row}px;
   word-break: break-word;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 
-  /* Ограничиваем блок текста тремя строками */
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: ${({ row = 3 }) => 24 * row};
 
   ${({ theme }) => theme.typography.body5}
+`;
+
+export const PropertiesContainer = styled.div`
+  flex-grow: 1;
 `;
 
 export const BasketNameContainer = styled.div`
@@ -106,6 +119,7 @@ export const BasketControlBlock = styled.div`
 export const InfoBlock = styled.div`
   flex-grow: 1;
   margin-right: ${({ theme }) => theme.indents.m};
+  cursor: pointer;
 `;
 
 export const PriceContainer = styled.div`
