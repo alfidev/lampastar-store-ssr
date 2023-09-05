@@ -42,20 +42,36 @@ export const BetweenFilter = ({ filter, setFilter, filtersValues }: Props) => {
     }
   }, [filter.id, max, min, value.max, value.min]);
 
+  const onChangeMax = (inputValue: string | number) => {
+    const numberValue = Number(inputValue);
+    if (numberValue > max || numberValue < min) setMax(value.max);
+    else setMax(numberValue);
+  };
+
+  const onChangeMin = (inputValue: string | number) => {
+    const numberValue = Number(inputValue);
+    if (numberValue > max || numberValue < min) setMin(value.min);
+    else setMin(numberValue);
+  };
+
   return (
     <InputLine>
       <Input
         type="number"
         placeholder={value.min.toString()}
         value={min}
-        onChange={(e) => setMin(Number(e.target.value || value.min))}
+        min={min}
+        max={max}
+        onChange={(e) => onChangeMin(Number(e.target.value || value.min))}
       />
       <DelimiterContainer>&mdash;</DelimiterContainer>
       <Input
         type="number"
         placeholder={value.max.toString()}
         value={max}
-        onChange={(e) => setMax(Number(e.target.value || value.max))}
+        min={min}
+        max={max}
+        onChange={(e) => onChangeMax(Number(e.target.value || value.max))}
       />
     </InputLine>
   );

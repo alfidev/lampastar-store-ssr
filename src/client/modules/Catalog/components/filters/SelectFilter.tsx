@@ -21,13 +21,13 @@ const StyledListItem = styled.div`
 `;
 
 export const SelectFilter = ({ filter, setFilter, filtersValues }: Props) => {
-  const [changes, setChanges] = useState<Record<number, boolean>>({});
+  const [changes, setChanges] = useState<Record<number | string, boolean>>({});
   const { value } = filter;
 
   useEffect(() => {
     const trueValues = Object.keys(changes)
-      .filter((key) => changes[Number(key)])
-      .map((id) => Number(id));
+      .filter((key) => changes[key])
+      .map((id) => id);
 
     if (trueValues.length) {
       setFilter({ [filter.id]: trueValues });
@@ -37,7 +37,7 @@ export const SelectFilter = ({ filter, setFilter, filtersValues }: Props) => {
     }
   }, [changes, filter.id]);
 
-  const handleChange = (id: number, checked: boolean) => {
+  const handleChange = (id: number | string, checked: boolean) => {
     setChanges({ ...changes, [id]: checked });
   };
 

@@ -56,8 +56,6 @@ const getFilterComponent = (type: FilterTypeType) => {
   switch (type) {
     case 0:
       return BetweenFilter;
-    case 1:
-      return SelectFilter;
     default:
       return SelectFilter;
   }
@@ -89,10 +87,6 @@ export const ProductsFilters = ({
 
   if (isMobile && !showFilters) return null;
 
-  const setFilterValue = (value: any) => {
-    setFiltersValues({ ...filtersValues, ...value });
-  };
-
   const getFiltersBody = () => (
     <FiltersContainer>
       {categories && (
@@ -108,7 +102,7 @@ export const ProductsFilters = ({
           <Accordion key={id} title={title} isOpen>
             <FilterComponent
               filter={filter as FilterType<any>}
-              setFilter={setFilterValue}
+              setFilter={setFiltersValues}
               filtersValues={filtersValues}
             />
           </Accordion>
@@ -116,7 +110,7 @@ export const ProductsFilters = ({
       })}
       {priceFilter && (
         <Accordion title={PRICE_FILTER.title} isOpen>
-          <BetweenFilter filter={priceFilter} setFilter={setFilterValue} filtersValues={filtersValues} />
+          <BetweenFilter filter={priceFilter} setFilter={setFiltersValues} filtersValues={filtersValues} />
         </Accordion>
       )}
     </FiltersContainer>
