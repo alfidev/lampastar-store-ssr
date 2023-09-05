@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { USE_ORDER, useFeature } from '@common/featureToggles';
@@ -76,14 +76,32 @@ const StyledColCard = styled(Col)`
 export const ProductDetail = ({ product, onChangeCount }: Props) => {
   const enableOrderFeature = useFeature(USE_ORDER);
 
-  const { id, name, image, price, discount, special, notAvailable, forOrder } = product;
+  const { id, name, image, price, discount, special, notAvailable, forOrder, basketQuantity } = product;
 
-  const addToBasketHandler = () => {
-    onChangeCount(id, 1);
+  const [count, setCount] = useState(basketQuantity ?? 0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (basketQuantity && basketQuantity !== count) setCount(basketQuantity ?? 0);
+  }, [basketQuantity]);
+
+  const priceString = price ? formatSum(special || discount || price) : undefined;
+  const oldPriceString = priceString && (special || discount) ? formatSum(price) : undefined;
+
+  const onChangeCountHandler = (newCount: number) => {
+    if (!notAvailable && !forOrder) {
+      setIsLoading(true);
+      onChangeCount(id, newCount).finally(() => setIsLoading(false));
+      setCount(newCount);
+    }
   };
 
-  const onChangeCounter = (count: number) => {
-    onChangeCount(id, count);
+  const addToBasketHandler = () => {
+    if (!notAvailable && !forOrder) {
+      setIsLoading(true);
+      onChangeCount(id, 1).finally(() => setIsLoading(false));
+      setCount(1);
+    }
   };
 
   const buttonText =
@@ -92,12 +110,7 @@ export const ProductDetail = ({ product, onChangeCount }: Props) => {
     (!enableOrderFeature && 'В наличии') ||
     'В корзину';
 
-  const priceString = price ? formatSum(special || discount || price) : undefined;
-  const oldPriceString = priceString && (special || discount) ? formatSum(price) : undefined;
-
-  const countInBasket = 0;
-
-  const showCounter = enableOrderFeature && countInBasket && !notAvailable && !forOrder;
+  const showCounter = enableOrderFeature && count && !notAvailable && !forOrder;
 
   return (
     <Container>
@@ -130,17 +143,24 @@ export const ProductDetail = ({ product, onChangeCount }: Props) => {
                     {priceString && <ActualPrice>{priceString}</ActualPrice>}
                     {oldPriceString && <OldPrice>{oldPriceString}</OldPrice>}
                   </PriceLine>
-                  {showCounter ? (
-                    <Counter value={countInBasket} onChange={onChangeCounter} />
+                  {isLoading ? (
+                    <>ЗАГРУЗКА...</>
                   ) : (
-                    <ButtonContained
-                      secondary
-                      isFluid
-                      disabled={!enableOrderFeature || notAvailable || forOrder}
-                      onClick={addToBasketHandler}
-                    >
-                      {buttonText}
-                    </ButtonContained>
+                    // eslint-disable-next-line react/jsx-no-useless-fragment
+                    <>
+                      {showCounter ? (
+                        <Counter value={count} onChange={onChangeCountHandler} />
+                      ) : (
+                        <ButtonContained
+                          secondary
+                          isFluid
+                          disabled={!enableOrderFeature || notAvailable || forOrder}
+                          onClick={addToBasketHandler}
+                        >
+                          {buttonText}
+                        </ButtonContained>
+                      )}
+                    </>
                   )}
                   <DeliveryBlock>
                     <DeliveryTitle>
