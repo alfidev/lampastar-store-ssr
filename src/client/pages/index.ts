@@ -3,7 +3,6 @@ export { About } from './About';
 export { Contacts } from './Contacts';
 export { ApplicationSettings } from './ApplicationSettings';
 export { PaymentAndDelivery } from './PaymentAndDelivery';
-export { NotFound } from './NotFound';
 export { OurTeam } from './OurTeam';
 export { Home } from './Home';
 export { News } from './News';
