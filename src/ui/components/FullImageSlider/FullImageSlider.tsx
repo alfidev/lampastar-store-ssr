@@ -1,6 +1,10 @@
+'use client';
+
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { ImageWithSizeType } from '../../../common/types';
 import styled from 'styled-components';
+
+import { ImageWithSizeType } from '../../../common/types';
 import { LIGHT_THEME } from '../../../layouts/Lampastar/themes';
 import { ArrowLeft, ArrowRight, Close } from '../../icons';
 
@@ -10,7 +14,7 @@ type Props = {
   onClose: () => void;
 };
 
-const StyledImg = styled.img`
+const StyledImg = styled(Image)`
   max-width: 100%;
   max-height: 100%;
 `;
@@ -76,8 +80,10 @@ export const FullImageSlider = ({ images, currentImageId, onClose }: Props) => {
 
   const handleKeyPress = (e: KeyboardEvent) => {
     console.log(e);
+    // eslint-disable-next-line eqeqeq
     if (e.keyCode == 37) {
       handleClickPrev();
+      // eslint-disable-next-line eqeqeq
     } else if (e.keyCode == 39) {
       handleClickNext();
     }
@@ -104,12 +110,14 @@ export const FullImageSlider = ({ images, currentImageId, onClose }: Props) => {
           <Close />
         </ButtonContainer>
       </ControlPanel>
-      <ImageContainer>{currentImage && <StyledImg src={currentImage.image} alt={currentImage.alt} />}</ImageContainer>
-      {/*{images*/}
-      {/*  .filter(({ id }) => id === currentImageId)*/}
-      {/*  .map(({ id, image }) => (*/}
-      {/*    <StyledImg key={id} src={image} />*/}
-      {/*  ))}*/}
+      <ImageContainer>
+        {currentImage && <StyledImg src={currentImage.image} alt={currentImage.alt || ''} />}
+      </ImageContainer>
+      {/* {images */}
+      {/*  .filter(({ id }) => id === currentImageId) */}
+      {/*  .map(({ id, image }) => ( */}
+      {/*    <StyledImg key={id} src={image} /> */}
+      {/*  ))} */}
     </SliderWrapper>
   );
 };

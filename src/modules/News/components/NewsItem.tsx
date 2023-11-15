@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
-import { ImageSizeEnum, NewsItemType } from '../types';
-import styled from 'styled-components';
-import { Container, Col, Row, Typography } from '../../../ui/components';
 import { format } from 'date-fns';
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
+
+import { Container, Col, Row, Typography } from '../../../ui/components';
+import { ImageSizeEnum, NewsItemType } from '../types';
 import { reformatLinks } from '../utils';
 
 type Props = {

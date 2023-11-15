@@ -1,6 +1,9 @@
 import { css } from 'styled-components';
 
+import { fontRobotoBlack, fontRobotoBold, fontRobotoRegular } from '@common/constants/fonts';
+
 import { ThemeType } from '../types';
+
 import 'simplebar-react/dist/simplebar.min.css';
 
 export const LIGHT_THEME: ThemeType = {
@@ -109,77 +112,78 @@ export const LIGHT_THEME: ThemeType = {
     big1: css`
       font-size: 46px;
       line-height: 56px;
-      font-weight: 800;
+      ${fontRobotoBlack.style}
     `,
     big2: css`
       font-size: 32px;
       line-height: 40px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
+      ${fontRobotoBold.style}
     `,
     big3: css`
       font-size: 24px;
       line-height: 40px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
     `,
     title1: css`
       font-size: 28px;
       line-height: 40px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
     `,
     title2: css`
       font-size: 24px;
       line-height: 36px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
     `,
     main1: css`
       font-size: 24px;
       line-height: 36px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
     `,
     main2: css`
       font-size: 18px;
       line-height: 24px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
     `,
     mini0: css`
       font-size: 10px;
       line-height: 14px;
-      font-weight: 400;
+      ${fontRobotoRegular.style}
     `,
     mini1: css`
       font-size: 12px;
       line-height: 18px;
-      font-weight: 400;
+      ${fontRobotoRegular.style}
     `,
     mini2: css`
       font-size: 14px;
       line-height: 20px;
-      font-weight: 400;
+      ${fontRobotoRegular.style}
     `,
     body1: css`
       font-size: 14px;
       line-height: 20px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
     `,
     body2: css`
       font-size: 16px;
       line-height: 20px;
-      font-weight: 400;
+      ${fontRobotoRegular.style}
     `,
     body3: css`
       font-size: 16px;
       line-height: 22px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
     `,
     body4: css`
       font-size: 16px;
       line-height: 24px;
-      font-weight: 400;
+      ${fontRobotoRegular.style}
     `,
     body5: css`
       font-size: 18px;
       line-height: 24px;
-      font-weight: 500;
+      ${fontRobotoBold.style}
     `,
   },
 };

@@ -16,9 +16,20 @@ type Props = {
   sort?: SortType;
   order?: OrderType;
   filters?: Record<string, any>;
+  initialData: ProductsTypeResponse;
 };
 
-export const useProducts = ({ category, page = 1, count = 18, sort, order, search, tag, filters }: Props) => {
+export const useProducts = ({
+  category,
+  page = 1,
+  count = 18,
+  sort,
+  order,
+  search,
+  tag,
+  filters,
+  initialData,
+}: Props) => {
   const { products } = useBasket();
 
   const requestOptions = {
@@ -51,6 +62,7 @@ export const useProducts = ({ category, page = 1, count = 18, sort, order, searc
       refetchOnWindowFocus: false,
       retryOnMount: false,
       enabled: !!category || !!search || !!tag,
+      initialData,
     },
   );
 

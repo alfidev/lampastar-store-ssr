@@ -79,7 +79,7 @@ export const CatalogMenu = ({ closeMenu }: Props) => {
   }, [isMobileOrTablet, map]);
 
   const navigateToCategory = (category: CategoryMap) => {
-    router.push(`/catalog/${category.id}`);
+    router.push(`/catalog/${category.id}/1`);
     closeMenu();
   };
 

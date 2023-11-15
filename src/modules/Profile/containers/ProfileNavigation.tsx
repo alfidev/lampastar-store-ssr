@@ -1,4 +1,6 @@
-import { useLocation } from 'next/navigation';
+'use client';
+
+import { useRouter, usePathname } from 'next/navigation';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -13,7 +15,7 @@ const LogoutListItem = styled(ListItem)`
 export const ProfileNavigation = () => {
   const { isAuthorized, logout } = useProfile();
   const router = useRouter();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
 
   const handleOnClick = (path: string) => {
     router.push(`/profile${path}`);
@@ -22,14 +24,30 @@ export const ProfileNavigation = () => {
   return (
     <Card>
       <List>
-        {/* {Object.values(PROFILE_ROUTES) */}
-        {/*  .filter(({ isAuthorized: isAuthorizedPath }) => !!isAuthorizedPath === isAuthorized) */}
-        {/*  .map(({ label, path }) => ( */}
-        {/*    <ListItem key={path} onClick={() => handleOnClick(path)} active={pathname === `/profile${path}`}> */}
-        {/*      {label} */}
-        {/*    </ListItem> */}
-        {/*  ))} */}
-        {/* {isAuthorized && <LogoutListItem onClick={() => logout()}>Выход</LogoutListItem>} */}
+        {!isAuthorized && (
+          <>
+            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile/login`}>
+              Вход
+            </ListItem>
+            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile/register`}>
+              Регистрация
+            </ListItem>
+          </>
+        )}
+        {isAuthorized && (
+          <>
+            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile`}>
+              Профиль
+            </ListItem>
+            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile/settings`}>
+              Настройки профиля
+            </ListItem>
+            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile/orders`}>
+              Мои заказы
+            </ListItem>
+            <LogoutListItem onClick={() => logout()}>Выход</LogoutListItem>
+          </>
+        )}
       </List>
     </Card>
   );

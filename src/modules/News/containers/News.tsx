@@ -3,27 +3,33 @@
 import { useRouter, useParams } from 'next/navigation';
 import React, { useState } from 'react';
 
+import { NewsResponseType } from '@modules/News/types';
+
 import { PageTitle } from '../../../layouts/Lampastar';
 import { NewsList, PaginationPanel } from '../components';
-import { NewsDetail } from '../components/NewsDetail';
-import { useNews, useNewsItem } from '../hooks';
+import { useNews } from '../hooks';
 
-export const News = () => {
+type Props = {
+  newsInitialData: NewsResponseType;
+};
+
+export const News = ({ newsInitialData }: Props) => {
   const router = useRouter();
   const { '*': newsId } = useParams();
 
   const [page, setPage] = useState(1);
 
-  const { list, isLoading: isLoadingList, totalPage } = useNews({ page, enabled: !newsId });
-  const { data, isLoading: isLoadingItem } = useNewsItem({ id: newsId as string });
+  const {
+    list,
+    isLoading: isLoadingList,
+    totalPage,
+  } = useNews({ page, enabled: !newsId, initialData: newsInitialData });
 
-  if (isLoadingList || isLoadingItem || (newsId && !data)) return null;
+  if (isLoadingList) return null;
 
   const handleClick = (id: number) => {
     router.push(`/news/${id}`);
   };
-
-  if (newsId && data) return <NewsDetail item={data} />;
 
   return (
     <>

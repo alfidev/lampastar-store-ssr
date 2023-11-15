@@ -1,10 +1,11 @@
-import { Route, Routes, useNavigate } from 'next/navigation';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
-import { RouteNotFound } from '../../../common/components/Routes';
 import { useProfile } from '../../../common/hooks';
 import { Tabs } from '../../../ui/components';
-import { ForgotForm, LoginEmailForm, LoginPhoneForm } from '../components';
+import { LoginEmailForm, LoginPhoneForm } from '../components';
 
 type LoginDataType = { telephone?: string; email?: string; password: string };
 export const Login = () => {
@@ -16,13 +17,11 @@ export const Login = () => {
     if (isAuthorized) {
       router.push('/profile');
     }
-  }, [isAuthorized, navigate]);
+  }, [isAuthorized, router]);
 
   const handleSubmit = (values: LoginDataType) => {
     login(values);
   };
-
-  const goToLogin = () => router.push('');
 
   const goToForgotPassword = () => router.push('forgot');
 
@@ -39,11 +38,5 @@ export const Login = () => {
     },
   ];
 
-  return (
-    <Routes>
-      <Route index element={<Tabs tabs={tabs} />} />
-      <Route path="forgot" element={<ForgotForm goToLogin={goToLogin} />} />
-      <Route path="*" element={<RouteNotFound />} />
-    </Routes>
-  );
+  return <Tabs tabs={tabs} />;
 };

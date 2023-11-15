@@ -1,3 +1,5 @@
+'use client';
+
 import { Form, Formik } from 'formik';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
@@ -30,9 +32,9 @@ const resetInitialValues = {
 };
 
 export const ForgotForm = ({ goToLogin }: Props) => {
-  const [search] = useSearchParams();
+  const searchParams = useSearchParams();
 
-  const code = search.get('code');
+  const code = searchParams.get('code');
 
   const { isLoading, isSuccessRequestCode, isSuccessReset, handleReset, isErrorCheck, isSuccessCheck, handleRequest } =
     useForgot(code);

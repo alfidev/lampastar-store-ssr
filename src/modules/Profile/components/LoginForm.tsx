@@ -1,13 +1,14 @@
+'use client';
+
 import { Omit } from '@reduxjs/toolkit/dist/tsHelpers';
 import { Form, Formik } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
 
 import { Field, FieldMobile } from '../../../common/components/Field';
-import { LoginFormValuesType } from '../types';
 import { Button, Tab } from '../../../ui/components';
-
 import { LOGIN_FIELDS } from '../constants';
+import { LoginFormValuesType } from '../types';
 import { loginEmailValidationSchema, loginPhoneValidationSchema } from '../utils';
 
 const loginInitialValues = {

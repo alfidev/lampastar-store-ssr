@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { ProductsTypeResponse } from '@modules/Catalog/types';
+
 import { PageTitle } from '../../../layouts/Lampastar/components/PageTitle';
 import { adaptive } from '../../../ui/components';
 import { ProductsList, ProductsFilters, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
@@ -12,6 +14,7 @@ import { useCategories, useControlAndFilters, useFilters, useProductActions, use
 
 type Props = {
   categoryId: number;
+  productInitialData: ProductsTypeResponse;
 };
 
 const CatalogContainer = styled.div`
@@ -42,7 +45,7 @@ const ControlContainer = styled.div`
 
 const PaginationContainer = styled.div``;
 
-export const CatalogCategory = ({ categoryId }: Props) => {
+export const CatalogCategory = ({ categoryId, productInitialData }: Props) => {
   const router = useRouter();
 
   const [page, setPage] = useState(1);
@@ -57,7 +60,7 @@ export const CatalogCategory = ({ categoryId }: Props) => {
     list: products,
     totalPage,
     isLoading: isLoadingProducts,
-  } = useProducts({ category: categoryId, page, sort, order, filters: filtersValues });
+  } = useProducts({ category: categoryId, page, sort, order, filters: filtersValues, initialData: productInitialData });
   const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
   const { list: filters, priceLimits } = useFilters(categoryId);
 
@@ -70,7 +73,7 @@ export const CatalogCategory = ({ categoryId }: Props) => {
   const onClickCategory = (id: number) => {
     setFiltersValues({});
 
-    router.push(`/catalog/${id}`);
+    router.push(`/catalog/${id}/1`);
   };
 
   const getProductsJSX = () => {

@@ -1,4 +1,6 @@
-import styled from "styled-components";
+'use client';
+
+import styled from 'styled-components';
 
 export const PageTitle = styled.h1`
   ${({ theme }) => theme.typography.title1};

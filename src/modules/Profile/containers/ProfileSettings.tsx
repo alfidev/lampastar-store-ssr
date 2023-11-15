@@ -1,8 +1,9 @@
+'use client';
+
 import { Form, Formik } from 'formik';
 import React from 'react';
 
 import { Button } from '../../../ui/components';
-
 import { SettingsForm } from '../components';
 import { SETTINGS_FIELDS } from '../constants';
 import { useProfileSettings } from '../hooks';

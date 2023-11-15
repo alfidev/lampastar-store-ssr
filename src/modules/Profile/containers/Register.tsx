@@ -1,10 +1,11 @@
-import { Route, Routes, useNavigate } from 'next/navigation';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
-import { RouteNotFound } from '../../../common/components/Routes';
 import { useProfile } from '../../../common/hooks';
 import { Button } from '../../../ui/components';
-import { RegisterForm, Verification } from '../components';
+import { RegisterForm } from '../components';
 import { REGISTER_FIELDS } from '../constants';
 import { RegisterFormValuesType } from '../types';
 
@@ -17,7 +18,7 @@ export const Register = () => {
     if (isAuthorized) {
       router.push('/profile');
     }
-  }, [isAuthorized, navigate]);
+  }, [isAuthorized, router]);
 
   const handleSubmit = (values: RegisterFormValuesType) => {
     const data = {
@@ -55,11 +56,5 @@ export const Register = () => {
   if (isSuccessRegister)
     return <>Вы успешно зарегистрировали. На указанную почту было направлено письмо для подтверждения регистрации.</>;
 
-  return (
-    <Routes>
-      <Route index element={<RegisterForm onSubmit={handleSubmit} />} />
-      <Route path="verification" element={<Verification />} />
-      <Route path="*" element={<RouteNotFound />} />
-    </Routes>
-  );
+  return <RegisterForm onSubmit={handleSubmit} />;
 };

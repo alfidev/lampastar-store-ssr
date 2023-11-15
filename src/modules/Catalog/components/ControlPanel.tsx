@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { DownSheet } from '../../../common/components/DownSheet';
-import { Card, DownSheet as DownSheetComponent } from '../../../ui/components';
+import { Card, DownSheet as DownSheetComponent, Icon } from '../../../ui/components';
 import { useMediaQuery } from '../../../ui/hooks/useMediaQuery';
-import { Filters, GridIcon, ListIcon, SortOrderAsc, SortOrderDesc } from '../../../ui/icons';
+import { Filters, Grid, List, SortOrderAsc, SortOrderDesc } from '../../../ui/icons';
 import { ORDER_TYPE, SORT_MOBILE_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
 import { locale } from '../locale';
 import { OrderType, SortMobileType, SortType, ViewModeType } from '../types';
@@ -155,10 +155,10 @@ export const ControlPanel = ({
 
       <ButtonContainer>
         <ItemIcon active={viewMode === VIEW_MODE.grid} onClick={() => setViewMode(VIEW_MODE.grid)}>
-          <GridIcon size="xxl" />
+          <Icon icon={Grid} size="xxl" />
         </ItemIcon>
         <ItemIcon active={viewMode === VIEW_MODE.list} onClick={() => setViewMode(VIEW_MODE.list)}>
-          <ListIcon size="xxl" />
+          <Icon icon={List} size="xxl" />
         </ItemIcon>
       </ButtonContainer>
     </ControlContainer>

@@ -1,12 +1,15 @@
-'use client';
+import { Metadata } from 'next';
+import React from 'react';
 
-import styled from 'styled-components';
+import { DEFAULT_METADATA_TITLE } from '@common/constants';
 
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.color.background.primary};
-`;
+import { CatalogMainPage } from './catalogMainPage';
 
-export default function Page() {
-  return <Title>My page</Title>;
+export const metadata: Metadata = {
+  title: `Каталог | ${DEFAULT_METADATA_TITLE}`,
+  description: `Каталог | ${DEFAULT_METADATA_TITLE}`,
+};
+
+export default async function Page() {
+  return <CatalogMainPage />;
 }

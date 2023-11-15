@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container, Row, Col } from '../../../../ui/components/Adaptive';
 import styled from 'styled-components';
+
+import { Container, Row, Col } from '../../../../ui/components/Adaptive';
 import { ListItemSkeleton, TextSkeleton } from '../../../../ui/components/Skeleton';
 
 const StyledListSkeleton = styled.div`
@@ -21,37 +22,35 @@ const getRandomWidth = () => {
 
 const items = [...Array(11)].map(() => getRandomWidth());
 
-export const CatalogMenuSkeleton = React.memo(() => {
-  return (
-    <Container>
-      <Row>
-        <Col desktopS={4}>
-          <StyledListSkeleton>
-            {items.map((width, index) => (
-              <ListItemSkeleton key={index} width={width} active={index === 2} />
+export const CatalogMenuSkeleton = React.memo(() => (
+  <Container>
+    <Row>
+      <Col desktopS={4}>
+        <StyledListSkeleton>
+          {items.map((width, index) => (
+            <ListItemSkeleton key={index} width={width} active={index === 2} />
+          ))}
+        </StyledListSkeleton>
+      </Col>
+      <Col desktopS={8}>
+        <Container>
+          <TextSkeleton width={140} />
+          <Row>
+            {[...Array(5)].map((_item, index) => (
+              <StyledColumnSecondary key={index} mobile={6}>
+                <TextSkeleton width="50%" size="body2" />
+                {[...Array(2)].map((_item, index) => (
+                  <StyledColumnSecondary key={index} mobile={6}>
+                    <TextSkeleton width="50%" size="mini2" />
+                  </StyledColumnSecondary>
+                ))}
+              </StyledColumnSecondary>
             ))}
-          </StyledListSkeleton>
-        </Col>
-        <Col desktopS={8}>
-          <Container>
-            <TextSkeleton width={140} />
-            <Row>
-              {[...Array(5)].map((_item, index) => (
-                <StyledColumnSecondary key={index} mobile={6}>
-                  <TextSkeleton width="50%" size="body2" />
-                  {[...Array(2)].map((_item, index) => (
-                    <StyledColumnSecondary key={index} mobile={6}>
-                      <TextSkeleton width="50%" size="mini2" />
-                    </StyledColumnSecondary>
-                  ))}
-                </StyledColumnSecondary>
-              ))}
-            </Row>
-          </Container>
-        </Col>
-      </Row>
-    </Container>
-  );
-});
+          </Row>
+        </Container>
+      </Col>
+    </Row>
+  </Container>
+));
 
 CatalogMenuSkeleton.displayName = 'CatalogMenuSkeleton';

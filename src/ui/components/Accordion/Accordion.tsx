@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 
-import { ArrowBottomIcon, ArrowTopIcon } from '../../icons';
-
 import { ContentContainer, Header, InnerContainer, Title, TitleIcon } from './styled';
+import { ArrowTop, ArrowBottom } from '../../icons';
+import { Icon } from '../Icon';
 
 type Props = {
   title?: string;
@@ -13,7 +13,7 @@ type Props = {
 export const Accordion = ({ title, children, isOpen }: Props) => {
   const [opened, setOpened] = useState(!!isOpen);
 
-  const ArrowComponent = opened ? ArrowTopIcon : ArrowBottomIcon;
+  const ArrowComponent = opened ? ArrowTop : ArrowBottom;
 
   const onCLickToggleHandler = () => {
     setOpened(!opened);
@@ -24,7 +24,7 @@ export const Accordion = ({ title, children, isOpen }: Props) => {
       <Header onClick={onCLickToggleHandler}>
         <Title>{title}</Title>
         <TitleIcon>
-          <ArrowComponent />
+          <Icon icon={ArrowComponent} size="l" />
         </TitleIcon>
       </Header>
       <ContentContainer opened={opened}>

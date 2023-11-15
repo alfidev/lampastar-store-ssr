@@ -1,3 +1,5 @@
+'use client';
+
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle<{
@@ -24,9 +26,7 @@ export const GlobalStyle = createGlobalStyle<{
     margin: 0;
     background: ${({ backgroundColor }) => backgroundColor};
     color: ${({ textColor }) => textColor};
-    font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    font-weight: 500;
     line-height: 20px;
     
     * {

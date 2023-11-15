@@ -33,14 +33,14 @@ export const MainPromoSlider = ({ initialData }: Props) => {
   const handleOnClick = (type: promoSliderEnum, filter?: number | string) => {
     switch (type) {
       case promoSliderEnum.CATEGORY:
-        return router.push(`/catalog/${filter}`);
+        return router.push(`/catalog/${filter}/1`);
       case promoSliderEnum.PRODUCT:
         return router.push(`/catalog/products/${filter}`);
       case promoSliderEnum.FILTER:
         // return router.push({ pathname: '/catalog', search: filter as string });
         return '';
       default:
-        return router.push(`/catalog/${filter}`);
+        return router.push(`/catalog/${filter}/1`);
     }
   };
 

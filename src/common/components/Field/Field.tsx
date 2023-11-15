@@ -1,9 +1,11 @@
+'use client';
+
 import { useField } from 'formik';
 import React, { ReactNode, RefObject, useState } from 'react';
 import styled from 'styled-components';
 
-import { formatPhoneNumber } from '../../utils';
 import { CheckBox, Input, Textarea } from '../../../ui/components';
+import { formatPhoneNumber } from '../../utils';
 
 type Props<U = HTMLInputElement> = {
   label?: string;

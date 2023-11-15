@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
+
 import { Card, Col, Container, Row, Typography } from '../../../ui/components';
 import { useStaff } from '../hooks';
 
@@ -43,20 +46,18 @@ export const Staff = () => {
   if (isError || isLoading) return null;
 
   return (
-    <>
-      <WrapperContainer>
-        <Row>
-          {list.map(({ id, image, name, position }) => (
-            <StyledCol key={id} mobile={12} tablet={6} desktopS={4} desktopM={3}>
-              <StyledCard>
-                {image && <StyledImage src={image} />}
-                <StyledName>{name}</StyledName>
-                <StyledDescription>{position}</StyledDescription>
-              </StyledCard>
-            </StyledCol>
-          ))}
-        </Row>
-      </WrapperContainer>
-    </>
+    <WrapperContainer>
+      <Row>
+        {list.map(({ id, image, name, position }) => (
+          <StyledCol key={id} mobile={12} tablet={6} desktopS={4} desktopM={3}>
+            <StyledCard>
+              {image && <StyledImage src={image} />}
+              <StyledName>{name}</StyledName>
+              <StyledDescription>{position}</StyledDescription>
+            </StyledCard>
+          </StyledCol>
+        ))}
+      </Row>
+    </WrapperContainer>
   );
 };

@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import styled from 'styled-components';
+
 import { Logo } from '@resources/images';
 
 const MAX_WIDTH = '744px';
 
-export const StyledLogo = styled(Logo)`
+export const StyledLogo = styled(Image).attrs({ src: Logo, alt: 'LAMPASTAR' })`
   width: 200px;
   height: 110px;
 `;
@@ -67,7 +69,7 @@ export const BrandImages = styled.div`
   justify-content: center;
 `;
 
-export const StyledImageBrand = styled.img`
+export const StyledImageBrand = styled(Image)`
   margin: 20px 20px;
 `;
 
@@ -77,11 +79,11 @@ export const AboutImages = styled.div`
   justify-content: center;
 `;
 
-export const StyledImageAbout = styled.img`
+export const StyledImageAbout = styled(Image)`
   margin: 20px 20px;
 `;
 
-export const StyledImageCert = styled.img`
+export const StyledImageCert = styled(Image)`
   margin: 20px 10px;
   cursor: pointer;
 `;

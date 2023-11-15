@@ -1,13 +1,14 @@
+'use client';
+
 import { Form, Formik } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
 
 import { Field, FieldCheckbox, FieldMobile } from '../../../common/components/Field';
-import { RegisterFormValuesType } from '../types';
 import { Button } from '../../../ui/components';
 import { Container, Row, Col } from '../../../ui/components';
-
 import { REGISTER_FIELDS } from '../constants';
+import { RegisterFormValuesType } from '../types';
 import { registerValidationSchema } from '../utils';
 
 const registerInitialValues = {
