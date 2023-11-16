@@ -42,24 +42,32 @@ export const LoginPhoneForm = ({ onSubmit, forgotPassword }: FormPhoneProps) => 
 
   return (
     <Formik initialValues={loginInitialValues} validationSchema={loginPhoneValidationSchema} onSubmit={handleSubmit}>
-      {({ isValid, touched }) => {
-        const isTouched = touched[LOGIN_FIELDS.PHONE] || touched[LOGIN_FIELDS.PASSWORD];
-
-        return (
-          <Form>
-            <Tab>
-              <FieldMobile name={LOGIN_FIELDS.PHONE} label="Телефон" placeholder="Телефон" type="tel" />
-              <Field name={LOGIN_FIELDS.PASSWORD} label="Пароль" placeholder="Пароль" type="password" />
-              <ButtonContainer>
-                <Button.Contained type="submit" disabled={!isValid || !isTouched}>
-                  Войти
-                </Button.Contained>
-                <Button.Text onClick={forgotPassword}>Восстановить пароль</Button.Text>
-              </ButtonContainer>
-            </Tab>
-          </Form>
-        );
-      }}
+      {() => (
+        <Form>
+          <Tab>
+            <FieldMobile
+              showValidationMark={false}
+              validation
+              name={LOGIN_FIELDS.PHONE}
+              label="Телефон"
+              placeholder="Телефон"
+              type="tel"
+            />
+            <Field
+              showValidationMark={false}
+              validation
+              name={LOGIN_FIELDS.PASSWORD}
+              label="Пароль"
+              placeholder="Пароль"
+              type="password"
+            />
+            <ButtonContainer>
+              <Button.Contained type="submit">Войти</Button.Contained>
+              <Button.Text onClick={forgotPassword}>Восстановить пароль</Button.Text>
+            </ButtonContainer>
+          </Tab>
+        </Form>
+      )}
     </Formik>
   );
 };
@@ -73,24 +81,32 @@ export const LoginEmailForm = ({ onSubmit, forgotPassword }: FormEmailProps) => 
 
   return (
     <Formik initialValues={loginInitialValues} validationSchema={loginEmailValidationSchema} onSubmit={handleSubmit}>
-      {({ isValid, touched }) => {
-        const isTouched = touched[LOGIN_FIELDS.EMAIL] || touched[LOGIN_FIELDS.PASSWORD];
-
-        return (
-          <Form>
-            <Tab>
-              <Field name={LOGIN_FIELDS.EMAIL} label="E-mail" placeholder="E-mail" type="text" />
-              <Field name={LOGIN_FIELDS.PASSWORD} label="Пароль" placeholder="Пароль" type="password" />
-              <ButtonContainer>
-                <Button.Contained type="submit" disabled={!isValid || !isTouched}>
-                  Войти
-                </Button.Contained>
-                <Button.Text onClick={forgotPassword}>Восстановить пароль</Button.Text>
-              </ButtonContainer>
-            </Tab>
-          </Form>
-        );
-      }}
+      {() => (
+        <Form>
+          <Tab>
+            <Field
+              showValidationMark={false}
+              validation
+              name={LOGIN_FIELDS.EMAIL}
+              label="E-mail"
+              placeholder="E-mail"
+              type="text"
+            />
+            <Field
+              showValidationMark={false}
+              validation
+              name={LOGIN_FIELDS.PASSWORD}
+              label="Пароль"
+              placeholder="Пароль"
+              type="password"
+            />
+            <ButtonContainer>
+              <Button.Contained type="submit">Войти</Button.Contained>
+              <Button.Text onClick={forgotPassword}>Восстановить пароль</Button.Text>
+            </ButtonContainer>
+          </Tab>
+        </Form>
+      )}
     </Formik>
   );
 };

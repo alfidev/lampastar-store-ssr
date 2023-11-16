@@ -14,6 +14,7 @@ export type ToastType = {
 };
 
 export type ToastsContextType = {
+  toasts: ToastType[];
   addToast: (toast: ToastType) => void;
   removeToast: (id: string) => void;
 };

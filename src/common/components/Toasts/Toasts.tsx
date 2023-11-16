@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useToasts } from '../../hooks';
 import { Toast } from './Toast';
+import { useToasts } from '../../hooks';
 
 const FixedWrapper = styled.div`
   position: fixed;

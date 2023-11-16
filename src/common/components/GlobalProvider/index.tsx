@@ -10,8 +10,8 @@ import { ThemeProvider } from 'styled-components';
 import { DOWN_SHEET_PORTAL_ID, MODAL_PORTAL_ID } from '@common/constants/portals';
 import { FeatureTogglesContextProvider, getToggles } from '@common/featureToggles';
 import { store } from '@common/redux';
-import { Wrapper } from '@layouts/Lampastar';
 import { GlobalStyle } from '@layouts/Lampastar/components/Theme/styled';
+import { Wrapper } from '@layouts/Lampastar/components/Wrapper';
 import { LIGHT_THEME } from '@layouts/Lampastar/themes/light';
 
 import StyledComponentsRegistry from '../../../lib/registry';
@@ -56,7 +56,7 @@ export default function GlobalProvider({ children }: { children: ReactNode }) {
     [toastCounter],
   );
 
-  const toastContext = useMemo(() => ({ addToast, removeToast }), [addToast, removeToast]);
+  const toastContext = useMemo(() => ({ addToast, removeToast, toasts }), [addToast, removeToast]);
 
   return (
     <StyledComponentsRegistry>

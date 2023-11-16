@@ -11,6 +11,7 @@ type Props<U = HTMLInputElement> = {
   label?: string;
   name: string;
   validation?: boolean;
+  showValidationMark?: boolean;
   ref?: ((instance: U | null) => void) | RefObject<U> | null;
 } & React.DetailedHTMLProps<React.InputHTMLAttributes<U>, U>;
 
@@ -42,7 +43,7 @@ const ValidationMark = styled.span`
   color: ${({ theme }) => theme.color.status.error};
 `;
 
-export const Field = ({ validation, label, ...props }: Props) => {
+export const Field = ({ showValidationMark = true, validation, label, ...props }: Props) => {
   const [field, meta] = useField(props);
 
   const showError = meta.touched && !!meta.error;
@@ -51,7 +52,7 @@ export const Field = ({ validation, label, ...props }: Props) => {
     <Wrapper validation={validation}>
       {label && (
         <Label>
-          {validation && <ValidationMark>* </ValidationMark>}
+          {validation && showValidationMark && <ValidationMark>* </ValidationMark>}
           {label}
         </Label>
       )}
@@ -82,7 +83,7 @@ export const FieldTextarea = ({ validation, label, ...props }: TextAreaProps) =>
   );
 };
 
-export const FieldMobile = ({ validation, label, ...props }: Props) => {
+export const FieldMobile = ({ showValidationMark, validation, label, ...props }: Props) => {
   const [{ onChange, value, ...field }, meta, { setValue }] = useField(props);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -102,7 +103,7 @@ export const FieldMobile = ({ validation, label, ...props }: Props) => {
     <Wrapper validation={validation}>
       {label && (
         <Label>
-          {label && validation && <ValidationMark>* </ValidationMark>}
+          {validation && showValidationMark && <ValidationMark>* </ValidationMark>}
           {label}
         </Label>
       )}
