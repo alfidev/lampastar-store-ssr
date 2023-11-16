@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { Like } from '../../icons';
-
 import { adaptive } from '../Adaptive';
 import { Button } from '../Button';
 import { Card } from '../Card';

@@ -17,13 +17,15 @@ export const applicationReducer = createReducer(applicationReducerInitialState, 
     .addCase(openModalAction, (state, action) => {
       if (!state.openedModalIds.includes(action.payload.modalId)) {
         state.openedModalIds.push(action.payload.modalId);
-        if (action.payload.modalProps) state.modalProps[action.payload.modalId] = action.payload.modalProps;
+        // eslint-disable-next-line no-param-reassign
+        if (action.payload.modalProps && state) state.modalProps[action.payload.modalId] = action.payload.modalProps;
       }
     })
     .addCase(closeModalAction, (state, action) => {
       const index = state.openedModalIds.indexOf(action.payload.modalId);
       if (index !== -1) {
         state.openedModalIds.splice(index, 1);
+        // eslint-disable-next-line no-param-reassign
         delete state.modalProps[action.payload.modalId];
       }
     });

@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Field, FieldCheckbox, FieldMobile } from '../../../common/components/Field';
 import { Col, Container, Row } from '../../../ui/components';
-
 import { SETTINGS_FIELDS } from '../constants';
 
 export const SettingsForm = () => (

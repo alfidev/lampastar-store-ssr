@@ -1,5 +1,6 @@
-import { useContext } from "react";
-import { FeatureTogglesContext } from "./context";
+import { useContext } from 'react';
+
+import { FeatureTogglesContext } from './context';
 
 export const useFeature = (name: string) => {
   const context = useContext(FeatureTogglesContext);

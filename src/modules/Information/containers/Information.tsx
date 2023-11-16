@@ -1,6 +1,7 @@
 import React from 'react';
-import { InformationType } from '../types';
+
 import { Info } from '../../../ui/components';
+import { InformationType } from '../types';
 
 type Props = {
   type: InformationType;
@@ -20,6 +21,4 @@ const MESSAGES = {
   ],
 };
 
-export const Information = ({ type }: Props) => {
-  return <Info>{MESSAGES[type][0].message}</Info>;
-};
+export const Information = ({ type }: Props) => <Info>{MESSAGES[type][0].message}</Info>;

@@ -3,7 +3,6 @@ import SimpleBar from 'simplebar-react';
 import styled from 'styled-components';
 
 import { ArrowLeft, ArrowRight } from '../../icons';
-
 import { Container } from '../Adaptive';
 import { ArrowButton } from '../ArrowButton';
 

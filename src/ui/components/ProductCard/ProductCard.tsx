@@ -1,10 +1,5 @@
 import React from 'react';
 
-import { USE_COMPARE, USE_FAVORITES, USE_ORDER, useFeature } from '../../../common/featureToggles';
-import { Compare, Like, NoImage } from '../../icons';
-
-import { ButtonContained } from '../Button';
-import { Counter } from '../Counter';
 import { ProductCardActionsSkeleton } from './ProductCardActionsSkeleton';
 import {
   BottomBlock,
@@ -19,6 +14,10 @@ import {
   AdditionalButton,
   LikeActive,
 } from './styled';
+import { USE_COMPARE, USE_FAVORITES, USE_ORDER, useFeature } from '../../../common/featureToggles';
+import { Compare, Like, NoImage } from '../../icons';
+import { ButtonContained } from '../Button';
+import { Counter } from '../Counter';
 
 export type ProductCardProps = {
   name: string;

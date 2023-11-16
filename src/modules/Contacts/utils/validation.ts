@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 
 import { validatePhone } from '../../../common/utils';
-
 import { MESSAGE_FIELDS, TELEPHONE_FIELD } from '../constants';
 
 export const messageValidationSchema = yup.object().shape({

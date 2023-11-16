@@ -1,11 +1,10 @@
 import React from 'react';
-import { Information } from '../../../../modules/Information';
-import { Container } from './styled';
 
-export const TopInfoBlock = () => {
-  return (
-    <Container>
-      <Information type="top" />
-    </Container>
-  );
-};
+import { Container } from './styled';
+import { Information } from '../../../../modules/Information';
+
+export const TopInfoBlock = () => (
+  <Container>
+    <Information type="top" />
+  </Container>
+);

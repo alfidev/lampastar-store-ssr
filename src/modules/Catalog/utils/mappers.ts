@@ -1,5 +1,4 @@
 import { BasketProductsQuantityType } from '../../../common/types';
-
 import { CategoryMap, CategoryType, ProductType } from '../types';
 
 export const getCategoriesRecursive = (

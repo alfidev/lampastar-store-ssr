@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { PageTitle } from '../../../layouts/Lampastar';
 import { Container, Row, Col } from '../../../ui/components';
 import { Breadcrumbs } from '../../../ui/components/Breadcrumbs';
-
 import { NewsItemType } from '../types';
 import { reformatLinks } from '../utils';
 

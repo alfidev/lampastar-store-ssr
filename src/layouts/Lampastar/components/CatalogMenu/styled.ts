@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { adaptive } from '../../../../ui/components/Adaptive';
 
 export const CatalogMenuModal = styled.div`

@@ -1,6 +1,7 @@
 import React from 'react';
-import { ButtonSkeleton, CardSkeleton, ImageSkeleton, TextSkeletonSecondary } from '../../../../ui/components';
 import styled from 'styled-components';
+
+import { ButtonSkeleton, CardSkeleton, ImageSkeleton, TextSkeletonSecondary } from '../../../../ui/components';
 
 const StyledCardSkeleton = styled(CardSkeleton)`
   padding: ${({ theme }) => theme.indents.m};

@@ -16,7 +16,7 @@ type Props = {
   sort?: SortType;
   order?: OrderType;
   filters?: Record<string, any>;
-  initialData: ProductsTypeResponse;
+  initialData?: ProductsTypeResponse;
 };
 
 export const useProducts = ({

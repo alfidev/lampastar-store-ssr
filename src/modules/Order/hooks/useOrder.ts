@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 import { useToasts } from '../../../common/hooks';
 import { BASKET_DATA_QUERY_KEY } from '../../../common/hooks/useBasket';
@@ -17,8 +16,7 @@ const confirmOrderOptions = {
   method: 'POST',
 };
 
-export const useOrder = () => {
-  const router = useRouter();
+export const useOrder = (success: () => void) => {
   const { addToast } = useToasts();
   const queryClient = useQueryClient();
 
@@ -30,7 +28,7 @@ export const useOrder = () => {
       });
     },
     onSuccess: () => {
-      router.push('status', { replace: true });
+      success();
       queryClient.invalidateQueries([BASKET_DATA_QUERY_KEY]);
     },
   };

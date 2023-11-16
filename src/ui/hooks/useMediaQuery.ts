@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { breakpoints, breakpointsMax, BreakpointsNames, BreakpointsNamesMax } from '../constants';
 
 export const useMediaQuery = ({

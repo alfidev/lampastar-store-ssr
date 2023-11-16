@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 import { NewsResponseType } from '@modules/News/types';
@@ -15,15 +15,10 @@ type Props = {
 
 export const News = ({ newsInitialData }: Props) => {
   const router = useRouter();
-  const { '*': newsId } = useParams();
 
   const [page, setPage] = useState(1);
 
-  const {
-    list,
-    isLoading: isLoadingList,
-    totalPage,
-  } = useNews({ page, enabled: !newsId, initialData: newsInitialData });
+  const { list, isLoading: isLoadingList, totalPage } = useNews({ page, enabled: true, initialData: newsInitialData });
 
   if (isLoadingList) return null;
 

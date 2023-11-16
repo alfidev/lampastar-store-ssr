@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { CheckBox } from '../../../../ui/components';
-
 import { FilterType, FilterValueSelectType } from '../../types';
 
 type Props = {

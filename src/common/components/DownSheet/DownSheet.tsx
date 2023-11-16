@@ -1,8 +1,8 @@
 import React, { Fragment, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
-import { DOWN_SHEET_PORTAL_ID } from '../../constants';
 import { ModalBackground, DownSheet as DownSheetComponent } from '../../../ui/components';
+import { DOWN_SHEET_PORTAL_ID } from '../../constants';
 
 type Props = {
   isOpen: boolean;

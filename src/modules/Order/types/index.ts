@@ -1,7 +1,6 @@
 import { CustomerType } from '../../../common/types';
-import { CUSTOMER_FIELDS } from '../constants';
-
 import { BasketProduct } from '../../Basket';
+import { CUSTOMER_FIELDS } from '../constants';
 
 export type OrderDataResponse = {
   products: BasketProduct[];

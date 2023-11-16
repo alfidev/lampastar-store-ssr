@@ -2,10 +2,9 @@ import { format } from 'date-fns';
 import React from 'react';
 import styled from 'styled-components';
 
-import { formatSum } from '../../../common/utils';
 import { ProductItem } from './ProductItem';
+import { formatSum } from '../../../common/utils';
 import { Card } from '../../../ui/components';
-
 import { OrderType } from '../types';
 
 type Props = {

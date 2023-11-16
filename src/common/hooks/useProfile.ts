@@ -63,13 +63,13 @@ export const useProfile = () => {
   const logout = () => {
     logoutAsync({})
       .then(() => invalidate())
-      .catch(() => console.log('Logout error'));
+      .catch(() => addToast({ message: 'Logout Error', status: ToastStatusEnum.ERROR }));
   };
 
   const register = (data: any) => {
     registerAsync(data)
       .then(() => invalidate())
-      .catch(() => console.log('Register error'));
+      .catch(() => addToast({ message: 'Register Error', status: ToastStatusEnum.ERROR }));
   };
 
   const login = (data: any) => {

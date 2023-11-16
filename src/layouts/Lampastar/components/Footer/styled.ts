@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { Logo } from '../../../../resources/images';
 import { ButtonContained, Input } from '../../../../ui/components';
 import { adaptive } from '../../../../ui/components/Adaptive';
 import { ContentWrapper } from '../ComponentWrapper';

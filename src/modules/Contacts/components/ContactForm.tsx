@@ -5,7 +5,6 @@ import { Field, FieldCheckbox } from '../../../common/components/Field';
 import { FieldTextarea } from '../../../common/components/Field/Field';
 import { Button } from '../../../ui/components';
 import { adaptive } from '../../../ui/components/Adaptive';
-
 import { MESSAGE_FIELDS } from '../constants';
 
 export const ContactFormContainer = styled.div`

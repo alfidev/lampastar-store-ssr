@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef } from 'react';
+import React, { MutableRefObject, useEffect, useRef } from 'react';
 
 import { YANDEX_API_KEY, YANDEX_COORDINATES } from '../../constants';
 
@@ -21,12 +21,15 @@ const loadMaps = async (onLoad: () => void) => {
   script.id = YA_MAPS_ID;
 
   document.body.appendChild(script);
+
+  return '';
 };
 
-const initMap = (ref: RefObject<any>) => {
+const initMap = (ref: MutableRefObject<any>) => {
   if (ref.current) return;
 
   // @ts-ignore
+  // eslint-disable-next-line no-param-reassign
   ref.current = new ymaps.Map(
     'map_container_contacts',
     {

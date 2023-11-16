@@ -1,12 +1,11 @@
 import { useFormikContext } from 'formik';
 import React from 'react';
 
-import { Container, Row, Typography } from '../../../ui/components';
-
-import { CUSTOMER_FIELDS } from '../constants';
-import { OrderFormValuesType } from '../types';
 import { OrderColumn } from './OrderColumn';
 import { OrderOption } from './OrderOption';
+import { Container, Row, Typography } from '../../../ui/components';
+import { CUSTOMER_FIELDS } from '../constants';
+import { OrderFormValuesType } from '../types';
 
 export const ShippingForm = () => {
   const { values } = useFormikContext<OrderFormValuesType>();

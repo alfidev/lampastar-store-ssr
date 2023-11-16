@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import styled, { DefaultTheme } from 'styled-components';
 
 import { Close } from '../../../ui/icons';
-
 import { ToastStatusEnum } from '../../types';
 
 type Props = {

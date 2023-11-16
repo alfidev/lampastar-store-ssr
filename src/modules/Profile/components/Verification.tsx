@@ -4,7 +4,7 @@ import React from 'react';
 import { useVerification } from '../hooks';
 
 export const Verification = () => {
-  const [search] = useSearchParams();
+  const search = useSearchParams();
 
   const code = search.get('code');
 

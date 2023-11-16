@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { formatSum } from '../../../common/utils';
 import { Typography } from '../../../ui/components';
 import { NoImage } from '../../../ui/icons';
-
 import { ProductType } from '../types';
 
 type Props = {

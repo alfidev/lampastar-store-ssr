@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { CustomerType } from '../../../common/types';
 import { adaptive, Typography } from '../../../ui/components';
-
 import { CustomerForm, PaymentForm, ShippingForm, OrderPolicy } from '../components';
 import { CUSTOMER_FIELDS } from '../constants';
 import { OrderFormValuesType } from '../types';

@@ -3,9 +3,8 @@ import React from 'react';
 
 import { OrderColumn } from './OrderColumn';
 import { OrderOption } from './OrderOption';
-import { CUSTOMER_FIELDS } from '../constants';
 import { Container, Row, Typography } from '../../../ui/components';
-
+import { CUSTOMER_FIELDS } from '../constants';
 import { OrderFormValuesType } from '../types';
 
 export const PaymentForm = () => {

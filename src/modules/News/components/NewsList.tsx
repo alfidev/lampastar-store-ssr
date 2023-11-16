@@ -1,17 +1,16 @@
 import React from 'react';
-import { ImageSizeEnum, NewsItemType } from '../types';
+
 import { NewsItem } from './NewsItem';
+import { ImageSizeEnum, NewsItemType } from '../types';
 
 type Props = {
   list: NewsItemType[];
   onClick: (id: number) => void;
 };
-export const NewsList = ({ list, onClick }: Props) => {
-  return (
-    <>
-      {list.map((item) => (
-        <NewsItem key={item.id} item={item} onClick={onClick} imageType={ImageSizeEnum.p} />
-      ))}
-    </>
-  );
-};
+export const NewsList = ({ list, onClick }: Props) => (
+  <>
+    {list.map((item) => (
+      <NewsItem key={item.id} item={item} onClick={onClick} imageType={ImageSizeEnum.p} />
+    ))}
+  </>
+);

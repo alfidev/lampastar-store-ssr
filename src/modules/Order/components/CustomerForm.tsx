@@ -1,12 +1,11 @@
 import { useFormikContext } from 'formik';
 import React, { useEffect, useState } from 'react';
 
+import { OrderColumn } from './OrderColumn';
 import { Field, FieldCheckbox, FieldMobile } from '../../../common/components/Field';
 import { Col, Container, Row, Typography } from '../../../ui/components';
-
 import { CUSTOMER_FIELDS } from '../constants';
 import { OrderFormValuesType, TempCustomerType } from '../types';
-import { OrderColumn } from './OrderColumn';
 
 const tempCustomerInitialState = {
   [CUSTOMER_FIELDS.FIRST_NAME]: '',

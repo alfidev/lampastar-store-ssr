@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Input } from '../../../../ui/components';
-
 import { FilterType, FilterValueBetweenType } from '../../types';
 
 const InputLine = styled.div`

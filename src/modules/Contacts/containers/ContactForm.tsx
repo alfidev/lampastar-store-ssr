@@ -4,7 +4,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ContactForm as ContactFormComponent } from '../components';
-
 import { MESSAGE_FIELDS } from '../constants';
 import { useContacts } from '../hooks';
 import { MessageFormValuesType } from '../types';

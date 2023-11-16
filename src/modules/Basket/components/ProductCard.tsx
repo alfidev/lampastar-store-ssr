@@ -1,9 +1,11 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { formatSum } from '../../../common/utils';
-import { BasketProduct } from '../types';
 import { ProductCardBasket } from '../../../ui/components';
+import { BasketProduct } from '../types';
 
 type Props = {
   product: BasketProduct;

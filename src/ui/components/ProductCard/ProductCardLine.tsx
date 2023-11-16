@@ -1,12 +1,7 @@
 import React from 'react';
 
-import { USE_COMPARE, USE_FAVORITES, USE_ORDER, useFeature } from '../../../common/featureToggles';
-import { ProductCardActionsSkeleton } from './ProductCardActionsSkeleton';
-import { Compare, Like, NoImage } from '../../icons';
-
-import { ButtonContained } from '../Button';
-import { Counter } from '../Counter';
 import { ProductCardProps } from './ProductCard';
+import { ProductCardActionsSkeleton } from './ProductCardActionsSkeleton';
 import {
   ActualPrice,
   NameContainer,
@@ -22,6 +17,10 @@ import {
   ActionsBlock,
   RightBlockCart,
 } from './styled';
+import { USE_COMPARE, USE_FAVORITES, USE_ORDER, useFeature } from '../../../common/featureToggles';
+import { Compare, Like, NoImage } from '../../icons';
+import { ButtonContained } from '../Button';
+import { Counter } from '../Counter';
 
 export const ProductCardLine = ({
   name,

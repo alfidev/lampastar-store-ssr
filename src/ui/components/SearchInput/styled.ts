@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { Input } from '../Input';
+
 import { ButtonContained } from '../Button';
+import { Input } from '../Input';
 
 export const SearchWrapper = styled.form`
   position: relative;

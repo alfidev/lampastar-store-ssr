@@ -1,15 +1,14 @@
 import { FormikProps } from 'formik';
 import React, { Ref } from 'react';
 
-import { CustomerType } from '../../../common/types';
-import { PageTitle } from '../../../layouts/Lampastar';
-import { BasketProduct } from '../../Basket';
-import { PageLoader } from '../../../ui/components';
-
-import { OrderFormContainer } from '../containers/OrderFormContainer';
-import { OrderFormValuesType } from '../types';
 import { OrderTotal } from './OrderTotal';
 import { OrderWrapper, OrderSidebarContainer, OrderProductListContainer } from './styled';
+import { CustomerType } from '../../../common/types';
+import { PageTitle } from '../../../layouts/Lampastar';
+import { PageLoader } from '../../../ui/components';
+import { BasketProduct } from '../../Basket';
+import { OrderFormContainer } from '../containers/OrderFormContainer';
+import { OrderFormValuesType } from '../types';
 
 type Props = {
   isProgressConfirm: boolean;

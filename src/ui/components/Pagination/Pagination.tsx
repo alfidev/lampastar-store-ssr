@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+
 import { PageButton, PaginationContainer } from './styled';
 
 type Props = {
@@ -17,7 +18,7 @@ const getPages = (page: number, total: number) => {
     minValue = 1;
   }
 
-  maxValue = maxValue + difference;
+  maxValue += difference;
 
   if (maxValue > total) {
     difference = maxValue - total;
@@ -25,13 +26,14 @@ const getPages = (page: number, total: number) => {
   }
 
   if (minValue > 1 && difference > 0) {
-    minValue = minValue - difference;
+    minValue -= difference;
   }
 
   if (minValue < 1) minValue = 1;
 
   const result = [];
 
+  // eslint-disable-next-line no-plusplus
   for (let i = minValue; i <= maxValue; i++) {
     result.push(i);
   }

@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { VIEW_MODE } from '../constants';
 import { Container, Row, Col } from '../../../ui/components/Adaptive';
-
+import { VIEW_MODE } from '../constants';
 import { ProductCard } from '../modules/product';
 import { ProductType, ViewModeType } from '../types';
 

@@ -1,8 +1,9 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+
+import { ArrowLeft, ArrowRight } from '../../icons';
 import { Container } from '../Adaptive';
 import { ArrowButton } from '../ArrowButton';
-import { ArrowLeft, ArrowRight } from '../../icons';
 
 type Props = {
   slides: ReactNode[];
@@ -92,7 +93,7 @@ export const Slider = ({ slides, isLoading, enableAuto = true, timeAuto = 4000 }
   useEffect(() => {
     if (sliderRef.current) {
       sliderRef.current?.scrollTo({
-        left: (activeSlideIndex * sliderRef.current?.scrollWidth) / (slides.length || 1),
+        left: (activeSlideIndex * (sliderRef.current?.scrollWidth || 0)) / (slides.length || 1),
         behavior: 'smooth',
       });
     }

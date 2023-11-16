@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { MouseEvent } from 'react';
-import { useTheme } from 'styled-components';
 
 import { ROUTES } from '@common/constants/routes';
 import { Icon } from '@ui/components';
@@ -44,7 +43,6 @@ type Props = {
 export const Header = React.memo(({ menuIsOpened, toggleMenu }: Props) => {
   const { isAuthorized } = useProfile();
   const { productsCount } = useBasket();
-  const theme = useTheme();
 
   const isUseOrder = useFeature(USE_ORDER);
   const enableFavoriteFeature = useFeature(USE_FAVORITES);

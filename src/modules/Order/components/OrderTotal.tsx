@@ -2,11 +2,10 @@ import { FormikProps } from 'formik';
 import React, { Ref } from 'react';
 import styled from 'styled-components';
 
-import { formatSum } from '../../../common/utils';
-import { BasketProduct } from '../../Basket';
 import { OrderPolicy } from './OrderPolicy';
+import { formatSum } from '../../../common/utils';
 import { adaptive, Button, Card } from '../../../ui/components';
-
+import { BasketProduct } from '../../Basket';
 import { OrderFormValuesType } from '../types';
 
 type Props = {

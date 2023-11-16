@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { CheckBox } from '../../../../ui/components';
-
 import { CategoryType } from '../../types';
 
 type Props = {
