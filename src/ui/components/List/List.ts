@@ -20,8 +20,3 @@ export const ListItem = styled.li<{ active?: boolean }>`
     background: ${({ theme }) => theme.color.background.tertiary};
   }
 `;
-
-export const ListItemLite = styled.li`
-  ${({ theme }) => theme.typography.mini2};
-  cursor: pointer;
-`;

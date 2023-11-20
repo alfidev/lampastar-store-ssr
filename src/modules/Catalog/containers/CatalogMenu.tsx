@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Button, List, ListItem, ListItemLite } from '../../../ui/components';
+import { Button, List, ListItem } from '../../../ui/components';
 import { Col, Container, Row } from '../../../ui/components/Adaptive';
 import { Typography } from '../../../ui/components/Typography';
 import { useMediaQuery } from '../../../ui/hooks/useMediaQuery';
@@ -22,11 +22,22 @@ const StyledColumn = styled(Col)`
 `;
 
 const StyledColumnSecondary = styled(Col)`
-  margin-top: ${({ theme }) => theme.indents.l};
+  margin-top: ${({ theme }) => theme.indents.s};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const StyledCategoryItem = styled(Typography)`
   cursor: pointer;
+  margin: 0;
+  padding: ${({ theme }) => theme.indents.xxs} ${({ theme }) => theme.indents.s};
+  border: 1px solid transparent;
+  border-radius: ${({ theme }) => theme.radius.xxs};
+
+  :hover {
+    background: ${({ theme }) => theme.color.background.tertiary};
+  }
 `;
 
 const renderSecondaryCategory = (
@@ -47,21 +58,13 @@ const renderSecondaryCategory = (
 
   return (
     <Row>
-      {currentCategory?.list.map((parentCategory) => (
-        <StyledColumnSecondary key={parentCategory.id} desktopS={6}>
-          <StyledCategoryItem variant="body3" tag="p" onClick={() => onCLick(parentCategory)}>
+      <StyledColumnSecondary desktopS={12}>
+        {currentCategory?.list.map((parentCategory) => (
+          <StyledCategoryItem key={parentCategory.id} variant="body4" tag="p" onClick={() => onCLick(parentCategory)}>
             {parentCategory.name}
           </StyledCategoryItem>
-
-          <List>
-            {parentCategory.list.map((category) => (
-              <ListItemLite key={category.id} onClick={() => onCLick(category)}>
-                {category.name}
-              </ListItemLite>
-            ))}
-          </List>
-        </StyledColumnSecondary>
-      ))}
+        ))}
+      </StyledColumnSecondary>
     </Row>
   );
 };

@@ -13,7 +13,7 @@ import { Header } from '../Header';
 import { TopInfoBlock } from '../TopInfoBlock';
 
 export const Wrapper = ({ children }: { children: ReactNode }) => {
-  const [menuIsOpened, setMenuIsOpened] = useState(false);
+  const [menuIsOpened, setMenuIsOpened] = useState(true);
   const [filtersIsOpened, setFiltersIsOpened] = useState(false);
 
   const contextValue = useMemo(() => ({ filtersIsOpened, setFiltersIsOpened }), [filtersIsOpened, setFiltersIsOpened]);
