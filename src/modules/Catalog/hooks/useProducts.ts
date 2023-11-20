@@ -70,5 +70,5 @@ export const useProducts = ({
 
   const list = useMemo(() => mapProducts(data?.list ?? [], products), [data?.list, products]);
 
-  return { isLoading, list, category, totalPage };
+  return { isLoading, list, category, totalPage, breadcrumbs: data?.breadcrumbs || [] };
 };

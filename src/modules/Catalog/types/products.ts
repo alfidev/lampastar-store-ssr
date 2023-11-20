@@ -1,3 +1,5 @@
+import { BreadcrumbType } from '@common/types/breadcrumbs';
+
 export type ProductType = {
   id: number;
   name: string;
@@ -43,9 +45,11 @@ export type ProductType = {
   notAvailable: boolean;
   forOrder: boolean;
   basketQuantity?: number;
+  breadcrumbs: BreadcrumbType[];
 };
 
 export type ProductsTypeResponse = {
   list: ProductType[];
   total: number;
+  breadcrumbs: BreadcrumbType[];
 };

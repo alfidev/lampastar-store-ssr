@@ -44,9 +44,9 @@ export const useForgot = (code: string | null) => {
   const handleReset = (values: ResetFormValuesType) => {
     mutateReset(values);
   };
-
+  console.log(isLoadingRequestCode && !!code, isLoadingCheck, isLoadingReset);
   return {
-    isLoading: isLoadingRequestCode || isLoadingCheck || isLoadingReset,
+    isLoading: (isLoadingCheck && !!code) || isLoadingRequestCode || isLoadingReset,
     isSuccessRequestCode,
     isSuccessReset,
     isErrorCheck,

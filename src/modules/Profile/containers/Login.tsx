@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
+import { useAuthAccess } from '@common/hooks/useAuthAccess';
+
 import { useProfile } from '../../../common/hooks';
 import { Tabs } from '../../../ui/components';
 import { LoginEmailForm, LoginPhoneForm } from '../components';
@@ -13,17 +15,13 @@ export const Login = () => {
 
   const { isAuthorized, login } = useProfile();
 
-  useEffect(() => {
-    if (isAuthorized) {
-      router.push('/profile');
-    }
-  }, [isAuthorized, router]);
+  useAuthAccess();
 
   const handleSubmit = (values: LoginDataType) => {
     login(values);
   };
 
-  const goToForgotPassword = () => router.push('forgot');
+  const goToForgotPassword = () => router.push('login/forgot');
 
   if (isAuthorized) return null;
 

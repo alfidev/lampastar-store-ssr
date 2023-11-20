@@ -11,11 +11,12 @@ type Props = {
 };
 
 export const CatalogCategoryPage = ({ initialData }: Props) => {
-  const { categoryId } = useParams<{ categoryId: string; page: string }>();
+  const { categoryId, page } = useParams<{ categoryId: string; page: string }>();
 
   return (
     <CatalogCategoryComponent
       key={categoryId}
+      page={page ? Number(page) : 1}
       categoryId={categoryId ? Number(categoryId) : 0}
       productInitialData={initialData}
     />

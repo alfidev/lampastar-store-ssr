@@ -4,7 +4,9 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { getCategoriesBreadcrumbs } from '@common/utils/breadcrumbs';
 import { ProductsTypeResponse } from '@modules/Catalog/types';
+import { Breadcrumbs } from '@ui/components/Breadcrumbs';
 
 import { PageTitle } from '../../../layouts/Lampastar/components/PageTitle';
 import { adaptive } from '../../../ui/components';
@@ -14,6 +16,7 @@ import { useCategories, useControlAndFilters, useFilters, useProductActions, use
 
 type Props = {
   categoryId: number;
+  page: number;
   productInitialData: ProductsTypeResponse;
 };
 
@@ -45,10 +48,9 @@ const ControlContainer = styled.div`
 
 const PaginationContainer = styled.div``;
 
-export const CatalogCategory = ({ categoryId, productInitialData }: Props) => {
+export const CatalogCategory = ({ categoryId, page, productInitialData }: Props) => {
   const router = useRouter();
 
-  const [page, setPage] = useState(1);
   const [sort, setSort] = useState(SORT_TYPE.price);
   const [order, setOrder] = useState(ORDER_TYPE.ASC);
   const [viewMode, setViewMode] = useState(VIEW_MODE.grid);
@@ -58,6 +60,7 @@ export const CatalogCategory = ({ categoryId, productInitialData }: Props) => {
 
   const {
     list: products,
+    breadcrumbs,
     totalPage,
     isLoading: isLoadingProducts,
   } = useProducts({ category: categoryId, page, sort, order, filters: filtersValues, initialData: productInitialData });
@@ -74,6 +77,10 @@ export const CatalogCategory = ({ categoryId, productInitialData }: Props) => {
     setFiltersValues({});
 
     router.push(`/catalog/${id}/1`);
+  };
+
+  const setPage = (newPage: number) => {
+    router.push(`/catalog/${categoryId}/${newPage}`);
   };
 
   const getProductsJSX = () => {
@@ -112,6 +119,7 @@ export const CatalogCategory = ({ categoryId, productInitialData }: Props) => {
 
   return (
     <>
+      <Breadcrumbs items={[...getCategoriesBreadcrumbs(breadcrumbs)]} />
       <PageTitle>{categoryName}</PageTitle>
       <CatalogContainer>
         <FiltersContainer>{getProductsFiltersJSX()}</FiltersContainer>

@@ -26,10 +26,10 @@ export const ProfileNavigation = () => {
       <List>
         {!isAuthorized && (
           <>
-            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile/login`}>
+            <ListItem onClick={() => handleOnClick('/login')} active={pathname === `/profile/login`}>
               Вход
             </ListItem>
-            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile/register`}>
+            <ListItem onClick={() => handleOnClick('/register')} active={pathname === `/profile/register`}>
               Регистрация
             </ListItem>
           </>
@@ -39,10 +39,10 @@ export const ProfileNavigation = () => {
             <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile`}>
               Профиль
             </ListItem>
-            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile/settings`}>
+            <ListItem onClick={() => handleOnClick('/settings')} active={pathname === `/profile/settings`}>
               Настройки профиля
             </ListItem>
-            <ListItem onClick={() => handleOnClick('/')} active={pathname === `/profile/orders`}>
+            <ListItem onClick={() => handleOnClick('/orders')} active={pathname === `/profile/orders`}>
               Мои заказы
             </ListItem>
             <LogoutListItem onClick={() => logout()}>Выход</LogoutListItem>

@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { useToasts } from './useToasts';
+import { CHECK_AUTHORIZE_API } from '../constants';
 import { ToastStatusEnum } from '../types';
 import { getQueryRequest } from '../utils';
 
@@ -13,7 +14,6 @@ type RegisterOrLoginRequestType = {
   [p: string]: any;
 };
 
-const CHECK_AUTHORIZE_API = '/profile/login/check';
 const LOGOUT_PROFILE_API = '/profile/login/logout';
 const REGISTER_PROFILE_API = '/profile/register';
 const LOGIN_PROFILE_API = '/profile/login';
