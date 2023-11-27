@@ -5,6 +5,7 @@
     "jest": true
   },
   "extends": [
+    "next/core-web-vitals",
     "airbnb",
     "airbnb/hooks",
     "eslint:recommended",
@@ -29,6 +30,11 @@
     "prettier"
   ],
   "rules": {
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "guard-for-in": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
     "no-shadow": "off",
     "no-return-assign": "warn",
     "@typescript-eslint/no-shadow": "warn",

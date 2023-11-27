@@ -1,1 +1,0 @@
-export { OurTeam } from './OurTeam';

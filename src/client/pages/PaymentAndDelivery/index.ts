@@ -1,1 +1,0 @@
-export { PaymentAndDelivery } from './PaymentAndDelivery';
