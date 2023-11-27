@@ -9,7 +9,7 @@ export const CatalogSearch = () => {
   const [search, setSearch] = useState('');
 
   const onSubmitHandler = () => {
-    router.push(`/catalog?search=${search}`);
+    router.push(`/catalog/search/1?search=${search}`);
     setSearch('');
   };
 

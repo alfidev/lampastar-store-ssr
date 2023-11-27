@@ -6,7 +6,7 @@ import { getQueryRequest } from '../../../common/utils';
 import { API_PRODUCTS_HITS_URL } from '../../Catalog/constants';
 import { ProductsTypeResponse } from '../../Catalog/types';
 
-export const useHitsSliderData = (initialData: ProductsTypeResponse) => {
+export const useHitsSliderData = (initialData?: ProductsTypeResponse) => {
   const { isLoading, data } = useQuery(
     [API_PRODUCTS_HITS_URL, 'main-hits-slider'],
     getQueryRequest<ProductsTypeResponse>(),

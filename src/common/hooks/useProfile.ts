@@ -36,13 +36,11 @@ export const useProfile = () => {
   const queryClient = useQueryClient();
   const { addToast } = useToasts();
 
-  const { data, isSuccess, isError, isLoading } = useQuery(
-    [CHECK_AUTHORIZE_API],
-    getQueryRequest<RegisterOrLoginResponseType>(),
-    {
-      refetchInterval: 30 * 1000,
-    },
-  );
+  const { data, isSuccess, isError, isLoading } = useQuery({
+    queryKey: [CHECK_AUTHORIZE_API],
+    queryFn: getQueryRequest<RegisterOrLoginResponseType>(),
+    refetchInterval: 30 * 1000,
+  });
 
   const {
     mutateAsync: registerAsync,
@@ -50,15 +48,19 @@ export const useProfile = () => {
     isError: isErrorRegister,
     error: registerError,
     reset: resetRegister,
-  } = useMutation(getQueryRequest<RegisterOrLoginResponseType, RegisterOrLoginRequestType>(registerOptions));
+  } = useMutation({
+    mutationFn: getQueryRequest<RegisterOrLoginResponseType, RegisterOrLoginRequestType>(registerOptions),
+  });
 
-  const { mutateAsync: loginAsync } = useMutation(
-    getQueryRequest<RegisterOrLoginResponseType, RegisterOrLoginRequestType>(loginOptions),
-  );
+  const { mutateAsync: loginAsync } = useMutation({
+    mutationFn: getQueryRequest<RegisterOrLoginResponseType, RegisterOrLoginRequestType>(loginOptions),
+  });
 
-  const { mutateAsync: logoutAsync } = useMutation(getQueryRequest(logoutOptions));
+  const { mutateAsync: logoutAsync } = useMutation({
+    mutationFn: getQueryRequest(logoutOptions),
+  });
 
-  const invalidate = () => queryClient.invalidateQueries([CHECK_AUTHORIZE_API]);
+  const invalidate = () => queryClient.invalidateQueries({ queryKey: [CHECK_AUTHORIZE_API] });
 
   const logout = () => {
     logoutAsync({})

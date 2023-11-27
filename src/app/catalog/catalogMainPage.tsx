@@ -11,5 +11,5 @@ export const CatalogMainPage = () => {
   const search = searchParams.get('search');
   const tag = searchParams.get('tag');
 
-  return <CatalogMainComponent search={search} tag={tag} />;
+  return <CatalogMainComponent search={search || ''} tag={tag || ''} />;
 };

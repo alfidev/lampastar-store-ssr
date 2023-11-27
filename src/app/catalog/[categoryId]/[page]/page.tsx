@@ -4,6 +4,7 @@ import React from 'react';
 import { DEFAULT_METADATA_TITLE } from '@common/constants';
 import { ORDER_TYPE, SORT_TYPE } from '@modules/Catalog/constants';
 import { getCategoriesDataRequest, getCategoryProductDataRequest } from '@modules/Catalog/services/requests';
+import { FiltersValuesType, OrderType, SortType } from '@modules/Catalog/types';
 
 import { CatalogCategoryPage } from './catalogCategoryPage';
 
@@ -25,17 +26,31 @@ export async function generateMetadata({ params }: { params: { categoryId: strin
   };
 }
 
-export default async function Page({ params }: { params: { categoryId: string; page: string } }) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { categoryId: string; page: string };
+  searchParams: { [key: string]: string };
+}) {
   const { categoryId, page = 1 } = params;
 
   const count = 18;
+
+  const filtersSearchParams = Object.keys(searchParams)
+    .filter((paramName) => paramName.includes('filter_'))
+    .reduce((acc, currentKey) => ({ ...acc, [currentKey]: searchParams[currentKey] }), {});
+
+  const sortSearchParams = (searchParams.sort as SortType) ?? SORT_TYPE.price;
+  const orderSearchParams = (searchParams.order as OrderType) ?? ORDER_TYPE.ASC;
 
   const props = {
     category_id: Number(categoryId),
     start: count * (Number(page) - 1),
     limit: count,
-    sort: SORT_TYPE.price,
-    order: ORDER_TYPE.ASC,
+    sort: sortSearchParams,
+    order: orderSearchParams,
+    ...filtersSearchParams,
   };
 
   const categories = await getCategoriesDataRequest();
@@ -44,7 +59,28 @@ export default async function Page({ params }: { params: { categoryId: string; p
 
   if (!category) return notFound();
 
+  const filtersValues: FiltersValuesType = {};
+
+  for (const key in filtersSearchParams) {
+    const [, filterId, filterBetween] = key.split('_');
+
+    if (filterBetween) {
+      filtersValues[filterId] = { values: searchParams[key].split(','), between: true };
+    }
+
+    if (searchParams[key]) {
+      filtersValues[filterId] = { values: searchParams[key].split(',') };
+    }
+  }
+
   const initialData = await getCategoryProductDataRequest(props);
 
-  return <CatalogCategoryPage initialData={initialData} />;
+  return (
+    <CatalogCategoryPage
+      initialData={initialData}
+      filtersValues={filtersValues}
+      sort={sortSearchParams}
+      order={orderSearchParams}
+    />
+  );
 }

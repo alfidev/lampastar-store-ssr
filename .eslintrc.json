@@ -30,6 +30,9 @@
     "prettier"
   ],
   "rules": {
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "guard-for-in": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
     "no-shadow": "off",

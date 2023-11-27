@@ -5,7 +5,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  rewrites: () => {
+  async rewrites() {
     return [
       {
         source: '/api/:path*',
@@ -15,5 +15,5 @@ const nextConfig = {
   },
   staticPageGenerationTimeout: 180,
 };
-
+console.log('dfdsa', API_URL);
 module.exports = nextConfig;

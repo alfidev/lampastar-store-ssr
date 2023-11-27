@@ -118,7 +118,6 @@ export const LIGHT_THEME: ThemeType = {
       font-size: 32px;
       line-height: 40px;
       ${fontRobotoBold.style}
-      ${fontRobotoBold.style}
     `,
     big3: css`
       font-size: 24px;

@@ -1,16 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
+import { OrderType, ProductsTypeResponse, SortType } from '@modules/Catalog/types';
+import { generateQueryParamsString } from '@modules/Catalog/utils/nav';
+
 import { PageTitle } from '../../../layouts/Lampastar';
-import { ProductsList, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
+import { ProductsList, ControlPanel, PaginationPanel } from '../components';
 import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
-import { useProductActions, useProducts } from '../hooks';
+import { useProductActions } from '../hooks';
 
 type Props = {
-  search?: string | null;
-  tag?: string | null;
+  productInitialData?: ProductsTypeResponse;
+  search?: string;
+  tag?: string;
+  page?: number;
+  sort?: SortType;
+  order?: OrderType;
 };
 
 const CatalogContainer = styled.div`
@@ -33,26 +41,44 @@ const ControlContainer = styled.div`
 
 const PaginationContainer = styled.div``;
 
-export const CatalogMain = ({ search, tag }: Props) => {
-  const [page, setPage] = useState(1);
-  const [sort, setSort] = useState(SORT_TYPE.price);
-  const [order, setOrder] = useState(ORDER_TYPE.ASC);
+export const CatalogMain = ({
+  search,
+  tag,
+  page = 1,
+  sort = SORT_TYPE.price,
+  order = ORDER_TYPE.ASC,
+  productInitialData,
+}: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [viewMode, setViewMode] = useState(VIEW_MODE.grid);
 
-  const {
-    list: products,
-    totalPage,
-    isLoading: isLoadingProducts,
-  } = useProducts({ page, sort, order, ...(search && { search }), ...(tag && { tag }) });
+  const totalPage = Math.ceil((productInitialData?.total || 0) / 18);
 
   const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
 
+  const setSortOrder = useCallback(
+    (valueSort: SortType, valueOrder: OrderType) => {
+      const paramsString = generateQueryParamsString({ sort: valueSort, order: valueOrder, search, tag });
+
+      router.push(`${pathname}?${paramsString}`);
+    },
+    [pathname, router],
+  );
+
+  const setPage = (newPage: number) => {
+    const paramsString = generateQueryParamsString({ sort, order, search, tag });
+
+    router.push(`/catalog/search/${newPage}?${paramsString}`);
+  };
+
   const getProductsJSX = () => {
-    if (isLoadingProducts) return <ProductsListSkeleton />;
+    if (!productInitialData?.list) return <>Ничего не найдено</>;
 
     return (
       <ProductsList
-        products={products}
+        products={productInitialData?.list}
         mode={viewMode}
         onChangeCount={handleChangeBasketCount}
         onChangeFavourite={handleChangeFavourite}
@@ -73,8 +99,7 @@ export const CatalogMain = ({ search, tag }: Props) => {
               sortType={sort}
               orderType={order}
               viewMode={viewMode}
-              setSortType={setSort}
-              setOrderType={setOrder}
+              setSortOrder={setSortOrder}
               setViewMode={setViewMode}
             />
           </ControlContainer>

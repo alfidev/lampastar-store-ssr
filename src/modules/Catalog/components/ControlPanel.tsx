@@ -18,8 +18,7 @@ type Props = {
   sortType: SortType;
   orderType: OrderType;
   setViewMode: (mode: ViewModeType) => void;
-  setSortType: (mode: SortType) => void;
-  setOrderType: (mode: OrderType) => void;
+  setSortOrder: (modeSort: SortType, modeOrder: OrderType) => void;
   openFilters?: () => void;
 };
 
@@ -80,32 +79,22 @@ const FilterIcon = styled(Filters)`
   height: ${({ theme }) => theme.sizes.xxl};
 `;
 
-export const ControlPanel = ({
-  viewMode,
-  sortType,
-  orderType,
-  setViewMode,
-  setSortType,
-  setOrderType,
-  openFilters,
-}: Props) => {
+export const ControlPanel = ({ viewMode, sortType, orderType, setViewMode, setSortOrder, openFilters }: Props) => {
   const isMobile = useMediaQuery({ maxWidth: 'tablet' });
 
   const [isShowedSort, setIsShowedSort] = useState(false);
 
   const onClickSortHandler = (sortKey: SortType) => {
     if (sortKey === sortType) {
-      if (orderType === ORDER_TYPE.ASC) setOrderType(ORDER_TYPE.DESC);
-      else setOrderType(ORDER_TYPE.ASC);
+      if (orderType === ORDER_TYPE.ASC) setSortOrder(sortKey, ORDER_TYPE.DESC);
+      else setSortOrder(sortKey, ORDER_TYPE.ASC);
     } else {
-      setSortType(sortKey);
-      setOrderType(ORDER_TYPE.ASC);
+      setSortOrder(sortKey, ORDER_TYPE.ASC);
     }
   };
 
   const onClickSortMobileHandler = (sortKey: SortMobileType) => {
-    setSortType(SORT_MOBILE_TYPE[sortKey].key);
-    setOrderType(SORT_MOBILE_TYPE[sortKey].type);
+    setSortOrder(SORT_MOBILE_TYPE[sortKey].key, SORT_MOBILE_TYPE[sortKey].type);
     setIsShowedSort(false);
   };
 

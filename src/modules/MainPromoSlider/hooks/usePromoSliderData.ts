@@ -7,7 +7,9 @@ import { BannersResponseType } from '../types';
 import { mapBanners } from '../utils';
 
 export const usePromoSliderData = (initialData: any) => {
-  const { isLoading, data, isError } = useQuery([API_BANNERS_URL], getQueryRequest<BannersResponseType>(), {
+  const { isLoading, data, isError } = useQuery({
+    queryKey: [API_BANNERS_URL],
+    queryFn: getQueryRequest<BannersResponseType>(),
     initialData,
   });
 

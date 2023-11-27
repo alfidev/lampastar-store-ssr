@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Input } from '../../../../ui/components';
-import { FilterType, FilterValueBetweenType } from '../../types';
+import { FiltersValuesType, FilterType, FilterValueBetweenType } from '../../types';
 
 const InputLine = styled.div`
   display: flex;
@@ -10,8 +10,8 @@ const InputLine = styled.div`
 
 type Props = {
   filter: FilterType<FilterValueBetweenType, number | string>;
-  setFilter: (value: Record<string, string | number>) => void;
-  filtersValues: Record<string, string | number>;
+  setFilter: (value: FiltersValuesType) => void;
+  filtersValues: FiltersValuesType;
 };
 
 const DelimiterContainer = styled.div`
@@ -23,33 +23,50 @@ const DelimiterContainer = styled.div`
 export const BetweenFilter = ({ filter, setFilter, filtersValues }: Props) => {
   const { value } = filter;
 
-  const [min, setMin] = useState(value.min);
-  const [max, setMax] = useState(value.max);
+  const [min, setMin] = useState(
+    Number(
+      filtersValues[Object.keys(filtersValues).filter((filterId) => filterId === filter.id.toString())[0]]?.values?.[0],
+    ) || value.min,
+  );
+  const [max, setMax] = useState(
+    Number(
+      filtersValues[Object.keys(filtersValues).filter((filterId) => filterId === filter.id.toString())[0]]?.values?.[1],
+    ) || value.max,
+  );
 
   useEffect(() => {
+    let newFilterMin;
+    let newFilterMax;
+
     if (min !== value.min) {
-      setFilter({ [`${filter.id}_min`]: min });
-    } else if (filtersValues[`${filter.id}_min`]) {
-      const { [`${filter.id}_min`]: deletedFilter, ...newFilters } = filtersValues;
-      setFilter(newFilters);
+      newFilterMin = min.toString();
     }
+
     if (max !== value.max) {
-      setFilter({ [`${filter.id}_max`]: max });
-    } else if (filtersValues[`${filter.id}_max`]) {
-      const { [`${filter.id}_max`]: deletedFilter, ...newFilters } = filtersValues;
+      newFilterMax = max.toString();
+    }
+
+    if (newFilterMax)
+      setFilter({
+        ...filtersValues,
+        [filter.id]: { values: [newFilterMin ?? value.min.toString(), newFilterMax], between: true },
+      });
+    else if (newFilterMin) setFilter({ ...filtersValues, [filter.id]: { values: [newFilterMin], between: true } });
+    else {
+      const { [filter.id]: deletedFilter, ...newFilters } = filtersValues;
       setFilter(newFilters);
     }
   }, [filter.id, max, min, value.max, value.min]);
 
-  const onChangeMax = (inputValue: string | number) => {
+  const onChangeMax = (inputValue: number) => {
     const numberValue = Number(inputValue);
-    if (numberValue > max || numberValue < min) setMax(value.max);
+    if (numberValue > value.max || numberValue < min) setMax(value.max);
     else setMax(numberValue);
   };
 
-  const onChangeMin = (inputValue: string | number) => {
+  const onChangeMin = (inputValue: number) => {
     const numberValue = Number(inputValue);
-    if (numberValue > max || numberValue < min) setMin(value.min);
+    if (numberValue > max || numberValue < value.min) setMin(value.min);
     else setMin(numberValue);
   };
 

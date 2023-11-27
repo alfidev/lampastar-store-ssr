@@ -1,23 +1,27 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import { getCategoriesBreadcrumbs } from '@common/utils/breadcrumbs';
-import { ProductsTypeResponse } from '@modules/Catalog/types';
+import { generateQueryParamsString } from '@modules/Catalog/utils/nav';
 import { Breadcrumbs } from '@ui/components/Breadcrumbs';
 
 import { PageTitle } from '../../../layouts/Lampastar/components/PageTitle';
 import { adaptive } from '../../../ui/components';
-import { ProductsList, ProductsFilters, ControlPanel, PaginationPanel, ProductsListSkeleton } from '../components';
-import { ORDER_TYPE, SORT_TYPE, VIEW_MODE } from '../constants';
+import { ProductsList, ProductsFilters, ControlPanel, PaginationPanel } from '../components';
+import { VIEW_MODE } from '../constants';
 import { useCategories, useControlAndFilters, useFilters, useProductActions, useProducts } from '../hooks';
+import { FiltersValuesType, OrderType, ProductsTypeResponse, SortType } from '../types';
 
 type Props = {
   categoryId: number;
   page: number;
-  productInitialData: ProductsTypeResponse;
+  productInitialData?: ProductsTypeResponse;
+  filtersValues: FiltersValuesType;
+  sort: SortType;
+  order: OrderType;
 };
 
 const CatalogContainer = styled.div`
@@ -48,13 +52,11 @@ const ControlContainer = styled.div`
 
 const PaginationContainer = styled.div``;
 
-export const CatalogCategory = ({ categoryId, page, productInitialData }: Props) => {
+export const CatalogCategory = ({ categoryId, page, productInitialData, filtersValues, sort, order }: Props) => {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const [sort, setSort] = useState(SORT_TYPE.price);
-  const [order, setOrder] = useState(ORDER_TYPE.ASC);
   const [viewMode, setViewMode] = useState(VIEW_MODE.grid);
-  const [filtersValues, setFiltersValues] = useState({});
 
   const { isLoading, category, currentList, notFound } = useCategories({ categoryId, parentId: categoryId });
 
@@ -62,8 +64,7 @@ export const CatalogCategory = ({ categoryId, page, productInitialData }: Props)
     list: products,
     breadcrumbs,
     totalPage,
-    isLoading: isLoadingProducts,
-  } = useProducts({ category: categoryId, page, sort, order, filters: filtersValues, initialData: productInitialData });
+  } = useProducts({ category: categoryId, initialData: productInitialData });
   const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
   const { list: filters, priceLimits } = useFilters(categoryId);
 
@@ -73,6 +74,24 @@ export const CatalogCategory = ({ categoryId, page, productInitialData }: Props)
 
   const { name: categoryName } = category || {};
 
+  const setFiltersValues = useCallback(
+    (values: FiltersValuesType) => {
+      const paramsString = generateQueryParamsString({ filters: values, sort, order });
+
+      router.push(`${pathname}?${paramsString}`);
+    },
+    [order, pathname, router, sort],
+  );
+
+  const setSortOrder = useCallback(
+    (valueSort: SortType, valueOrder: OrderType) => {
+      const paramsString = generateQueryParamsString({ filters: filtersValues, sort: valueSort, order: valueOrder });
+
+      router.push(`${pathname}?${paramsString}`);
+    },
+    [filtersValues, pathname, router],
+  );
+
   const onClickCategory = (id: number) => {
     setFiltersValues({});
 
@@ -80,24 +99,23 @@ export const CatalogCategory = ({ categoryId, page, productInitialData }: Props)
   };
 
   const setPage = (newPage: number) => {
-    router.push(`/catalog/${categoryId}/${newPage}`);
+    const paramsString = generateQueryParamsString({ filters: filtersValues, sort, order });
+
+    router.push(`/catalog/${categoryId}/${newPage}?${paramsString}`);
   };
 
-  const getProductsJSX = () => {
-    if (isLoadingProducts) return <ProductsListSkeleton />;
+  const getProductsJSX = () => (
+    // if (isLoadingProducts) return <ProductsListSkeleton />;
 
-    return (
-      <ProductsList
-        products={products}
-        mode={viewMode}
-        onChangeCount={handleChangeBasketCount}
-        onChangeFavourite={handleChangeFavourite}
-        onChangeCompare={handleChangeCompare}
-        onClickCard={handleClickCard}
-      />
-    );
-  };
-
+    <ProductsList
+      products={products}
+      mode={viewMode}
+      onChangeCount={handleChangeBasketCount}
+      onChangeFavourite={handleChangeFavourite}
+      onChangeCompare={handleChangeCompare}
+      onClickCard={handleClickCard}
+    />
+  );
   const getProductsFiltersJSX = () => {
     if (isLoadingFilters) return <>Filters skeleton</>;
 
@@ -111,6 +129,7 @@ export const CatalogCategory = ({ categoryId, page, productInitialData }: Props)
         closeFilters={closeFilters}
         setFilters={setFiltersValues}
         priceLimits={priceLimits}
+        filtersValues={filtersValues}
       />
     );
   };
@@ -129,8 +148,7 @@ export const CatalogCategory = ({ categoryId, page, productInitialData }: Props)
               sortType={sort}
               orderType={order}
               viewMode={viewMode}
-              setSortType={setSort}
-              setOrderType={setOrder}
+              setSortOrder={setSortOrder}
               setViewMode={setViewMode}
               openFilters={openFilters}
             />

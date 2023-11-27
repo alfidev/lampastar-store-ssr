@@ -23,3 +23,5 @@ export type FiltersResponseType = {
   list?: FilterType[];
   priceLimits: FilterValueBetweenType;
 };
+
+export type FiltersValuesType = Record<string, { values: string[]; between?: boolean }>;

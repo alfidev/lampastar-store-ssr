@@ -1,11 +1,11 @@
-import { ajax } from '@common/utils';
+import { ajax, SERVER_URL } from '@common/utils';
 
 import { NEWS_CAROUSEL_URL, NEWS_DETAIL_URL, NEWS_URL } from '../constants';
 import { NewsResponseType } from '../types';
 
 export const getNewsCarouselDataRequest = async () => {
   try {
-    const { data } = await ajax.request<NewsResponseType>('GET', '', {
+    const { data } = await ajax.request<NewsResponseType>('GET', SERVER_URL, {
       params: { route: NEWS_CAROUSEL_URL, type: 'p' },
     });
 
@@ -20,7 +20,7 @@ export const getNewsCarouselDataRequest = async () => {
 
 export const getNewsDataRequest = async () => {
   try {
-    const { data } = await ajax.request<NewsResponseType>('GET', '', {
+    const { data } = await ajax.request<NewsResponseType>('GET', SERVER_URL, {
       params: { route: NEWS_URL, type: 'p', start: 0, limit: 10 },
     });
 
@@ -35,7 +35,7 @@ export const getNewsDataRequest = async () => {
 
 export const getNewsItemDataRequest = async (id: string) => {
   try {
-    const { data } = await ajax.request<NewsResponseType>('GET', '', {
+    const { data } = await ajax.request<NewsResponseType>('GET', SERVER_URL, {
       params: { route: NEWS_DETAIL_URL, id },
     });
 

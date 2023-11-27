@@ -10,7 +10,7 @@ import { Slide, SlideSkeleton } from '../components';
 import { useHitsSliderData } from '../hooks';
 
 type Props = {
-  initialData: ProductsTypeResponse;
+  initialData?: ProductsTypeResponse;
 };
 
 export const MainHitsSlider = ({ initialData }: Props) => {

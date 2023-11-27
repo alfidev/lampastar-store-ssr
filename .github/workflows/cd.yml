@@ -23,5 +23,5 @@ jobs:
             git status
             npm ci
             export NODE_OPTIONS="--max_old_space_size=2048"
-            npm run build:prod
+            npm run build
             pm2 restart ${{ secrets.DEPLOY_SERVER_APP_ID }}

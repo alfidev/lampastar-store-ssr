@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import React from 'react';
 
 import { DEFAULT_METADATA_TITLE } from '@common/constants';
@@ -10,7 +11,7 @@ export async function generateMetadata({ params }: { params: { productId: string
   const productInitialData = await getProductDataRequest(Number(params.productId));
 
   return {
-    title: `${productInitialData?.name} | ${DEFAULT_METADATA_TITLE}` || '',
+    title: `${productInitialData?.name || ''} | ${DEFAULT_METADATA_TITLE}` || '',
     description: productInitialData?.description || '',
   };
 }
@@ -18,6 +19,8 @@ export async function generateMetadata({ params }: { params: { productId: string
 export default async function Page({ params }: { params: { productId: string } }) {
   const productInitialData = await getProductDataRequest(Number(params.productId));
   const productViewCarouselInitialData = await getProductCarouselDataRequest(CAROUSEL_TYPE.VIEW);
+
+  if (!productInitialData?.id) return notFound();
 
   return (
     <CatalogProductPage carouselInitialData={productViewCarouselInitialData} productInitialData={productInitialData} />

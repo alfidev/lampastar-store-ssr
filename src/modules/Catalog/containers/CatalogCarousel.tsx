@@ -13,7 +13,7 @@ import { CarouselType, ProductsTypeResponse } from '../types';
 
 type Props = {
   type: CarouselType;
-  initialData: ProductsTypeResponse;
+  initialData?: ProductsTypeResponse;
 };
 
 const getTitle = (type: CarouselType) => {

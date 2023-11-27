@@ -8,7 +8,7 @@ import { ProductsTypeResponse, ProductType } from '@modules/Catalog/types';
 
 type Props = {
   productInitialData: ProductType;
-  carouselInitialData: ProductsTypeResponse;
+  carouselInitialData?: ProductsTypeResponse;
 };
 
 export const CatalogProductPage = ({ productInitialData, carouselInitialData }: Props) => {

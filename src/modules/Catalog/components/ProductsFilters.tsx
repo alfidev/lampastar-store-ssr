@@ -10,7 +10,7 @@ import { Accordion, Button } from '../../../ui/components';
 import { useMediaQuery } from '../../../ui/hooks/useMediaQuery';
 import { Close } from '../../../ui/icons';
 import { CATEGORY_FILTER, PRICE_FILTER } from '../constants';
-import { CategoryType, FilterType, FilterTypeType, FilterValueBetweenType } from '../types';
+import { CategoryType, FiltersValuesType, FilterType, FilterTypeType, FilterValueBetweenType } from '../types';
 
 const FiltersContainer = styled.div``;
 
@@ -49,6 +49,7 @@ type Props = {
   filters: FilterType[];
   setFilters: (value: any) => void;
   priceLimits?: FilterValueBetweenType;
+  filtersValues: FiltersValuesType;
 };
 
 const MobileWrapper = styled.div``;
@@ -71,9 +72,10 @@ export const ProductsFilters = ({
   filters,
   setFilters,
   priceLimits,
+  filtersValues: filtersValuesInitial,
 }: Props) => {
   const isMobile = useMediaQuery({ maxWidth: 'tablet' });
-  const [filtersValues, setFiltersValues] = useState<Record<string, string | number>>({});
+  const [filtersValues, setFiltersValues] = useState<FiltersValuesType>(filtersValuesInitial);
 
   const portal = typeof document !== 'undefined' ? document?.getElementById(FILTERS_PORTAL_ID) : null;
 

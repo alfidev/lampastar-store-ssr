@@ -14,7 +14,7 @@ import { ProductsTypeResponse, ProductType } from '../types';
 type Props = {
   productId: number;
   productInitialData: ProductType;
-  carouselInitialData: ProductsTypeResponse;
+  carouselInitialData?: ProductsTypeResponse;
 };
 
 const getBreadcrumbItem = (product: ProductType) => ({ path: `/catalog/products/${product.id}`, label: product.name });

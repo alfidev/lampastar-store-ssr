@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { CheckBox } from '../../../../ui/components';
-import { FilterType, FilterValueSelectType } from '../../types';
+import { FiltersValuesType, FilterType, FilterValueSelectType } from '../../types';
 
 type Props = {
   filter: FilterType<FilterValueSelectType[]>;
-  setFilter: (value: any) => void;
-  filtersValues: any;
+  setFilter: (value: FiltersValuesType) => void;
+  filtersValues: FiltersValuesType;
 };
 
 const StyledList = styled.div`
@@ -20,23 +20,35 @@ const StyledListItem = styled.div`
 `;
 
 export const SelectFilter = ({ filter, setFilter, filtersValues }: Props) => {
-  const [changes, setChanges] = useState<Record<number | string, boolean>>({});
+  const [changes, setChanges] = useState<Record<number, boolean>>(
+    Object.keys(filtersValues)
+      .filter((filterId) => filterId === filter.id.toString())
+      .reduce((acc, current) => {
+        const newState: Record<number, boolean> = {};
+
+        filtersValues[current].values.forEach((elemId) => {
+          newState[Number(elemId)] = true;
+        });
+
+        return newState;
+      }, {}),
+  );
   const { value } = filter;
 
   useEffect(() => {
     const trueValues = Object.keys(changes)
-      .filter((key) => changes[key])
+      .filter((key) => changes[Number(key)])
       .map((id) => id);
 
     if (trueValues.length) {
-      setFilter({ [filter.id]: trueValues });
+      setFilter({ ...filtersValues, [filter.id]: { values: trueValues } });
     } else if (filtersValues[filter.id]) {
       const { [filter.id]: deletedFilter, ...newFilters } = filtersValues;
       setFilter(newFilters);
     }
   }, [changes, filter.id]);
 
-  const handleChange = (id: number | string, checked: boolean) => {
+  const handleChange = (id: number, checked: boolean) => {
     setChanges({ ...changes, [id]: checked });
   };
 

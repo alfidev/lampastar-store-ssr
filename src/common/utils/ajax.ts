@@ -1,11 +1,13 @@
 import axios, { AxiosError, AxiosRequestConfig, Method } from 'axios';
 
+const PROXY_URL = '/api';
+export const SERVER_URL = process.env.PROXY_SERVER_URL || '';
 class Ajax {
   public ajax;
 
   constructor() {
     this.ajax = axios.create({
-      baseURL: 'http://localhost:3000/api',
+      baseURL: PROXY_URL,
       // timeout: 1000,
     });
 
@@ -20,7 +22,7 @@ class Ajax {
       return this.ajax.request<T>({ method, url, ...options });
     } catch (e) {
       // eslint-disable-next-line no-throw-literal
-      throw e as AxiosError<T, U>;
+      throw e as AxiosError<T>;
     }
   }
 }

@@ -5,6 +5,7 @@ import { CAROUSEL_TYPE, CatalogCarousel } from '@modules/Catalog';
 import { ProductsTypeResponse } from '@modules/Catalog/types';
 import { MainHitsSlider } from '@modules/MainHitsSlider';
 import { MainPromoSlider } from '@modules/MainPromoSlider';
+import { BannersResponseType } from '@modules/MainPromoSlider/types';
 import { NewsCarousel } from '@modules/News';
 import { NewsResponseType } from '@modules/News/types';
 import { Container } from '@ui/components';
@@ -12,12 +13,12 @@ import { Container } from '@ui/components';
 import { ContentSection, PromoSection, SliderCol } from './styled';
 
 type Props = {
-  mainPromoSliderInitialData: any;
-  mainHitsSliderInitialData: ProductsTypeResponse;
-  productBuyCarouselInitialData: ProductsTypeResponse;
-  productNewCarouselInitialData: ProductsTypeResponse;
-  productViewCarouselInitialData: ProductsTypeResponse;
-  newsCarouselInitialData: NewsResponseType;
+  mainPromoSliderInitialData?: BannersResponseType;
+  mainHitsSliderInitialData?: ProductsTypeResponse;
+  productBuyCarouselInitialData?: ProductsTypeResponse;
+  productNewCarouselInitialData?: ProductsTypeResponse;
+  productViewCarouselInitialData?: ProductsTypeResponse;
+  newsCarouselInitialData?: NewsResponseType;
 };
 export const HomePage = ({
   mainPromoSliderInitialData,

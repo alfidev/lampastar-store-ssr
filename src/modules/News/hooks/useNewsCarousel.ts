@@ -4,7 +4,7 @@ import { getQueryRequest } from '../../../common/utils';
 import { NEWS_CAROUSEL_URL } from '../constants';
 import { NewsResponseType } from '../types';
 
-export const useNewsCarousel = (initialData: NewsResponseType) => {
+export const useNewsCarousel = (initialData?: NewsResponseType) => {
   const options = {
     params: { type: 'p' },
   };

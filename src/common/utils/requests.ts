@@ -1,10 +1,11 @@
+import { QueryKey } from '@tanstack/query-core/src';
 import { AxiosRequestConfig } from 'axios';
 
 import { ajax } from './ajax';
 
 export const getQueryRequest =
   <T, U = unknown>(options?: AxiosRequestConfig) =>
-  async (queryData?: { queryKey?: string[] } & U): Promise<T> => {
+  async (queryData?: { queryKey?: QueryKey } & U): Promise<T> => {
     const { queryKey, ...requestData } = queryData || {};
     const { url, params, ...rest } = options || {};
     try {

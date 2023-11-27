@@ -22,7 +22,7 @@ const TitleTypography = styled(Typography).attrs({ tag: 'h2', variant: 'main1' }
 `;
 
 type Props = {
-  initialData: NewsResponseType;
+  initialData?: NewsResponseType;
 };
 
 export const NewsCarousel = ({ initialData }: Props) => {
