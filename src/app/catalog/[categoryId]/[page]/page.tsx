@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { categoryId: strin
   const { categoryId } = params;
   const categories = await getCategoriesDataRequest();
 
-  const category = categories?.find(({ id }) => id === Number(categoryId));
+  const category = categories?.find?.(({ id }) => id === Number(categoryId));
 
   if (!category)
     return {
@@ -55,7 +55,7 @@ export default async function Page({
 
   const categories = await getCategoriesDataRequest();
 
-  const category = categories?.find(({ id }) => id === Number(categoryId));
+  const category = categories?.find?.(({ id }) => id === Number(categoryId));
 
   if (!category) return notFound();
 
