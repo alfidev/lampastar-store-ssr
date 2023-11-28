@@ -8,4 +8,5 @@ export const ContentWrapper = styled.div`
   margin: 0 auto;
   padding: 0 20px;
   height: 100%;
+  position: relative;
 `;
