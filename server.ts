@@ -3,8 +3,11 @@ import http from 'http';
 import https from 'https';
 import { parse } from 'url';
 
+import dotenv from 'dotenv';
 import express from 'express';
 import next from 'next';
+
+dotenv.config({ override: true });
 
 export const PORT = process.env.PORT ?? '9000';
 
@@ -49,5 +52,5 @@ app.prepare().then(() => {
       })
       .listen(PORT);
   }
-  console.log(`> Server listening at http://localhost:${PORT} as ${dev ? 'development' : process.env.NODE_ENV}`);
+  console.log(`> Server listening at https://localhost:${PORT} as ${dev ? 'development' : process.env.NODE_ENV}`);
 });
