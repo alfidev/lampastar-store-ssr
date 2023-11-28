@@ -6,7 +6,7 @@ import { parse } from 'url';
 import express from 'express';
 import next from 'next';
 
-export const PORT = process.env.PORT ?? 9000;
+export const PORT = process.env.PORT ?? '9000';
 
 export const USE_HTTPS = process.env.HTTPS === 'true';
 export const USE_REDIRECT_HTTPS = process.env.USE_REDIRECT_HTTPS === 'true';
@@ -28,7 +28,7 @@ if (USE_REDIRECT_HTTPS && USE_HTTPS) {
   const httpServer = express();
 
   httpServer.get('*', (req, res) => {
-    res.redirect(`https://${req.headers.host}${PORT !== 443 ? `:${PORT}` : ''}${req.url}`);
+    res.redirect(`https://${req.headers.host}${PORT === '443' ? '' : PORT}${req.url}`);
   });
   httpServer.listen(80);
 }
