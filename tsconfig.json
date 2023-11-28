@@ -42,6 +42,7 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
+    "server.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
