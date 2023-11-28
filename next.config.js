@@ -15,5 +15,5 @@ const nextConfig = {
   },
   staticPageGenerationTimeout: 180,
 };
-console.log('dfdsa', API_URL);
+
 module.exports = nextConfig;
