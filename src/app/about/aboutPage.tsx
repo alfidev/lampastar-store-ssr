@@ -97,7 +97,9 @@ export const AboutPage = () => {
       <Line />
       <AboutImages>
         {officeImages.map(({ id, imageMin, alt }) => (
-          <StyledImageAbout key={id} src={imageMin} alt={alt} />
+          <StyledImageAbout key={id}>
+            <Image src={imageMin} alt={alt} />
+          </StyledImageAbout>
         ))}
       </AboutImages>
       <TitleLineContainer title="ТОЛЬКО МЫ" />
@@ -108,16 +110,36 @@ export const AboutPage = () => {
       </AboutWrapper>
       <Line />
       <BrandImages>
-        <StyledImageBrand src={BrandAbb} alt="ABB" />
-        <StyledImageBrand src={BrandDkc} alt="DKC" />
-        <StyledImageBrand src={BrandEkf} alt="EKF" />
-        <StyledImageBrand src={BrandGsz} alt="GZS" />
-        <StyledImageBrand src={BrandIek} alt="IEK" />
-        <StyledImageBrand src={BrandNkz} alt="NKZ" />
-        <StyledImageBrand src={BrandLegrand} alt="LEGRAND" />
-        <StyledImageBrand src={BrandSe} alt="SE" />
-        <StyledImageBrand src={BrandSt} alt="ST" />
-        <StyledImageBrand src={BrandEra} alt="ERA" />
+        <StyledImageBrand>
+          <Image src={BrandAbb} alt="ABB" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandDkc} alt="DKC" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandEkf} alt="EKF" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandGsz} alt="GZS" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandIek} alt="IEK" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandNkz} alt="NKZ" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandLegrand} alt="LEGRAND" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandSe} alt="SE" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandSt} alt="ST" />
+        </StyledImageBrand>
+        <StyledImageBrand>
+          <Image src={BrandEra} alt="ERA" />
+        </StyledImageBrand>
       </BrandImages>
       <TitleLineContainer title="ЧТО УМЕЕМ" />
       <AboutWrapper>
@@ -130,7 +152,9 @@ export const AboutPage = () => {
         <div>Закрываем спецификацию любой сложности в кратчайшие сроки</div>
         <CertificatesLine>
           {certImages.map(({ id, imageMin, alt }) => (
-            <StyledImageCert key={id} src={imageMin} alt={alt} onClick={() => onClickImage(id)} />
+            <StyledImageCert key={id}>
+              <Image src={imageMin} alt={alt} onClick={() => onClickImage(id)} />
+            </StyledImageCert>
           ))}
         </CertificatesLine>
       </CertificatesContainer>
