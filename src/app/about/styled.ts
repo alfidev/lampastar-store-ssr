@@ -69,7 +69,7 @@ export const BrandImages = styled.div`
   justify-content: center;
 `;
 
-export const StyledImageBrand = styled(Image)`
+export const StyledImageBrand = styled.div`
   margin: 20px 20px;
 `;
 
@@ -79,11 +79,11 @@ export const AboutImages = styled.div`
   justify-content: center;
 `;
 
-export const StyledImageAbout = styled(Image)`
+export const StyledImageAbout = styled.div`
   margin: 20px 20px;
 `;
 
-export const StyledImageCert = styled(Image)`
+export const StyledImageCert = styled.div`
   margin: 20px 10px;
   cursor: pointer;
 `;
