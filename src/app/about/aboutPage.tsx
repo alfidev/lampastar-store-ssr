@@ -7,16 +7,6 @@ import styled from 'styled-components';
 import { ImageModal } from '@common/components/ImageModal';
 import { useModal } from '@common/hooks/useModal';
 import { PageTitle } from '@layouts/Lampastar';
-import BrandAbb from '@resources/images/about/brand_abb.png';
-import BrandDkc from '@resources/images/about/brand_dkc.png';
-import BrandEkf from '@resources/images/about/brand_ekf.png';
-import BrandEra from '@resources/images/about/brand_era.png';
-import BrandGsz from '@resources/images/about/brand_gsz.png';
-import BrandIek from '@resources/images/about/brand_iek.png';
-import BrandLegrand from '@resources/images/about/brand_legrand.png';
-import BrandNkz from '@resources/images/about/brand_nkz.png';
-import BrandSe from '@resources/images/about/brand_se.png';
-import BrandSt from '@resources/images/about/brand_st.png';
 import { Typography } from '@ui/components/Typography';
 
 import { certImages, officeImages } from './constants';
@@ -111,34 +101,34 @@ export const AboutPage = () => {
       <Line />
       <BrandImages>
         <StyledImageBrand>
-          <Image src={BrandAbb} alt="ABB" />
+          <Image src="/brand_abb.png" alt="ABB" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandDkc} alt="DKC" />
+          <Image src="/brand_dkc.png" alt="DKC" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandEkf} alt="EKF" />
+          <Image src="/brand_ekf.png" alt="EKF" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandGsz} alt="GZS" />
+          <Image src="/brand_gsz.png" alt="GZS" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandIek} alt="IEK" />
+          <Image src="/brand_iek.png" alt="IEK" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandNkz} alt="NKZ" />
+          <Image src="/brand_nkz.png" alt="NKZ" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandLegrand} alt="LEGRAND" />
+          <Image src="/brand_legrand.png" alt="LEGRAND" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandSe} alt="SE" />
+          <Image src="/brand_se.png" alt="SE" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandSt} alt="ST" />
+          <Image src="/brand_st.png" alt="ST" />
         </StyledImageBrand>
         <StyledImageBrand>
-          <Image src={BrandEra} alt="ERA" />
+          <Image src="/brand_era.png" alt="ERA" />
         </StyledImageBrand>
       </BrandImages>
       <TitleLineContainer title="ЧТО УМЕЕМ" />
