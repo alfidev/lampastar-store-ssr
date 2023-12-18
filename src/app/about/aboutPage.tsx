@@ -90,7 +90,7 @@ export const AboutPage = () => {
           <iframe
             title="office_video_1"
             src="https://vk.com/video_ext.php?oid=-191108805&id=456239032&hash=9963c47fdf14318a"
-            width="640"
+            width="100%"
             height="360"
             frameBorder="0"
             allowFullScreen
@@ -101,7 +101,7 @@ export const AboutPage = () => {
           <iframe
             title="office_video_2"
             src="https://vk.com/video_ext.php?oid=-191108805&id=456239035&hash=d0b7a4bc0da2cd18"
-            width="640"
+            width="100%"
             height="360"
             frameBorder="0"
             allowFullScreen
