@@ -1,8 +1,3 @@
-export const officeImages = [
-  { id: 1, image: '/office1.jpg', imageMin: '/office1_min.jpg', alt: '' },
-  { id: 2, image: '/office2.jpg', imageMin: '/office2_min.jpg', alt: '' },
-];
-
 export const certImages = [
   { id: 1, image: '/cert1.jpg', imageMin: '/cert1_min.jpg', alt: '' },
   { id: 2, image: '/cert2.jpg', imageMin: '/cert2_min.jpg', alt: '' },

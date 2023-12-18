@@ -79,8 +79,8 @@ export const AboutImages = styled.div`
   justify-content: center;
 `;
 
-export const StyledImageAbout = styled.div`
-  margin: 20px 20px;
+export const AboutVideoContainer = styled.div`
+  margin-bottom: 20px;
 `;
 
 export const StyledImageCert = styled.div`

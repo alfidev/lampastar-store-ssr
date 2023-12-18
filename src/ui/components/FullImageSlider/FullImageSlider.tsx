@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -14,7 +13,7 @@ type Props = {
   onClose: () => void;
 };
 
-const StyledImg = styled(Image)`
+const StyledImg = styled.img`
   max-width: 100%;
   max-height: 100%;
 `;
