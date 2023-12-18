@@ -32,7 +32,7 @@ export type ProductCardProps = {
   onChangeCount: (count: number) => void;
   onChangeFavourite: () => void;
   onChangeCompare: () => void;
-  onClickCard: () => void;
+  productLink: string;
   isLoading: boolean;
 };
 
@@ -49,8 +49,8 @@ export const ProductCard = ({
   onChangeCount,
   onChangeFavourite,
   onChangeCompare,
-  onClickCard,
   isLoading,
+  productLink,
 }: ProductCardProps) => {
   const enableOrderFeature = useFeature(USE_ORDER);
   const enableFavoriteFeature = useFeature(USE_FAVORITES);
@@ -104,18 +104,18 @@ export const ProductCard = ({
   };
 
   return (
-    <StyledCard>
-      <TopBlock onClick={onClickCard}>
+    <StyledCard href={productLink}>
+      <TopBlock>
         <ImageBox>{image ? <img alt={name} src={`${image}`} /> : <NoImage />}</ImageBox>
         <NameContainer>{name}</NameContainer>
       </TopBlock>
-      <BottomBlock onClick={onClickCard}>
+      <BottomBlock>
         <PriceContainer>
           {oldPrice && <OldPrice>{oldPrice}</OldPrice>}
           {price && <ActualPrice>{price}</ActualPrice>}
         </PriceContainer>
       </BottomBlock>
-      <ActionsBlock>{renderActions()}</ActionsBlock>
+      <ActionsBlock onClick={(e) => e.stopPropagation()}>{renderActions()}</ActionsBlock>
     </StyledCard>
   );
 };

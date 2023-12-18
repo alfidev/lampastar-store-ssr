@@ -142,7 +142,7 @@ export const ControlPanel = ({ viewMode, sortType, orderType, setViewMode, setSo
         ))}
       </ButtonContainer>
 
-      <ButtonContainer>
+      <ButtonContainer style={{ display: 'none' }}>
         <ItemIcon active={viewMode === VIEW_MODE.grid} onClick={() => setViewMode(VIEW_MODE.grid)}>
           <Icon icon={Grid} size="xxl" />
         </ItemIcon>

@@ -13,7 +13,7 @@ type Props = {
   onChangeCount: (id: number, count: number) => Promise<void>;
   onChangeFavourite: (id: number, value: boolean) => Promise<void>;
   onChangeCompare: (id: number, value: boolean) => Promise<void>;
-  onClickCard: (id: number) => void;
+  getProductLink: (id: number) => string;
 };
 
 export const ProductCard = ({
@@ -22,7 +22,7 @@ export const ProductCard = ({
   onChangeCount,
   onChangeFavourite,
   onChangeCompare,
-  onClickCard,
+  getProductLink,
 }: Props) => {
   const { image, name, price, discount, special, notAvailable, forOrder, id, basketQuantity } = product;
 
@@ -62,13 +62,12 @@ export const ProductCard = ({
     }
   };
 
-  const onClickCardHandler = () => {
-    onClickCard(id);
-  };
+  const productLink = getProductLink(id);
 
   if (mode === VIEW_MODE.grid)
     return (
       <ProductCardUI
+        productLink={productLink}
         name={name}
         image={image}
         price={priceString}
@@ -81,7 +80,6 @@ export const ProductCard = ({
         onChangeCount={onChangeCountHandler}
         onChangeFavourite={onChangeFavouriteHandler}
         onChangeCompare={onChangeCompareHandler}
-        onClickCard={onClickCardHandler}
         isLoading={isLoading}
       />
     );
@@ -100,7 +98,7 @@ export const ProductCard = ({
       onChangeCount={onChangeCountHandler}
       onChangeFavourite={onChangeFavouriteHandler}
       onChangeCompare={onChangeCompareHandler}
-      onClickCard={onClickCardHandler}
+      productLink={productLink}
       isLoading={isLoading}
     />
   );

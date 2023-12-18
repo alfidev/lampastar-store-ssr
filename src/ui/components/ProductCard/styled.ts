@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { CardLink } from '@ui/components/Card/Card';
+
 import { Like } from '../../icons';
 import { adaptive } from '../Adaptive';
 import { Button } from '../Button';
@@ -28,7 +30,7 @@ export const ImageBoxBasket = styled(ImageBox)`
   max-width: 96px;
 `;
 
-export const StyledCard = styled(Card)`
+export const StyledCard = styled(CardLink)`
   display: flex;
   flex-direction: column;
 `;

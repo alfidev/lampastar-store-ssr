@@ -35,7 +35,7 @@ export const ProductCardLine = ({
   onChangeCount,
   onChangeFavourite,
   onChangeCompare,
-  onClickCard,
+  productLink,
   isLoading,
 }: ProductCardProps) => {
   const enableOrderFeature = useFeature(USE_ORDER);
@@ -54,6 +54,7 @@ export const ProductCardLine = ({
 
   const onChangeCounter = (count: number) => {
     onChangeCount(count);
+    console.log(productLink);
   };
 
   const showCounter = enableOrderFeature && countInBasket && !notAvailable && !forOrder;
@@ -92,10 +93,10 @@ export const ProductCardLine = ({
 
   return (
     <StyledCardLine height={204}>
-      <LeftBlock onClick={onClickCard}>
+      <LeftBlock>
         <ImageBoxLine>{image ? <img alt={name} src={`${image}`} /> : <NoImage />}</ImageBoxLine>
       </LeftBlock>
-      <InfoBlock onClick={onClickCard}>
+      <InfoBlock>
         <NameContainer row={1}>{name}</NameContainer>
         <PropertiesContainer />
         <ActionsBlock>{renderActions()}</ActionsBlock>
