@@ -1,3 +1,1 @@
-import { StaticImageData } from 'next/image';
-
-export type ImageWithSizeType = { id: number; image: StaticImageData; imageMin: StaticImageData; alt?: string };
+export type ImageWithSizeType = { id: number; image: string; imageMin: string; alt?: string };

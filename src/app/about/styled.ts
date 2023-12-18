@@ -79,8 +79,10 @@ export const AboutImages = styled.div`
   justify-content: center;
 `;
 
-export const StyledImageAbout = styled.div`
+export const AboutVideoContainer = styled.div`
   margin: 20px 20px;
+  max-width: 640px;
+  flex-grow: 1;
 `;
 
 export const StyledImageCert = styled.div`
