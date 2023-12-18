@@ -56,7 +56,7 @@ export const CatalogMain = ({
 
   const totalPage = Math.ceil((productInitialData?.total || 0) / 18);
 
-  const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
+  const { handleChangeFavourite, handleChangeCompare, handleChangeBasketCount, getProductLink } = useProductActions();
 
   const setSortOrder = useCallback(
     (valueSort: SortType, valueOrder: OrderType) => {
@@ -83,7 +83,7 @@ export const CatalogMain = ({
         onChangeCount={handleChangeBasketCount}
         onChangeFavourite={handleChangeFavourite}
         onChangeCompare={handleChangeCompare}
-        onClickCard={handleClickCard}
+        getProductLink={getProductLink}
       />
     );
   };
