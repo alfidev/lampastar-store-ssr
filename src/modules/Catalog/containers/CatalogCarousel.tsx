@@ -39,7 +39,7 @@ const TitleTypography = styled(Typography).attrs({ tag: 'h2', variant: 'main1' }
 
 export const CatalogCarousel = ({ type, initialData }: Props) => {
   const { list, isLoading } = useProductsCarousel(type, initialData);
-  const { handleChangeFavourite, handleChangeBasketCount, handleChangeCompare, handleClickCard } = useProductActions();
+  const { handleChangeFavourite, handleChangeBasketCount, handleChangeCompare, getProductLink } = useProductActions();
 
   const enabled = useFeature(USE_BUY_TOP) || type !== 'BUY';
 
@@ -61,7 +61,7 @@ export const CatalogCarousel = ({ type, initialData }: Props) => {
                     onChangeCount={handleChangeBasketCount}
                     onChangeFavourite={handleChangeFavourite}
                     onChangeCompare={handleChangeCompare}
-                    onClickCard={handleClickCard}
+                    getProductLink={getProductLink}
                   />
                 </Col>
               ))

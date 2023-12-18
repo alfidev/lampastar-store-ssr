@@ -12,7 +12,7 @@ type Props = {
   onChangeCount: (id: number, count: number) => Promise<void>;
   onChangeFavourite: (id: number, value: boolean) => Promise<void>;
   onChangeCompare: (id: number, value: boolean) => Promise<void>;
-  onClickCard: (id: number) => void;
+  getProductLink: (id: number) => string;
 };
 
 const StyledCol = styled(Col)`
@@ -24,7 +24,7 @@ export const ProductsList = ({
   mode,
   onChangeCount,
   onChangeFavourite,
-  onClickCard,
+  getProductLink,
   onChangeCompare,
 }: Props) => {
   const lineModeValue = mode === VIEW_MODE.list && 12;
@@ -45,7 +45,7 @@ export const ProductsList = ({
               onChangeCount={onChangeCount}
               onChangeFavourite={onChangeFavourite}
               onChangeCompare={onChangeCompare}
-              onClickCard={onClickCard}
+              getProductLink={getProductLink}
             />
           </StyledCol>
         ))}

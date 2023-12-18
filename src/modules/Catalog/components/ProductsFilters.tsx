@@ -10,7 +10,7 @@ import { Accordion, Button } from '../../../ui/components';
 import { useMediaQuery } from '../../../ui/hooks/useMediaQuery';
 import { Close } from '../../../ui/icons';
 import { CATEGORY_FILTER, PRICE_FILTER } from '../constants';
-import { CategoryType, FiltersValuesType, FilterType, FilterTypeType, FilterValueBetweenType } from '../types';
+import { CategoryMap, FiltersValuesType, FilterType, FilterTypeType, FilterValueBetweenType } from '../types';
 
 const FiltersContainer = styled.div``;
 
@@ -41,7 +41,7 @@ const FiltersBody = styled.div`
 `;
 
 type Props = {
-  categories: CategoryType[] | null;
+  categories: CategoryMap[] | null;
   onClickCategory: (id: number) => void;
   showFilters: boolean;
   closeFilters: () => void;
@@ -93,7 +93,7 @@ export const ProductsFilters = ({
   const getFiltersBody = () => (
     <FiltersContainer>
       {categories && (
-        <Accordion title={CATEGORY_FILTER.title} isOpen>
+        <Accordion title={CATEGORY_FILTER.title} isOpen style={{ marginLeft: -5 }}>
           <CategoryFilter categories={categories} onChange={onClickCategory} categoryId={categoryId} />
         </Accordion>
       )}

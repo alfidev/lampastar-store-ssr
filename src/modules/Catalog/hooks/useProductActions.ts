@@ -10,6 +10,8 @@ export const useProductActions = () => {
     router.push(`/catalog/products/${id}`);
   };
 
+  const getProductLink = (id: number) => `/catalog/products/${id}`;
+
   const handleChangeBasketCount = (id: number, quantity: number): Promise<void> => {
     if (products[id]) {
       if (!quantity) return removeProduct(products[id].cartId);
@@ -39,6 +41,7 @@ export const useProductActions = () => {
     handleChangeFavourite,
     handleChangeBasketCount,
     handleClickCard,
+    getProductLink,
     isLoading,
   };
 };

@@ -29,9 +29,8 @@ export const useCategories = (props?: Props) => {
   const categoriesMap = useMemo(() => getCategoriesRecursive(data ?? [], parentId), [data, parentId]);
 
   const currentList = useMemo(
-    () =>
-      (category && data?.filter(({ parentId: categoryParentId }) => categoryParentId === category.parentId)) || null,
-    [data, categoryId],
+    () => getCategoriesRecursive(data ?? [], category?.parentId ?? 0),
+    [data, category?.parentId],
   );
 
   const notFound = !!categoryId && !category;

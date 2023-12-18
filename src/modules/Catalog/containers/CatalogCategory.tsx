@@ -65,7 +65,7 @@ export const CatalogCategory = ({ categoryId, page, productInitialData, filtersV
     breadcrumbs,
     totalPage,
   } = useProducts({ category: categoryId, initialData: productInitialData });
-  const { handleClickCard, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
+  const { getProductLink, handleChangeFavourite, handleChangeCompare, handleChangeBasketCount } = useProductActions();
   const { list: filters, priceLimits } = useFilters(categoryId);
 
   const { isShowedFilters, openFilters, closeFilters } = useControlAndFilters();
@@ -113,7 +113,7 @@ export const CatalogCategory = ({ categoryId, page, productInitialData, filtersV
       onChangeCount={handleChangeBasketCount}
       onChangeFavourite={handleChangeFavourite}
       onChangeCompare={handleChangeCompare}
-      onClickCard={handleClickCard}
+      getProductLink={getProductLink}
     />
   );
   const getProductsFiltersJSX = () => {
